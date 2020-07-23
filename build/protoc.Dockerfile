@@ -16,5 +16,7 @@ WORKDIR /
 RUN go get -u -v github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 RUN go get -u -v github.com/envoyproxy/protoc-gen-validate
 RUN go get -u -v github.com/golang/protobuf/protoc-gen-go
+RUN go get -u -v google.golang.org/protobuf/cmd/protoc-gen-go
+RUN go get -u -v google.golang.org/grpc/cmd/protoc-gen-go-grpc
 
 ENTRYPOINT [ "protoc" ]
