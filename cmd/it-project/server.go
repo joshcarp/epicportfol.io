@@ -26,7 +26,10 @@ func main() {
     if port == ""{
         port = ":50051"
     }
-    lis, err := net.Listen("tcp", "0.0.0.0"+port)
+    if port[0] != ':'{
+        port = ":"+port
+    }
+    lis, err := net.Listen("tcp", port)
     if err != nil {
         log.Fatalf("failed to listen: %v", err)
     }
