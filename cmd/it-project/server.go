@@ -4,6 +4,9 @@ package main
 import (
     "context"
     "fmt"
+    "google.golang.org/grpc"
+    "log"
+    "net"
     "net/http"
     "os"
 
@@ -28,19 +31,19 @@ func main() {
     if port[0] != ':'{
         port = ":"+port
     }
-    http.HandleFunc("/", HelloServer)
-    http.ListenAndServe(port, nil)
-    //lis, err := net.Listen("tcp", port)
-    //if err != nil {
-    //    log.Fatalf("failed to listen: %v", err)
-    //}
-    //s := grpc.NewServer()
+    //http.HandleFunc("/", HelloServer)
+    //http.ListenAndServe(port, nil)
+    lis, err := net.Listen("tcp", port)
+    if err != nil {
+       log.Fatalf("failed to listen: %v", err)
+    }
+    s := grpc.NewServer()
     //reflection.Register(s)
-    //itproject.RegisterItProjectServer(s, &server{})
-    //fmt.Println("Starting server on "+port)
-    //if err := s.Serve(lis); err != nil {
-    //    log.Fatalf("failed to serve: %v", err)
-    //}
+    itproject.RegisterItProjectServer(s, &server{})
+    fmt.Println("Starting server on "+port)
+    if err := s.Serve(lis); err != nil {
+       log.Fatalf("failed to serve: %v", err)
+    }
 }
 
 func HelloServer(w http.ResponseWriter, r *http.Request) {
