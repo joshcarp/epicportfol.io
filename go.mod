@@ -1,6 +1,6 @@
 module github.com/joshcarp/it-project
 
-go 1.14
+go 1.13
 
 require (
 	github.com/fullstorydev/grpcui v1.0.0 // indirect

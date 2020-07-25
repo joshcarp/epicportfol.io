@@ -5,6 +5,7 @@ import (
     "context"
     "fmt"
     "google.golang.org/grpc"
+    "google.golang.org/grpc/reflection"
     "log"
     "net"
     "net/http"
@@ -33,12 +34,12 @@ func main() {
     }
     //http.HandleFunc("/", HelloServer)
     //http.ListenAndServe(port, nil)
-    lis, err := net.Listen("tcp", "0.0.0.0"+port)
+    lis, err := net.Listen("tcp", port)
     if err != nil {
        log.Fatalf("failed to listen: %v", err)
     }
     s := grpc.NewServer()
-    //reflection.Register(s)
+    reflection.Register(s)
     itproject.RegisterItProjectServer(s, &server{})
     fmt.Println("Starting server on "+port)
     if err := s.Serve(lis); err != nil {
