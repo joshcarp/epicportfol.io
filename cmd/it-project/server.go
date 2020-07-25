@@ -33,7 +33,7 @@ func main() {
     }
     //http.HandleFunc("/", HelloServer)
     //http.ListenAndServe(port, nil)
-    lis, err := net.Listen("tcp", port)
+    lis, err := net.Listen("tcp", "0.0.0.0"+port)
     if err != nil {
        log.Fatalf("failed to listen: %v", err)
     }
