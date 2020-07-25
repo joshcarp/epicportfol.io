@@ -10,3 +10,4 @@ jobs:
                   registry: gcr.io
                   project_name: joshcarp-it-project
                   image_name: joshcarp-it-proj-image
+                  dockerfile: ./it-project/Dockerfile
