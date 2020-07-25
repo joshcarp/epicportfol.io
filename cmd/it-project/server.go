@@ -19,6 +19,7 @@ type server struct {
 }
 
 func (s *server) Hello(ctx context.Context, request *itproject.HelloRequest) (*itproject.HelloResponse, error) {
+    fmt.Println("hello func")
     return &itproject.HelloResponse{Content: "Hello World"}, nil
 }
 
@@ -32,7 +33,7 @@ func main() {
     }
     lis, err := net.Listen("tcp", port)
     if err != nil {
-        log.Fatalf("failed to listen: %v", err)
+        log.Fatalf("failed to listen: %v", err)x
     }
     s := grpc.NewServer()
     reflection.Register(s)
