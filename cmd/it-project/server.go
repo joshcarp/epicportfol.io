@@ -3,6 +3,7 @@ package main
 
 import (
     "context"
+    "fmt"
     "google.golang.org/grpc/reflection"
     "log"
     "net"
@@ -36,6 +37,7 @@ func main() {
     s := grpc.NewServer()
     reflection.Register(s)
     itproject.RegisterItProjectServer(s, &server{})
+    fmt.Println("Starting server on "+port)
     if err := s.Serve(lis); err != nil {
         log.Fatalf("failed to serve: %v", err)
     }
