@@ -4,13 +4,10 @@ package main
 import (
     "context"
     "fmt"
-    "google.golang.org/grpc/reflection"
-    "log"
-    "net"
+    "net/http"
     "os"
 
     "github.com/joshcarp/it-project/proto/itproject"
-    "google.golang.org/grpc"
 )
 
 // server is used to implement helloworld.GreeterServer.
@@ -31,15 +28,21 @@ func main() {
     if port[0] != ':'{
         port = ":"+port
     }
-    lis, err := net.Listen("tcp", port)
-    if err != nil {
-        log.Fatalf("failed to listen: %v", err)
-    }
-    s := grpc.NewServer()
-    reflection.Register(s)
-    itproject.RegisterItProjectServer(s, &server{})
-    fmt.Println("Starting server on "+port)
-    if err := s.Serve(lis); err != nil {
-        log.Fatalf("failed to serve: %v", err)
-    }
+    http.HandleFunc("/", HelloServer)
+    http.ListenAndServe(port, nil)
+    //lis, err := net.Listen("tcp", port)
+    //if err != nil {
+    //    log.Fatalf("failed to listen: %v", err)
+    //}
+    //s := grpc.NewServer()
+    //reflection.Register(s)
+    //itproject.RegisterItProjectServer(s, &server{})
+    //fmt.Println("Starting server on "+port)
+    //if err := s.Serve(lis); err != nil {
+    //    log.Fatalf("failed to serve: %v", err)
+    //}
+}
+
+func HelloServer(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "Hello, %s!", r.URL.Path[1:])
 }
