@@ -16,6 +16,8 @@ ping:
 	docker run --rm joshcarp/grpcurl --plaintext host.docker.internal:$(PORT) itproject.itProject/Hello
 ping.prod:
 	docker run --rm joshcarp/grpcurl -d '{"Content": "Hello" }' $(PRODADDR):$(PORT) itProject.itProject.Hello
+ping.prod.rest:
+	curl
 client:
 	docker build . -f Dockerfile.client -t joshcarp/it-project-client
 client.run:
