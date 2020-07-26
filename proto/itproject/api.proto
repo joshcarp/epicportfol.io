@@ -4,11 +4,16 @@ option go_package = "github.com/joshcarp/itproject/;itproject";
 option java_multiple_files = true;
 option java_package = "com.joshcarp.itproject";
 option java_outer_classname = "pi";
+import "google/api/annotations.proto";
 
 package itproject;
 
 service itProject {
-    rpc Hello(HelloRequest) returns (HelloResponse);
+    rpc Hello(HelloRequest) returns (HelloResponse){
+        option (google.api.http) = {
+            get: "/hello"
+        };
+    }
 }
 
 message HelloRequest {

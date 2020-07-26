@@ -86,5 +86,5 @@ var _ItProject_serviceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "itproject/proto/itproject/api.proto",
+	Metadata: "api.proto",
 }

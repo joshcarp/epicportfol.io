@@ -1,10 +1,13 @@
 all:proto
 PRODADDR=joshcarp-it-project-ogaheemccq-uc.a.run.app
 PORT=443
+INCLUDE=-I/go/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis
 .PHONY: proto proto-docker
+
 proto:
-	docker run --rm -v $$(pwd):/itproject:rw joshcarp/protoc --go_out=paths=source_relative:. ./itproject/proto/itproject/api.proto
-	docker run --rm -v $$(pwd):/itproject:rw joshcarp/protoc --go-grpc_out=paths=source_relative:. ./itproject/proto/itproject/api.proto
+	docker run --rm -v $$(pwd):/itproject:rw joshcarp/protoc $(INCLUDE) -I./itproject/proto/itproject/ --go_out=paths=source_relative:/itproject/proto/itproject/ api.proto
+	docker run --rm -v $$(pwd):/itproject:rw joshcarp/protoc $(INCLUDE) -I././itproject/proto/itproject/ --go-grpc_out=paths=source_relative:/itproject/proto/itproject/ api.proto
+	docker run --rm -v $$(pwd):/itproject:rw joshcarp/protoc $(INCLUDE) -I././itproject/proto/itproject/ --grpc-gateway_out=logtostderr=true,paths=source_relative:/itproject/proto/itproject/ api.proto
 docker:
 	docker build . -t joshcarp/it-project
 run:
