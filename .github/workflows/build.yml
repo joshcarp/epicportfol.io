@@ -1,14 +1,18 @@
-name: Push to GCR Github Action
-on: [push]
+on: [push, pull_request]
+name: Test
 jobs:
-    build-and-push-to-gcr:
-        runs-on: ubuntu-latest
+    test:
+        strategy:
+            matrix:
+                go-version: [1.14.x]
+                platform: [ubuntu-latest]
+        runs-on: ${{ matrix.platform }}
         steps:
-            - name: Checkout repo
-              uses: actions/checkout@v2
-            - uses: RafikFarhad/push-to-gcr-github-action@v2
+            - name: Install Go
+              uses: actions/setup-go@v2
               with:
-                  gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
-                  registry: gcr.io
-                  project_name: joshcarp-it-project
-                  image_name: joshcarp-it-proj-image
+                  go-version: ${{ matrix.go-version }}
+            - name: Checkout code
+              uses: actions/checkout@v2
+            - name: Test
+              run: go test ./...
