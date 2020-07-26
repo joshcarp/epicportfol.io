@@ -41,13 +41,15 @@ func main() {
     itproject.RegisterItProjectServer(s, &server{})
     fmt.Println("Starting server on "+port)
     go func (){
+        fmt.Println("Starting http server "+port)
         if err := run(lis); err != nil {
+            fmt.Println("Failed to run rest server")
             log.Fatalf("failed to serve: %v", err)
         }
     }()
-
+    fmt.Println("Starting grpc server")
     if err := s.Serve(lis); err != nil {
-       log.Fatalf("failed to serve: %v", err)
+        log.Fatalf("failed to serve: %v", err)
     }
 }
 
@@ -56,6 +58,7 @@ func HelloServer(w http.ResponseWriter, r *http.Request) {
 }
 
 func run(lis net.Listener) error {
+    fmt.Println("Starting grpc server")
     ctx := context.Background()
     ctx, cancel := context.WithCancel(ctx)
     defer cancel()
@@ -68,7 +71,7 @@ func run(lis net.Listener) error {
     if err != nil {
         return err
     }
-
+    fmt.Println("http.Serve(lis, mux)")
     // Start HTTP server (and proxy calls to gRPC server endpoint)
     return http.Serve(lis, mux)
 }
