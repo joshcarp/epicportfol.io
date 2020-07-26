@@ -73,5 +73,6 @@ func run(lis net.Listener) error {
     }
     fmt.Println("http.Serve(lis, mux)")
     // Start HTTP server (and proxy calls to gRPC server endpoint)
-    return http.Serve(lis, mux)
+    http.Handle("/hello", mux)
+    return http.Serve(lis, nil)
 }
