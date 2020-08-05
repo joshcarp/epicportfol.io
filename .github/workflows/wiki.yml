@@ -10,6 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
+          repository: joshcarp/it-project.wiki
           path: it-project.wiki
       - name: Checkout
         uses: actions/checkout@v2
