@@ -128,7 +128,7 @@
 {{$typedesc := (Attribute $type "description")}}
 {{if ne $typedesc ""}}- {{$typedesc}}{{end}}
 <img src="{{CreateTypeDiagram $appName $typeName $type false}}">
-[Full Diagram]({{CreateTypeDiagram $appName $typeName $type true}})
+<a href="{{CreateTypeDiagram $appName $typeName $type true}}">Full Diagram</a>
 {{if Fields $type}}
 #### Fields
 {{$fieldHeader := false}}
