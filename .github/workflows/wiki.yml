@@ -16,12 +16,15 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: it-project
+      - name: remove old service docs
+        working-directory: it-project.wiki
+        run: |
+          rm -rf service-documentation
+          mkdir -p service-documentation
       - name: Gen Docs
         working-directory: it-project
         run: |
           make docs -B
-          rm -rf ../it-project.wiki/service-documentation
-          mkdir -p ../it-project.wiki/service-documentation
           mv docs/* ../it-project.wiki/service-documentation
       - name: git add
         working-directory: it-project.wiki
