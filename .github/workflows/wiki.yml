@@ -20,7 +20,6 @@ jobs:
         working-directory: it-project
         run: |
           make docs -B
-          ls ../it-project.wiki/
           rm -rf ../it-project.wiki/service-documentation
           mkdir -p ../it-project.wiki/service-documentation
           mv docs/* ../it-project.wiki/service-documentation
