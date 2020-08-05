@@ -1,0 +1,4 @@
+import generated/index.sysl
+
+_[~ignore]:
+    ...
