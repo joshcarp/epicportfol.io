@@ -3,7 +3,7 @@
 {{$packageName := ModulePackageName .}}
 # {{$packageName}}
 ## Integration Diagram
-![]({{CreateIntegrationDiagram . $packageName false}})
+<img src="{{CreateIntegrationDiagram . $packageName false}}">
 {{$Apps := .Apps}}
 {{$databases := false}}
 {{range $appName := SortedKeys .Apps}}{{$app := index $Apps $appName}}{{if and (eq (hasPattern $app.Attrs "ignore") false) (eq (hasPattern $app.Attrs "db") true)}}
@@ -38,8 +38,10 @@
 <a name=Database-{{$appName}}></a><details>
 <summary>Database {{$appName}}</summary>
 {{Attribute $app "description"}}
-![]({{GenerateDataModel $app}})
+<img src="{{GenerateDataModel $app}}">
 </details>
+
+
 {{end}}{{end}}
 {{end}}
 {{if $anyApps}}
@@ -63,8 +65,12 @@
 {{Attribute $e "description"}}
 <details>
 <summary>Sequence Diagram</summary>
-![]({{CreateSequenceDiagram $appName $e}})
+
+<img src="{{CreateSequenceDiagram $appName $e}}">
+
 </details>
+
+
 <details>
 <summary>Request types</summary>
 {{if and (not $e.Param) (not $e.RestParams) }}
@@ -75,23 +81,25 @@
 {{end}}{{end}}{{end}}
 {{range $param := $e.Param}}
 {{Attribute $param.Type "description"}}
-![]({{CreateParamDataModel $app $param}})
+<img src="{{CreateParamDataModel $app $param}}">
 {{end}}
 {{if $e.RestParams}}{{if $e.RestParams.UrlParam}}
 {{range $param := $e.RestParams.UrlParam}}
 {{$pathDataModel := (CreateParamDataModel $app $param)}}
 {{if ne $pathDataModel ""}}
 #### Path Parameter
-![]({{$pathDataModel}})
+<img src="{{$pathDataModel}}">
 {{end}}{{end}}{{end}}
 {{if $e.RestParams.QueryParam}}
 {{range $param := $e.RestParams.QueryParam}}
 {{$queryDataModel := (CreateParamDataModel $app $param)}}
 {{if ne $queryDataModel ""}}
 #### Query Parameter
-![]({{$queryDataModel}})
+<img src="{{$queryDataModel}}">
 {{end}}{{end}}{{end}}{{end}}
 </details>
+
+
 <details>
 <summary>Response types</summary>
 {{$responses := false}}
@@ -99,12 +107,13 @@
 {{$responses = true}}
 {{$ret := (GetReturnType $e $s)}}{{if $ret }}
 {{Attribute $ret "description"}}{{end}}
-![]({{$diagram}})
+<img src="{{$diagram}}">
 {{end}}{{end}}
 {{if not $responses}}
 <span style="color:grey">No Response Types</span>
 {{end}}
 </details>
+
 {{end}}
 ---
 {{end}}{{end}}{{end}}{{end}}{{end}}{{end}}
@@ -118,7 +127,7 @@
 ### {{$appName}}.{{$typeName}}
 {{$typedesc := (Attribute $type "description")}}
 {{if ne $typedesc ""}}- {{$typedesc}}{{end}}
-![]({{CreateTypeDiagram $appName $typeName $type false}})
+<img src="{{CreateTypeDiagram $appName $typeName $type false}}">
 [Full Diagram]({{CreateTypeDiagram $appName $typeName $type true}})
 {{if Fields $type}}
 #### Fields
