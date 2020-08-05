@@ -37,7 +37,9 @@
 {{if hasPattern $app.GetAttrs "db"}}
 <a name=Database-{{$appName}}></a><details>
 <summary>Database {{$appName}}</summary>
+
 {{Attribute $app "description"}}
+
 <img src="{{GenerateDataModel $app}}">
 </details>
 
@@ -124,13 +126,17 @@
 {{range $typeName := SortedKeys $types}}{{$type := index $types $typeName}}
 <a name={{$appName}}.{{$typeName}}></a><details>
 <summary>{{$appName}}.{{$typeName}}</summary>
+
 ### {{$appName}}.{{$typeName}}
+
 {{$typedesc := (Attribute $type "description")}}
 {{if ne $typedesc ""}}- {{$typedesc}}{{end}}
 <img src="{{CreateTypeDiagram $appName $typeName $type false}}">
 <a href="{{CreateTypeDiagram $appName $typeName $type true}}">Full Diagram</a>
 {{if Fields $type}}
+
 #### Fields
+
 {{$fieldHeader := false}}
 {{$fieldMap := Fields $type}}{{range $fieldName := SortedKeys $fieldMap}}{{$field := index $fieldMap $fieldName}}{{if not $fieldHeader}}| Field name | Type | Description |
 |----|----|----|{{$fieldHeader = true}}{{end}}
