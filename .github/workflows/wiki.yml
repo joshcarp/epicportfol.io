@@ -23,6 +23,11 @@ jobs:
           ls ../it-project.wiki/
           mkdir -p ./it-project.wiki/service-documentation
           mv docs ../it-project.wiki/service-documentation
+      - name: git add
+        working-directory: it-project.wiki
+        run: |
+          git add -A
+          git commit -m "Update service documentation"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
