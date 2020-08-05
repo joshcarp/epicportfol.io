@@ -1,4 +1,5 @@
 import generated/index.sysl
 
-_[~ignore]:
-    ...
+_[~project]:
+    _:
+        itproject
