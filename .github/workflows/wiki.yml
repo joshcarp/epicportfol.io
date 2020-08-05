@@ -21,7 +21,8 @@ jobs:
           make docs
           mkdir -p ./it-project.wiki/service-documentation
           mv docs ../it-project.wiki/service-documentation
-      - name: push
-        working-directory: it-project.wiki
-        run: |
-          git add -A && git commit -m "Update autogeneration" && git push
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          working-directory: it-project.wiki
+          github_token: ${{ secrets.GITHUB_TOKEN }}
