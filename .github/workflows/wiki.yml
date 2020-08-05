@@ -20,6 +20,7 @@ jobs:
         working-directory: it-project
         run: |
           make docs
+          ls ../it-project.wiki/
           mkdir -p ./it-project.wiki/service-documentation
           mv docs ../it-project.wiki/service-documentation
       - name: Push changes
