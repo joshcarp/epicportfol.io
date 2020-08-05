@@ -9,6 +9,8 @@ docs: sysl
 	rm -rf service-documentation/ || true
 	mkdir service-documentation
 	docker run --rm -v $$(pwd)/:/usr/it-project:rw -v $$(pwd)/service-documentation:/out:rw  anzbank/sysl-catalog:v1.4.148 --embed --outputFileName={{.Title}}.md --plantuml=https://plantuml.com/plantuml --templates=it-project/sysl/templates/project.tmpl,it-project/sysl/templates/package.tmpl ./it-project/sysl/index.sysl
+docs.preview: sysl
+	docker run --rm -v $$(pwd)/:/usr/it-project:rw -p 6900:6900 -v $$(pwd)/service-documentation:/out:rw  anzbank/sysl-catalog:v1.4.148 --serve --embed --plantuml=https://plantuml.com/plantuml ./it-project/sysl/index.sysl
 
 proto:
 	docker run --rm -v $$(pwd):/itproject:rw joshcarp/protoc $(INCLUDE) -I./itproject/proto/itproject/ --go_out=paths=source_relative:/itproject/proto/itproject/ api.proto
