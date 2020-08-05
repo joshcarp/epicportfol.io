@@ -15,7 +15,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: joshcarp/it-project.wiki
           path: it-project
       - name: Gen Docs
         working-directory: it-project
