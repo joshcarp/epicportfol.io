@@ -19,7 +19,8 @@ jobs:
         working-directory: it-project
         run: |
           make docs
-          mv docs ../it-project.wiki/service\ documentation
+          mkdir -p ./it-project.wiki/service-documentation
+          mv docs ../it-project.wiki/service-documentation
       - name: push
         working-directory: it-project.wiki
         run: |
