@@ -6,8 +6,9 @@ INCLUDE=-I/go/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis
 sysl:
 	docker run --rm -v $$(pwd):/itproject:rw anzbank/protoc-gen-sysl:v0.0.20 $(INCLUDE) -I./itproject/proto/itproject/ --sysl_out=/itproject/sysl/generated/ api.proto
 docs: sysl
-	rm -rf docs/ || true
-	docker run --rm -v $$(pwd)/:/usr/it-project:rw -v $$(pwd)/docs:/out:rw  anzbank/sysl-catalog:v1.4.148 --embed --outputFileName={{.Title}}.md --plantuml=https://plantuml.com/plantuml --templates=it-project/sysl/templates/project.tmpl,it-project/sysl/templates/package.tmpl ./it-project/sysl/index.sysl
+	rm -rf service-documentation/ || true
+	mkdir service-documentation
+	docker run --rm -v $$(pwd)/:/usr/it-project:rw -v $$(pwd)/service-documentation:/out:rw  anzbank/sysl-catalog:v1.4.148 --embed --outputFileName={{.Title}}.md --plantuml=https://plantuml.com/plantuml --templates=it-project/sysl/templates/project.tmpl,it-project/sysl/templates/package.tmpl ./it-project/sysl/index.sysl
 
 proto:
 	docker run --rm -v $$(pwd):/itproject:rw joshcarp/protoc $(INCLUDE) -I./itproject/proto/itproject/ --go_out=paths=source_relative:/itproject/proto/itproject/ api.proto

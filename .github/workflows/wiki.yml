@@ -20,12 +20,11 @@ jobs:
         working-directory: it-project.wiki
         run: |
           rm -rf service-documentation
-          mkdir -p service-documentation
       - name: Gen Docs
         working-directory: it-project
         run: |
           make docs -B
-          mv docs/* ../it-project.wiki/service-documentation
+          mv service-documentation ../it-project.wiki
       - name: git add
         working-directory: it-project.wiki
         run: |
