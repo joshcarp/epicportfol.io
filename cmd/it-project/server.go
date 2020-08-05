@@ -24,7 +24,7 @@ func (s *server) Hello(ctx context.Context, request *itproject.HelloRequest) (*i
     fmt.Println("hello func ")
     return &itproject.HelloResponse{Content: "Hello World"}, nil
 }
-var port = ":50051"
+var port = ":443"
 func main() {
     if p := os.Getenv("PORT"); p !=""{
         port = p

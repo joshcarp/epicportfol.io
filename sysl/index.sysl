@@ -1,0 +1,5 @@
+import generated/index.sysl
+
+_[~project]:
+    _:
+        itproject
