@@ -24,5 +24,5 @@ jobs:
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          working-directory: it-project.wiki
+          directory: it-project.wiki
           github_token: ${{ secrets.GITHUB_TOKEN }}
