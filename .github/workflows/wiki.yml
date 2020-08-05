@@ -19,7 +19,7 @@ jobs:
       - name: Gen Docs
         working-directory: it-project
         run: |
-          make docs
+          make docs -B
           ls ../it-project.wiki/
           mkdir -p ./it-project.wiki/service-documentation
           mv docs ../it-project.wiki/service-documentation
