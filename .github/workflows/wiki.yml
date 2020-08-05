@@ -26,6 +26,8 @@ jobs:
       - name: git add
         working-directory: it-project.wiki
         run: |
+          git config --global user.email "joshuacarpeggiani@gmail.com"
+          git config --global user.name "Sync Action"
           git add -A
           git commit -m "Update service documentation"
       - name: Push changes
