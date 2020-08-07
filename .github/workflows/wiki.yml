@@ -22,11 +22,13 @@ jobs:
         working-directory: it-project.wiki
         run: |
           rm -rf service-documentation
+          rm -rf decisions
       - name: Gen Docs
         working-directory: it-project
         run: |
           make docs -B
           mv service-documentation ../it-project.wiki
+          cp -r decisions ../it-project.wiki
       - name: git add
         working-directory: it-project.wiki
         run: |
