@@ -1,9 +1,10 @@
 name: Docs
 on:
     push:
-        branches: [ master ]
+        branches: [ feature/decisions ]
         paths:
         - 'proto/*'
+        - 'sysl/*'
         - 'sysl/*'
 jobs:
   sync:
