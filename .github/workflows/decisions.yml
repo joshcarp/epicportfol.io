@@ -1,7 +1,7 @@
 name: decisions
 on:
     push:
-        branches: [ feature/decisions ]
+        branches: [ master ]
         paths:
         - 'decisions/*'
 jobs:
