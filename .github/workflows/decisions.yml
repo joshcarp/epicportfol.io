@@ -1,10 +1,9 @@
-name: Docs
+name: decisions
 on:
     push:
-        branches: [ master ]
+        branches: [ feature/decisions ]
         paths:
-        - 'proto/*'
-        - 'sysl/*'
+        - 'decisions/*'
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -21,12 +20,11 @@ jobs:
       - name: remove old service docs
         working-directory: it-project.wiki
         run: |
-          rm -rf service-documentation
-      - name: Gen Docs
+          rm -rf decisions
+      - name: Move decisions 
         working-directory: it-project
         run: |
-          make docs -B
-          mv service-documentation ../it-project.wiki
+          cp -r decisions ../it-project.wiki
       - name: git add
         working-directory: it-project.wiki
         run: |
