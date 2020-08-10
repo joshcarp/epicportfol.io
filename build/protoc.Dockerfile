@@ -18,5 +18,6 @@ RUN go get -u -v github.com/envoyproxy/protoc-gen-validate
 RUN go get -u -v github.com/golang/protobuf/protoc-gen-go
 RUN go get -u -v google.golang.org/protobuf/cmd/protoc-gen-go
 RUN go get -u -v google.golang.org/grpc/cmd/protoc-gen-go-grpc
-
+ADD https://github.com/grpc/grpc-web/releases/download/1.2.0/protoc-gen-grpc-web-1.2.0-linux-x86_64 /bin/protoc-gen-grpc-web
+RUN chmod +x /bin/protoc-gen-grpc-web
 ENTRYPOINT [ "protoc" ]

@@ -16,6 +16,9 @@ proto:
 	docker run --rm -v $$(pwd):/itproject:rw joshcarp/protoc $(INCLUDE) -I./itproject/proto/itproject/ --go_out=paths=source_relative:/itproject/proto/itproject/ api.proto
 	docker run --rm -v $$(pwd):/itproject:rw joshcarp/protoc $(INCLUDE) -I././itproject/proto/itproject/ --go-grpc_out=paths=source_relative:/itproject/proto/itproject/ api.proto
 	docker run --rm -v $$(pwd):/itproject:rw joshcarp/protoc $(INCLUDE) -I././itproject/proto/itproject/ --grpc-gateway_out=logtostderr=true,paths=source_relative:/itproject/proto/itproject/ api.proto
+	docker run --rm -v $$(pwd):/itproject:rw joshcarp/protoc $(INCLUDE) -I././itproject/proto/itproject/ --js_out=import_style=commonjs:/itproject/proto/itproject/ api.proto
+	docker run --rm -v $$(pwd):/itproject:rw joshcarp/protoc $(INCLUDE) -I././itproject/proto/itproject/ --grpc-web_out=import_style=commonjs,,mode=grpcwebtext:/itproject/proto/itproject/ api.proto
+
 docker:
 	docker build . -t joshcarp/it-project
 run:
