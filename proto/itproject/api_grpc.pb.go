@@ -17,7 +17,9 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ItProjectClient interface {
-	Hello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloResponse, error)
+	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
+	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
+	RenewJWT(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 }
 
 type itProjectClient struct {
@@ -28,9 +30,27 @@ func NewItProjectClient(cc grpc.ClientConnInterface) ItProjectClient {
 	return &itProjectClient{cc}
 }
 
-func (c *itProjectClient) Hello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloResponse, error) {
-	out := new(HelloResponse)
-	err := c.cc.Invoke(ctx, "/itproject.itProject/Hello", in, out, opts...)
+func (c *itProjectClient) Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error) {
+	out := new(RegisterResponse)
+	err := c.cc.Invoke(ctx, "/itproject.itProject/Register", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *itProjectClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
+	out := new(LoginResponse)
+	err := c.cc.Invoke(ctx, "/itproject.itProject/Login", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *itProjectClient) RenewJWT(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
+	out := new(LoginResponse)
+	err := c.cc.Invoke(ctx, "/itproject.itProject/RenewJWT", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -41,7 +61,9 @@ func (c *itProjectClient) Hello(ctx context.Context, in *HelloRequest, opts ...g
 // All implementations must embed UnimplementedItProjectServer
 // for forward compatibility
 type ItProjectServer interface {
-	Hello(context.Context, *HelloRequest) (*HelloResponse, error)
+	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
+	Login(context.Context, *LoginRequest) (*LoginResponse, error)
+	RenewJWT(context.Context, *LoginRequest) (*LoginResponse, error)
 	mustEmbedUnimplementedItProjectServer()
 }
 
@@ -49,8 +71,14 @@ type ItProjectServer interface {
 type UnimplementedItProjectServer struct {
 }
 
-func (*UnimplementedItProjectServer) Hello(context.Context, *HelloRequest) (*HelloResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Hello not implemented")
+func (*UnimplementedItProjectServer) Register(context.Context, *RegisterRequest) (*RegisterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Register not implemented")
+}
+func (*UnimplementedItProjectServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
+}
+func (*UnimplementedItProjectServer) RenewJWT(context.Context, *LoginRequest) (*LoginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RenewJWT not implemented")
 }
 func (*UnimplementedItProjectServer) mustEmbedUnimplementedItProjectServer() {}
 
@@ -58,20 +86,56 @@ func RegisterItProjectServer(s *grpc.Server, srv ItProjectServer) {
 	s.RegisterService(&_ItProject_serviceDesc, srv)
 }
 
-func _ItProject_Hello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HelloRequest)
+func _ItProject_Register_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RegisterRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ItProjectServer).Hello(ctx, in)
+		return srv.(ItProjectServer).Register(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/itproject.itProject/Hello",
+		FullMethod: "/itproject.itProject/Register",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ItProjectServer).Hello(ctx, req.(*HelloRequest))
+		return srv.(ItProjectServer).Register(ctx, req.(*RegisterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ItProject_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoginRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ItProjectServer).Login(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/itproject.itProject/Login",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ItProjectServer).Login(ctx, req.(*LoginRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ItProject_RenewJWT_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoginRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ItProjectServer).RenewJWT(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/itproject.itProject/RenewJWT",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ItProjectServer).RenewJWT(ctx, req.(*LoginRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -81,8 +145,16 @@ var _ItProject_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*ItProjectServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Hello",
-			Handler:    _ItProject_Hello_Handler,
+			MethodName: "Register",
+			Handler:    _ItProject_Register_Handler,
+		},
+		{
+			MethodName: "Login",
+			Handler:    _ItProject_Login_Handler,
+		},
+		{
+			MethodName: "RenewJWT",
+			Handler:    _ItProject_RenewJWT_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
