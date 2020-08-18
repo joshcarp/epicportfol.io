@@ -20,8 +20,8 @@ func NewServer(config *viper.Viper) *Server {
 }
 
 func (s *Server) Register(ctx context.Context, req *itproject.RegisterRequest) (*itproject.RegisterResponse, error) {
-	s.database.EnterUser(database.NewAccount(req.Email, req.FullName, req.Username, req.PreferredName, req.Password))
-	return nil, nil
+	err := s.database.EnterUser(database.NewAccount(req.Email, req.FullName, req.Username, req.PreferredName, req.Password))
+	return &itproject.RegisterResponse{Jwt: "1234"}, err
 }
 
 func (s *Server) Login(ctx context.Context, req *itproject.LoginRequest) (*itproject.LoginResponse, error) {
