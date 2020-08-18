@@ -4,21 +4,39 @@ option go_package = "github.com/joshcarp/itproject/;itproject";
 option java_multiple_files = true;
 option java_package = "com.joshcarp.itproject";
 option java_outer_classname = "pi";
-import "google/api/annotations.proto";
 
 package itproject;
 
 service itProject {
-    rpc Hello(HelloRequest) returns (HelloResponse){
-        option (google.api.http) = {
-            get: "/hello"
-        };
-    }
+    rpc Register(RegisterRequest) returns (RegisterResponse){};
+    rpc Login(LoginRequest) returns (LoginResponse){};
+    rpc RenewJWT(LoginRequest) returns (LoginResponse){};
 }
 
-message HelloRequest {
-    string Content = 1;
+message RegisterRequest {
+    string email = 1;
+    string username = 2;
+    string fullName = 3;
+    string preferredName = 4;
+    string password = 5;
 }
-message HelloResponse {
-    string Content = 1;
+
+message RegisterResponse{
+    string jwt = 2;
+}
+
+message LoginRequest {
+    string email = 1;
+    string password = 2;
+}
+message LoginResponse {
+    string jwt = 1;
+}
+
+message RenewJWTResponse {
+    string jwt = 1;
+}
+
+message RenewJWTRequest {
+    string jwt = 1;
 }

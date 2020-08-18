@@ -1,6 +1,10 @@
--- CREATE SCHEMA base;
--- CREATE DATABASE guestbook;
-CREATE TABLE entries (guestName VARCHAR(255), content VARCHAR(255),
-                        entryID SERIAL PRIMARY KEY);
-INSERT INTO entries (guestName, content) values ('first guest', 'I got here!');
-INSERT INTO entries (guestName, content) values ('second guest', 'Me too!');
+DROP TABLE accounts;
+CREATE SCHEMA it_project;
+CREATE TABLE accounts (
+email VARCHAR(255) UNIQUE PRIMARY KEY,
+name VARCHAR(255),
+username VARCHAR(255) UNIQUE,
+preferred_name VARCHAR(255),
+password VARCHAR(255),
+salt VARCHAR(255)
+);
