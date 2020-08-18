@@ -2,6 +2,7 @@ package database
 
 import (
 	"crypto/md5"
+	"encoding/hex"
 )
 
 type Account struct {
@@ -14,9 +15,18 @@ type Account struct {
 }
 
 func NewAccount(email, name, username, preferred_name, password string) Account {
+	hashedPass, salt := SaltPassword(password)
+	return Account{Email: email, Name: name, Username: username, Preferred_name: preferred_name, Password: hashedPass, salt: salt}
+}
+
+func SaltPassword(password string) (string, string) {
 	salt := Salt()
 	data := append([]byte(password), salt...)
 	hash := md5.Sum(data)
-	password = string(hash[:])
-	return Account{Email: email, Name: name, Username: username, Preferred_name: preferred_name, Password: password, salt: string(salt)}
+	src := hash[:]
+	hexPassword := make([]byte, hex.EncodedLen(len(src)))
+	hexSalt := make([]byte, hex.EncodedLen(len(salt)))
+	hex.Encode(hexPassword, src)
+	hex.Encode(hexSalt, salt)
+	return string(hexPassword), string(hexSalt)
 }

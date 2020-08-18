@@ -65,7 +65,7 @@ func (d *DB) EnterUser(user Account) error {
 	query := fmt.Sprintf(`
 INSERT INTO accounts (email, name, username, preferred_name, password, salt)
 VALUES ('%s', '%s', '%s', '%s', '%s', '%s');`,
-		user.Email, user.Name, user.Username, user.Preferred_name, "xxxx", "xxxx")
+		user.Email, user.Name, user.Username, user.Preferred_name, user.Password, user.salt)
 
 	_, err := d.db.Query(query)
 	if err != nil {
