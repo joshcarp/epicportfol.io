@@ -2,6 +2,11 @@ name: bump version
 on:
     push:
         branches: [ master ]
+        paths-ignore:
+            - 'docs/**'
+            - '.github/workflows/**'
+            - 'service-documentation/**'
+            - '**.md'
 jobs:
     build:
         runs-on: ubuntu-latest
