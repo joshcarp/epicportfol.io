@@ -23,7 +23,7 @@ docker:
 run:
 	docker run --rm -p 443:443 joshcarp/it-project
 ping:
-	docker run --rm joshcarp/grpcurl -d '{"email": "Hello" }' --plaintext host.docker.internal:$(PORT) itproject.itProject/Register
+	docker run --rm joshcarp/grpcurl -d '{"email": "Hello", "password": "123", "username": "123" }' --plaintext host.docker.internal:$(PORT) itproject.itProject/Register
 ping.prod:
 	docker run --rm joshcarp/grpcurl -d '{"email": "Hello" }' $(PRODADDR):$(PORT) itProject.itProject/Hello
 ping.prod.rest:
@@ -32,3 +32,5 @@ client:
 	docker build . -f Dockerfile.client -t joshcarp/it-project-client
 client.run:
 	docker run --rm -e ADDR=$(PRODADDR):$(PORT) joshcarp/it-project-client
+secret:
+	openssl rand -hex 64  | pbcopy
