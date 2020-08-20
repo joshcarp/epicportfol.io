@@ -1,4 +1,3 @@
-DROP TABLE accounts;
 CREATE SCHEMA it_project;
 CREATE TABLE accounts (
 email VARCHAR(255) UNIQUE PRIMARY KEY,

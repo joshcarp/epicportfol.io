@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+    it-project:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - 8080:8080
+    postgres:
+        image: postgres
+        volumes:
+            - ./database/:/database/
+        environment:
+            - POSTGRES_PASSWORD=1234
+        ports:
+        - 5432:5432
+        entrypoint: ["./docker-entrypoint.sh"]
+        command: ["bash","-e","/database/initdb.sh"]
