@@ -3,6 +3,10 @@ package server
 import (
 	"context"
 
+	"github.com/joshcarp/it-project/pkg/auth"
+
+	"github.com/joshcarp/it-project/pkg/jwt"
+
 	"github.com/joshcarp/it-project/pkg/database"
 	"github.com/joshcarp/it-project/proto/itproject"
 	"github.com/spf13/viper"
@@ -20,12 +24,19 @@ func NewServer(config *viper.Viper) *Server {
 }
 
 func (s *Server) Register(ctx context.Context, req *itproject.RegisterRequest) (*itproject.RegisterResponse, error) {
-	err := s.database.EnterUser(database.NewAccount(req.Email, req.FullName, req.Username, req.PreferredName, req.Password))
-	return &itproject.RegisterResponse{Jwt: "1234"}, err
+	if err := s.database.EnterUser(auth.NewAccount(req.Email, req.FullName, req.Username, req.PreferredName, req.Password)); err != nil {
+		return nil, err
+	}
+	token, err := jwt.Encode(map[string]interface{}{"email": req.Email})
+	return &itproject.RegisterResponse{Jwt: token}, err
 }
 
 func (s *Server) Login(ctx context.Context, req *itproject.LoginRequest) (*itproject.LoginResponse, error) {
-	return nil, nil
+	if err := s.database.VerifyUser(req.Email, req.Password); err != nil {
+		return nil, err
+	}
+	token, err := jwt.Encode(map[string]interface{}{"email": req.Email})
+	return &itproject.LoginResponse{Jwt: token}, err
 }
 
 func (s *Server) RenewJWT(ctx context.Context, req *itproject.LoginRequest) (*itproject.LoginResponse, error) {
