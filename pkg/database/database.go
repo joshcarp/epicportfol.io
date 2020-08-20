@@ -5,10 +5,6 @@ import (
 
 	"github.com/jmoiron/sqlx"
 	"github.com/joshcarp/it-project/pkg/auth"
-
-	_ "github.com/GoogleCloudPlatform/cloudsql-proxy/proxy/dialers/postgres"
-	"github.com/joshcarp/it-project/pkg/config"
-	_ "github.com/lib/pq"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
@@ -21,35 +17,13 @@ type DB struct {
 
 func NewDB(config *viper.Viper) *DB {
 	db := &DB{config: config}
-	db.db = db.openDatabaseLocal()
-	return db
-}
-
-func (d *DB) openDatabaseCloud() *sqlx.DB {
-	dsn := fmt.Sprintf("host=%s dbname=%s user=%s password=%s sslmode=disable",
-		config.GetProperty(d.config, "database", "host"),
-		config.GetProperty(d.config, "database", "dbname"),
-		config.GetProperty(d.config, "database", "user"),
-		config.GetProperty(d.config, "database", "password"),
-	)
-	db, err := sqlx.Open("cloudsqlpostgres", dsn)
-	if err != nil {
-		d.log.Fatal("cant open database", err)
-	}
-	return db
-}
-
-func (d *DB) openDatabaseLocal() *sqlx.DB {
-	dsn := fmt.Sprintf("host=%s port=%s dbname=%s user=%s password=%s sslmode=disable",
-		config.GetProperty(d.config, "database", "host"),
-		config.GetProperty(d.config, "database", "port"),
-		config.GetProperty(d.config, "database", "dbname"),
-		config.GetProperty(d.config, "database", "user"),
-		config.GetProperty(d.config, "database", "password"),
-	)
-	db, err := sqlx.Open("postgres", dsn)
-	if err != nil {
-		d.log.Fatal("cant open database", err)
+	switch config.GetStringMapString("database")["type"] {
+	case "memory":
+		db.db = db.openDatabaseMemory()
+	case "cloud":
+		db.db = db.openDatabaseCloud()
+	case "local":
+		db.db = db.openDatabaseLocal()
 	}
 	return db
 }

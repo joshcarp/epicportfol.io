@@ -10,6 +10,7 @@ require (
 	github.com/jmoiron/sqlx v1.2.0
 	github.com/lib/pq v1.1.1
 	github.com/mattn/go-sqlite3 v1.14.0 // indirect
+	github.com/proullon/ramsql v0.0.0-20181213202341-817cee58a244
 	github.com/sirupsen/logrus v1.2.0
 	github.com/spf13/viper v1.4.0
 	github.com/stretchr/testify v1.5.1 // indirect
