@@ -20,11 +20,11 @@ type DB struct {
 
 func NewDB(config *viper.Viper) *DB {
 	db := &DB{config: config}
-	db.db = db.openDatabase()
+	db.db = db.openDatabaseLocal()
 	return db
 }
 
-func (d *DB) openDatabase() *sql.DB {
+func (d *DB) openDatabaseCloud() *sql.DB {
 	dsn := fmt.Sprintf("host=%s dbname=%s user=%s password=%s sslmode=disable",
 		config.GetProperty(d.config, "database", "host"),
 		config.GetProperty(d.config, "database", "dbname"),
@@ -32,6 +32,21 @@ func (d *DB) openDatabase() *sql.DB {
 		config.GetProperty(d.config, "database", "password"),
 	)
 	db, err := sql.Open("cloudsqlpostgres", dsn)
+	if err != nil {
+		d.log.Fatal("cant open database", err)
+	}
+	return db
+}
+
+func (d *DB) openDatabaseLocal() *sql.DB {
+	dsn := fmt.Sprintf("host=%s port=%s dbname=%s user=%s password=%s sslmode=disable",
+		config.GetProperty(d.config, "database", "host"),
+		config.GetProperty(d.config, "database", "port"),
+		config.GetProperty(d.config, "database", "dbname"),
+		config.GetProperty(d.config, "database", "user"),
+		config.GetProperty(d.config, "database", "password"),
+	)
+	db, err := sql.Open("postgres", dsn)
 	if err != nil {
 		d.log.Fatal("cant open database", err)
 	}
@@ -57,7 +72,7 @@ func (d *DB) GetAccountFromEmail(email string) Account {
 	return account
 }
 
-// GetAccountFromEmail returns an account with an email
+// EnterUser returns an account with an email
 func (d *DB) EnterUser(user Account) error {
 	if err := d.db.Ping(); err != nil {
 		return nil
