@@ -2,29 +2,17 @@ package jwt
 
 import (
 	"fmt"
-
-	"github.com/joshcarp/it-project/pkg/config"
+	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"
 )
 
-var secret = ""
+var Duration float64 = 900
 
-func getSecret() string {
-	if secret != "" {
-		return secret
-	}
-	v, err := config.ReadConfig("common")
-	if err != nil {
-		panic(err)
-	}
-	secret = v.GetString("secret")
-	return secret
-}
-
-func Encode(claims map[string]interface{}) (string, error) {
+func Issue(claims map[string]interface{}) (string, error) {
+	claims["exp"] = float64(time.Now().Unix()) + Duration
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims(claims))
-	tokenString, err := token.SignedString([]byte(getSecret()))
+	tokenString, err := token.SignedString([]byte(secret))
 	if err != nil {
 		return "", err
 	}
@@ -38,7 +26,7 @@ func Decode(tokenString string) jwt.MapClaims {
 			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
 		}
 		// hmacSampleSecret is a []byte containing your secret, e.g. []byte("my_secret_key")
-		return []byte(getSecret()), nil
+		return []byte(secret), nil
 	})
 	if err != nil {
 		return nil
