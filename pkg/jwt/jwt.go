@@ -4,11 +4,13 @@ import (
 	"fmt"
 	"time"
 
-	jwt "github.com/dgrijalva/jwt-go"
+	"github.com/dgrijalva/jwt-go"
 )
 
+// Duration is the time in seconds that the jwt is valid for
 var Duration float64 = 900
 
+// Issue issues a jwt string from claims
 func Issue(claims map[string]interface{}) (string, error) {
 	claims["exp"] = float64(time.Now().Unix()) + Duration
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims(claims))
@@ -19,6 +21,7 @@ func Issue(claims map[string]interface{}) (string, error) {
 	return tokenString, nil
 }
 
+// Decode decodes a jwt string into its claims
 func Decode(tokenString string) jwt.MapClaims {
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		// Don't forget to validate the alg is what you expect:

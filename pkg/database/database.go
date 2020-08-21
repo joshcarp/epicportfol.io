@@ -9,12 +9,14 @@ import (
 	"github.com/spf13/viper"
 )
 
+// DB is a database
 type DB struct {
 	log    *logrus.Logger
 	config *viper.Viper
 	db     *sqlx.DB
 }
 
+// NewDB creates a new database with a config and a logger
 func NewDB(config *viper.Viper, log *logrus.Logger) *DB {
 	var err error
 	db := &DB{config: config, log: log}
@@ -67,6 +69,7 @@ VALUES ('%s', '%s', '%s', '%s', '%s', '%s');`,
 	return nil
 }
 
+// VerifyUser verifies a user by hashing the password and checking against the database
 func (d *DB) VerifyUser(email, password string) error {
 	account, err := d.GetAccountFromEmail(email)
 	if err != nil {

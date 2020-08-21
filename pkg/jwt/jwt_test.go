@@ -8,6 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// TestEncode tests a simple encoding and decoding of a jwt
 func TestEncode(t *testing.T) {
 	claims := jwt.MapClaims{"abc": "def"}
 	tokenString, err := Issue(claims)
