@@ -9,7 +9,11 @@ import (
 )
 
 func (s *Server) Register(ctx context.Context, req *itproject.RegisterRequest) (*itproject.RegisterResponse, error) {
-	if err := s.database.EnterUser(auth.NewAccount(req.Email, req.FullName, req.Username, req.PreferredName, req.Password)); err != nil {
+	account, err := auth.NewAccount(req.Email, req.FullName, req.Username, req.PreferredName, req.Password)
+	if err != nil {
+		return nil, err
+	}
+	if err := s.database.EnterUser(*account); err != nil {
 		return nil, err
 	}
 	token, err := jwt.Issue(map[string]interface{}{"email": req.Email})
