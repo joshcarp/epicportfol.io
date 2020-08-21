@@ -1,9 +1,8 @@
 name: decisions
 on:
-    push:
-        branches: [ master ]
-        paths:
-        - 'decisions/*'
+  push:
+    branches-ignore:
+      - '**'
 jobs:
   sync:
     runs-on: ubuntu-latest
