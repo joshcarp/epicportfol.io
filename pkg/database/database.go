@@ -10,20 +10,24 @@ import (
 )
 
 type DB struct {
-	log    logrus.Logger
+	log    *logrus.Logger
 	config *viper.Viper
 	db     *sqlx.DB
 }
 
-func NewDB(config *viper.Viper) *DB {
-	db := &DB{config: config}
+func NewDB(config *viper.Viper, log *logrus.Logger) *DB {
+	var err error
+	db := &DB{config: config, log: log}
 	switch config.GetStringMapString("database")["type"] {
 	case "memory":
-		db.db = db.openDatabaseMemory()
+		err = db.openDatabaseMemory("database/db.sql")
 	case "cloud":
-		db.db = db.openDatabaseCloud()
+		err = db.openDatabaseCloud()
 	case "local":
-		db.db = db.openDatabaseLocal()
+		err = db.openDatabaseLocal()
+	}
+	if err != nil {
+		db.log.Error(err)
 	}
 	return db
 }
@@ -52,12 +56,11 @@ func (d *DB) EnterUser(user auth.Account) error {
 	if err := d.db.Ping(); err != nil {
 		return nil
 	}
-	query := fmt.Sprintf(`
-INSERT INTO accounts (email, name, username, preferred_name, password, salt)
+	query := fmt.Sprintf(`INSERT INTO accounts (email, name, username, preferred_name, password, salt)
 VALUES ('%s', '%s', '%s', '%s', '%s', '%s');`,
 		user.Email, user.Name, user.Username, user.Preferred_name, user.Password, user.Salt)
 
-	_, err := d.db.Query(query)
+	_, err := d.db.Exec(query)
 	if err != nil {
 		return err
 	}
