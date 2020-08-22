@@ -26,10 +26,7 @@ run:
 	docker run --rm -p 443:443 joshcarp/it-project
 
 ping:
-	docker run --rm joshcarp/grpcurl -d '{"email": "Hello", "password": "123", "username": "123" }' --plaintext host.docker.internal:$(PORT) itproject.itProject/Register
-
-ping.prod:
-	docker run --rm joshcarp/grpcurl -d '{"email": "Hello" }' $(PRODADDR):$(PORT) itProject.itProject/Hello
+	docker run --rm joshcarp/grpcurl -d '{"email": "Hello", "password": "123", "userid": "123" }' --plaintext host.docker.internal:$(PORT) itproject.authenticate/Register
 
 client:
 	docker build . -f build/client.Dockerfile -t joshcarp/it-project-client
