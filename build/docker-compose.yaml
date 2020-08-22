@@ -1,16 +1,16 @@
 version: '3.8'
 
 services:
-    it-project:
+    authenticate:
         build:
-            context: .
-            dockerfile: Dockerfile
+            context: ..
+            dockerfile: build/Dockerfile
         ports:
             - 8080:8080
     postgres:
         image: postgres
         volumes:
-            - ./database/:/database/
+            - ../database/:/database/
         environment:
             - POSTGRES_PASSWORD=1234
         ports:

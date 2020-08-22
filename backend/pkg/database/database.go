@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/jmoiron/sqlx"
-	"github.com/joshcarp/it-project/pkg/auth"
+	"github.com/joshcarp/it-project/backend/pkg/auth"
 	"github.com/spf13/viper"
 )
 
