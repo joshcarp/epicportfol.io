@@ -25,14 +25,14 @@ func main() {
 		log.Fatalf("did not connect: %v", err)
 	}
 	defer conn.Close()
-	c := itproject.NewItProjectClient(conn)
+	c := itproject.NewAuthenticateClient(conn)
 
 	// Contact the server and print out its response.
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 	r, err := c.Register(ctx, &itproject.RegisterRequest{
 		Email:         "joshcarp@gmail.com",
-		Username:      "josh",
+		Userid:        "josh",
 		FullName:      "Joshua Carpeggiani",
 		PreferredName: "Josh",
 		Password:      "1234",
