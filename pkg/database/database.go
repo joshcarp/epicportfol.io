@@ -5,41 +5,28 @@ import (
 
 	"github.com/jmoiron/sqlx"
 	"github.com/joshcarp/it-project/pkg/auth"
-	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
 
-// DB is a database
-type DB struct {
-	log    *logrus.Logger
-	config *viper.Viper
-	db     *sqlx.DB
-}
-
 // NewDB creates a new database with a config and a logger
-func NewDB(config *viper.Viper, log *logrus.Logger) *DB {
-	var err error
-	db := &DB{config: config, log: log}
-	switch config.GetStringMapString("database")["type"] {
+func NewDB(conf *viper.Viper) (*sqlx.DB, error) {
+	switch conf.GetStringMapString("database")["type"] {
 	case "memory":
-		err = db.openDatabaseMemory("database/db.sql")
+		return openDatabaseMemory("database/db.sql")
 	case "cloud":
-		err = db.openDatabaseCloud()
+		return openDatabaseCloud(conf)
 	case "local":
-		err = db.openDatabaseLocal()
+		return openDatabaseLocal(conf)
 	}
-	if err != nil {
-		db.log.Error(err)
-	}
-	return db
+	return nil, fmt.Errorf("No database to open")
 }
 
 // GetAccountFromEmail returns an account with an email
-func (d *DB) GetAccountFromEmail(email string) (*auth.Account, error) {
-	if err := d.db.Ping(); err != nil {
+func GetAccountFromEmail(db *sqlx.DB, email string) (*auth.Account, error) {
+	if err := db.Ping(); err != nil {
 		return nil, err
 	}
-	rows, err := d.db.Queryx(fmt.Sprintf(`Select * FROM accounts WHERE email='%s';`, email))
+	rows, err := db.Queryx(fmt.Sprintf(`Select * FROM accounts WHERE email='%s';`, email))
 	if err != nil {
 		return nil, err
 	}
@@ -54,15 +41,15 @@ func (d *DB) GetAccountFromEmail(email string) (*auth.Account, error) {
 }
 
 // EnterUser returns an account with an email
-func (d *DB) EnterUser(user auth.Account) error {
-	if err := d.db.Ping(); err != nil {
+func EnterUser(db *sqlx.DB, user auth.Account) error {
+	if err := db.Ping(); err != nil {
 		return nil
 	}
 	query := fmt.Sprintf(`INSERT INTO accounts (email, name, username, preferred_name, password, salt)
 VALUES ('%s', '%s', '%s', '%s', '%s', '%s');`,
 		user.Email, user.Name, user.Username, user.Preferred_name, user.Password, user.Salt)
 
-	_, err := d.db.Exec(query)
+	_, err := db.Exec(query)
 	if err != nil {
 		return err
 	}
@@ -70,8 +57,8 @@ VALUES ('%s', '%s', '%s', '%s', '%s', '%s');`,
 }
 
 // VerifyUser verifies a user by hashing the password and checking against the database
-func (d *DB) VerifyUser(email, password string) error {
-	account, err := d.GetAccountFromEmail(email)
+func VerifyUser(db *sqlx.DB, email, password string) error {
+	account, err := GetAccountFromEmail(db, email)
 	if err != nil {
 		return err
 	}

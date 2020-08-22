@@ -6,8 +6,6 @@ import (
 	"github.com/joshcarp/it-project/pkg/auth"
 
 	"github.com/stretchr/testify/require"
-
-	"github.com/sirupsen/logrus"
 )
 
 type testcase struct {
@@ -61,14 +59,13 @@ var tests = map[string]testcase{
 }
 
 func TestDatabase(t *testing.T) {
-	db := &DB{log: logrus.New()}
-	err := db.openDatabaseMemory("../../database/db.sql")
+	db, err := openDatabaseMemory("../../database/db.sql")
 	require.Nil(t, err)
 	var account *auth.Account
 	for name, test := range tests {
 		t.Run(name, func(t *testing.T) {
 			for _, user := range test.accounts {
-				err = db.EnterUser(user)
+				err = EnterUser(db, user)
 				if err != nil {
 					// if we error here, then the err option on our testcase should be true
 					require.Equal(t, true, test.err)
@@ -76,7 +73,7 @@ func TestDatabase(t *testing.T) {
 				}
 			}
 			for _, user := range test.accounts {
-				account, err = db.GetAccountFromEmail(user.Email)
+				account, err = GetAccountFromEmail(db, user.Email)
 				if err != nil {
 					// if we error here, then the err option on our testcase should be true
 					require.Equal(t, true, test.err)

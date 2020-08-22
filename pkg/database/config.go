@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"io/ioutil"
 
+	"github.com/spf13/viper"
+
 	"github.com/pkg/errors"
 
 	_ "github.com/GoogleCloudPlatform/cloudsql-proxy/proxy/dialers/postgres"
@@ -14,52 +16,52 @@ import (
 )
 
 // openDatabaseCloud opens a cloud sql connection
-func (d *DB) openDatabaseCloud() error {
+func openDatabaseCloud(conf *viper.Viper) (*sqlx.DB, error) {
 	dsn := fmt.Sprintf("host=%s dbname=%s user=%s password=%s sslmode=disable",
-		config.GetProperty(d.config, "database", "host"),
-		config.GetProperty(d.config, "database", "dbname"),
-		config.GetProperty(d.config, "database", "user"),
-		config.GetProperty(d.config, "database", "password"),
+		config.GetProperty(conf, "database", "host"),
+		config.GetProperty(conf, "database", "dbname"),
+		config.GetProperty(conf, "database", "user"),
+		config.GetProperty(conf, "database", "password"),
 	)
 	db, err := sqlx.Open("cloudsqlpostgres", dsn)
 	if err != nil {
-		return errors.Wrap(err, "cant open database")
+		return db, errors.Wrap(err, "cant open database")
 	}
-	d.db = db
-	return nil
+	return db, nil
 }
 
 // openDatabaseCloud opens a normal database connection
-func (d *DB) openDatabaseLocal() error {
+func openDatabaseLocal(conf *viper.Viper) (*sqlx.DB, error) {
 	dsn := fmt.Sprintf("host=%s port=%s dbname=%s user=%s password=%s sslmode=disable",
-		config.GetProperty(d.config, "database", "host"),
-		config.GetProperty(d.config, "database", "port"),
-		config.GetProperty(d.config, "database", "dbname"),
-		config.GetProperty(d.config, "database", "user"),
-		config.GetProperty(d.config, "database", "password"),
+		config.GetProperty(conf, "database", "host"),
+		config.GetProperty(conf, "database", "port"),
+		config.GetProperty(conf, "database", "dbname"),
+		config.GetProperty(conf, "database", "user"),
+		config.GetProperty(conf, "database", "password"),
 	)
 	db, err := sqlx.Open("postgres", dsn)
 	if err != nil {
-		return errors.Wrap(err, "cant open database")
+		return db, errors.Wrap(err, "cant open database")
 	}
-	d.db = db
-	return nil
+	return db, nil
 }
 
 // openDatabaseCloud opens a normal database connection
-func (d *DB) openDatabaseMemory(filename string) error {
+func openDatabaseMemory(filename string) (*sqlx.DB, error) {
 	db, err := sqlx.Open("ramsql", "")
 	if err != nil {
-		return errors.Wrap(err, "cant open database")
+		return nil, errors.Wrap(err, "cant open database")
 	}
 	f, err := ioutil.ReadFile(filename)
 	if err != nil {
-		return errors.Wrap(err, "cant open database")
+		return nil, errors.Wrap(err, "cant open database")
 	}
 	_, err = db.Exec(string(f))
 	if err != nil {
-		return errors.Wrap(err, "sql.Exec: Error: %s\n")
+		return nil, errors.Wrap(err, "sql.Exec: Error: %s\n")
 	}
-	d.db = db
-	return nil
+	if err != nil {
+		return db, errors.Wrap(err, "cant open database")
+	}
+	return db, nil
 }

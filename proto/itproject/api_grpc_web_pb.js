@@ -26,7 +26,7 @@ proto.itproject = require('./api_pb.js');
  * @struct
  * @final
  */
-proto.itproject.itProjectClient =
+proto.itproject.authenticateClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
@@ -52,7 +52,7 @@ proto.itproject.itProjectClient =
  * @struct
  * @final
  */
-proto.itproject.itProjectPromiseClient =
+proto.itproject.authenticatePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
@@ -76,8 +76,8 @@ proto.itproject.itProjectPromiseClient =
  *   !proto.itproject.RegisterRequest,
  *   !proto.itproject.RegisterResponse>}
  */
-const methodDescriptor_itProject_Register = new grpc.web.MethodDescriptor(
-  '/itproject.itProject/Register',
+const methodDescriptor_authenticate_Register = new grpc.web.MethodDescriptor(
+  '/itproject.authenticate/Register',
   grpc.web.MethodType.UNARY,
   proto.itproject.RegisterRequest,
   proto.itproject.RegisterResponse,
@@ -98,7 +98,7 @@ const methodDescriptor_itProject_Register = new grpc.web.MethodDescriptor(
  *   !proto.itproject.RegisterRequest,
  *   !proto.itproject.RegisterResponse>}
  */
-const methodInfo_itProject_Register = new grpc.web.AbstractClientBase.MethodInfo(
+const methodInfo_authenticate_Register = new grpc.web.AbstractClientBase.MethodInfo(
   proto.itproject.RegisterResponse,
   /**
    * @param {!proto.itproject.RegisterRequest} request
@@ -121,13 +121,13 @@ const methodInfo_itProject_Register = new grpc.web.AbstractClientBase.MethodInfo
  * @return {!grpc.web.ClientReadableStream<!proto.itproject.RegisterResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.itproject.itProjectClient.prototype.register =
+proto.itproject.authenticateClient.prototype.register =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/itproject.itProject/Register',
+      '/itproject.authenticate/Register',
       request,
       metadata || {},
-      methodDescriptor_itProject_Register,
+      methodDescriptor_authenticate_Register,
       callback);
 };
 
@@ -140,13 +140,13 @@ proto.itproject.itProjectClient.prototype.register =
  * @return {!Promise<!proto.itproject.RegisterResponse>}
  *     A native promise that resolves to the response
  */
-proto.itproject.itProjectPromiseClient.prototype.register =
+proto.itproject.authenticatePromiseClient.prototype.register =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/itproject.itProject/Register',
+      '/itproject.authenticate/Register',
       request,
       metadata || {},
-      methodDescriptor_itProject_Register);
+      methodDescriptor_authenticate_Register);
 };
 
 
@@ -156,8 +156,8 @@ proto.itproject.itProjectPromiseClient.prototype.register =
  *   !proto.itproject.LoginRequest,
  *   !proto.itproject.LoginResponse>}
  */
-const methodDescriptor_itProject_Login = new grpc.web.MethodDescriptor(
-  '/itproject.itProject/Login',
+const methodDescriptor_authenticate_Login = new grpc.web.MethodDescriptor(
+  '/itproject.authenticate/Login',
   grpc.web.MethodType.UNARY,
   proto.itproject.LoginRequest,
   proto.itproject.LoginResponse,
@@ -178,7 +178,7 @@ const methodDescriptor_itProject_Login = new grpc.web.MethodDescriptor(
  *   !proto.itproject.LoginRequest,
  *   !proto.itproject.LoginResponse>}
  */
-const methodInfo_itProject_Login = new grpc.web.AbstractClientBase.MethodInfo(
+const methodInfo_authenticate_Login = new grpc.web.AbstractClientBase.MethodInfo(
   proto.itproject.LoginResponse,
   /**
    * @param {!proto.itproject.LoginRequest} request
@@ -201,13 +201,13 @@ const methodInfo_itProject_Login = new grpc.web.AbstractClientBase.MethodInfo(
  * @return {!grpc.web.ClientReadableStream<!proto.itproject.LoginResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.itproject.itProjectClient.prototype.login =
+proto.itproject.authenticateClient.prototype.login =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/itproject.itProject/Login',
+      '/itproject.authenticate/Login',
       request,
       metadata || {},
-      methodDescriptor_itProject_Login,
+      methodDescriptor_authenticate_Login,
       callback);
 };
 
@@ -220,13 +220,13 @@ proto.itproject.itProjectClient.prototype.login =
  * @return {!Promise<!proto.itproject.LoginResponse>}
  *     A native promise that resolves to the response
  */
-proto.itproject.itProjectPromiseClient.prototype.login =
+proto.itproject.authenticatePromiseClient.prototype.login =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/itproject.itProject/Login',
+      '/itproject.authenticate/Login',
       request,
       metadata || {},
-      methodDescriptor_itProject_Login);
+      methodDescriptor_authenticate_Login);
 };
 
 
@@ -236,8 +236,8 @@ proto.itproject.itProjectPromiseClient.prototype.login =
  *   !proto.itproject.LoginRequest,
  *   !proto.itproject.LoginResponse>}
  */
-const methodDescriptor_itProject_RenewJWT = new grpc.web.MethodDescriptor(
-  '/itproject.itProject/RenewJWT',
+const methodDescriptor_authenticate_RenewJWT = new grpc.web.MethodDescriptor(
+  '/itproject.authenticate/RenewJWT',
   grpc.web.MethodType.UNARY,
   proto.itproject.LoginRequest,
   proto.itproject.LoginResponse,
@@ -258,7 +258,7 @@ const methodDescriptor_itProject_RenewJWT = new grpc.web.MethodDescriptor(
  *   !proto.itproject.LoginRequest,
  *   !proto.itproject.LoginResponse>}
  */
-const methodInfo_itProject_RenewJWT = new grpc.web.AbstractClientBase.MethodInfo(
+const methodInfo_authenticate_RenewJWT = new grpc.web.AbstractClientBase.MethodInfo(
   proto.itproject.LoginResponse,
   /**
    * @param {!proto.itproject.LoginRequest} request
@@ -281,13 +281,13 @@ const methodInfo_itProject_RenewJWT = new grpc.web.AbstractClientBase.MethodInfo
  * @return {!grpc.web.ClientReadableStream<!proto.itproject.LoginResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.itproject.itProjectClient.prototype.renewJWT =
+proto.itproject.authenticateClient.prototype.renewJWT =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/itproject.itProject/RenewJWT',
+      '/itproject.authenticate/RenewJWT',
       request,
       metadata || {},
-      methodDescriptor_itProject_RenewJWT,
+      methodDescriptor_authenticate_RenewJWT,
       callback);
 };
 
@@ -300,13 +300,13 @@ proto.itproject.itProjectClient.prototype.renewJWT =
  * @return {!Promise<!proto.itproject.LoginResponse>}
  *     A native promise that resolves to the response
  */
-proto.itproject.itProjectPromiseClient.prototype.renewJWT =
+proto.itproject.authenticatePromiseClient.prototype.renewJWT =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/itproject.itProject/RenewJWT',
+      '/itproject.authenticate/RenewJWT',
       request,
       metadata || {},
-      methodDescriptor_itProject_RenewJWT);
+      methodDescriptor_authenticate_RenewJWT);
 };
 
 

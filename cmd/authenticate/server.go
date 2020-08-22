@@ -38,7 +38,11 @@ func main() {
 	}
 	s := grpc.NewServer()
 	reflection.Register(s)
-	itproject.RegisterItProjectServer(s, accounts.NewServer(conf, logger))
+	server, err := accounts.NewServer(conf, logger)
+	if err != nil {
+		logger.Errorf("Cannot connect to database %v", err)
+	}
+	itproject.RegisterAuthenticateServer(s, server)
 	fmt.Println("Starting server on " + port)
 	fmt.Println("Starting grpc server")
 	if err := s.Serve(lis); err != nil {

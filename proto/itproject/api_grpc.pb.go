@@ -13,148 +13,148 @@ import (
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion6
 
-// ItProjectClient is the client API for ItProject service.
+// AuthenticateClient is the client API for Authenticate service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ItProjectClient interface {
+type AuthenticateClient interface {
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 	RenewJWT(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 }
 
-type itProjectClient struct {
+type authenticateClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewItProjectClient(cc grpc.ClientConnInterface) ItProjectClient {
-	return &itProjectClient{cc}
+func NewAuthenticateClient(cc grpc.ClientConnInterface) AuthenticateClient {
+	return &authenticateClient{cc}
 }
 
-func (c *itProjectClient) Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error) {
+func (c *authenticateClient) Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error) {
 	out := new(RegisterResponse)
-	err := c.cc.Invoke(ctx, "/itproject.itProject/Register", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/itproject.authenticate/Register", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *itProjectClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
+func (c *authenticateClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
 	out := new(LoginResponse)
-	err := c.cc.Invoke(ctx, "/itproject.itProject/Login", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/itproject.authenticate/Login", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *itProjectClient) RenewJWT(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
+func (c *authenticateClient) RenewJWT(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
 	out := new(LoginResponse)
-	err := c.cc.Invoke(ctx, "/itproject.itProject/RenewJWT", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/itproject.authenticate/RenewJWT", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ItProjectServer is the server API for ItProject service.
-// All implementations must embed UnimplementedItProjectServer
+// AuthenticateServer is the server API for Authenticate service.
+// All implementations must embed UnimplementedAuthenticateServer
 // for forward compatibility
-type ItProjectServer interface {
+type AuthenticateServer interface {
 	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
 	RenewJWT(context.Context, *LoginRequest) (*LoginResponse, error)
-	mustEmbedUnimplementedItProjectServer()
+	mustEmbedUnimplementedAuthenticateServer()
 }
 
-// UnimplementedItProjectServer must be embedded to have forward compatible implementations.
-type UnimplementedItProjectServer struct {
+// UnimplementedAuthenticateServer must be embedded to have forward compatible implementations.
+type UnimplementedAuthenticateServer struct {
 }
 
-func (*UnimplementedItProjectServer) Register(context.Context, *RegisterRequest) (*RegisterResponse, error) {
+func (*UnimplementedAuthenticateServer) Register(context.Context, *RegisterRequest) (*RegisterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Register not implemented")
 }
-func (*UnimplementedItProjectServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
+func (*UnimplementedAuthenticateServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
 }
-func (*UnimplementedItProjectServer) RenewJWT(context.Context, *LoginRequest) (*LoginResponse, error) {
+func (*UnimplementedAuthenticateServer) RenewJWT(context.Context, *LoginRequest) (*LoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenewJWT not implemented")
 }
-func (*UnimplementedItProjectServer) mustEmbedUnimplementedItProjectServer() {}
+func (*UnimplementedAuthenticateServer) mustEmbedUnimplementedAuthenticateServer() {}
 
-func RegisterItProjectServer(s *grpc.Server, srv ItProjectServer) {
-	s.RegisterService(&_ItProject_serviceDesc, srv)
+func RegisterAuthenticateServer(s *grpc.Server, srv AuthenticateServer) {
+	s.RegisterService(&_Authenticate_serviceDesc, srv)
 }
 
-func _ItProject_Register_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Authenticate_Register_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RegisterRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ItProjectServer).Register(ctx, in)
+		return srv.(AuthenticateServer).Register(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/itproject.itProject/Register",
+		FullMethod: "/itproject.authenticate/Register",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ItProjectServer).Register(ctx, req.(*RegisterRequest))
+		return srv.(AuthenticateServer).Register(ctx, req.(*RegisterRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ItProject_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Authenticate_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LoginRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ItProjectServer).Login(ctx, in)
+		return srv.(AuthenticateServer).Login(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/itproject.itProject/Login",
+		FullMethod: "/itproject.authenticate/Login",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ItProjectServer).Login(ctx, req.(*LoginRequest))
+		return srv.(AuthenticateServer).Login(ctx, req.(*LoginRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ItProject_RenewJWT_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Authenticate_RenewJWT_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LoginRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ItProjectServer).RenewJWT(ctx, in)
+		return srv.(AuthenticateServer).RenewJWT(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/itproject.itProject/RenewJWT",
+		FullMethod: "/itproject.authenticate/RenewJWT",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ItProjectServer).RenewJWT(ctx, req.(*LoginRequest))
+		return srv.(AuthenticateServer).RenewJWT(ctx, req.(*LoginRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _ItProject_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "itproject.itProject",
-	HandlerType: (*ItProjectServer)(nil),
+var _Authenticate_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "itproject.authenticate",
+	HandlerType: (*AuthenticateServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Register",
-			Handler:    _ItProject_Register_Handler,
+			Handler:    _Authenticate_Register_Handler,
 		},
 		{
 			MethodName: "Login",
-			Handler:    _ItProject_Login_Handler,
+			Handler:    _Authenticate_Login_Handler,
 		},
 		{
 			MethodName: "RenewJWT",
-			Handler:    _ItProject_RenewJWT_Handler,
+			Handler:    _Authenticate_RenewJWT_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

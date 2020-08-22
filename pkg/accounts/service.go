@@ -1,6 +1,7 @@
 package accounts
 
 import (
+	"github.com/jmoiron/sqlx"
 	"github.com/joshcarp/it-project/pkg/database"
 	"github.com/joshcarp/it-project/proto/itproject"
 	"github.com/sirupsen/logrus"
@@ -9,11 +10,15 @@ import (
 
 // server is used to implement helloworld.GreeterServer.
 type Server struct {
-	config   *viper.Viper
-	database *database.DB
-	itproject.UnimplementedItProjectServer
+	config *viper.Viper
+	db     *sqlx.DB
+	itproject.UnimplementedAuthenticateServer
 }
 
-func NewServer(config *viper.Viper, log *logrus.Logger) *Server {
-	return &Server{config: config, database: database.NewDB(config, log)}
+func NewServer(config *viper.Viper, log *logrus.Logger) (*Server, error) {
+	db, err := database.NewDB(config)
+	if err != nil {
+		return nil, err
+	}
+	return &Server{config: config, db: db}, nil
 }

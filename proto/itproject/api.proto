@@ -7,7 +7,8 @@ option java_outer_classname = "pi";
 
 package itproject;
 
-service itProject {
+/* authenticate is the miroservice that handles authentication */
+service authenticate {
     rpc Register(RegisterRequest) returns (RegisterResponse){};
     rpc Login(LoginRequest) returns (LoginResponse){};
     rpc RenewJWT(LoginRequest) returns (LoginResponse){};
@@ -15,7 +16,7 @@ service itProject {
 
 message RegisterRequest {
     string email = 1;
-    string username = 2;
+    string userid = 2;
     string fullName = 3;
     string preferredName = 4;
     string password = 5;
@@ -25,10 +26,10 @@ message RegisterResponse{
     string jwt = 2;
 }
 
+/* LoginRequest is empty because the Bas64(username:password) is contained in the header of the request */
 message LoginRequest {
-    string email = 1;
-    string password = 2;
 }
+
 message LoginResponse {
     string jwt = 1;
 }
@@ -37,6 +38,6 @@ message RenewJWTResponse {
     string jwt = 1;
 }
 
+/* RenewJWTRequest is empty becayse Bearer <JWT> should be used with this method */
 message RenewJWTRequest {
-    string jwt = 1;
 }

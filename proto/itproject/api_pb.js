@@ -177,7 +177,7 @@ proto.itproject.RegisterRequest.prototype.toObject = function(opt_includeInstanc
 proto.itproject.RegisterRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     email: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    username: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    userid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     fullname: jspb.Message.getFieldWithDefault(msg, 3, ""),
     preferredname: jspb.Message.getFieldWithDefault(msg, 4, ""),
     password: jspb.Message.getFieldWithDefault(msg, 5, "")
@@ -223,7 +223,7 @@ proto.itproject.RegisterRequest.deserializeBinaryFromReader = function(msg, read
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUsername(value);
+      msg.setUserid(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
@@ -273,7 +273,7 @@ proto.itproject.RegisterRequest.serializeBinaryToWriter = function(message, writ
       f
     );
   }
-  f = message.getUsername();
+  f = message.getUserid();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -323,10 +323,10 @@ proto.itproject.RegisterRequest.prototype.setEmail = function(value) {
 
 
 /**
- * optional string username = 2;
+ * optional string userid = 2;
  * @return {string}
  */
-proto.itproject.RegisterRequest.prototype.getUsername = function() {
+proto.itproject.RegisterRequest.prototype.getUserid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -335,7 +335,7 @@ proto.itproject.RegisterRequest.prototype.getUsername = function() {
  * @param {string} value
  * @return {!proto.itproject.RegisterRequest} returns this
  */
-proto.itproject.RegisterRequest.prototype.setUsername = function(value) {
+proto.itproject.RegisterRequest.prototype.setUserid = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -556,8 +556,7 @@ proto.itproject.LoginRequest.prototype.toObject = function(opt_includeInstance) 
  */
 proto.itproject.LoginRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    email: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    password: jspb.Message.getFieldWithDefault(msg, 2, "")
+
   };
 
   if (includeInstance) {
@@ -594,14 +593,6 @@ proto.itproject.LoginRequest.deserializeBinaryFromReader = function(msg, reader)
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setEmail(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setPassword(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -631,56 +622,6 @@ proto.itproject.LoginRequest.prototype.serializeBinary = function() {
  */
 proto.itproject.LoginRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getEmail();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
-  f = message.getPassword();
-  if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
-  }
-};
-
-
-/**
- * optional string email = 1;
- * @return {string}
- */
-proto.itproject.LoginRequest.prototype.getEmail = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.itproject.LoginRequest} returns this
- */
-proto.itproject.LoginRequest.prototype.setEmail = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional string password = 2;
- * @return {string}
- */
-proto.itproject.LoginRequest.prototype.getPassword = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.itproject.LoginRequest} returns this
- */
-proto.itproject.LoginRequest.prototype.setPassword = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -976,7 +917,7 @@ proto.itproject.RenewJWTRequest.prototype.toObject = function(opt_includeInstanc
  */
 proto.itproject.RenewJWTRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    jwt: jspb.Message.getFieldWithDefault(msg, 1, "")
+
   };
 
   if (includeInstance) {
@@ -1013,10 +954,6 @@ proto.itproject.RenewJWTRequest.deserializeBinaryFromReader = function(msg, read
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setJwt(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -1046,31 +983,6 @@ proto.itproject.RenewJWTRequest.prototype.serializeBinary = function() {
  */
 proto.itproject.RenewJWTRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getJwt();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional string jwt = 1;
- * @return {string}
- */
-proto.itproject.RenewJWTRequest.prototype.getJwt = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.itproject.RenewJWTRequest} returns this
- */
-proto.itproject.RenewJWTRequest.prototype.setJwt = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
