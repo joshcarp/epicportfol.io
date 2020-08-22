@@ -19,8 +19,8 @@ The motivational model below will be explained in lectures.
 - Docker
 
 ## Build the server
-`make build`
-- This will build the current project in docker `joshcarp/it-project`
+`make docker`
+- This will build the current project in docker
 ## Start the server
 `make run`
 - This will run a docker container of the image on localhost:50051
