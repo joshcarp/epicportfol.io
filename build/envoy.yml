@@ -25,8 +25,12 @@ static_resources:
                                           route:
                                               cluster: grpc-backend-services
                                               max_grpc_timeout: 0s
+                                    cors:
+                                        allow_origin_string_match:
+                                            -   prefix: "*"
                           http_filters:
                               - name: envoy.grpc_web
+                              - name: envoy.cors
                               - name: envoy.router
 
     clusters:
@@ -37,5 +41,5 @@ static_resources:
           lb_policy: round_robin
           hosts:
               - socket_address:
-                    address: docker.host.internal
-                    port_value: 443
+                    address: host.docker.internal
+                    port_value: 8080
