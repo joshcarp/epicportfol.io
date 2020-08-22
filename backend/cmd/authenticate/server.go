@@ -10,8 +10,8 @@ import (
 	"github.com/sirupsen/logrus"
 
 	_ "github.com/GoogleCloudPlatform/cloudsql-proxy/proxy/dialers/postgres"
-	"github.com/joshcarp/it-project/pkg/accounts"
-	"github.com/joshcarp/it-project/pkg/config"
+	"github.com/joshcarp/it-project/backend/pkg/accounts"
+	"github.com/joshcarp/it-project/backend/pkg/config"
 	"github.com/joshcarp/it-project/proto/itproject"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
