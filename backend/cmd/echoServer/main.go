@@ -26,5 +26,5 @@ type server struct {
 }
 
 func (s *server) Echo(ctx context.Context, req *itproject.EchoRequest) (*itproject.EchoResponse, error) {
-	return &itproject.EchoResponse{Message: req.Message + "askjndankjdnaksdnaskjdnasjkdn"}, nil
+	return &itproject.EchoResponse{Message: "Hello" + req.Message}, nil
 }
