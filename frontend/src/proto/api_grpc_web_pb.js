@@ -1,3 +1,4 @@
+/* eslint-disable */
 /**
  * @fileoverview gRPC-Web generated client stub for itproject
  * @enhanceable
@@ -318,7 +319,7 @@ proto.itproject.authenticatePromiseClient.prototype.renewJWT =
  * @struct
  * @final
  */
-proto.itproject.echoClient =
+proto.itproject.EchoServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
@@ -344,7 +345,7 @@ proto.itproject.echoClient =
  * @struct
  * @final
  */
-proto.itproject.echoPromiseClient =
+proto.itproject.EchoServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
@@ -365,80 +366,80 @@ proto.itproject.echoPromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.itproject.echoMessage,
- *   !proto.itproject.echoMessage>}
+ *   !proto.itproject.EchoRequest,
+ *   !proto.itproject.EchoResponse>}
  */
-const methodDescriptor_echo_echo = new grpc.web.MethodDescriptor(
-  '/itproject.echo/echo',
+const methodDescriptor_EchoService_Echo = new grpc.web.MethodDescriptor(
+  '/itproject.EchoService/Echo',
   grpc.web.MethodType.UNARY,
-  proto.itproject.echoMessage,
-  proto.itproject.echoMessage,
+  proto.itproject.EchoRequest,
+  proto.itproject.EchoResponse,
   /**
-   * @param {!proto.itproject.echoMessage} request
+   * @param {!proto.itproject.EchoRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.itproject.echoMessage.deserializeBinary
+  proto.itproject.EchoResponse.deserializeBinary
 );
 
 
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.itproject.echoMessage,
- *   !proto.itproject.echoMessage>}
+ *   !proto.itproject.EchoRequest,
+ *   !proto.itproject.EchoResponse>}
  */
-const methodInfo_echo_echo = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.itproject.echoMessage,
+const methodInfo_EchoService_Echo = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.itproject.EchoResponse,
   /**
-   * @param {!proto.itproject.echoMessage} request
+   * @param {!proto.itproject.EchoRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.itproject.echoMessage.deserializeBinary
+  proto.itproject.EchoResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.itproject.echoMessage} request The
+ * @param {!proto.itproject.EchoRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.itproject.echoMessage)}
+ * @param {function(?grpc.web.Error, ?proto.itproject.EchoResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.itproject.echoMessage>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.itproject.EchoResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.itproject.echoClient.prototype.echo =
+proto.itproject.EchoServiceClient.prototype.echo =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/itproject.echo/echo',
+      '/itproject.EchoService/Echo',
       request,
       metadata || {},
-      methodDescriptor_echo_echo,
+      methodDescriptor_EchoService_Echo,
       callback);
 };
 
 
 /**
- * @param {!proto.itproject.echoMessage} request The
+ * @param {!proto.itproject.EchoRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.itproject.echoMessage>}
+ * @return {!Promise<!proto.itproject.EchoResponse>}
  *     A native promise that resolves to the response
  */
-proto.itproject.echoPromiseClient.prototype.echo =
+proto.itproject.EchoServicePromiseClient.prototype.echo =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/itproject.echo/echo',
+      '/itproject.EchoService/Echo',
       request,
       metadata || {},
-      methodDescriptor_echo_echo);
+      methodDescriptor_EchoService_Echo);
 };
 
 
