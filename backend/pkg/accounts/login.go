@@ -3,11 +3,11 @@ package accounts
 import (
 	"context"
 
-	"github.com/joshcarp/it-project/pkg/auth"
+	"github.com/joshcarp/it-project/backend/pkg/auth"
 
-	"github.com/joshcarp/it-project/pkg/database"
+	"github.com/joshcarp/it-project/backend/pkg/database"
 
-	"github.com/joshcarp/it-project/pkg/jwt"
+	"github.com/joshcarp/it-project/backend/pkg/jwt"
 	"github.com/joshcarp/it-project/proto/itproject"
 )
 

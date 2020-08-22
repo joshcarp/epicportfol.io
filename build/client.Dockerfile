@@ -1,7 +1,7 @@
 FROM golang:alpine AS builder
 WORKDIR /usr/src
 ADD . .
-RUN go build ./cmd/it-project-client
+RUN go build ./backend/cmd/it-project-client
 
 FROM alpine:3.10
 WORKDIR /usr/app

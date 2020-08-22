@@ -3,7 +3,7 @@ package database
 import (
 	"testing"
 
-	"github.com/joshcarp/it-project/pkg/auth"
+	"github.com/joshcarp/it-project/backend/pkg/auth"
 
 	"github.com/stretchr/testify/require"
 )
@@ -59,7 +59,7 @@ var tests = map[string]testcase{
 }
 
 func TestDatabase(t *testing.T) {
-	db, err := openDatabaseMemory("../../database/db.sql")
+	db, err := openDatabaseMemory("../../../database/db.sql")
 	require.Nil(t, err)
 	var account *auth.Account
 	for name, test := range tests {

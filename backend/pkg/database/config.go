@@ -10,7 +10,7 @@ import (
 
 	_ "github.com/GoogleCloudPlatform/cloudsql-proxy/proxy/dialers/postgres"
 	"github.com/jmoiron/sqlx"
-	"github.com/joshcarp/it-project/pkg/config"
+	"github.com/joshcarp/it-project/backend/pkg/config"
 	_ "github.com/lib/pq"
 	_ "github.com/proullon/ramsql/driver"
 )

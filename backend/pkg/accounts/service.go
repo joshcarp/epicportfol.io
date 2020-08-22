@@ -2,7 +2,7 @@ package accounts
 
 import (
 	"github.com/jmoiron/sqlx"
-	"github.com/joshcarp/it-project/pkg/database"
+	"github.com/joshcarp/it-project/backend/pkg/database"
 	"github.com/joshcarp/it-project/proto/itproject"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
