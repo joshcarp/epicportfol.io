@@ -1,0 +1,41 @@
+admin:
+    access_log_path: /tmp/admin_access.log
+    address:
+        socket_address: { address: 0.0.0.0, port_value: 9901 }
+
+static_resources:
+    listeners:
+        - name: main-listener
+          address:
+              socket_address: { address: 0.0.0.0, port_value: 8081 }
+          filter_chains:
+              - filters:
+                    - name: envoy.http_connection_manager
+                      config:
+                          stat_prefix: ingress_http
+                          codec_type: AUTO
+                          route_config:
+                              name: local_route
+                              virtual_hosts:
+                                  - name: local_service
+                                    domains: ["*"]
+                                    routes:
+                                        - match:
+                                              prefix: "/"
+                                          route:
+                                              cluster: grpc-backend-services
+                                              max_grpc_timeout: 0s
+                          http_filters:
+                              - name: envoy.grpc_web
+                              - name: envoy.router
+
+    clusters:
+        - name: grpc-backend-services
+          connect_timeout: 0.25s
+          type: logical_dns
+          http2_protocol_options: {}
+          lb_policy: round_robin
+          hosts:
+              - socket_address:
+                    address: docker.host.internal
+                    port_value: 443
