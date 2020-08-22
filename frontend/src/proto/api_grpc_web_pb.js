@@ -310,5 +310,137 @@ proto.itproject.authenticatePromiseClient.prototype.renewJWT =
 };
 
 
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?Object} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.itproject.echoClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options['format'] = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+};
+
+
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?Object} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.itproject.echoPromiseClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options['format'] = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.itproject.echoMessage,
+ *   !proto.itproject.echoMessage>}
+ */
+const methodDescriptor_echo_echo = new grpc.web.MethodDescriptor(
+  '/itproject.echo/echo',
+  grpc.web.MethodType.UNARY,
+  proto.itproject.echoMessage,
+  proto.itproject.echoMessage,
+  /**
+   * @param {!proto.itproject.echoMessage} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.itproject.echoMessage.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.itproject.echoMessage,
+ *   !proto.itproject.echoMessage>}
+ */
+const methodInfo_echo_echo = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.itproject.echoMessage,
+  /**
+   * @param {!proto.itproject.echoMessage} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.itproject.echoMessage.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.itproject.echoMessage} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.itproject.echoMessage)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.itproject.echoMessage>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.itproject.echoClient.prototype.echo =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/itproject.echo/echo',
+      request,
+      metadata || {},
+      methodDescriptor_echo_echo,
+      callback);
+};
+
+
+/**
+ * @param {!proto.itproject.echoMessage} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.itproject.echoMessage>}
+ *     A native promise that resolves to the response
+ */
+proto.itproject.echoPromiseClient.prototype.echo =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/itproject.echo/echo',
+      request,
+      metadata || {},
+      methodDescriptor_echo_echo);
+};
+
+
 module.exports = proto.itproject;
 

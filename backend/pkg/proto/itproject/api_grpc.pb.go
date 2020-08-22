@@ -160,3 +160,79 @@ var _Authenticate_serviceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "api.proto",
 }
+
+// EchoClient is the client API for Echo service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type EchoClient interface {
+	Echo(ctx context.Context, in *EchoMessage, opts ...grpc.CallOption) (*EchoMessage, error)
+}
+
+type echoClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewEchoClient(cc grpc.ClientConnInterface) EchoClient {
+	return &echoClient{cc}
+}
+
+func (c *echoClient) Echo(ctx context.Context, in *EchoMessage, opts ...grpc.CallOption) (*EchoMessage, error) {
+	out := new(EchoMessage)
+	err := c.cc.Invoke(ctx, "/itproject.echo/echo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// EchoServer is the server API for Echo service.
+// All implementations must embed UnimplementedEchoServer
+// for forward compatibility
+type EchoServer interface {
+	Echo(context.Context, *EchoMessage) (*EchoMessage, error)
+	mustEmbedUnimplementedEchoServer()
+}
+
+// UnimplementedEchoServer must be embedded to have forward compatible implementations.
+type UnimplementedEchoServer struct {
+}
+
+func (*UnimplementedEchoServer) Echo(context.Context, *EchoMessage) (*EchoMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Echo not implemented")
+}
+func (*UnimplementedEchoServer) mustEmbedUnimplementedEchoServer() {}
+
+func RegisterEchoServer(s *grpc.Server, srv EchoServer) {
+	s.RegisterService(&_Echo_serviceDesc, srv)
+}
+
+func _Echo_Echo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EchoMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EchoServer).Echo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/itproject.echo/Echo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EchoServer).Echo(ctx, req.(*EchoMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Echo_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "itproject.echo",
+	HandlerType: (*EchoServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "echo",
+			Handler:    _Echo_Echo_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "api.proto",
+}
