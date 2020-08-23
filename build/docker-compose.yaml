@@ -6,6 +6,12 @@ services:
             context: ..
             dockerfile: build/Dockerfile
         ports:
+            - 443:443
+    echo:
+        build:
+            context: ..
+            dockerfile: build/echo.Dockerfile
+        ports:
             - 8080:8080
     postgres:
         image: postgres
@@ -14,6 +20,14 @@ services:
         environment:
             - POSTGRES_PASSWORD=1234
         ports:
-        - 5432:5432
+            - 5432:5432
         entrypoint: ["./docker-entrypoint.sh"]
         command: ["bash","-e","/database/initdb.sh"]
+    envoy:
+        image: envoyproxy/envoy:v1.14.4
+        volumes:
+            - ./envoy.yml:/etc/envoy/envoy.yaml
+        environment:
+            - POSTGRES_PASSWORD=1234
+        ports:
+            - 8081:8081

@@ -14,6 +14,18 @@ service authenticate {
     rpc RenewJWT(LoginRequest) returns (LoginResponse){};
 }
 
+message EchoRequest {
+    string message = 1;
+}
+
+message EchoResponse {
+    string message = 1;
+}
+
+service EchoService {
+    rpc Echo(EchoRequest) returns (EchoResponse);
+}
+
 message RegisterRequest {
     string email = 1;
     string userid = 2;

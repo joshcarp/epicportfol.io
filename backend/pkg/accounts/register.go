@@ -7,7 +7,7 @@ import (
 
 	"github.com/joshcarp/it-project/backend/pkg/auth"
 	"github.com/joshcarp/it-project/backend/pkg/jwt"
-	"github.com/joshcarp/it-project/proto/itproject"
+	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
 )
 
 func (s *Server) Register(ctx context.Context, req *itproject.RegisterRequest) (*itproject.RegisterResponse, error) {

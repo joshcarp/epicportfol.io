@@ -3,7 +3,7 @@ package accounts
 import (
 	"context"
 
-	"github.com/joshcarp/it-project/proto/itproject"
+	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
 )
 
 func (s *Server) RenewJWT(ctx context.Context, req *itproject.LoginRequest) (*itproject.LoginResponse, error) {
