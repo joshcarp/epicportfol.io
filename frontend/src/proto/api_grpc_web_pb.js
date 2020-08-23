@@ -1,3 +1,4 @@
+/* eslint-disable */
 /**
  * @fileoverview gRPC-Web generated client stub for itproject
  * @enhanceable
@@ -307,6 +308,138 @@ proto.itproject.authenticatePromiseClient.prototype.renewJWT =
       request,
       metadata || {},
       methodDescriptor_authenticate_RenewJWT);
+};
+
+
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?Object} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.itproject.EchoServiceClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options['format'] = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+};
+
+
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?Object} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.itproject.EchoServicePromiseClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options['format'] = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.itproject.EchoRequest,
+ *   !proto.itproject.EchoResponse>}
+ */
+const methodDescriptor_EchoService_Echo = new grpc.web.MethodDescriptor(
+  '/itproject.EchoService/Echo',
+  grpc.web.MethodType.UNARY,
+  proto.itproject.EchoRequest,
+  proto.itproject.EchoResponse,
+  /**
+   * @param {!proto.itproject.EchoRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.itproject.EchoResponse.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.itproject.EchoRequest,
+ *   !proto.itproject.EchoResponse>}
+ */
+const methodInfo_EchoService_Echo = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.itproject.EchoResponse,
+  /**
+   * @param {!proto.itproject.EchoRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.itproject.EchoResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.itproject.EchoRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.itproject.EchoResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.itproject.EchoResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.itproject.EchoServiceClient.prototype.echo =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/itproject.EchoService/Echo',
+      request,
+      metadata || {},
+      methodDescriptor_EchoService_Echo,
+      callback);
+};
+
+
+/**
+ * @param {!proto.itproject.EchoRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.itproject.EchoResponse>}
+ *     A native promise that resolves to the response
+ */
+proto.itproject.EchoServicePromiseClient.prototype.echo =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/itproject.EchoService/Echo',
+      request,
+      metadata || {},
+      methodDescriptor_EchoService_Echo);
 };
 
 

@@ -8,7 +8,7 @@ import (
 	"github.com/joshcarp/it-project/backend/pkg/database"
 
 	"github.com/joshcarp/it-project/backend/pkg/jwt"
-	"github.com/joshcarp/it-project/proto/itproject"
+	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
 )
 
 func (s *Server) Login(ctx context.Context, req *itproject.LoginRequest) (*itproject.LoginResponse, error) {
