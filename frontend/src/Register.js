@@ -2,16 +2,19 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {useState} from 'react'
-const {LoginRequest} = require('./proto/api_pb.js');
-const {authenticateClient, metadata} = require('./proto/api_grpc_web_pb.js');
+const {RegisterRequest} = require('./proto/api_pb.js');
+const {authenticateClient} = require('./proto/api_grpc_web_pb.js');
 const auth = new authenticateClient('http://localhost:8081');
 
 
-function Login() {
+function Register() {
     const [message, setMessage] = useState("initial value")
-    var request = new LoginRequest();
-    var meta = {'authorization': "Basic "+window.btoa('memes')+':'+window.btoa('more_memes')}
-    auth.login(request, meta, function (err, response) {
+    var request = new RegisterRequest();
+    request.setUserid(" memesters")
+    request.setEmail(" memesters")
+    request.setFullname(" memesters")
+    request.setPreferredname(" memesters")
+    auth.register(request, {}, function (err, response) {
         console.log(response.getJwt())
         setMessage(response.getJwt())
     })
@@ -28,4 +31,4 @@ function Login() {
 }
 
 
-export default Login;
+export default Register;
