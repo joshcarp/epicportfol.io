@@ -1,12 +1,12 @@
 version: '3.8'
 
 services:
-#    authenticate:
-#        build:
-#            context: ..
-#            dockerfile: build/Dockerfile
-#        ports:
-#            - 443:443
+    authenticate:
+        build:
+            context: ..
+            dockerfile: build/Dockerfile
+        ports:
+            - 443:443
     echo:
         build:
             context: ..
