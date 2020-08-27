@@ -80,20 +80,18 @@ func valid(authorization []string) error {
 }
 
 /* BasicAuth gets the */
-func BasicAuth(ctx context.Context) (string, string, error) {
+func BasicAuth(ctx context.Context) (whatever string, asdasd string, err error) {
 	md, ok := metadata.FromIncomingContext(ctx)
 	if !ok {
 		return "", "", fmt.Errorf("No auth found")
 	}
 	authorization := md["authorization"]
 	token := strings.TrimPrefix(authorization[0], "Basic ")
-	tmp := strings.Split(token, ":")
+	unamePwd, _ := base64.StdEncoding.DecodeString(token)
+	tmp := strings.Split(string(unamePwd), ":")
 	if len(tmp) < 2 {
-		return "", "", fmt.Errorf("Auth failed")
+		return "", "", fmt.Errorf("auth not valid: need in form Base64(username:password)")
 	}
-	username, _ := base64.StdEncoding.DecodeString(tmp[0])
-	password, _ := base64.StdEncoding.DecodeString(tmp[1])
-
-	return string(username), string(password), nil
+	return tmp[0], tmp[1], nil
 
 }
