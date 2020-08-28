@@ -10,17 +10,17 @@
 
 ## Application Index
 
-| Application Name | Method | Source Location |
-|----|----|----|
-| EchoService | [Echo](#EchoService-Echo) | 
-| authenticate | [Login](#authenticate-Login) | 
-| authenticate | [Register](#authenticate-Register) | 
-| authenticate | [RenewJWT](#authenticate-RenewJWT) | 
+| Application Name | Method |
+|----|----|
+| EchoService | [Echo](#EchoService-Echo) |
+| authenticate | [Login](#authenticate-Login) |
+| authenticate | [Register](#authenticate-Register) |
+| authenticate | [RenewJWT](#authenticate-RenewJWT) |
 
 ## Type Index
 
 | Application Name | Type Name |
-|----|----|----|
+|----|----|
 | itproject | [EchoRequest](#itproject.EchoRequest) | 
 | itproject | [EchoResponse](#itproject.EchoResponse) | 
 | itproject | [LoginRequest](#itproject.LoginRequest) | 

@@ -17,16 +17,16 @@
 {{end}}
 ## Application Index
 {{$anyApps := false}}
-{{$Apps := .Apps}}{{range $appName := SortedKeys .Apps}}{{$app := index $Apps $appName}}{{if eq (hasPattern $app.Attrs "ignore") false}}{{$Endpoints := $app.Endpoints}}{{range $endpointName := SortedKeys $Endpoints}}{{$endpoint := index $Endpoints $endpointName}}{{if eq (hasPattern $endpoint.Attrs "ignore") false}}{{if not $anyApps}}| Application Name | Method | Source Location |
-|----|----|----|{{$anyApps = true}}{{end}}
-| {{$appName}} | [{{$endpoint.Name}}](#{{$appName}}-{{SanitiseOutputName $endpoint.Name}}) | {{end}}{{end}}{{end}}{{end}}
+{{$Apps := .Apps}}{{range $appName := SortedKeys .Apps}}{{$app := index $Apps $appName}}{{if eq (hasPattern $app.Attrs "ignore") false}}{{$Endpoints := $app.Endpoints}}{{range $endpointName := SortedKeys $Endpoints}}{{$endpoint := index $Endpoints $endpointName}}{{if eq (hasPattern $endpoint.Attrs "ignore") false}}{{if not $anyApps}}| Application Name | Method |
+|----|----|{{$anyApps = true}}{{end}}
+| {{$appName}} | [{{$endpoint.Name}}](#{{$appName}}-{{SanitiseOutputName $endpoint.Name}}) |{{end}}{{end}}{{end}}{{end}}
 {{if not $anyApps}}
 <span style="color:grey">No Applications Defined</span>
 {{end}}
 ## Type Index
 {{$anyTypes := false}}
 {{range $appName := SortedKeys .Apps}}{{$app := index $Apps $appName}}{{$types := $app.Types}}{{if ne (hasPattern $app.Attrs "db") true}}{{range $typeName := SortedKeys $types}}{{$type := index $types $typeName}}{{if not $anyTypes}}| Application Name | Type Name |
-|----|----|----|{{$anyTypes = true}}{{end}}
+|----|----|{{$anyTypes = true}}{{end}}
 | {{$appName}} | [{{$typeName}}](#{{$appName}}.{{$typeName}}) | {{end}}{{end}}{{end}}
 {{if not $anyTypes}}
 <span style="color:grey">No Types Defined</span>
