@@ -3,3 +3,32 @@ import generated/index.sysl
 _[~project]:
     _:
         itproject
+
+db[~db]:
+    insert user:
+        insert user
+    retrieve user:
+        return user
+
+authenticate:
+    Login:
+        basic authentication
+        db <- retrieve user
+    Register:
+        db <- insert user
+
+
+
+envoy:
+    Register:
+        authenticate <- Register
+    Login:
+        authenticate <- Register
+
+
+frontend:
+    @project="itproject"
+    register:
+        envoy <- Register
+    login:
+        envoy <- Login

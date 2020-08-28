@@ -7,25 +7,20 @@ option java_outer_classname = "pi";
 
 package itproject;
 
-/* authenticate is the miroservice that handles authentication */
+/* authenticate is the miroservice that handles authentication and issues JWTs to use with other services */
 service authenticate {
+
+    /* Register is used to register a user and acquire a jwt */
     rpc Register(RegisterRequest) returns (RegisterResponse){};
+
+    /* Login is used to login and to acquire a jwt */
     rpc Login(LoginRequest) returns (LoginResponse){};
+
+    /* RenewJWT is used to reissue JWTs that have expired */
     rpc RenewJWT(LoginRequest) returns (LoginResponse){};
 }
 
-message EchoRequest {
-    string message = 1;
-}
-
-message EchoResponse {
-    string message = 1;
-}
-
-service EchoService {
-    rpc Echo(EchoRequest) returns (EchoResponse);
-}
-
+/* RegisterRequest contains all the information to register the user in the database */
 message RegisterRequest {
     string email = 1;
     string userid = 2;
@@ -34,6 +29,7 @@ message RegisterRequest {
     string password = 5;
 }
 
+/* RegisterResponse is the response from the registration services */
 message RegisterResponse{
     string jwt = 2;
 }
@@ -42,14 +38,34 @@ message RegisterResponse{
 message LoginRequest {
 }
 
+/* LoginRequest is the response object from Login that is used in bearer authentication in the header: "Bearer <JWT>" */
 message LoginResponse {
     string jwt = 1;
 }
 
+/* RenewJWTResponse is used to renew jwts */
 message RenewJWTResponse {
     string jwt = 1;
 }
 
 /* RenewJWTRequest is empty becayse Bearer <JWT> should be used with this method */
 message RenewJWTRequest {
+}
+
+
+/* --- EchoService --- */
+
+/* EchoRequest is the request object for EchoService */
+message EchoRequest {
+    string message = 1;
+}
+
+/* EchoResponse is the response from the EchoService */
+message EchoResponse {
+    string message = 1;
+}
+
+/* EchoService is a basic service to test connections */
+service EchoService {
+    rpc Echo(EchoRequest) returns (EchoResponse);
 }
