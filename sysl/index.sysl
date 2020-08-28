@@ -27,6 +27,7 @@ envoy:
 
 
 frontend:
+    @project="itproject"
     register:
         envoy <- Register
     login:
