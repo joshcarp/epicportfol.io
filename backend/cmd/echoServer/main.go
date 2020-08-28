@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
 	"net"
 
 	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
@@ -17,8 +18,7 @@ func main() {
 	reflection.Register(s)
 	itproject.RegisterEchoServiceServer(s, &server{})
 	fmt.Println("Starting grpc server")
-	if err := s.Serve(lis); err != nil {
-	}
+	log.Fatal(s.Serve(lis))
 }
 
 type server struct {
