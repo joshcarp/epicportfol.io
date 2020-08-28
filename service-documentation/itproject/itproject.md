@@ -12,23 +12,23 @@
 
 | Application Name | Method | Source Location |
 |----|----|----|
-| EchoService | [Echo](#EchoService-Echo) | []()|  
-| authenticate | [Login](#authenticate-Login) | []()|  
-| authenticate | [Register](#authenticate-Register) | []()|  
-| authenticate | [RenewJWT](#authenticate-RenewJWT) | []()|  
+| EchoService | [Echo](#EchoService-Echo) | 
+| authenticate | [Login](#authenticate-Login) | 
+| authenticate | [Register](#authenticate-Register) | 
+| authenticate | [RenewJWT](#authenticate-RenewJWT) | 
 
 ## Type Index
 
-| Application Name | Type Name | Source Location |
+| Application Name | Type Name |
 |----|----|----|
-| itproject | [EchoRequest](#itproject.EchoRequest) | []()|
-| itproject | [EchoResponse](#itproject.EchoResponse) | []()|
-| itproject | [LoginRequest](#itproject.LoginRequest) | []()|
-| itproject | [LoginResponse](#itproject.LoginResponse) | []()|
-| itproject | [RegisterRequest](#itproject.RegisterRequest) | []()|
-| itproject | [RegisterResponse](#itproject.RegisterResponse) | []()|
-| itproject | [RenewJWTRequest](#itproject.RenewJWTRequest) | []()|
-| itproject | [RenewJWTResponse](#itproject.RenewJWTResponse) | []()|
+| itproject | [EchoRequest](#itproject.EchoRequest) | 
+| itproject | [EchoResponse](#itproject.EchoResponse) | 
+| itproject | [LoginRequest](#itproject.LoginRequest) | 
+| itproject | [LoginResponse](#itproject.LoginResponse) | 
+| itproject | [RegisterRequest](#itproject.RegisterRequest) | 
+| itproject | [RegisterResponse](#itproject.RegisterResponse) | 
+| itproject | [RenewJWTRequest](#itproject.RenewJWTRequest) | 
+| itproject | [RenewJWTResponse](#itproject.RenewJWTResponse) | 
 
 
 
