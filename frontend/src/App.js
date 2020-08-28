@@ -2,18 +2,18 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {useState} from 'react'
-const {EchoRequest} = require('./proto/api_pb.js');
-const {EchoServiceClient} = require('./proto/api_grpc_web_pb.js');
-const echoService = new EchoServiceClient('http://localhost:8081');
+const {LoginRequest} = require('./proto/api_pb.js');
+const {authenticateClient} = require('./proto/api_grpc_web_pb.js');
+const auth = new authenticateClient('http://localhost:8081');
 
 
-function App() {
+function Login() {
     const [message, setMessage] = useState("initial value")
-    var request = new EchoRequest();
-    request.setMessage(" memesters")
-    echoService.echo(request, {}, function (err, response) {
-        console.log(response.getMessage())
-        setMessage(response.getMessage())
+    var request = new LoginRequest();
+    var meta = {'authorization': "Basic "+window.btoa('memes:more_memes')}
+    auth.login(request, meta, function (err, response) {
+        console.log(response.getJwt())
+        setMessage(response.getJwt())
     })
     return (
         <div className="App">
@@ -28,4 +28,4 @@ function App() {
 }
 
 
-export default App;
+export default Login;
