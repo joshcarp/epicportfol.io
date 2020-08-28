@@ -17,8 +17,11 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AuthenticateClient interface {
+	// Register is used to register a user and acquire a jwt
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
+	// Login is used to login and to acquire a jwt
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
+	// RenewJWT is used to reissue JWTs that have expired
 	RenewJWT(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 }
 
@@ -61,8 +64,11 @@ func (c *authenticateClient) RenewJWT(ctx context.Context, in *LoginRequest, opt
 // All implementations must embed UnimplementedAuthenticateServer
 // for forward compatibility
 type AuthenticateServer interface {
+	// Register is used to register a user and acquire a jwt
 	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
+	// Login is used to login and to acquire a jwt
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
+	// RenewJWT is used to reissue JWTs that have expired
 	RenewJWT(context.Context, *LoginRequest) (*LoginResponse, error)
 	mustEmbedUnimplementedAuthenticateServer()
 }
