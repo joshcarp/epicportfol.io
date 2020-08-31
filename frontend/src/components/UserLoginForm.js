@@ -9,38 +9,31 @@ class UserLoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            password: 'oiwhetohiwerwerkjwner werwer ',
-            username: 'askfjnakjsnljkdsn werwer '
+            password: '',
+            username: ''
         };
-
         this.handleUname = this.handleUname.bind(this);
         this.handlepwd = this.handlepwd.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
     handleUname(event) {
-
         this.setState({
-            username: event.target.username,
+            username: event.target.value,
         });
     }
     handlepwd(event) {
-
         this.setState({
-            password: event.target.password,
+            password: event.target.value,
         });
     }
-
-    async handleSubmit(event) {
+     handleSubmit(event) {
         event.preventDefault();
         var request = new LoginRequest();
         var meta = { 'authorization': "Basic " + window.btoa(this.state.username+':'+this.state.password) }
         auth.login(request, meta, function (err, response) {
-            console.log(response)
+            console.log(err.code, err.message)//, response.getJwt())
         })
     }
-
-
     render() {
         return (
             <div className="UserLoginForm">

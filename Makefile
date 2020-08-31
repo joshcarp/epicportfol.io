@@ -32,7 +32,7 @@ client:             ## Make the demo client
 	docker build . -f build/client.Dockerfile -t joshcarp/it-project-client
 
 client.run:         ## Run the demo client in docker
-	docker run --rm -e ADDR=$(PRODADDR):$(PORT) joshcarp/it-project-client
+	docker run --rm -e ADDR=host.docker.internal:443 joshcarp/it-project-client
 
 secret:             ## Remake a jwt secret
 	openssl rand -hex 64  | pbcopy
