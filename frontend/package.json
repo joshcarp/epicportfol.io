@@ -8,10 +8,12 @@
     "@testing-library/user-event": "^7.1.2",
     "google-protobuf": "^3.13.0",
     "grpc": "^1.24.3",
+    "grpc-web": "^1.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
-    "reactrpc": "^1.0.5"
+    "reactrpc": "^1.0.5",
+    "react-router-dom": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

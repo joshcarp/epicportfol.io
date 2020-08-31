@@ -1,31 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
+import Homepage from './containers/Homepage';
 import './App.css';
-import {useState} from 'react'
-const {LoginRequest} = require('./proto/api_pb.js');
-const {authenticateClient} = require('./proto/api_grpc_web_pb.js');
-const auth = new authenticateClient('http://localhost:8081');
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+} from "react-router-dom"
 
 
-function Login() {
-    const [message, setMessage] = useState("initial value")
-    var request = new LoginRequest();
-    var meta = {'authorization': "Basic "+window.btoa('memes:more_memes')}
-    auth.login(request, meta, function (err, response) {
-        console.log(response.getJwt())
-        setMessage(response.getJwt())
-    })
+export default function App() {
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <p>
-                    {message.toString()}
-                </p>
-            </header>
-        </div>
-    );
+        <Router>
+            <Switch>
+                <Route path="/">
+                    <Homepage />
+                </Route>
+            </Switch>
+        </Router>
+    )
 }
-
-
-export default Login;
