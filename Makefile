@@ -41,3 +41,7 @@ docker-compose:     ## Run all the services in build/docker-compose.yaml
 	docker-compose -f build/docker-compose.yaml up
 help:               ## Show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
+
+.PHONY: fontend
+fontend:
+	cd frontend && npm install && npm start
