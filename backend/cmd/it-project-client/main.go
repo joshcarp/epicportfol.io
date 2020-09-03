@@ -8,19 +8,18 @@ import (
 
 	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
 )
 
 func main() {
 	address := os.Getenv("ADDR")
 
-	creds, err := credentials.NewClientTLSFromFile("/etc/ssl/certs/ca-certificates.crt", "")
-	if err != nil {
-		log.Fatalf("failed to load credentials: %v", err)
-	}
+	//creds, err := credentials.NewClientTLSFromFile("/etc/ssl/certs/ca-certificates.crt", "")
+	//if err != nil {
+	//	log.Fatalf("failed to load credentials: %v", err)
+	//}
 
 	// Set up a connection to the server.
-	conn, err := grpc.Dial(address, grpc.WithTransportCredentials(creds))
+	conn, err := grpc.Dial(address, grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
