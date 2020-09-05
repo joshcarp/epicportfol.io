@@ -35,7 +35,7 @@ class Homepage extends Component {
 
     render () {
         return (
-                    <div className="Homepage">
+            <div className="Homepage">
 
 
                         {/*<Aux>*/}
@@ -48,6 +48,7 @@ class Homepage extends Component {
                         {/*    </main>*/}
 
                         {/*</Aux>*/}
+
 
             <img src={Logo} className="Homepage-logo" alt="logo" />
             <h4>Find your next Epic Candidate</h4>
