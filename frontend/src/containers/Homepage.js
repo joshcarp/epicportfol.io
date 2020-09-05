@@ -38,19 +38,16 @@ class Homepage extends Component {
                     <div className="Homepage">
 
 
-                        <Aux>
-                            <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />
-                            {/*<SideDrawer*/}
-                            {/*    open={this.state.showSideDrawer}*/}
-                            {/*    closed={this.sideDrawerClosedHandler} />*/}
-                            <main className={classes.Content}>
-                                {this.props.children}
-                            </main>
-                            {/*<Toolbar />*/}
-                            {/*<main className={classes.Content}>*/}
-                            {/*    {this.props.children}*/}
-                            {/*</main>*/}
-                        </Aux>
+                        {/*<Aux>*/}
+                        {/*    <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />*/}
+                        {/*    /!*<SideDrawer*!/*/}
+                        {/*    /!*    open={this.state.showSideDrawer}*!/*/}
+                        {/*    /!*    closed={this.sideDrawerClosedHandler} />*!/*/}
+                        {/*    <main className={classes.Content}>*/}
+                        {/*        {this.props.children}*/}
+                        {/*    </main>*/}
+
+                        {/*</Aux>*/}
 
             <img src={Logo} className="Homepage-logo" alt="logo" />
             <h4>Find your next Epic Candidate</h4>
