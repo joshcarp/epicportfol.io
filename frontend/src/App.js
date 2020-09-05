@@ -1,5 +1,6 @@
 import React from 'react';
 import Homepage from './containers/Homepage';
+import UserProfile from './containers/UserProfile';
 import './App.css';
 import {
     BrowserRouter as Router,
@@ -12,8 +13,11 @@ export default function App() {
     return (
         <Router>
             <Switch>
-                <Route path="/">
+                <Route exact path="/">
                     <Homepage />
+                </Route>
+                <Route exact path="/profile">
+                    <UserProfile />
                 </Route>
             </Switch>
         </Router>
