@@ -11,7 +11,6 @@ class UserLoginForm extends React.Component {
         this.state = {
             password: '',
             username: '',
-            token: '',
         }
         this.handleUname = this.handleUname.bind(this)
         this.handlepwd = this.handlepwd.bind(this)
