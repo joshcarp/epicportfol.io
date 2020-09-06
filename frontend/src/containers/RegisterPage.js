@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import '../App.css'
 import Logo from '../assets/logo.svg'
 
-import UserLoginForm from '../components/UserLoginForm'
+import UserRegisterForm from '../components/UserRegisterForm'
 
 class RegisterPage extends Component {
     state = {
@@ -25,7 +25,7 @@ class RegisterPage extends Component {
             <div className="Homepage">
                 <img src={Logo} className="Homepage-logo" alt="logo" />
                 <h4>Register your Epic Portfolio</h4>
-                <UserLoginForm />
+                <UserRegisterForm />
             </div>
         )
     }
