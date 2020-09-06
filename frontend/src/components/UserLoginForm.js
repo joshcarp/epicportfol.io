@@ -1,5 +1,4 @@
-// eslint-disable-next-line
-import React, { useState } from "react";
+import React from "react";
 const { LoginRequest } = require('../proto/api_pb.js');
 const { authenticateClient } = require('../proto/api_grpc_web_pb.js');
 const auth = new authenticateClient('http://localhost:8081');
@@ -39,9 +38,9 @@ class UserLoginForm extends React.Component {
         return (
             <div className="UserLoginForm">
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text" name="username" value={this.state.username} onChange={this.handleUname} />
+                    <input type="text" name="username" value={this.state.username} onChange={this.handleUname} placeholder="Username" />
                     <br />
-                    <input type="password" name="password" value={this.state.password} onChange={this.handlepwd} />
+                    <input type="password" name="password" value={this.state.password} onChange={this.handlepwd} placeholder="Password" />
                     <input type="submit" value="Submit" />
                 </form>
             </div>
