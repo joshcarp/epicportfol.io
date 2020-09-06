@@ -8,11 +8,11 @@ export default function App() {
     return (
         <Router>
             <Switch>
-                <Route path="/">
-                    <Homepage />
-                </Route>
                 <Route path="/Register">
                     <RegisterPage />
+                </Route>
+                <Route path="/">
+                    <Homepage />
                 </Route>
             </Switch>
         </Router>
