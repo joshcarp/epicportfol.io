@@ -49,7 +49,10 @@ class UserRegisterForm extends React.Component {
                 window.btoa(this.state.username + ':' + this.state.password),
         }
         auth.login(request, meta, function (err, response) {
-            console.log(err.code, err.message) //, response.getJwt())
+            err != null
+                ? console.log(err.code, err.message)
+                : localStorage.setItem('token', response.getJwt())
+            console.log(localStorage)
         })
     }
     render() {
