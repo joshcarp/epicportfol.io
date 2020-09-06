@@ -1,7 +1,26 @@
 import React from "react";
+import PropTypes from 'prop-types';
+import { TextField, withStyles, Button } from '@material-ui/core';
+
 const { LoginRequest } = require('../proto/api_pb.js');
 const { authenticateClient } = require('../proto/api_grpc_web_pb.js');
 const auth = new authenticateClient('http://localhost:8081');
+
+
+const styles = {
+    form: {
+
+    },
+    field: {
+        margin: "5px",
+        background: 'white',
+        width: '80%',
+    },
+    button: {
+        margin: "5px",
+        width: '80%',
+    },
+};
 
 // Component to create form that logs user into their profile and redirects
 // to profile page.
@@ -35,17 +54,46 @@ class UserLoginForm extends React.Component {
         })
     }
     render() {
+        const { classes } = this.props;
         return (
             <div className="UserLoginForm">
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" name="username" value={this.state.username} onChange={this.handleUname} placeholder="Username" />
+                <form onSubmit={this.handleSubmit} className={classes.form}>
+                    <TextField
+                        className={classes.field}
+                        id="username-field"
+                        label="Username"
+                        variant="outlined"
+                        name="username"
+                        type="text"
+                        onChange={this.handleUname}
+                    />
+
+                    <TextField
+                        className={classes.field}
+                        id="password-field"
+                        label="Password"
+                        variant="outlined"
+                        name="password"
+                        type="password"
+                        onChange={this.handlepwd}
+                    />
+
                     <br />
-                    <input type="password" name="password" value={this.state.password} onChange={this.handlepwd} placeholder="Password" />
-                    <input type="submit" value="Submit" />
+                    <Button
+                        className={classes.button}
+                        type="submit"
+                        name="Submit"
+                        variant="contained"
+                        color="primary"
+                    > Submit </Button>
                 </form>
             </div>
         );
     }
 }
 
-export default UserLoginForm;
+UserLoginForm.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(UserLoginForm);
