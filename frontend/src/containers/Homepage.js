@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import { Paper } from "@material-ui/core";
 
 import '../App.css';
 import Logo from '../assets/logo.svg'
@@ -27,11 +28,19 @@ class Homepage extends Component {
             <div className="Homepage">
 
                 <img src={Logo} className="Homepage-logo" alt="logo" />
-                <h4>Find your next Epic Candidate</h4>
-                <UserSearchBox />
 
-                <h4>Login to your Epic Portfolio</h4>
-                <UserLoginForm />
+                <Paper elevation={3} >
+                    <h5>Find your next Epic Candidate</h5>
+                    <UserSearchBox />
+                    <br />
+                </Paper>
+                <br />
+                <Paper elevation={3}>
+                    <h5>Login to your Epic Portfolio</h5>
+                    <UserLoginForm />
+                    <br />
+                </Paper>
+                <br />
 
             </div>
 
