@@ -11,6 +11,7 @@ class UserLoginForm extends React.Component {
         this.state = {
             password: '',
             username: '',
+            token: '',
         }
         this.handleUname = this.handleUname.bind(this)
         this.handlepwd = this.handlepwd.bind(this)
@@ -37,7 +38,8 @@ class UserLoginForm extends React.Component {
         auth.login(request, meta, function (err, response) {
             err != null
                 ? console.log(err.code, err.message)
-                : console.log(response.getJwt())
+                : localStorage.setItem('token', response.getJwt())
+            console.log(localStorage)
             // console.log(err.code, err.message)//, response.getJwt())
         })
     }
