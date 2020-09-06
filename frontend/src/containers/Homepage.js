@@ -7,7 +7,6 @@ import Logo from '../assets/logo.svg'
 import UserSearchBox from '../components/UserSearchBox'
 import UserLoginForm from '../components/UserLoginForm'
 import Button from '../components/UI/Button/Button'
-import styled from 'styled-components'
 import Toolbar from '../components/Navigation/Toolbar/Toolbar'
 import Aux from '../hoc/Aux'
 import SideDrawer from '../components/Navigation/SideDrawer/SideDrawer'
@@ -38,16 +37,16 @@ class Homepage extends Component {
             <div className="Homepage">
 
 
-                        {/*<Aux>*/}
-                        {/*    <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />*/}
-                        {/*    /!*<SideDrawer*!/*/}
-                        {/*    /!*    open={this.state.showSideDrawer}*!/*/}
-                        {/*    /!*    closed={this.sideDrawerClosedHandler} />*!/*/}
-                        {/*    <main className={classes.Content}>*/}
-                        {/*        {this.props.children}*/}
-                        {/*    </main>*/}
+                        <Aux>
+                            <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />
+                            <SideDrawer
+                                open={this.state.showSideDrawer}
+                                closed={this.sideDrawerClosedHandler} />
+                            <main className={classes.Content}>
+                                {this.props.children}
+                            </main>
 
-                        {/*</Aux>*/}
+                        </Aux>
 
 
             <img src={Logo} className="Homepage-logo" alt="logo" />
@@ -77,45 +76,3 @@ class Homepage extends Component {
 
 export default Homepage;
 
-// export default function Homepage() {
-//
-//     return (
-//         <div className="Homepage">
-//             {/*<Au*/}
-//             {/*<Aux>*/}
-//             {/*    <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />*/}
-//             {/*    <SideDrawer*/}
-//             {/*        open={this.state.showSideDrawer}*/}
-//             {/*        closed={this.sideDrawerClosedHandler} />*/}
-//             {/*    <main className={classes.Content}>*/}
-//             {/*        {this.props.children}*/}
-//             {/*    </main>*/}
-//             {/*</Aux>*/}
-//             <Aux>
-//                 <Toolbar />
-//                 {/*<main className={classes.Content}>*/}
-//                 {/*    {props.children}*/}
-//                 {/*</main>*/}
-//             </Aux>
-//             {/*<Toolbar></Toolbar>*/}
-//
-//             <img src={Logo} className="Homepage-logo" alt="logo" />
-//             <h4>Find your next Epic Candidate</h4>
-//             <UserSearchBox />
-//
-//             <h4>Login to your Epic Portfolio</h4>
-//             <UserLoginForm />
-//
-//             <Button onClick={sayHello}>
-//                 Login
-//             </Button>
-//             <a href="https://accounts.google.com/signup/v2/webcreateaccount?hl=en&flowName=GlifWebSignIn&flowEntry=SignUp" target="_blank">
-//                 <Button theme = "pink">
-//                     Register
-//                 </Button>
-//             </a>
-//
-//
-//         </div>
-//     )
-// }
