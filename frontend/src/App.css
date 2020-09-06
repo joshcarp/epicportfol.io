@@ -83,8 +83,13 @@ input {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: rgb(0, 0, 0);
+  background-image: url("/home-bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .Homepage-logo {
-  height: 40vmin;
+  height: 30vmin;
 }
