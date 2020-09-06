@@ -26,31 +26,39 @@ const styles = {
 // to profile page.
 class UserLoginForm extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             password: '',
-            username: ''
-        };
-        this.handleUname = this.handleUname.bind(this);
-        this.handlepwd = this.handlepwd.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+            username: '',
+        }
+        this.handleUname = this.handleUname.bind(this)
+        this.handlepwd = this.handlepwd.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
     handleUname(event) {
         this.setState({
             username: event.target.value,
-        });
+        })
     }
     handlepwd(event) {
         this.setState({
             password: event.target.value,
-        });
+        })
     }
     handleSubmit(event) {
-        event.preventDefault();
-        var request = new LoginRequest();
-        var meta = { 'authorization': "Basic " + window.btoa(this.state.username + ':' + this.state.password) }
+        event.preventDefault()
+        var request = new LoginRequest()
+        var meta = {
+            authorization:
+                'Basic ' +
+                window.btoa(this.state.username + ':' + this.state.password),
+        }
         auth.login(request, meta, function (err, response) {
-            console.log(err.code, err.message)//, response.getJwt())
+            err != null
+                ? console.log(err.code, err.message)
+                : localStorage.setItem('token', response.getJwt())
+            console.log(localStorage)
+            // console.log(err.code, err.message)//, response.getJwt())
         })
     }
     render() {
@@ -88,9 +96,10 @@ class UserLoginForm extends React.Component {
                     > Submit </Button>
                 </form>
             </div>
-        );
+        )
     }
 }
+
 
 UserLoginForm.propTypes = {
     classes: PropTypes.object.isRequired,
