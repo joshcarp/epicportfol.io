@@ -11,9 +11,10 @@
     "grpc-web": "^1.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "reactrpc": "^1.0.5",
-    "react-router-dom": "^5.2.0"
+    "styled-components": "^5.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

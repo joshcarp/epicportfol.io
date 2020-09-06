@@ -1,1 +1,4 @@
 docs/
+node_modules/
+.idea/
+frontend/node_modules/
