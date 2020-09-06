@@ -1,12 +1,7 @@
-<<<<<<< HEAD
 import React from "react";
 import PropTypes from 'prop-types';
 import { TextField, withStyles, Button } from '@material-ui/core';
 
-=======
-// eslint-disable-next-line
-import React, { useState } from "react";
->>>>>>> Add basic user profile skeleton
 const { LoginRequest } = require('../proto/api_pb.js');
 const { authenticateClient } = require('../proto/api_grpc_web_pb.js');
 const auth = new authenticateClient('http://localhost:8081');
@@ -51,7 +46,6 @@ class UserLoginForm extends React.Component {
         })
     }
     handleSubmit(event) {
-<<<<<<< HEAD
         event.preventDefault()
         var request = new LoginRequest()
         var meta = {
@@ -59,11 +53,6 @@ class UserLoginForm extends React.Component {
                 'Basic ' +
                 window.btoa(this.state.username + ':' + this.state.password),
         }
-=======
-        event.preventDefault();
-        var request = new LoginRequest();
-        var meta = { 'authorization': "Basic " + window.btoa(this.state.username + ':' + this.state.password) }
->>>>>>> Add basic user profile skeleton
         auth.login(request, meta, function (err, response) {
             err != null
                 ? console.log(err.code, err.message)
@@ -76,7 +65,6 @@ class UserLoginForm extends React.Component {
         const { classes } = this.props;
         return (
             <div className="UserLoginForm">
-<<<<<<< HEAD
                 <form onSubmit={this.handleSubmit} className={classes.form}>
                     <TextField
                         className={classes.field}
@@ -106,13 +94,6 @@ class UserLoginForm extends React.Component {
                         variant="contained"
                         color="primary"
                     > Submit </Button>
-=======
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" name="username" value={this.state.username} onChange={this.handleUname} />
-                    <br />
-                    <input type="password" name="password" value={this.state.password} onChange={this.handlepwd} />
-                    <input type="submit" value="Submit" />
->>>>>>> Add basic user profile skeleton
                 </form>
             </div>
         )
