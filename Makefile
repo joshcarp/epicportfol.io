@@ -32,7 +32,7 @@ client:             ## Make the demo client
 	docker build . -f build/client.Dockerfile -t joshcarp/it-project-client
 
 client.run:         ## Run the demo client in docker
-	docker run --rm -e ADDR=$(PRODADDR):$(PORT) joshcarp/it-project-client
+	docker run --rm -e ADDR=host.docker.internal:443 joshcarp/it-project-client
 
 secret:             ## Remake a jwt secret
 	openssl rand -hex 64  | pbcopy
@@ -41,3 +41,7 @@ docker-compose:     ## Run all the services in build/docker-compose.yaml
 	docker-compose -f build/docker-compose.yaml up
 help:               ## Show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
+
+.PHONY: fontend
+fontend:
+	cd frontend && npm install && npm start
