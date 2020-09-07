@@ -1,9 +1,27 @@
 import React from 'react'
+import PropTypes from 'prop-types';
+import { TextField, withStyles, Button } from '@material-ui/core';
+
 const { LoginRequest } = require('../proto/api_pb.js')
 const { authenticateClient } = require('../proto/api_grpc_web_pb.js')
 const auth = new authenticateClient('http://localhost:8081')
 
-// Component to create form that logs user into their profile and redirects
+const styles = {
+    form: {
+
+    },
+    field: {
+        margin: "10px",
+        background: "white",
+        width: '80%',
+    },
+    button: {
+        margin: "5px",
+        width: '80%',
+    },
+};
+
+// Component to create form that registers users and redirects
 // to profile page.
 class UserRegisterForm extends React.Component {
     constructor(props) {
@@ -16,8 +34,8 @@ class UserRegisterForm extends React.Component {
         }
         this.handleUname = this.handleUname.bind(this)
         this.handlepwd = this.handlepwd.bind(this)
-        this.handleName = this.handleUname.bind(this)
-        this.handleEmail = this.handlepwd.bind(this)
+        this.handleName = this.handleName.bind(this)
+        this.handleEmail = this.handleEmail.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
     handleUname(event) {
@@ -56,45 +74,71 @@ class UserRegisterForm extends React.Component {
         })
     }
     render() {
+        const { classes } = this.props;
+
         return (
             <div className="UserLoginForm">
                 <form onSubmit={this.handleSubmit}>
-                    <input
-                        type="text"
+                    <TextField
+                        className={classes.field}
+                        id="name"
+                        label="Full Name"
+                        variant="outlined"
                         name="name"
-                        value={this.state.name}
+                        type="text"
                         onChange={this.handleName}
-                        placeholder="Full Name"
+                        value={this.state.name}
+                        required
                     />
-                    <br />
-                    <input
-                        type="text"
+                    <TextField
+                        className={classes.field}
+                        id="email"
+                        label="Email"
+                        variant="outlined"
                         name="email"
-                        value={this.state.email}
+                        type="email"
                         onChange={this.handleEmail}
-                        placeholder="Email"
+                        value={this.state.email}
+                        required
                     />
-                    <br />
-                    <input
-                        type="text"
+                    <TextField
+                        className={classes.field}
+                        id="username"
+                        label="Username"
+                        variant="outlined"
                         name="username"
-                        value={this.state.username}
+                        type="text"
                         onChange={this.handleUname}
-                        placeholder="Username"
+                        value={this.state.username}
+                        required
                     />
-                    <br />
-                    <input
-                        type="password"
+                    <TextField
+                        className={classes.field}
+                        id="password"
+                        label="Password"
+                        variant="outlined"
                         name="password"
-                        value={this.state.password}
+                        type="password"
                         onChange={this.handlepwd}
-                        placeholder="Password"
+                        value={this.state.password}
+                        required
                     />
-                    <input type="submit" value="Submit" />
+                    <Button
+                        className={classes.button}
+                        type="submit"
+                        name="Submit"
+                        variant="contained"
+                        color="primary"
+                    >Submit</Button>
                 </form>
             </div>
         )
     }
 }
 
-export default UserRegisterForm
+
+UserRegisterForm.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(UserRegisterForm);
