@@ -1,8 +1,6 @@
 name: react test
 
-on:
-    push:
-        branches: *
+on: [push]
 
 jobs:
     build:
