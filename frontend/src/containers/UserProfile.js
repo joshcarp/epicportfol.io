@@ -1,4 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Paper, withStyles } from "@material-ui/core";
+
+
+const styles = {
+    field: {
+        margin: "5px",
+        background: 'white',
+        width: '80%',
+    },
+    button: {
+        margin: "5px",
+        width: '80%',
+    },
+};
+
 
 class UserProfile extends React.Component {
     constructor(props) {
@@ -29,23 +45,31 @@ class UserProfile extends React.Component {
 
     render() {
         return (
-            <div className="UserProfile">
-                <div className="UserProfile-image">
-                    <p>[Profile photo component here]</p>
-                </div>
+            <div className="UserProfilePage">
+                <Paper elevation={10}>
+                    <div className="UserProfilePage-container">
+                        <div className="UserProfile-image">
+                            <p>[Profile photo component here]</p>
+                        </div>
 
-                <div className="UserProfile-name">
-                    <p>Name: {this.state.fullName}</p>
-                </div>
+                        <div className="UserProfile-name">
+                            <p>Name: {this.state.fullName}</p>
+                        </div>
 
-                <div className="UserProfile-bio">
-                    <h1>bio-title: {this.state.bioTitle}</h1>
+                        <div className="UserProfile-bio">
+                            <h1>bio-title: {this.state.bioTitle}</h1>
 
-                    <p>bio-body: {this.state.bioBody}</p>
-                </div>
+                            <p>bio-body: {this.state.bioBody}</p>
+                        </div>
+                    </div>
+                </Paper>
             </div>
         )
     }
 }
 
-export default UserProfile;
+UserProfile.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(UserProfile);
