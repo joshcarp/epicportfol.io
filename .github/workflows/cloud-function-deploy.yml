@@ -2,7 +2,7 @@ name: CI/CD
 
 on:
     push:
-        branches: [ master ]
+        branches: [ cloud-functions-2 ]
 
 jobs:
     build:
