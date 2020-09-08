@@ -1,24 +1,25 @@
 package functions
 
 import (
-	"cloud.google.com/go/storage"
 	"context"
 	"fmt"
 	"io"
 	"net/http"
 	"strings"
 	"time"
+
+	"cloud.google.com/go/storage"
 )
 
 const bucketname = `joshcarp-it-project-storage`
 const projectID = `joshcarp-it-project`
 const pathPrefix = `joshcarp-it-project-storage`
 
-func UploadFileFunc(w http.ResponseWriter, r *http.Request){
+func UploadFileFunc(w http.ResponseWriter, r *http.Request) {
 	filename := strings.ReplaceAll(r.URL.Path, pathPrefix, "")
 	filename = strings.TrimLeft(filename, "/")
 	err := UploadFile(r.Body, bucketname, filename)
-	if err != nil{
+	if err != nil {
 		fmt.Println(err)
 		return
 	}
@@ -42,5 +43,6 @@ func UploadFile(r io.Reader, bucket, object string) error {
 	if err := wc.Close(); err != nil {
 		return fmt.Errorf("Writer.Close: %v", err)
 	}
+
 	return nil
 }

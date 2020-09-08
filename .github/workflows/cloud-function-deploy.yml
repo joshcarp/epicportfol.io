@@ -1,0 +1,29 @@
+name: CI/CD
+
+on:
+    push:
+        branches: [ master ]
+
+jobs:
+    build:
+
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [12.x]
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+            - name: copy frontend into current dir
+              run: cp -rf frontend/* .
+
+            - name: Setup - gcloud / gsutil
+              uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+              with:
+                  service_account_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
+                  export_default_credentials: true
+            - name: Deploy
+              run: gcloud functions deploy upload --entry-point=UploadFileFunc --runtime=go113 --source=backend/cmd/functions --trigger-http --allow
+                  -unauthenticated
