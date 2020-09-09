@@ -3,6 +3,7 @@ module github.com/joshcarp/it-project
 go 1.14
 
 require (
+	cloud.google.com/go v0.44.3
 	github.com/GoogleCloudPlatform/cloudsql-proxy v0.0.0-20191009163259-e802c2cb94ae
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/go-sql-driver/mysql v1.5.0 // indirect
