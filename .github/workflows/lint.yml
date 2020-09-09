@@ -1,5 +1,12 @@
-on: [push]
 name: lint
+on:
+  push:
+    paths-ignore:
+      - 'docs/**'
+      - '.github/workflows/**'
+      - 'service-documentation/**'
+      - '**.md'
+      - 'frontend'
 jobs:
   golangci:
     name: lint
