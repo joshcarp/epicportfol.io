@@ -4,6 +4,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"net"
 	"net/http"
 	"os"
@@ -49,5 +50,5 @@ func main() {
 	grpcweb_server := grpcweb.WrapServer(s)
 	fmt.Println("Starting server on " + port)
 	fmt.Println("Starting grpc server")
-	http.Serve(lis, grpcweb_server)
+	log.Fatal(http.Serve(lis, grpcweb_server))
 }
