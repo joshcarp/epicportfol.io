@@ -5,11 +5,13 @@ import (
 	"flag"
 	"fmt"
 	"net"
+	"net/http"
 	"os"
 
 	"github.com/sirupsen/logrus"
 
 	_ "github.com/GoogleCloudPlatform/cloudsql-proxy/proxy/dialers/postgres"
+	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"github.com/joshcarp/it-project/backend/pkg/accounts"
 	"github.com/joshcarp/it-project/backend/pkg/config"
 	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
@@ -37,15 +39,15 @@ func main() {
 		logger.Fatalf("failed to listen: %v", err)
 	}
 	s := grpc.NewServer()
+
 	reflection.Register(s)
 	server, err := accounts.NewServer(conf, logger)
 	if err != nil {
 		logger.Errorf("Cannot connect to database %v", err)
 	}
 	itproject.RegisterAuthenticateServer(s, server)
+	grpcweb_server := grpcweb.WrapServer(s)
 	fmt.Println("Starting server on " + port)
 	fmt.Println("Starting grpc server")
-	if err := s.Serve(lis); err != nil {
-		logger.Fatalf("failed to serve: %v", err)
-	}
+	http.Serve(lis, grpcweb_server)
 }
