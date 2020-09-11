@@ -1,30 +1,29 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Paper, withStyles } from "@material-ui/core";
-
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Paper, withStyles } from '@material-ui/core'
+import Timeline from '../components/Timeline.js'
 
 const styles = {
     field: {
-        margin: "5px",
+        margin: '5px',
         background: 'white',
         width: '80%',
     },
     button: {
-        margin: "5px",
+        margin: '5px',
         width: '80%',
     },
-};
-
+}
 
 class UserProfile extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
             fullName: '',
             bioTitle: '',
             bioBody: '',
-        };
+        }
     }
 
     async fetchUserData(username) {
@@ -32,15 +31,16 @@ class UserProfile extends React.Component {
 
         // PLACEHOLDER
         this.setState({
-            fullName: "John Smith",
-            bioTitle: "Epic Placeholder",
-            bioBody: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aliquam ultrices magna vitae tempus. Nunc venenatis diam velit, eu vestibulum felis pellentesque id."
+            fullName: 'John Smith',
+            bioTitle: 'Epic Placeholder',
+            bioBody:
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aliquam ultrices magna vitae tempus. Nunc venenatis diam velit, eu vestibulum felis pellentesque id.',
         })
     }
 
     // React hook to retrieve user data from backend
     componentDidMount() {
-        this.fetchUserData(this.props.username);
+        this.fetchUserData(this.props.username)
     }
 
     render() {
@@ -62,6 +62,7 @@ class UserProfile extends React.Component {
                             <p>bio-body: {this.state.bioBody}</p>
                         </div>
                     </div>
+                    <Timeline />
                 </Paper>
             </div>
         )
@@ -70,6 +71,6 @@ class UserProfile extends React.Component {
 
 UserProfile.propTypes = {
     classes: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(styles)(UserProfile);
+export default withStyles(styles)(UserProfile)
