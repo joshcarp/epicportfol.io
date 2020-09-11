@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Paper, withStyles } from '@material-ui/core'
 import Timeline from '../components/Timeline.js'
+import ImageBox from '../components/ImageBox.js'
 
 const styles = {
     field: {
@@ -63,6 +64,7 @@ class UserProfile extends React.Component {
                         </div>
                     </div>
                     <Timeline />
+                    <ImageBox />
                 </Paper>
             </div>
         )
