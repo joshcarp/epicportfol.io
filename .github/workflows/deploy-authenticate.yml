@@ -1,7 +1,7 @@
 name: deploy authenticate
 on:
   push:
-    branches: [ master ]
+    branches: [ feature/cloud-run-deploy ]
 
 jobs:
   build:
