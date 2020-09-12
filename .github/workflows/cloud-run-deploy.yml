@@ -21,7 +21,7 @@ jobs:
           export_default_credentials: true
       - name: Set default project
         run: |
-          gcloud config set core/project authenticate
+          gcloud config set core/project joshcarp-it-project
           gcloud auth configure-docker
           gcloud config set run/region us-central1
       - name: Build
@@ -31,7 +31,7 @@ jobs:
             --tag "gcr.io/joshcarp-it-project/authenticate:$GITHUB_SHA"
       - name: Deploy
         run: |-
-          gcloud run deploy "joscarp-it-project" \
+          gcloud run deploy "authenticate" \
             --quiet \
             --region "us-central1" \
             --image "gcr.io/joshcarp-it-project/authenticate:$GITHUB_SHA" \
