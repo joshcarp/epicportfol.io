@@ -28,6 +28,7 @@ jobs:
         run: |-
           gcloud builds submit \
             --quiet \
+            --no-source \
             --tag "gcr.io/joshcarp-it-project/echoServer:$GITHUB_SHA"
       - name: Deploy
         run: |-
