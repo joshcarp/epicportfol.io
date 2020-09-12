@@ -9,7 +9,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
+      - name: Replace SERVICE arg in dockerfile
+        run:  |
+          ::set-env name={SERVICE}::{authenticate}
+          sed -i 's/SERVICE/${SERVICE}/g' Dockerfile
       - name: Setup - gcloud / gsutil
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
@@ -24,13 +27,13 @@ jobs:
         run: |-
           gcloud builds submit \
             --quiet \
-            --tag "gcr.io/joshcarp-it-project/it-project:$GITHUB_SHA"
+            --tag "gcr.io/joshcarp-it-project/${SERVICE}:$GITHUB_SHA"
       - name: Deploy
         run: |-
           gcloud run deploy "joscarp-it-project" \
             --quiet \
             --region "us-central1" \
-            --image "gcr.io/joshcarp-it-project/it-project:$GITHUB_SHA" \
+            --image "gcr.io/joshcarp-it-project/${SERVICE}:$GITHUB_SHA" \
             --platform "managed" \
             --allow-unauthenticated
       - name: Set permissions
