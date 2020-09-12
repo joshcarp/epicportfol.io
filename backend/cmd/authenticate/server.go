@@ -35,7 +35,7 @@ func main() {
 		port = config.GetProperty(conf, "server", "port")
 	}
 
-	lis, err := net.Listen("tcp", ":"+port)
+	lis, err := net.Listen("tcp", "0.0.0.0:"+port)
 	if err != nil {
 		logger.Fatalf("failed to listen: %v", err)
 	}
