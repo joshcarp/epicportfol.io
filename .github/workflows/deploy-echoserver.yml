@@ -1,7 +1,7 @@
 name: deploy echoserver
 on:
   push:
-    branches: [ feature/cloud-run-deploy ]
+    branches: [ master ]
 
 jobs:
   build:
