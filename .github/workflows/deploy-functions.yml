@@ -1,4 +1,4 @@
-name: cloud functions deploy
+name: deploy functions
 
 on:
     push:
