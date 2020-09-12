@@ -23,11 +23,3 @@ services:
 #            - 5432:5432
 #        entrypoint: ["./docker-entrypoint.sh"]
 #        command: ["bash","-e","/database/initdb.sh"]
-    envoy:
-        image: envoyproxy/envoy:v1.14.4
-        volumes:
-            - ./envoy.json:/etc/envoy/envoy.yaml
-        environment:
-            - POSTGRES_PASSWORD=1234
-        ports:
-            - 8081:8081
