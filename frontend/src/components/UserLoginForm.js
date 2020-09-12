@@ -6,7 +6,6 @@ const { LoginRequest } = require('../proto/api_pb.js');
 const { authenticateClient } = require('../proto/api_grpc_web_pb.js');
 const auth = new authenticateClient('https://authenticate.epicportfol.io');
 
-
 const styles = {
     form: {
 

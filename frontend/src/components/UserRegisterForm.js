@@ -4,7 +4,7 @@ import { TextField, withStyles, Button } from '@material-ui/core';
 
 const { LoginRequest } = require('../proto/api_pb.js')
 const { authenticateClient } = require('../proto/api_grpc_web_pb.js')
-const auth = new authenticateClient('http://localhost:8081')
+const auth = new authenticateClient('https://authenticate.epicportfol.io')
 
 const styles = {
     form: {
@@ -61,12 +61,17 @@ class UserRegisterForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault()
         var request = new LoginRequest()
+        request.email = this.state.email
+        request.password = this.state.password
+        request.username = this.state.username
+        request.fullName = this.state.fullName
+        request.preferredName = this.state.preferredName
         var meta = {
             authorization:
                 'Basic ' +
                 window.btoa(this.state.username + ':' + this.state.password),
         }
-        auth.login(request, meta, function (err, response) {
+        auth.register(request, meta, function (err, response) {
             err != null
                 ? console.log(err.code, err.message)
                 : localStorage.setItem('token', response.getJwt())
