@@ -1,7 +1,7 @@
 name: cloud run push
 on:
   push:
-    branches: [ master ]
+    branches: [ feature/cloud-run-deploy ]
 
 jobs:
   build:
