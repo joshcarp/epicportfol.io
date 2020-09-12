@@ -28,13 +28,13 @@ jobs:
         run: |-
           gcloud builds submit \
             --quiet \
-            --tag "gcr.io/joshcarp-it-project/echoServer:$GITHUB_SHA"
+            --tag "gcr.io/joshcarp-it-project/echoserver:$GITHUB_SHA"
       - name: Deploy
         run: |-
           gcloud run deploy "echoServer" \
             --quiet \
             --region "us-central1" \
-            --image "gcr.io/joshcarp-it-project/echoServer:$GITHUB_SHA" \
+            --image "gcr.io/joshcarp-it-project/echoserver:$GITHUB_SHA" \
             --platform "managed" \
             --allow-unauthenticated
       - name: Set permissions
