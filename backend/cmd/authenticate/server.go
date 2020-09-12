@@ -35,7 +35,7 @@ func main() {
 		port = config.GetProperty(conf, "server", "port")
 	}
 
-	lis, err := net.Listen("tcp", ":"+port)
+	lis, err := net.Listen("tcp", "0.0.0.0:"+port)
 	if err != nil {
 		logger.Fatalf("failed to listen: %v", err)
 	}
@@ -47,7 +47,10 @@ func main() {
 		logger.Errorf("Cannot connect to database %v", err)
 	}
 	itproject.RegisterAuthenticateServer(s, server)
-	grpcweb_server := grpcweb.WrapServer(s)
+	grpcweb_server :=grpcweb.WrapServer(s, grpcweb.WithOriginFunc(func(origin string) bool {
+		// Allow all origins, DO NOT do this in production
+		return true
+	}))
 	fmt.Println("Starting server on " + port)
 	fmt.Println("Starting grpc server")
 	log.Fatal(http.Serve(lis, grpcweb_server))

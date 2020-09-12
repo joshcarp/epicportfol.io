@@ -38,7 +38,7 @@ secret:             ## Remake a jwt secret
 	openssl rand -hex 64  | pbcopy
 
 docker-compose:     ## Run all the services in build/docker-compose.yaml
-	docker-compose -f build/docker-compose.yaml up
+	docker-compose -f docker-compose.yaml up
 help:               ## Show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
