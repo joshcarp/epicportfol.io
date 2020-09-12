@@ -39,7 +39,7 @@ jobs:
             --allow-unauthenticated
       - name: Set permissions
         run: |-
-          gcloud run services add-iam-policy-binding joscarp-it-project \
+          gcloud run services add-iam-policy-binding authenticate \
             --member="allUsers" \
             --role="roles/run.invoker" \
             --platform managed
