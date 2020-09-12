@@ -1,4 +1,4 @@
-name: deploy echoServer
+name: deploy echoserver
 on:
   push:
     branches: [ feature/cloud-run-deploy ]
@@ -13,7 +13,7 @@ jobs:
         run:  |
           sed -i 's/${SERVICE}/echoServer/g' Dockerfile
         env:
-          SERVICE: echoServer
+          SERVICE: echoserver
       - name: Setup - gcloud / gsutil
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
@@ -31,7 +31,7 @@ jobs:
             --tag "gcr.io/joshcarp-it-project/echoserver:$GITHUB_SHA"
       - name: Deploy
         run: |-
-          gcloud run deploy "echoServer" \
+          gcloud run deploy "echoserver" \
             --quiet \
             --region "us-central1" \
             --image "gcr.io/joshcarp-it-project/echoserver:$GITHUB_SHA" \

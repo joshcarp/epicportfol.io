@@ -6,7 +6,7 @@ services:
             context: .
             dockerfile: Dockerfile
             args:
-                SERVICE:  echoServer
+                SERVICE:  authenticate
         ports:
             - 443:443
     echo:
@@ -14,7 +14,7 @@ services:
             context: .
             dockerfile: Dockerfile
             args:
-                SERVICE:  echoServer
+                SERVICE:  echoserver
         ports:
             - 8080:8080
 
