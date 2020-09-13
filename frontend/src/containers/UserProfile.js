@@ -2,6 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Paper, withStyles } from '@material-ui/core'
 import Timeline from '../components/Timeline.js'
+import ProfilePic from "../components/ProfilePic";
+import ImageBox from "../components/ImageBox";
+import LetterAvatars from "../components/UserProfile/LetterAvatars"
+import ImageAvatars from "../components/UserProfile/ImageAvatars";
+import CenteredGrid from "../components/UserProfile/CenteredGrid";
 
 const styles = {
     field: {
@@ -14,6 +19,7 @@ const styles = {
         width: '80%',
     },
 }
+
 
 class UserProfile extends React.Component {
     constructor(props) {
@@ -49,18 +55,19 @@ class UserProfile extends React.Component {
                 <Paper elevation={10}>
                     <div className="UserProfilePage-container">
                         <div className="UserProfile-image">
-                            <p>[Profile photo component here]</p>
+                            {/*<p>[Profile photo component here]</p>*/}
                         </div>
+                        <CenteredGrid></CenteredGrid>
 
-                        <div className="UserProfile-name">
-                            <p>Name: {this.state.fullName}</p>
-                        </div>
+                        {/*<div className="UserProfile-name">*/}
+                        {/*    <p>Name: {this.state.fullName}</p>*/}
+                        {/*</div>*/}
 
-                        <div className="UserProfile-bio">
-                            <h1>bio-title: {this.state.bioTitle}</h1>
+                        {/*<div className="UserProfile-bio">*/}
+                        {/*    <h1>bio-title: {this.state.bioTitle}</h1>*/}
 
-                            <p>bio-body: {this.state.bioBody}</p>
-                        </div>
+                        {/*    <p>bio-body: {this.state.bioBody}</p>*/}
+                        {/*</div>*/}
                     </div>
                     <Timeline />
                 </Paper>
