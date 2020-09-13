@@ -1,7 +1,7 @@
 name: deploy www
 on:
   push:
-    branches: [ www ]
+    branches: [ react-deploy ]
 
 jobs:
   build:
