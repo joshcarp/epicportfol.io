@@ -1,7 +1,7 @@
-name: deploy react-deploy
+name: deploy www
 on:
   push:
-    branches: [ react-deploy ]
+    branches: [ www ]
 
 jobs:
   build:
@@ -25,18 +25,18 @@ jobs:
         run: |-
           gcloud builds submit \
             --quiet \
-            --tag "gcr.io/joshcarp-it-project/react-deploy:$GITHUB_SHA"
+            --tag "gcr.io/joshcarp-it-project/www:$GITHUB_SHA"
       - name: Deploy
         run: |-
-          gcloud run deploy "react-deploy" \
+          gcloud run deploy "www" \
             --quiet \
             --region "us-central1" \
-            --image "gcr.io/joshcarp-it-project/react-deploy:$GITHUB_SHA" \
+            --image "gcr.io/joshcarp-it-project/www:$GITHUB_SHA" \
             --platform "managed" \
             --allow-unauthenticated
       - name: Set permissions
         run: |-
-          gcloud run services add-iam-policy-binding react-deploy \
+          gcloud run services add-iam-policy-binding www \
             --member="allUsers" \
             --role="roles/run.invoker" \
             --platform managed
