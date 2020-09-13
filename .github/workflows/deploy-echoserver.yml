@@ -1,4 +1,4 @@
-name: cloud run push
+name: deploy echoserver
 on:
   push:
     branches: [ master ]
@@ -9,7 +9,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
+      - name: Replace SERVICE arg in dockerfile
+        run:  |
+          sed -i 's/${SERVICE}/echoserver/g' Dockerfile
+        env:
+          SERVICE: echoserver
       - name: Setup - gcloud / gsutil
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
@@ -24,18 +28,18 @@ jobs:
         run: |-
           gcloud builds submit \
             --quiet \
-            --tag "gcr.io/joshcarp-it-project/it-project:$GITHUB_SHA"
+            --tag "gcr.io/joshcarp-it-project/echoserver:$GITHUB_SHA"
       - name: Deploy
         run: |-
-          gcloud run deploy "joscarp-it-project" \
+          gcloud run deploy "echoserver" \
             --quiet \
             --region "us-central1" \
-            --image "gcr.io/joshcarp-it-project/it-project:$GITHUB_SHA" \
+            --image "gcr.io/joshcarp-it-project/echoserver:$GITHUB_SHA" \
             --platform "managed" \
             --allow-unauthenticated
       - name: Set permissions
         run: |-
-          gcloud run services add-iam-policy-binding joscarp-it-project \
+          gcloud run services add-iam-policy-binding echoserver \
             --member="allUsers" \
             --role="roles/run.invoker" \
             --platform managed
