@@ -1,6 +1,5 @@
 # it project: Epic Portfolio
-- [![made-with-Go](https://img.shields.io/badge/Made%20with-Go-1f425f.svg)](http://golang.org)
--  [![Website epicportfol.io](https://img.shields.io/website-up-down-green-red/http/epicportfol.io)](http://epicportfol.io)
+[![made-with-Go](https://img.shields.io/badge/Made%20with-Go-1f425f.svg)](http://golang.org) [![Website epicportfol.io](https://img.shields.io/website-up-down-green-red/http/epicportfol.io)](http://epicportfol.io)
 
 
 - A Portfolio website designed for COMP30022
