@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Paper, withStyles } from '@material-ui/core'
 import Timeline from '../components/Timeline.js'
 import ProfilePic from "../components/ProfilePic";
-import ImageBox from "../components/ImageBox";
 import LetterAvatars from "../components/UserProfile/LetterAvatars"
 import ImageAvatars from "../components/UserProfile/ImageAvatars";
 import CenteredGrid from "../components/UserProfile/CenteredGrid";
