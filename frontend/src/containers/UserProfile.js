@@ -1,83 +1,73 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { Paper, withStyles } from '@material-ui/core'
-import Timeline from '../components/Timeline.js'
-import ProfilePic from "../components/ProfilePic";
-import ImageBox from "../components/ImageBox";
-import LetterAvatars from "../components/UserProfile/LetterAvatars"
-import ImageAvatars from "../components/UserProfile/ImageAvatars";
-import CenteredGrid from "../components/UserProfile/CenteredGrid";
+import Timeline from '../components/Timeline'
+import {
+    makeStyles,
+    Grid,
+    Paper,
+} from '@material-ui/core'
+import UserInfoCard from '../components/UserInfoCard'
+import ImageBox from '../components/ImageBox'
 
-const styles = {
-    field: {
-        margin: '5px',
-        background: 'white',
-        width: '80%',
+// CSS Theming
+const useStyles = makeStyles((theme) => ({
+    root: {
+        minHeight: "100%",
+        justifyContent: 'center',
+        backgroundColor: 'rgb(50, 50, 50)',
+        backgroundImage: 'url("/home-bg.jpg")',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+        backgroundSize: 'cover',
     },
-    button: {
-        margin: '5px',
-        width: '80%',
+    profile: {
+        display: 'flex',
+        flexDirection: 'column',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        padding: 10,
+        maxWidth: "80vmin",
+        minWidth: "60vmin",
+        marginTop: 40,
+        marginBottom: 60,
     },
-}
+    card: {
+        width: '100%',
+        justifyContent: 'center',
+    },
+    paper: {
+        height: 200,
+        width: 200,
+    },
+    footer: {
+        height: 20,
+    },
+}));
 
+export default function UserProfile(props) {
+    const classes = useStyles();
 
-class UserProfile extends React.Component {
-    constructor(props) {
-        super(props)
+    return (
+        <Grid container className={classes.root}>
 
-        this.state = {
-            fullName: '',
-            bioTitle: '',
-            bioBody: '',
-        }
-    }
+            {/* PROFILE CONTAINER */}
+            <Grid container component={Paper} className={classes.profile} elevation={4}>
 
-    async fetchUserData(username) {
-        // TODO: FETCH USER PROFILE DATA FROM BACKEND
+                {/* PROFILE CARDS EXAMPLE */}
+                <Grid item className={classes.card}>
+                    <UserInfoCard />
+                </Grid>
 
-        // PLACEHOLDER
-        this.setState({
-            fullName: 'John Smith',
-            bioTitle: 'Epic Placeholder',
-            bioBody:
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aliquam ultrices magna vitae tempus. Nunc venenatis diam velit, eu vestibulum felis pellentesque id.',
-        })
-    }
-
-    // React hook to retrieve user data from backend
-    componentDidMount() {
-        this.fetchUserData(this.props.username)
-    }
-
-    render() {
-        return (
-            <div className="UserProfilePage">
-                <Paper elevation={10}>
-                    <div className="UserProfilePage-container">
-                        <div className="UserProfile-image">
-                            {/*<p>[Profile photo component here]</p>*/}
-                        </div>
-                        <CenteredGrid></CenteredGrid>
-
-                        {/*<div className="UserProfile-name">*/}
-                        {/*    <p>Name: {this.state.fullName}</p>*/}
-                        {/*</div>*/}
-
-                        {/*<div className="UserProfile-bio">*/}
-                        {/*    <h1>bio-title: {this.state.bioTitle}</h1>*/}
-
-                        {/*    <p>bio-body: {this.state.bioBody}</p>*/}
-                        {/*</div>*/}
-                    </div>
+                <Grid item className={classes.card}>
                     <Timeline />
-                </Paper>
-            </div>
-        )
-    }
-}
+                </Grid>
 
-UserProfile.propTypes = {
-    classes: PropTypes.object.isRequired,
-}
+                <Grid item className={classes.card}>
+                    <ImageBox />
+                </Grid>
 
-export default withStyles(styles)(UserProfile)
+            </Grid>
+            <Grid className={classes.footer} />
+        </Grid>
+    )
+}
