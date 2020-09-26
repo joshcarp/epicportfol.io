@@ -1,5 +1,5 @@
 @import "../../node_modules/react-image-gallery/styles/css/image-gallery.css";
 
 .image-gallery-content .image-gallery-slide .image-gallery-image {
-    max-height: calc(30vh - 80px);
+    max-height: 40vh;
 }
