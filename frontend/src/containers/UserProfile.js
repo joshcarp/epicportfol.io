@@ -5,7 +5,7 @@ import {
     Grid,
     Paper,
 } from '@material-ui/core'
-import CenteredGrid from '../components/UserProfile/CenteredGrid'
+import UserInfoCard from '../components/UserInfoCard'
 import ImageBox from '../components/ImageBox'
 
 // CSS Theming
@@ -55,7 +55,7 @@ export default function UserProfile(props) {
 
                 {/* PROFILE CARDS EXAMPLE */}
                 <Grid item className={classes.card}>
-                    <CenteredGrid />
+                    <UserInfoCard />
                 </Grid>
 
                 <Grid item className={classes.card}>
