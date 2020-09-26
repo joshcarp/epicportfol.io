@@ -7,6 +7,7 @@ import ImageBox from "../components/ImageBox";
 import LetterAvatars from "../components/UserProfile/LetterAvatars"
 import ImageAvatars from "../components/UserProfile/ImageAvatars";
 import CenteredGrid from "../components/UserProfile/CenteredGrid";
+import ImageBox from '../components/ImageBox.js'
 
 const styles = {
     field: {
@@ -70,6 +71,7 @@ class UserProfile extends React.Component {
                         {/*</div>*/}
                     </div>
                     <Timeline />
+                    <ImageBox />
                 </Paper>
             </div>
         )
