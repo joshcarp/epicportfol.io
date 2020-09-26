@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+    authenticate:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                SERVICE:  authenticate
+        ports:
+            - 443:443
+    echo:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                SERVICE:  echoserver
+        ports:
+            - 8080:8080
+
