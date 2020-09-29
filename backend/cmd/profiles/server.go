@@ -4,8 +4,12 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"net"
+	"net/http"
 	"os"
+
+	"github.com/improbable-eng/grpc-web/go/grpcweb"
 
 	"github.com/joshcarp/it-project/backend/pkg/profiles"
 
@@ -44,9 +48,11 @@ func main() {
 		logger.Errorf("Cannot connect to database %v", err)
 	}
 	itproject.RegisterProfilesServer(s, server)
+	grpcweb_server := grpcweb.WrapServer(s, grpcweb.WithOriginFunc(func(origin string) bool {
+		// Allow all origins, DO NOT do this in production
+		return true
+	}))
 	fmt.Println("Starting server on " + port)
 	fmt.Println("Starting grpc server")
-	if err := s.Serve(lis); err != nil {
-		logger.Fatalf("failed to serve: %v", err)
-	}
+	log.Fatal(http.Serve(lis, grpcweb_server))
 }

@@ -5,11 +5,22 @@ import './App.css'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import RegisterPage from './containers/RegisterPage'
 import { useEffect } from 'react';
+const { profilesClient } = require('./proto/api_grpc_web_pb.js');
+const profiles = new profilesClient('http://localhost:443');
+const { getuserRequest } = require('./proto/api_pb.js');
 const yaml = require('js-yaml');
 
 export default function App() {
     const [profile, setProfile] = useState(null);
-    useEffect(() => {
+    // var req = new getuserRequest();
+    // req.setUserid("joshcarp");
+    // profiles.getuser(req, {}, function (err, response) {
+    //     console.log(err)
+    //     console.log(response)
+    //
+    //     setProfile(response)
+    // })
+useEffect(() => {
         setProfile(yaml.safeLoad(`full_name: Joshua Carpeggiani
 email: josh@joshcarp.com
 picture: https://avatars2.githubusercontent.com/u/32605850?s=460&v=4

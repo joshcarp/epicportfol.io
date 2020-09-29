@@ -4,7 +4,7 @@ import ImageGallery from 'react-image-gallery';
 
 export default function ImageBox(props) {
     const images = [];
-    for (let image of props.profile.images) {
+    for (let image of props.profile.artifacts) {
         images.push(
             {original: image.src}
         )
