@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function CenteredGrid(props) {
+export default function CenteredGrid(props, {profile}) {
     const classes = useStyles();
 
     return (
@@ -65,36 +65,36 @@ export default function CenteredGrid(props) {
                     </Grid>
                     <Grid item>
                         <Paper className={classes.field}>
-                            John Smith
+                            {profile.FullName}
                         </Paper>
                     </Grid>
                     <Grid item>
                         <Paper className={classes.field}>
-                            john.smith@fakemail.com
+                            {profile.Email}
                         </Paper>
                     </Grid>
                     {/* SOCIAL ICONS */}
                     <Grid container className={classes.socialRow}>
                         <Grid item className={classes.socialRowIcon}>
-                            <IconButton href="http://www.facebook.com">
+                            <IconButton href={profile.Facebook}>
                                 <FacebookIcon />
                             </IconButton>
                         </Grid>
 
                         <Grid item className={classes.socialRowIcon}>
-                            <IconButton href="https://au.linkedin.com/" target="_blank">
+                            <IconButton href={profile.Linkedin} target="_blank">
                                 <LinkedInIcon />
                             </IconButton>
                         </Grid>
 
                         <Grid item className={classes.socialRowIcon}>
-                            <IconButton href="https://www.reddit.com/" target="_blank">
+                            <IconButton href={profile.Reddit} target="_blank">
                                 <RedditIcon />
                             </IconButton>
                         </Grid>
 
                         <Grid item className={classes.socialRowIcon}>
-                            <IconButton href="https://www.instagram.com/" target="_blank">
+                            <IconButton href={profile.Facebook} target="_blank">
                                 <InstagramIcon />
                             </IconButton>
                         </Grid>
@@ -103,11 +103,11 @@ export default function CenteredGrid(props) {
                 {/* BIO TITLE + BODY */}
                 <Grid container className={classes.bioColumn}>
                     <Grid item>
-                        <Paper className={classes.field}>Bio Title</Paper>
+                        <Paper className={classes.field}>About Me</Paper>
                     </Grid>
                     <Grid item>
                         <Paper className={classes.field}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pulvinar mi at varius tincidunt. Praesent finibus luctus dolor, nec malesuada odio maximus nec. Morbi convallis arcu id erat efficitur imperdiet. Suspendisse turpis mi, sollicitudin non vulputate vel, elementum et augue.
+                            {profile.Bio}
                     </Paper>
                     </Grid>
                 </Grid>

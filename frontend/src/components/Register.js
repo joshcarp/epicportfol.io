@@ -7,6 +7,7 @@ const { authenticateClient } = require('../proto/api_grpc_web_pb.js');
 const auth = new authenticateClient('http://localhost:8081');
 
 
+
 function Register() {
     const [message, setMessage] = useState("initial value")
     var request = new RegisterRequest();
