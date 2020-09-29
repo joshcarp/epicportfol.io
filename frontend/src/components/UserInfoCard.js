@@ -54,50 +54,67 @@ const useStyles = makeStyles((theme) => ({
 
 export default function UserInfoCard(props) {
     const classes = useStyles();
-
+    const links = [];
+    for (let link of props.profile.links) {
+        console.log(link)
+        if (link.includes("reddit")){
+            links.push(
+                <Grid item className={classes.socialRowIcon}>
+                    <IconButton href={link}>
+                        <RedditIcon />
+                    </IconButton>
+                </Grid>
+            )
+        }
+        if (link.includes("facebook")){
+            links.push(
+                <Grid item className={classes.socialRowIcon}>
+                    <IconButton href={link}>
+                        <FacebookIcon />
+                    </IconButton>
+                </Grid>
+            )
+        }
+        if (link.includes("linkedin")){
+            links.push(
+                <Grid item className={classes.socialRowIcon}>
+                    <IconButton href={link}>
+                        <InstagramIcon />
+                    </IconButton>
+                </Grid>
+            )
+        }
+        if (link.includes("instagram")){
+            links.push(
+                <Grid item className={classes.socialRowIcon}>
+                    <IconButton href={link}>
+                        <InstagramIcon />
+                    </IconButton>
+                </Grid>
+            )
+        }
+    }
     return (
         <Grid container className={classes.root}>
             <Grid container className={classes.profileCard}>
                 {/* PROFILE IMAGE + NAME */}
                 <Grid container className={classes.profileColumn}>
                     <Grid item>
-                        <Avatar alt="John Smith" src="https://picsum.photos/400" className={classes.avatar} />
+                        <Avatar alt={props.profile.full_name} src={props.profile.picture} className={classes.avatar} />
                     </Grid>
                     <Grid item>
                         <Paper className={classes.field}>
-                            {props.profile.FullName}
+                            {props.profile.full_name}
                         </Paper>
                     </Grid>
                     <Grid item>
                         <Paper className={classes.field}>
-                            {props.profile.Email}
+                            {props.profile.email}
                         </Paper>
                     </Grid>
                     {/* SOCIAL ICONS */}
                     <Grid container className={classes.socialRow}>
-                        <Grid item className={classes.socialRowIcon}>
-                            <IconButton href={props.profile.Facebook}>
-                                <FacebookIcon />
-                            </IconButton>
-                        </Grid>
-
-                        <Grid item className={classes.socialRowIcon}>
-                            <IconButton href={props.profile.Linkedin} target="_blank">
-                                <LinkedInIcon />
-                            </IconButton>
-                        </Grid>
-
-                        <Grid item className={classes.socialRowIcon}>
-                            <IconButton href={props.profile.Reddit} target="_blank">
-                                <RedditIcon />
-                            </IconButton>
-                        </Grid>
-
-                        <Grid item className={classes.socialRowIcon}>
-                            <IconButton href={props.profile.Facebook} target="_blank">
-                                <InstagramIcon />
-                            </IconButton>
-                        </Grid>
+                        {links}
                     </Grid>
                 </Grid>
                 {/* BIO TITLE + BODY */}
@@ -107,7 +124,7 @@ export default function UserInfoCard(props) {
                     </Grid>
                     <Grid item>
                         <Paper className={classes.field}>
-                            {props.profile.Bio}
+                            {props.profile.bio}
                         </Paper>
                     </Grid>
                 </Grid>

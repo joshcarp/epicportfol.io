@@ -22,12 +22,12 @@ const useStyles = makeStyles((theme) => ({
 export default function CustomizedTimeline(props) {
     const classes = useStyles()
     const final = [];
-    for (let user of props.profile.Timeline) {
+    for (let user of props.profile.timeline) {
         final.push(
             <TimelineItem>
                 <TimelineOppositeContent>
                     <Typography variant="body2" color="textSecondary">
-                        {user.Start}
+                        {user.dates}
                     </Typography>
                 </TimelineOppositeContent>
                 <TimelineSeparator>
@@ -37,13 +37,13 @@ export default function CustomizedTimeline(props) {
                 <TimelineContent>
                     <Paper elevation={3} className={classes.paper}>
                         <Typography variant="h6" component="h6">
-                            {user.Title}
+                            {user.title}
                         </Typography>
                         <Typography variant="h6" component="h1">
-                            {user.Company}
+                            {user.company}
                         </Typography>
                         <Typography variant="body2">
-                            {user.Description}
+                            {user.description}
                         </Typography>
                     </Paper>
                 </TimelineContent>
