@@ -1,7 +1,10 @@
 package database
 
 import (
+	"fmt"
 	"testing"
+
+	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
 
 	"github.com/joshcarp/it-project/backend/pkg/auth"
 
@@ -83,4 +86,47 @@ func TestDatabase(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestProfiles(t *testing.T) {
+	db, err := openDatabaseMemory("../../../database/db.sql")
+	require.Nil(t, err)
+	err = EnterProfile(db, itproject.Profile{
+		Username: "joshcarp",
+		Email:    "josh@joshcarp.com",
+		Name:     "Joshua Carpeggiani",
+		Picture:  "https://secure.gravatar.com/avatar/8f3ae66a1b3c1494de8971e428e9b6ae?s=500",
+		Bio:      "i am a person",
+		Jobs: []*itproject.Job{{
+			From:        "2018",
+			To:          "2019",
+			Title:       "Team member",
+			Company:     "Edithvale Community Greengrocer",
+			Description: "Delivering fresh vegetables to the edithvale community.",
+		},
+			{
+				From:        "2019",
+				To:          "2020",
+				Title:       "Engineer",
+				Company:     "ANZ",
+				Description: "Working on open source tools to help engineers develop faster.",
+			}},
+		Artifacts: []*itproject.Artifact{{
+			Title:       "My face",
+			Description: "My face",
+			Link:        "https://secure.gravatar.com/avatar/8f3ae66a1b3c1494de8971e428e9b6ae?s=500",
+		}},
+		Links: []*itproject.Link{{
+			Name: "github",
+			Link: "https://github.com/joshcarp",
+		}, {
+			Name: "Linkedin",
+			Link: "https://www.linkedin.com/in/joshcarp/",
+		}},
+	})
+	require.NoError(t, err)
+
+	a, err := GetProfile(db, "joshcarp")
+	require.NoError(t, err)
+	fmt.Println(a)
 }

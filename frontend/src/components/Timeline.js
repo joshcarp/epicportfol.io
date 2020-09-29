@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 export default function CustomizedTimeline(props) {
     const classes = useStyles()
     const final = [];
-    for (let user of props.profile.timeline) {
+    for (let user of props.profile.jobs) {
         final.push(
             <TimelineItem>
                 <TimelineOppositeContent>
