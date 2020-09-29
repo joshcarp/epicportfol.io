@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function UserProfile(props, {profile}) {
+export default function UserProfile(props) {
     const classes = useStyles();
 
     return (
@@ -55,15 +55,15 @@ export default function UserProfile(props, {profile}) {
 
                 {/* PROFILE CARDS EXAMPLE */}
                 <Grid item className={classes.card}>
-                    <UserInfoCard profile={profile} />
+                    <UserInfoCard profile={props.profile} />
                 </Grid>
 
                 <Grid item className={classes.card}>
-                    <Timeline profile={profile}/>
+                    <Timeline profile={props.profile} />
                 </Grid>
 
                 <Grid item className={classes.card}>
-                    <ImageBox/>
+                    <ImageBox />
                 </Grid>
 
             </Grid>

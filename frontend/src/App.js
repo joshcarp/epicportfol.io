@@ -1,21 +1,21 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Homepage from './containers/Homepage'
 import UserProfile from './containers/UserProfile'
 import './App.css'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import RegisterPage from './containers/RegisterPage'
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 const yaml = require('js-yaml');
 
 export default function App() {
-    const [isLoaded, setIsLoaded] = useState(false);
     const [profile, setProfile] = useState(null);
 
     // Note: the empty deps array [] means
     // this useEffect will run once
     // similar to componentDidMount()
+
     useEffect(() => {
-             setProfile(yaml.safeLoad(`FullName: Joshua Carpeggiani
+        setProfile(yaml.safeLoad(`FullName: Joshua Carpeggiani
 Email: josh@joshcarp.com
 ProfilePic: string
 Bio: |
@@ -31,11 +31,11 @@ Timeline:
       End: 2020
       Company: akfhdkasdaskj
       Description: Beep boop whatevs`));
-            console.log(profile)
-        }, [])
-    if (profile==null) {
+    }, [])
+    if (profile == null) {
         return <div>Loading...</div>;
     }
+    console.log(profile);
     return (
         <Router>
             <Switch>
@@ -46,7 +46,7 @@ Timeline:
                     <Homepage />
                 </Route>
                 <Route exact path="/profile">
-                    <UserProfile profile={profile}/>
+                    <UserProfile profile={profile} />
                 </Route>
             </Switch>
         </Router>

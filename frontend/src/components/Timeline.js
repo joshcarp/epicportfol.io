@@ -19,11 +19,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-export default function CustomizedTimeline({profile}) {
+export default function CustomizedTimeline(props) {
     const classes = useStyles()
     const final = [];
-    console.log(profile)
-    for (let  user of profile.Timeline) {
+    for (let user of props.profile.Timeline) {
         final.push(
             <TimelineItem>
                 <TimelineOppositeContent>
