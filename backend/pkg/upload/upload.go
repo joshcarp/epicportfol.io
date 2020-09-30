@@ -10,7 +10,6 @@ import (
 )
 
 const bucketname = `joshcarp-it-project-storage`
-const pathPrefix = `joshcarp-it-project-storage`
 
 func UploadFile(r io.Reader, bucket, object string) error {
 	ctx := context.Background()

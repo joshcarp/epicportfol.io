@@ -47,7 +47,6 @@ func main() {
 		logger.Errorf("Cannot connect to database %v", err)
 	}
 	itproject.RegisterUploadServer(s, server)
-	s.Serve(lis)
 	grpcweb_server := grpcweb.WrapServer(s, grpcweb.WithOriginFunc(func(origin string) bool {
 		return true
 	}))
