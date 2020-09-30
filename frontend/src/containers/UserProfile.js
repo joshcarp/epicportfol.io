@@ -9,7 +9,7 @@ import {
 import UserInfoCard from '../components/UserInfoCard'
 import ImageBox from '../components/ImageBox'
 const { profilesClient } = require('./../proto/api_grpc_web_pb.js');
-const profiles = new profilesClient('http://localhost:443');
+const profiles = new profilesClient('https://profiles.epicportfol.io');
 const { getuserRequest } = require('./../proto/api_pb.js');
 const yaml = require('js-yaml');
 
