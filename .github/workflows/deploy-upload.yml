@@ -28,7 +28,7 @@ jobs:
         run: |-
           gcloud builds submit \
             --quiet \
-            --tag "gcr.io/joshcarp-it-project/profiles:$GITHUB_SHA"
+            --tag "gcr.io/joshcarp-it-project/upload:$GITHUB_SHA"
       - name: Deploy
         run: |-
           gcloud run deploy "upload" \
