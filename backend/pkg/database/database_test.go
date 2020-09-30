@@ -1,7 +1,12 @@
 package database
 
 import (
+	"fmt"
 	"testing"
+
+	"github.com/jmoiron/sqlx"
+
+	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
 
 	"github.com/joshcarp/it-project/backend/pkg/auth"
 
@@ -13,6 +18,7 @@ type testcase struct {
 	err      bool
 }
 
+var db *sqlx.DB
 var tests = map[string]testcase{
 	"Simple": {accounts: []auth.Account{{
 		Email:          "123",
@@ -59,8 +65,11 @@ var tests = map[string]testcase{
 }
 
 func TestDatabase(t *testing.T) {
-	db, err := openDatabaseMemory("../../../database/db.sql")
-	require.Nil(t, err)
+	var err error
+	if db == nil {
+		db, err = openDatabaseMemory("../../../database/db.sql")
+		require.Nil(t, err)
+	}
 	var account *auth.Account
 	for name, test := range tests {
 		t.Run(name, func(t *testing.T) {
@@ -83,4 +92,41 @@ func TestDatabase(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestProfiles(t *testing.T) {
+	var err error
+	if db == nil {
+		db, err = openDatabaseMemory("../../../database/db.sql")
+		require.Nil(t, err)
+	}
+	err = EnterProfile(db, &itproject.Profile{
+		Username: "foobar",
+		Email:    "josh@joshcarp.com",
+		FullName: "Joshua Carpeggiani",
+		Picture:  "https://secure.gravatar.com/avatar/8f3ae66a1b3c1494de8971e428e9b6ae?s=500",
+		Bio:      "i am a person",
+		Jobs: []*itproject.Job{{
+			Dates:       "2019",
+			Title:       "Team member",
+			Company:     "Edithvale Community Greengrocer",
+			Description: "Delivering fresh vegetables to the edithvale community.",
+		},
+			{
+				Dates:       "2019",
+				Title:       "Engineer",
+				Company:     "ANZ",
+				Description: "Working on open source tools to help engineers develop faster.",
+			}},
+		Artifacts: []*itproject.Artifact{{
+			Title:       "My face",
+			Description: "My face",
+			Link:        "https://secure.gravatar.com/avatar/8f3ae66a1b3c1494de8971e428e9b6ae?s=500",
+		}},
+		Links: []string{"https://github.com/joshcarp", "https://www.linkedin.com/in/joshcarp/"},
+	})
+	require.NoError(t, err)
+	a, err := GetProfile(db, "joshcarp")
+	require.NoError(t, err)
+	fmt.Println(a)
 }

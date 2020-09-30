@@ -3,6 +3,7 @@ package database
 import (
 	"fmt"
 	"io/ioutil"
+	"strings"
 
 	"github.com/spf13/viper"
 
@@ -56,12 +57,15 @@ func openDatabaseMemory(filename string) (*sqlx.DB, error) {
 	if err != nil {
 		return nil, errors.Wrap(err, "cant open database")
 	}
-	_, err = db.Exec(string(f))
-	if err != nil {
-		return nil, errors.Wrap(err, "sql.Exec: Error: %s\n")
-	}
-	if err != nil {
-		return db, errors.Wrap(err, "cant open database")
+	for _, cmd := range strings.Split(string(f), ";") {
+		if cmd == "\n" {
+			continue
+		}
+		cmd += ";"
+		_, err = db.Exec(cmd)
+		if err != nil {
+			return nil, errors.Wrap(err, "sql.Exec: Error: %s\n")
+		}
 	}
 	return db, nil
 }

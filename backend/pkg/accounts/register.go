@@ -11,7 +11,7 @@ import (
 )
 
 func (s *Server) Register(ctx context.Context, req *itproject.RegisterRequest) (*itproject.RegisterResponse, error) {
-	account, err := auth.NewAccount(req.Email, req.FullName, req.Userid, req.PreferredName, req.Password)
+	account, err := auth.NewAccount(req.Email, req.FullName, req.Username, req.PreferredName, req.Password)
 	if err != nil {
 		return nil, err
 	}

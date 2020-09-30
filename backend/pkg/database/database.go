@@ -3,6 +3,10 @@ package database
 import (
 	"fmt"
 
+	"github.com/joshcarp/it-project/backend/pkg/objects"
+
+	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
+
 	"github.com/jmoiron/sqlx"
 	"github.com/joshcarp/it-project/backend/pkg/auth"
 	"github.com/spf13/viper"
@@ -22,11 +26,11 @@ func NewDB(conf *viper.Viper) (*sqlx.DB, error) {
 }
 
 // GetAccountFromEmail returns an account with an email
-func GetAccountFromEmail(db *sqlx.DB, email string) (*auth.Account, error) {
+func GetAccountFromEmail(db *sqlx.DB, username string) (*auth.Account, error) {
 	if err := db.Ping(); err != nil {
 		return nil, err
 	}
-	rows, err := db.Queryx(fmt.Sprintf(`Select * FROM accounts WHERE email='%s';`, email))
+	rows, err := db.Queryx(fmt.Sprintf(`Select * FROM accounts WHERE username='%s';`, username))
 	if err != nil {
 		return nil, err
 	}
@@ -67,4 +71,124 @@ func VerifyUser(db *sqlx.DB, email, password string) error {
 		return fmt.Errorf("Incorrect password")
 	}
 	return nil
+}
+
+// EnterUser returns an account with an email
+func EnterProfile(db *sqlx.DB, profile *itproject.Profile) error {
+	if err := db.Ping(); err != nil {
+		return nil
+	}
+	_, err := db.Exec(`INSERT INTO profiles (username, profile_picture, bio) VALUES ($1, $2, $3);`, profile.Username, profile.Picture, profile.Bio)
+	if err != nil {
+		return err
+	}
+
+	for _, link := range profile.Links {
+		_, err := db.Exec(`INSERT INTO links (username, link)VALUES ($1, $2);`, profile.Username, link)
+		if err != nil {
+			return err
+		}
+	}
+
+	for _, image := range profile.Artifacts {
+		_, err := db.Exec(`INSERT INTO artifacts (username, link, description, title)VALUES ($1, $2, $3, $4);`, profile.Username, image.Link, image.Description, image.Title)
+		if err != nil {
+			return err
+		}
+	}
+	for _, job := range profile.Jobs {
+		_, err := db.Exec(`INSERT INTO jobs (username, dates, title, company, description)VALUES ($1, $2, $3, $4, $5);`, profile.Username, job.Dates, job.Title, job.Company, job.Description)
+		return err
+	}
+
+	return nil
+}
+
+func GetProfile(db *sqlx.DB, user string) (*itproject.Profile, error) {
+	ac := fmt.Sprintf("Select * FROM accounts WHERE username = '%s';", user)
+	rows, err := db.Queryx(ac)
+	if err != nil {
+		return nil, err
+	}
+	account := objects.Account{}
+	for rows.Next() {
+		err := rows.StructScan(&account)
+		if err != nil {
+			return nil, err
+		}
+	}
+	ac = fmt.Sprintf("Select * FROM profiles WHERE username = '%s';", user)
+	rows, err = db.Queryx(ac)
+	if err != nil {
+		return nil, err
+	}
+	profile := objects.Profiles{}
+	for rows.Next() {
+		err := rows.StructScan(&profile)
+		if err != nil {
+			return nil, err
+		}
+	}
+	ac = fmt.Sprintf("Select * FROM jobs WHERE username = '%s';", user)
+	rows, err = db.Queryx(ac)
+	if err != nil {
+		return nil, err
+	}
+	var jobs []*itproject.Job
+	job := objects.Job{}
+	for rows.Next() {
+		err := rows.StructScan(&job)
+		if err != nil {
+			return nil, err
+		}
+		jobs = append(jobs, &itproject.Job{
+			Dates:       job.Dates,
+			Title:       job.Title,
+			Company:     job.Company,
+			Description: job.Description,
+		})
+	}
+	ac = fmt.Sprintf("Select * FROM artifacts WHERE username = '%s';", user)
+	rows, err = db.Queryx(ac)
+	if err != nil {
+		return nil, err
+	}
+	var artifacts []*itproject.Artifact
+	artifact := objects.Artifact{}
+	for rows.Next() {
+		err := rows.StructScan(&artifact)
+		if err != nil {
+			return nil, err
+		}
+		artifacts = append(artifacts, &itproject.Artifact{
+			Title:       artifact.Title,
+			Description: artifact.Description,
+			Link:        artifact.Link,
+		})
+	}
+	ac = fmt.Sprintf("Select * FROM links WHERE username = '%s';", user)
+	rows, err = db.Queryx(ac)
+	if err != nil {
+		return nil, err
+	}
+	var links []string
+	link := objects.Link{}
+	for rows.Next() {
+		err := rows.StructScan(&link)
+		if err != nil {
+			return nil, err
+		}
+		links = append(links, link.Link)
+	}
+	prof := itproject.Profile{
+		Username:  user,
+		Email:     account.Email,
+		FullName:  account.Name,
+		Bio:       profile.Bio,
+		Picture:   profile.ProfilePicture,
+		Jobs:      jobs,
+		Artifacts: artifacts,
+		Links:     links,
+	}
+	return &prof, nil
 }
