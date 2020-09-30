@@ -23,7 +23,7 @@ service authenticate {
 /* RegisterRequest contains all the information to register the user in the database */
 message RegisterRequest {
     string email = 1;
-    string userid = 2;
+    string username = 2;
     string fullName = 3;
     string preferredName = 4;
     string password = 5;
@@ -68,4 +68,44 @@ message EchoResponse {
 /* EchoService is a basic service to test connections */
 service EchoService {
     rpc Echo(EchoRequest) returns (EchoResponse);
+}
+
+/* --- Profiles service --- */
+
+service profiles {
+    rpc getuser(getuserRequest) returns (profile);
+    rpc updateuser(profile) returns (updateuserResponse);
+}
+
+message getuserRequest {
+    string userid = 1;
+}
+
+message profile {
+    string username = 1;
+    string email = 2;
+    string full_name = 3;
+
+    string picture = 4;
+    string bio = 5;
+    repeated job jobs = 6;
+    repeated artifact artifacts = 7;
+    repeated string links = 8;
+}
+
+message updateuserResponse{
+
+}
+
+message job {
+    string dates = 2;
+    string title = 3;
+    string company = 4;
+    string description = 5;
+}
+
+message artifact {
+    string title = 3;
+    string description = 4;
+    string link = 5;
 }

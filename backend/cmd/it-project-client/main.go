@@ -12,12 +12,6 @@ import (
 
 func main() {
 	address := os.Getenv("ADDR")
-
-	//creds, err := credentials.NewClientTLSFromFile("/etc/ssl/certs/ca-certificates.crt", "")
-	//if err != nil {
-	//	log.Fatalf("failed to load credentials: %v", err)
-	//}
-
 	// Set up a connection to the server.
 	conn, err := grpc.Dial(address)
 	if err != nil {
@@ -31,7 +25,7 @@ func main() {
 	defer cancel()
 	r, err := c.Register(ctx, &itproject.RegisterRequest{
 		Email:         "joshcarp@gmail.com",
-		Userid:        "josh",
+		Username:      "josh",
 		FullName:      "Joshua Carpeggiani",
 		PreferredName: "Josh",
 		Password:      "1234",

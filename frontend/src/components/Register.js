@@ -2,14 +2,15 @@ import React from 'react';
 import logo from '../logo.svg';
 import '../App.css';
 import { useState } from 'react'
-const { RegisterRequest } = require('../proto/api_pb.js');
+const { User } = require('../proto/api_pb.js');
 const { authenticateClient } = require('../proto/api_grpc_web_pb.js');
 const auth = new authenticateClient('http://localhost:8081');
 
 
+
 function Register() {
     const [message, setMessage] = useState("initial value")
-    var request = new RegisterRequest();
+    var request = new User();
     request.setUserid(" memesters")
     request.setEmail(" memesters")
     request.setFullname(" memesters")
