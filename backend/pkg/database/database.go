@@ -84,7 +84,7 @@ func EnterProfile(db *sqlx.DB, profile itproject.Profile) error {
 	}
 
 	for _, link := range profile.Links {
-		_, err := db.Exec(`INSERT INTO links (username, link)VALUES ($1, $2, $3);`, profile.Username, link)
+		_, err := db.Exec(`INSERT INTO links (username, link)VALUES ($1, $2);`, profile.Username, link)
 		if err != nil {
 			return err
 		}
@@ -97,7 +97,7 @@ func EnterProfile(db *sqlx.DB, profile itproject.Profile) error {
 		}
 	}
 	for _, job := range profile.Jobs {
-		_, err := db.Exec(`INSERT INTO jobs (username, dates, title, company, description)VALUES ($1, $2, $3, $4, $5, $6);`, profile.Username, job.Dates, job.Title, job.Company, job.Description)
+		_, err := db.Exec(`INSERT INTO jobs (username, dates, title, company, description)VALUES ($1, $2, $3, $4, $5);`, profile.Username, job.Dates, job.Title, job.Company, job.Description)
 		return err
 	}
 

@@ -92,21 +92,19 @@ func TestProfiles(t *testing.T) {
 	db, err := openDatabaseMemory("../../../database/db.sql")
 	require.Nil(t, err)
 	err = EnterProfile(db, itproject.Profile{
-		Username: "joshcarp",
+		Username: "foobar",
 		Email:    "josh@joshcarp.com",
-		Name:     "Joshua Carpeggiani",
+		FullName: "Joshua Carpeggiani",
 		Picture:  "https://secure.gravatar.com/avatar/8f3ae66a1b3c1494de8971e428e9b6ae?s=500",
 		Bio:      "i am a person",
 		Jobs: []*itproject.Job{{
-			From:        "2018",
-			To:          "2019",
+			Dates:       "2019",
 			Title:       "Team member",
 			Company:     "Edithvale Community Greengrocer",
 			Description: "Delivering fresh vegetables to the edithvale community.",
 		},
 			{
-				From:        "2019",
-				To:          "2020",
+				Dates:       "2019",
 				Title:       "Engineer",
 				Company:     "ANZ",
 				Description: "Working on open source tools to help engineers develop faster.",
@@ -116,13 +114,7 @@ func TestProfiles(t *testing.T) {
 			Description: "My face",
 			Link:        "https://secure.gravatar.com/avatar/8f3ae66a1b3c1494de8971e428e9b6ae?s=500",
 		}},
-		Links: []*itproject.Link{{
-			Name: "github",
-			Link: "https://github.com/joshcarp",
-		}, {
-			Name: "Linkedin",
-			Link: "https://www.linkedin.com/in/joshcarp/",
-		}},
+		Links: []string{"https://github.com/joshcarp", "https://www.linkedin.com/in/joshcarp/"},
 	})
 	require.NoError(t, err)
 
