@@ -45,3 +45,5 @@ help:               ## Show this help.
 .PHONY: fontend
 fontend:
 	cd frontend && npm install && npm start
+upload:
+	docker run --rm joshcarp/grpcurl -d '{"name":"joshcarp.png", "content": "iVBORw0KGgoAAAANSUhEUgAAAV4AAADIAQMAAACarRuzAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABlBMVEX//wD///+LefOdAAAAAWJLR0QB/wIt3gAAAAd0SU1FB+QJHgwqIzjB9dcAAAAfSURBVGje7cEBDQAAAMKg909tDwcUAAAAAAAAAAD8GyMoAAEwnDCYAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA5LTMwVDEyOjQyOjM1KzAwOjAwFI1/bQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wOS0zMFQxMjo0MjozNSswMDowMGXQx9EAAAAASUVORK5CYII="}' --plaintext host.docker.internal:443 itproject.upload/upload

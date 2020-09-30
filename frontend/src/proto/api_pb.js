@@ -2714,7 +2714,7 @@ proto.itproject.uploadResponse.prototype.toObject = function(opt_includeInstance
  */
 proto.itproject.uploadResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    url: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2751,6 +2751,10 @@ proto.itproject.uploadResponse.deserializeBinaryFromReader = function(msg, reade
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUrl(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2780,6 +2784,31 @@ proto.itproject.uploadResponse.prototype.serializeBinary = function() {
  */
 proto.itproject.uploadResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getUrl();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string url = 1;
+ * @return {string}
+ */
+proto.itproject.uploadResponse.prototype.getUrl = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.itproject.uploadResponse} returns this
+ */
+proto.itproject.uploadResponse.prototype.setUrl = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 

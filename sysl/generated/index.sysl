@@ -167,10 +167,12 @@ itproject:
         name <: string:
             @json_tag = "name"
             @rpcId = "1"
-    !type uploadResponse[~empty]:
+    !type uploadResponse:
         @description = ""
         @source_path = "api.proto"
-        ...
+        url <: string:
+            @json_tag = "url"
+            @rpcId = "1"
 
 profiles[~gRPC]:
     @description = ""

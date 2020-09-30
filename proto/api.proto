@@ -122,4 +122,5 @@ message uploadRequest {
 }
 
 message uploadResponse {
+    string url = 1;
 }

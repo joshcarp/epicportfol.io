@@ -3,6 +3,10 @@ package upload
 import (
 	"bytes"
 	"context"
+	"fmt"
+	"path"
+
+	"github.com/joshcarp/it-project/backend/pkg/auth"
 
 	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
 )
@@ -17,6 +21,8 @@ func NewServer() (*Server, error) {
 }
 
 func (s *Server) Upload(ctx context.Context, in *itproject.UploadRequest) (*itproject.UploadResponse, error) {
-	err := UploadFile(bytes.NewReader(in.GetContent()), bucketname, in.GetName())
-	return &itproject.UploadResponse{}, err
+	a, _ := auth.Salt()
+	filename := a + path.Ext(in.GetName())
+	err := UploadFile(bytes.NewReader(in.GetContent()), bucketname, filename)
+	return &itproject.UploadResponse{Url: fmt.Sprintf("https://storage.googleapis.com/%s/%s", bucketname, filename)}, err
 }
