@@ -47,6 +47,7 @@ func main() {
 	if err != nil {
 		logger.Errorf("Cannot connect to database %v", err)
 	}
+
 	itproject.RegisterProfilesServer(s, server)
 	grpcweb_server := grpcweb.WrapServer(s, grpcweb.WithOriginFunc(func(origin string) bool {
 		// Allow all origins, DO NOT do this in production
