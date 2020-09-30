@@ -100,11 +100,11 @@ export default function UserInfoCard(props) {
                 {/* PROFILE IMAGE + NAME */}
                 <Grid container className={classes.profileColumn}>
                     <Grid item>
-                        <Avatar alt={props.profile.full_name} src={props.profile.picture} className={classes.avatar} />
+                        <Avatar alt={props.profile.fullName} src={props.profile.picture} className={classes.avatar} />
                     </Grid>
                     <Grid item>
                         <Paper className={classes.field}>
-                            {props.profile.full_name}
+                            {props.profile.fullName}
                         </Paper>
                     </Grid>
                     <Grid item>

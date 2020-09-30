@@ -6,7 +6,7 @@ export default function ImageBox(props) {
     const images = [];
     for (let image of props.profile.artifactsList) {
         images.push(
-            {original: image.src}
+            {original: image.link}
         )
     }
     return (
