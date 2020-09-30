@@ -158,6 +158,19 @@ itproject:
         @description = ""
         @source_path = "api.proto"
         ...
+    !type uploadRequest:
+        @description = ""
+        @source_path = "api.proto"
+        content <: bytes:
+            @json_tag = "content"
+            @rpcId = "2"
+        name <: string:
+            @json_tag = "name"
+            @rpcId = "1"
+    !type uploadResponse[~empty]:
+        @description = ""
+        @source_path = "api.proto"
+        ...
 
 profiles[~gRPC]:
     @description = ""
@@ -171,4 +184,13 @@ profiles[~gRPC]:
         @description = ""
         @source_path = "api.proto"
         return ok <: itproject.updateuserResponse
+
+upload[~gRPC]:
+    @description = ""
+    @package = "itproject"
+    @source_path = "api.proto"
+    upload(input <: itproject.uploadRequest)[~gRPC]:
+        @description = ""
+        @source_path = "api.proto"
+        return ok <: itproject.uploadResponse
 

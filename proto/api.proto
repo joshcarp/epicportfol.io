@@ -109,3 +109,17 @@ message artifact {
     string description = 4;
     string link = 5;
 }
+
+/* -- Upload Service -- */
+
+service upload {
+    rpc upload(uploadRequest) returns(uploadResponse);
+}
+
+message uploadRequest {
+    string name = 1;
+    bytes content = 2;
+}
+
+message uploadResponse {
+}

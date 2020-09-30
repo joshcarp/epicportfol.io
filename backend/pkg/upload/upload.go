@@ -1,29 +1,16 @@
-package functions
+package upload
 
 import (
 	"context"
 	"fmt"
 	"io"
-	"net/http"
-	"strings"
 	"time"
 
 	"cloud.google.com/go/storage"
 )
 
 const bucketname = `joshcarp-it-project-storage`
-const projectID = `joshcarp-it-project`
 const pathPrefix = `joshcarp-it-project-storage`
-
-func UploadFileFunc(w http.ResponseWriter, r *http.Request) {
-	filename := strings.ReplaceAll(r.URL.Path, pathPrefix, "")
-	filename = strings.TrimLeft(filename, "/")
-	err := UploadFile(r.Body, bucketname, filename)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-}
 
 func UploadFile(r io.Reader, bucket, object string) error {
 	ctx := context.Background()
