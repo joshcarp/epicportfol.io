@@ -26,7 +26,7 @@ description VARCHAR(1048)NOT NULL
 );
 CREATE TABLE links (
 username VARCHAR(255)NOT NULL,
-link VARCHAR(1048)NOT NULL,
+link VARCHAR(1048)NOT NULL
 );
 INSERT INTO profiles (username, profile_picture, bio)
     VALUES ('joshcarp', 'https://secure.gravatar.com/avatar/8f3ae66a1b3c1494de8971e428e9b6ae', 'i am a person');
