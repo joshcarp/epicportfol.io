@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/jmoiron/sqlx"
+
 	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
 
 	"github.com/joshcarp/it-project/backend/pkg/auth"
@@ -16,6 +18,7 @@ type testcase struct {
 	err      bool
 }
 
+var db *sqlx.DB
 var tests = map[string]testcase{
 	"Simple": {accounts: []auth.Account{{
 		Email:          "123",
@@ -62,8 +65,11 @@ var tests = map[string]testcase{
 }
 
 func TestDatabase(t *testing.T) {
-	db, err := openDatabaseMemory("../../../database/db.sql")
-	require.Nil(t, err)
+	var err error
+	if db == nil {
+		db, err = openDatabaseMemory("../../../database/db.sql")
+		require.Nil(t, err)
+	}
 	var account *auth.Account
 	for name, test := range tests {
 		t.Run(name, func(t *testing.T) {
@@ -89,9 +95,12 @@ func TestDatabase(t *testing.T) {
 }
 
 func TestProfiles(t *testing.T) {
-	db, err := openDatabaseMemory("../../../database/db.sql")
-	require.Nil(t, err)
-	err = EnterProfile(db, itproject.Profile{
+	var err error
+	if db == nil {
+		db, err = openDatabaseMemory("../../../database/db.sql")
+		require.Nil(t, err)
+	}
+	err = EnterProfile(db, &itproject.Profile{
 		Username: "foobar",
 		Email:    "josh@joshcarp.com",
 		FullName: "Joshua Carpeggiani",
@@ -117,7 +126,6 @@ func TestProfiles(t *testing.T) {
 		Links: []string{"https://github.com/joshcarp", "https://www.linkedin.com/in/joshcarp/"},
 	})
 	require.NoError(t, err)
-
 	a, err := GetProfile(db, "joshcarp")
 	require.NoError(t, err)
 	fmt.Println(a)

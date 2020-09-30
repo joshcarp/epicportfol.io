@@ -74,7 +74,7 @@ func VerifyUser(db *sqlx.DB, email, password string) error {
 }
 
 // EnterUser returns an account with an email
-func EnterProfile(db *sqlx.DB, profile itproject.Profile) error {
+func EnterProfile(db *sqlx.DB, profile *itproject.Profile) error {
 	if err := db.Ping(); err != nil {
 		return nil
 	}
