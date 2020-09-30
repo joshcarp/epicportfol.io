@@ -19,15 +19,15 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-export default function CustomizedTimeline() {
+export default function CustomizedTimeline(props) {
     const classes = useStyles()
-
-    return (
-        <Timeline align="alternate">
+    const final = [];
+    for (let user of props.profile.jobsList) {
+        final.push(
             <TimelineItem>
                 <TimelineOppositeContent>
                     <Typography variant="body2" color="textSecondary">
-                        2020
+                        {user.dates}
                     </Typography>
                 </TimelineOppositeContent>
                 <TimelineSeparator>
@@ -37,73 +37,23 @@ export default function CustomizedTimeline() {
                 <TimelineContent>
                     <Paper elevation={3} className={classes.paper}>
                         <Typography variant="h6" component="h6">
-                            Senior Software Engineer
+                            {user.title}
                         </Typography>
                         <Typography variant="h6" component="h1">
-                            Tesla
+                            {user.company}
                         </Typography>
                         <Typography variant="body2">
-                            Did some stuff with Elon
+                            {user.description}
                         </Typography>
                     </Paper>
                 </TimelineContent>
             </TimelineItem>
-            <TimelineItem>
-                <TimelineOppositeContent>
-                    <Typography variant="body2" color="textSecondary">
-                        2018
-                    </Typography>
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                    <TimelineDot color="primary"></TimelineDot>
-                    <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>
-                    <Paper elevation={3} className={classes.paper}>
-                        <Typography variant="h6" component="h1">
-                            Software Engineer
-                        </Typography>
-                        <Typography>Did software stuff...</Typography>
-                    </Paper>
-                </TimelineContent>
-            </TimelineItem>
-            <TimelineItem>
-                <TimelineOppositeContent>
-                    <Typography variant="body2" color="textSecondary">
-                        2015
-                    </Typography>
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                    <TimelineDot color="primary"></TimelineDot>
-                    <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>
-                    <Paper elevation={3} className={classes.paper}>
-                        <Typography variant="h6" component="h1">
-                            Junior Software Developer
-                        </Typography>
-                        <Typography>Drank heaps of coffee</Typography>
-                    </Paper>
-                </TimelineContent>
-            </TimelineItem>
-            <TimelineItem>
-                <TimelineOppositeContent>
-                    <Typography variant="body2" color="textSecondary">
-                        2014
-                    </Typography>
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                    <TimelineDot color="primary"></TimelineDot>
-                </TimelineSeparator>
-                <TimelineContent>
-                    <Paper elevation={3} className={classes.paper}>
-                        <Typography variant="h6" component="h1">
-                            Software Engineer Intern
-                        </Typography>
-                        <Typography>Did nothing...</Typography>
-                    </Paper>
-                </TimelineContent>
-            </TimelineItem>
+
+        );
+    }
+    return (
+        <Timeline align="alternate">
+            {final}
         </Timeline>
     )
 }

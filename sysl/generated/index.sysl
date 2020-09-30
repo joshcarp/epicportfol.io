@@ -78,8 +78,8 @@ itproject:
         preferredName <: string:
             @json_tag = "preferredName"
             @rpcId = "4"
-        userid <: string:
-            @json_tag = "userid"
+        username <: string:
+            @json_tag = "username"
             @rpcId = "2"
     !type RegisterResponse:
         @description =:
@@ -100,4 +100,75 @@ itproject:
         jwt <: string:
             @json_tag = "jwt"
             @rpcId = "1"
+    !type artifact:
+        @description = ""
+        @source_path = "api.proto"
+        description <: string:
+            @json_tag = "description"
+            @rpcId = "4"
+        link <: string:
+            @json_tag = "link"
+            @rpcId = "5"
+        title <: string:
+            @json_tag = "title"
+            @rpcId = "3"
+    !type getuserRequest:
+        @description = ""
+        @source_path = "api.proto"
+        userid <: string:
+            @json_tag = "userid"
+            @rpcId = "1"
+    !type job:
+        @description = ""
+        @source_path = "api.proto"
+        company <: string:
+            @json_tag = "company"
+            @rpcId = "4"
+        dates <: string:
+            @json_tag = "dates"
+            @rpcId = "2"
+        description <: string:
+            @json_tag = "description"
+            @rpcId = "5"
+        title <: string:
+            @json_tag = "title"
+            @rpcId = "3"
+    !type profile:
+        @description = ""
+        @source_path = "api.proto"
+        artifacts <: sequence of artifact
+        bio <: string:
+            @json_tag = "bio"
+            @rpcId = "5"
+        email <: string:
+            @json_tag = "email"
+            @rpcId = "2"
+        full_name <: string:
+            @json_tag = "fullName"
+            @rpcId = "3"
+        jobs <: sequence of job
+        links <: sequence of string
+        picture <: string:
+            @json_tag = "picture"
+            @rpcId = "4"
+        username <: string:
+            @json_tag = "username"
+            @rpcId = "1"
+    !type updateuserResponse[~empty]:
+        @description = ""
+        @source_path = "api.proto"
+        ...
+
+profiles[~gRPC]:
+    @description = ""
+    @package = "itproject"
+    @source_path = "api.proto"
+    getuser(input <: itproject.getuserRequest)[~gRPC]:
+        @description = ""
+        @source_path = "api.proto"
+        return ok <: itproject.profile
+    updateuser(input <: itproject.profile)[~gRPC]:
+        @description = ""
+        @source_path = "api.proto"
+        return ok <: itproject.updateuserResponse
 
