@@ -24,7 +24,7 @@ const Button = styled.button`
 const theme = {
     blue: {
         default: '#3949ab',
-        hover: '#DDA0DD'
+        hover: '#dda0dd'
     },
     pink: {
         default: '#FF1493',
