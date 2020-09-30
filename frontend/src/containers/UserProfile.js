@@ -9,7 +9,7 @@ import {
 import UserInfoCard from '../components/UserInfoCard'
 import ImageBox from '../components/ImageBox'
 const { profilesClient } = require('./../proto/api_grpc_web_pb.js');
-const profiles = new profilesClient('https://profiles.epicportfol.io');
+const profiles = new profilesClient('http://localhost:443');
 const { getuserRequest } = require('./../proto/api_pb.js');
 const yaml = require('js-yaml');
 
@@ -23,6 +23,7 @@ export default function UserProfile(props) {
         var req = new getuserRequest();
         req.setUserid(username);
         profiles.getuser(req, {}, function (err, response) {
+            console.log(err)
             setProfile(response.toObject())
         })
 //         setProfile(yaml.safeLoad(`full_name: Joshua Carpeggiani
