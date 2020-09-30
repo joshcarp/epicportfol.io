@@ -1,7 +1,7 @@
 name: deploy upload
 on:
   push:
-    branches: [ master ]
+    branches: [ feature/upload ]
 
 jobs:
   build:
