@@ -91,7 +91,7 @@ func EnterProfile(db *sqlx.DB, profile *itproject.Profile) error {
 	}
 
 	for _, image := range profile.Artifacts {
-		_, err := db.Exec(`INSERT INTO artifacts (username, link, description, title)VALUES ($1, $2, $3, $4);`, profile.Username, image.Link, image.Description, image.Title)
+		_, err := db.Exec(`INSERT INTO artifacts (username, link)VALUES ($1, $2);`, profile.Username, image.Link)
 		if err != nil {
 			return err
 		}

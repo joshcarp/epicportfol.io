@@ -23,6 +23,7 @@ export default function UserProfile(props) {
         var req = new getuserRequest();
         req.setUserid(username);
         profiles.getuser(req, {}, function (err, response) {
+            console.log(err)
             setProfile(response.toObject())
         })
 //         setProfile(yaml.safeLoad(`full_name: Joshua Carpeggiani
