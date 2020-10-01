@@ -78,23 +78,37 @@ func EnterProfile(db *sqlx.DB, profile *itproject.Profile) error {
 	if err := db.Ping(); err != nil {
 		return nil
 	}
-	_, err := db.Exec(`INSERT INTO profiles (username, profile_picture, bio) VALUES ($1, $2, $3);`, profile.Username, profile.Picture, profile.Bio)
+	_, err := db.Exec(`DELETE FROM profiles WHERE username='$1';`, profile.Username)
 	if err != nil {
 		return err
 	}
-
+	_, err = db.Exec(`INSERT INTO profiles (username, profile_picture, bio) VALUES ($1, $2, $3);`, profile.Username, profile.Picture, profile.Bio)
+	if err != nil {
+		return err
+	}
+	_, err = db.Exec(`DELETE FROM links WHERE username='$1';`, profile.Username)
+	if err != nil {
+		return err
+	}
 	for _, link := range profile.Links {
 		_, err := db.Exec(`INSERT INTO links (username, link)VALUES ($1, $2);`, profile.Username, link)
 		if err != nil {
 			return err
 		}
 	}
-
+	_, err = db.Exec(`DELETE FROM artifacts WHERE username='$1';`, profile.Username)
+	if err != nil {
+		return err
+	}
 	for _, image := range profile.Artifacts {
 		_, err := db.Exec(`INSERT INTO artifacts (username, link)VALUES ($1, $2);`, profile.Username, image.Link)
 		if err != nil {
 			return err
 		}
+	}
+	_, err = db.Exec(`DELETE FROM jobs WHERE username='$1';`, profile.Username)
+	if err != nil {
+		return err
 	}
 	for _, job := range profile.Jobs {
 		_, err := db.Exec(`INSERT INTO jobs (username, dates, title, company, description)VALUES ($1, $2, $3, $4, $5);`, profile.Username, job.Dates, job.Title, job.Company, job.Description)

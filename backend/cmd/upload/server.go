@@ -1,4 +1,3 @@
-// Package main implements a server for Greeter service.
 package main
 
 import (
@@ -9,9 +8,9 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/improbable-eng/grpc-web/go/grpcweb"
+	"github.com/joshcarp/it-project/backend/pkg/upload"
 
-	"github.com/joshcarp/it-project/backend/pkg/profiles"
+	"github.com/improbable-eng/grpc-web/go/grpcweb"
 
 	"github.com/sirupsen/logrus"
 
@@ -43,14 +42,12 @@ func main() {
 	}
 	s := grpc.NewServer()
 	reflection.Register(s)
-	server, err := profiles.NewServer(conf, logger)
+	server, err := upload.NewServer()
 	if err != nil {
 		logger.Errorf("Cannot connect to database %v", err)
 	}
-
-	itproject.RegisterProfilesServer(s, server)
+	itproject.RegisterUploadServer(s, server)
 	grpcweb_server := grpcweb.WrapServer(s, grpcweb.WithOriginFunc(func(origin string) bool {
-		// Allow all origins, DO NOT do this in production
 		return true
 	}))
 	fmt.Println("Starting server on " + port)
