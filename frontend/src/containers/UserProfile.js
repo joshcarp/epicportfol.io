@@ -7,6 +7,7 @@ import {
 } from '@material-ui/core'
 import UserInfoCard from '../components/UserInfoCard'
 import ImageBox from '../components/ImageBox'
+import Iframebox from '../components/Iframebox'
 
 // CSS Theming
 const useStyles = makeStyles((theme) => ({
@@ -64,6 +65,10 @@ export default function UserProfile(props) {
 
                 <Grid item className={classes.card}>
                     <ImageBox />
+                </Grid>
+
+                <Grid item className={classes.card}>
+                    <Iframebox />
                 </Grid>
 
             </Grid>
