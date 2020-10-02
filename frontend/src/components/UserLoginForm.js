@@ -93,6 +93,13 @@ class UserLoginForm extends React.Component {
                         variant="contained"
                         color="primary"
                     > Submit </Button>
+                    <Button
+                        className={classes.button}
+                        type="Register"
+                        name="Register"
+                        variant="contained"
+                        color="primary"
+                    > Register </Button>
                 </form>
             </div>
         )

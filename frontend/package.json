@@ -19,6 +19,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "reactrpc": "^1.0.5",
+    "redux": "^4.0.5",
     "styled-components": "^5.1.1"
   },
   "scripts": {
@@ -44,6 +45,7 @@
     ]
   },
   "devDependencies": {
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "react-redux": "^7.2.1"
   }
 }
