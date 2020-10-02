@@ -5,13 +5,11 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import RegisterPage from './containers/RegisterPage'
 import React, {useEffect, useState} from 'react'
-import Header from './Header';
 
 
 export default function App() {
     return (
         <Router>
-            <Header/>
             <Switch>
                 <Route exact path="/register">
                     <RegisterPage />

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { TextField, withStyles, Button } from '@material-ui/core';
+import GoogleAuth from "../GoogleAuth";
 
 const { LoginRequest } = require('../proto/api_pb.js');
 const { authenticateClient } = require('../proto/api_grpc_web_pb.js');
@@ -93,13 +94,13 @@ class UserLoginForm extends React.Component {
                         variant="contained"
                         color="primary"
                     > Submit </Button>
-                    <Button
-                        className={classes.button}
-                        type="sign"
-                        name="Sign"
-                        variant="contained"
-                        color="primary"
-                    > Sign in with Google </Button>
+                    {/*<Button*/}
+                    {/*    className={classes.button}*/}
+                    {/*    type="sign"*/}
+                    {/*    name="Sign"*/}
+                    {/*    variant="contained"*/}
+                    {/*    color="primary"*/}
+                    {/*> Sign in with Google </Button>*/}
                     <Button
                         className={classes.button}
                         type="Register"
@@ -107,6 +108,7 @@ class UserLoginForm extends React.Component {
                         variant="contained"
                         color="primary"
                     > Register </Button>
+                    <GoogleAuth></GoogleAuth>
                 </form>
             </div>
         )
