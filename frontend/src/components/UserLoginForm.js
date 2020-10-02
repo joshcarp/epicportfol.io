@@ -95,6 +95,13 @@ class UserLoginForm extends React.Component {
                     > Submit </Button>
                     <Button
                         className={classes.button}
+                        type="sign"
+                        name="Sign"
+                        variant="contained"
+                        color="primary"
+                    > Sign in with Google </Button>
+                    <Button
+                        className={classes.button}
                         type="Register"
                         name="Register"
                         variant="contained"
