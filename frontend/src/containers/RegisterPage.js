@@ -19,6 +19,7 @@ class RegisterPage extends Component {
                 <Paper elevation={3} >
                     <h4>Register your Epic Portfolio</h4>
                     <UserRegisterForm />
+                    {/*<Auth></Auth>*/}
                     <br />
                 </Paper>
             </div>
