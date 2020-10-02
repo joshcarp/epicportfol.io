@@ -654,5 +654,137 @@ proto.itproject.profilesPromiseClient.prototype.updateuser =
 };
 
 
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?Object} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.itproject.uploadClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options['format'] = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+};
+
+
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?Object} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.itproject.uploadPromiseClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options['format'] = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.itproject.uploadRequest,
+ *   !proto.itproject.uploadResponse>}
+ */
+const methodDescriptor_upload_upload = new grpc.web.MethodDescriptor(
+  '/itproject.upload/upload',
+  grpc.web.MethodType.UNARY,
+  proto.itproject.uploadRequest,
+  proto.itproject.uploadResponse,
+  /**
+   * @param {!proto.itproject.uploadRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.itproject.uploadResponse.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.itproject.uploadRequest,
+ *   !proto.itproject.uploadResponse>}
+ */
+const methodInfo_upload_upload = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.itproject.uploadResponse,
+  /**
+   * @param {!proto.itproject.uploadRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.itproject.uploadResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.itproject.uploadRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.itproject.uploadResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.itproject.uploadResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.itproject.uploadClient.prototype.upload =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/itproject.upload/upload',
+      request,
+      metadata || {},
+      methodDescriptor_upload_upload,
+      callback);
+};
+
+
+/**
+ * @param {!proto.itproject.uploadRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.itproject.uploadResponse>}
+ *     A native promise that resolves to the response
+ */
+proto.itproject.uploadPromiseClient.prototype.upload =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/itproject.upload/upload',
+      request,
+      metadata || {},
+      methodDescriptor_upload_upload);
+};
+
+
 module.exports = proto.itproject;
 

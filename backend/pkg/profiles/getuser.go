@@ -12,8 +12,8 @@ func (s *Server) Getuser(ctx context.Context, in *itproject.GetuserRequest) (*it
 	return database.GetProfile(s.db, in.Userid)
 }
 
-func (s *Server) Updateuser(context.Context, *itproject.Profile) (*itproject.UpdateuserResponse, error) {
-	return nil, nil
+func (s *Server) Updateuser(ctx context.Context, in *itproject.Profile) (*itproject.UpdateuserResponse, error) {
+	return &itproject.UpdateuserResponse{}, database.EnterProfile(s.db, in)
 }
 
 type ProfilesClient interface {

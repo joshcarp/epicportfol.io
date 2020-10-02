@@ -88,9 +88,9 @@ message profile {
 
     string picture = 4;
     string bio = 5;
-    repeated job jobs = 6;
-    repeated artifact artifacts = 7;
-    repeated string links = 8;
+    repeated job jobs = 6 [json_name = "jobsList"];
+    repeated artifact artifacts = 7 [json_name = "artifactsList"];;
+    repeated string links = 8 [json_name = "linksList"];
 }
 
 message updateuserResponse{
@@ -108,4 +108,19 @@ message artifact {
     string title = 3;
     string description = 4;
     string link = 5;
+}
+
+/* -- Upload Service -- */
+
+service upload {
+    rpc upload(uploadRequest) returns(uploadResponse);
+}
+
+message uploadRequest {
+    string name = 1;
+    bytes content = 2;
+}
+
+message uploadResponse {
+    string url = 1;
 }
