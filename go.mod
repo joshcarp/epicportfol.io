@@ -3,7 +3,7 @@ module github.com/joshcarp/it-project
 go 1.14
 
 require (
-	cloud.google.com/go v0.44.3 // indirect
+	cloud.google.com/go v0.44.3
 	github.com/GoogleCloudPlatform/cloudsql-proxy v0.0.0-20191009163259-e802c2cb94ae
 	github.com/desertbit/timer v0.0.0-20180107155436-c41aec40b27f // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
@@ -32,7 +32,7 @@ require (
 	google.golang.org/grpc v1.30.0
 	google.golang.org/protobuf v1.25.0
 	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
-	grpc.go4.org v0.0.0-20170609214715-11d0a25b4919 // indirect
+	grpc.go4.org v0.0.0-20170609214715-11d0a25b4919
 )
 
 replace google.golang.org/grpc v1.30.0 => google.golang.org/grpc v1.29.0

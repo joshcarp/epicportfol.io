@@ -242,3 +242,191 @@ var _EchoService_serviceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "api.proto",
 }
+
+// ProfilesClient is the client API for Profiles service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ProfilesClient interface {
+	Getuser(ctx context.Context, in *GetuserRequest, opts ...grpc.CallOption) (*Profile, error)
+	Updateuser(ctx context.Context, in *Profile, opts ...grpc.CallOption) (*UpdateuserResponse, error)
+}
+
+type profilesClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewProfilesClient(cc grpc.ClientConnInterface) ProfilesClient {
+	return &profilesClient{cc}
+}
+
+func (c *profilesClient) Getuser(ctx context.Context, in *GetuserRequest, opts ...grpc.CallOption) (*Profile, error) {
+	out := new(Profile)
+	err := c.cc.Invoke(ctx, "/itproject.profiles/getuser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *profilesClient) Updateuser(ctx context.Context, in *Profile, opts ...grpc.CallOption) (*UpdateuserResponse, error) {
+	out := new(UpdateuserResponse)
+	err := c.cc.Invoke(ctx, "/itproject.profiles/updateuser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ProfilesServer is the server API for Profiles service.
+// All implementations must embed UnimplementedProfilesServer
+// for forward compatibility
+type ProfilesServer interface {
+	Getuser(context.Context, *GetuserRequest) (*Profile, error)
+	Updateuser(context.Context, *Profile) (*UpdateuserResponse, error)
+	mustEmbedUnimplementedProfilesServer()
+}
+
+// UnimplementedProfilesServer must be embedded to have forward compatible implementations.
+type UnimplementedProfilesServer struct {
+}
+
+func (*UnimplementedProfilesServer) Getuser(context.Context, *GetuserRequest) (*Profile, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Getuser not implemented")
+}
+func (*UnimplementedProfilesServer) Updateuser(context.Context, *Profile) (*UpdateuserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Updateuser not implemented")
+}
+func (*UnimplementedProfilesServer) mustEmbedUnimplementedProfilesServer() {}
+
+func RegisterProfilesServer(s *grpc.Server, srv ProfilesServer) {
+	s.RegisterService(&_Profiles_serviceDesc, srv)
+}
+
+func _Profiles_Getuser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetuserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfilesServer).Getuser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/itproject.profiles/Getuser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfilesServer).Getuser(ctx, req.(*GetuserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Profiles_Updateuser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Profile)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfilesServer).Updateuser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/itproject.profiles/Updateuser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfilesServer).Updateuser(ctx, req.(*Profile))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Profiles_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "itproject.profiles",
+	HandlerType: (*ProfilesServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "getuser",
+			Handler:    _Profiles_Getuser_Handler,
+		},
+		{
+			MethodName: "updateuser",
+			Handler:    _Profiles_Updateuser_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "api.proto",
+}
+
+// UploadClient is the client API for Upload service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type UploadClient interface {
+	Upload(ctx context.Context, in *UploadRequest, opts ...grpc.CallOption) (*UploadResponse, error)
+}
+
+type uploadClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewUploadClient(cc grpc.ClientConnInterface) UploadClient {
+	return &uploadClient{cc}
+}
+
+func (c *uploadClient) Upload(ctx context.Context, in *UploadRequest, opts ...grpc.CallOption) (*UploadResponse, error) {
+	out := new(UploadResponse)
+	err := c.cc.Invoke(ctx, "/itproject.upload/upload", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// UploadServer is the server API for Upload service.
+// All implementations must embed UnimplementedUploadServer
+// for forward compatibility
+type UploadServer interface {
+	Upload(context.Context, *UploadRequest) (*UploadResponse, error)
+	mustEmbedUnimplementedUploadServer()
+}
+
+// UnimplementedUploadServer must be embedded to have forward compatible implementations.
+type UnimplementedUploadServer struct {
+}
+
+func (*UnimplementedUploadServer) Upload(context.Context, *UploadRequest) (*UploadResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Upload not implemented")
+}
+func (*UnimplementedUploadServer) mustEmbedUnimplementedUploadServer() {}
+
+func RegisterUploadServer(s *grpc.Server, srv UploadServer) {
+	s.RegisterService(&_Upload_serviceDesc, srv)
+}
+
+func _Upload_Upload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UploadServer).Upload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/itproject.upload/Upload",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UploadServer).Upload(ctx, req.(*UploadRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Upload_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "itproject.upload",
+	HandlerType: (*UploadServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "upload",
+			Handler:    _Upload_Upload_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "api.proto",
+}
