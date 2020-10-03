@@ -8,6 +8,8 @@ import {
 } from '@material-ui/core'
 import UserInfoCard from '../components/UserInfoCard'
 import ImageBox from '../components/ImageBox'
+import Iframebox from '../components/Iframebox'
+
 const { profilesClient } = require('./../proto/api_grpc_web_pb.js');
 const profiles = new profilesClient('https://profiles.epicportfol.io');
 const { getuserRequest, profile } = require('./../proto/api_pb.js');
@@ -90,7 +92,6 @@ export default function UserProfile(props) {
     )
 }
 
-
 // CSS Theming
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -126,3 +127,4 @@ const useStyles = makeStyles((theme) => ({
         height: 20,
     },
 }));
+
