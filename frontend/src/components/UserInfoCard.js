@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Paper, Grid, Avatar, IconButton } from '@material-ui/core';
+import { makeStyles, Paper, Grid, Avatar, IconButton, Typography } from '@material-ui/core';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import InstagramIcon from '@material-ui/icons/Instagram';
@@ -13,11 +13,14 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
     },
     avatar: {
-        width: theme.spacing(30),
-        height: theme.spacing(30),
+        width: '10em',
+        height: '10em',
+        maxWidth: '50vmin',
+        maxHeight: '50vmin',
+        margin: theme.spacing(1),
     },
     field: {
-        padding: theme.spacing(1),
+        padding: theme.spacing(0),
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
@@ -57,7 +60,7 @@ export default function UserInfoCard(props) {
     const links = [];
     for (let link of props.profile.linksList) {
         console.log(link)
-        if (link.includes("reddit")){
+        if (link.includes("reddit")) {
             links.push(
                 <Grid item className={classes.socialRowIcon}>
                     <IconButton href={link}>
@@ -66,7 +69,7 @@ export default function UserInfoCard(props) {
                 </Grid>
             )
         }
-        if (link.includes("facebook")){
+        if (link.includes("facebook")) {
             links.push(
                 <Grid item className={classes.socialRowIcon}>
                     <IconButton href={link}>
@@ -75,16 +78,16 @@ export default function UserInfoCard(props) {
                 </Grid>
             )
         }
-        if (link.includes("linkedin")){
+        if (link.includes("linkedin")) {
             links.push(
                 <Grid item className={classes.socialRowIcon}>
                     <IconButton href={link}>
-                        <InstagramIcon />
+                        <LinkedInIcon />
                     </IconButton>
                 </Grid>
             )
         }
-        if (link.includes("instagram")){
+        if (link.includes("instagram")) {
             links.push(
                 <Grid item className={classes.socialRowIcon}>
                     <IconButton href={link}>
@@ -102,15 +105,15 @@ export default function UserInfoCard(props) {
                     <Grid item>
                         <Avatar alt={props.profile.fullName} src={props.profile.picture} className={classes.avatar} />
                     </Grid>
-                    <Grid item>
-                        <Paper className={classes.field}>
-                            {props.profile.fullName}
-                        </Paper>
+                    <Grid item className={classes.field}>
+                        <Typography variant='h5' color='textPrimary'>
+                            <strong>
+                                {props.profile.fullName}
+                            </strong>
+                        </Typography>
                     </Grid>
-                    <Grid item>
-                        <Paper className={classes.field}>
-                            {props.profile.email}
-                        </Paper>
+                    <Grid item className={classes.field}>
+                        {props.profile.email}
                     </Grid>
                     {/* SOCIAL ICONS */}
                     <Grid container className={classes.socialRow}>
@@ -119,13 +122,15 @@ export default function UserInfoCard(props) {
                 </Grid>
                 {/* BIO TITLE + BODY */}
                 <Grid container className={classes.bioColumn}>
-                    <Grid item>
-                        <Paper className={classes.field}>About Me</Paper>
+                    <Grid item className={classes.field}>
+                        <Typography variant='h6' color='textPrimary'>
+                            <strong>
+                                About Me
+                            </strong>
+                        </Typography>
                     </Grid>
-                    <Grid item>
-                        <Paper className={classes.field}>
-                            {props.profile.bio}
-                        </Paper>
+                    <Grid item className={classes.field}>
+                        {props.profile.bio}
                     </Grid>
                 </Grid>
             </Grid>
