@@ -7,12 +7,7 @@ const profiles = new profilesClient('https://profiles.epicportfol.io');
 const { getuserRequest, profile } = require('./../proto/api_pb.js');
 export default function EditModal(props) {
 
-    //This breaks the api currently, serializebinary issue
-    const updateUser = (user) => profiles.updateuser(Object.assign(new profile, user), {}, function (err, response) {
-        console.log(err);
-        // console.log(response.toObject());
-        // props.setProfile(response.toObject());
-    });
+    const updateUser = (user) => console.log(Object.assign(new profile(), yaml.safeLoad(user)));
 
     //this updates the the text area with the profile data and allows you to edit it
     const [jsonValue, setJson] = useState(yaml.safeDump(props.profile));
