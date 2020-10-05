@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1),
     },
     field: {
-        padding: theme.spacing(0),
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
@@ -99,39 +98,37 @@ export default function UserInfoCard(props) {
     }
     return (
         <Grid container className={classes.root}>
-            <Grid container className={classes.profileCard}>
-                {/* PROFILE IMAGE + NAME */}
-                <Grid container className={classes.profileColumn}>
-                    <Grid item>
-                        <Avatar alt={props.profile.fullName} src={props.profile.picture} className={classes.avatar} />
-                    </Grid>
-                    <Grid item className={classes.field}>
-                        <Typography variant='h5' color='textPrimary'>
-                            <strong>
-                                {props.profile.fullName}
-                            </strong>
-                        </Typography>
-                    </Grid>
-                    <Grid item className={classes.field}>
-                        {props.profile.email}
-                    </Grid>
-                    {/* SOCIAL ICONS */}
-                    <Grid container className={classes.socialRow}>
-                        {links}
-                    </Grid>
+            {/* PROFILE IMAGE + NAME */}
+            <Grid container className={classes.profileColumn}>
+                <Grid item>
+                    <Avatar alt={props.profile.fullName} src={props.profile.picture} className={classes.avatar} />
                 </Grid>
-                {/* BIO TITLE + BODY */}
-                <Grid container className={classes.bioColumn}>
-                    <Grid item className={classes.field}>
-                        <Typography variant='h6' color='textPrimary'>
-                            <strong>
-                                About Me
+                <Grid item className={classes.field}>
+                    <Typography variant='h5' color='textPrimary'>
+                        <strong>
+                            {props.profile.fullName}
+                        </strong>
+                    </Typography>
+                </Grid>
+                <Grid item className={classes.field}>
+                    {props.profile.email}
+                </Grid>
+                {/* SOCIAL ICONS */}
+                <Grid container className={classes.socialRow}>
+                    {links}
+                </Grid>
+            </Grid>
+            {/* BIO TITLE + BODY */}
+            <Grid container className={classes.bioColumn}>
+                <Grid item className={classes.field}>
+                    <Typography variant='h6' color='textPrimary'>
+                        <strong>
+                            About Me
                             </strong>
-                        </Typography>
-                    </Grid>
-                    <Grid item className={classes.field}>
-                        {props.profile.bio}
-                    </Grid>
+                    </Typography>
+                </Grid>
+                <Grid item className={classes.field}>
+                    {props.profile.bio}
                 </Grid>
             </Grid>
 
