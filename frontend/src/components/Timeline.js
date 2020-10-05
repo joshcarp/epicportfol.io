@@ -27,7 +27,9 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.secondary.main,
     },
     oppositeItem: {
-        flex: 0.2
+        flex: 0.15,
+        paddingRight: 10,
+        paddingLeft: 0,
     },
     timelinePreviewGrid: {
         display: 'flex'
