@@ -57,6 +57,9 @@ const useStyles = makeStyles((theme) => ({
 export default function UserInfoCard(props) {
     const classes = useStyles();
     const links = [];
+    console.log("---")
+    console.log(props.profile.linksList)
+    console.log("----")
     for (let link of props.profile.linksList) {
         console.log(link)
         if (link.includes("reddit")) {
