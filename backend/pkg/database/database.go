@@ -78,7 +78,7 @@ func EnterProfile(db *sqlx.DB, profile *itproject.Profile) error {
 	if err := db.Ping(); err != nil {
 		return nil
 	}
-	_, err := db.Exec(`DELETE FROM profiles WHERE username='$1';`, profile.Username)
+	_, err := db.Exec(fmt.Sprintf(`DELETE FROM profiles WHERE username='%s';`, profile.Username))
 	if err != nil {
 		return err
 	}
@@ -86,7 +86,7 @@ func EnterProfile(db *sqlx.DB, profile *itproject.Profile) error {
 	if err != nil {
 		return err
 	}
-	_, err = db.Exec(`DELETE FROM links WHERE username='$1';`, profile.Username)
+	_, err = db.Exec(fmt.Sprintf(`DELETE FROM links WHERE username='%s';`, profile.Username))
 	if err != nil {
 		return err
 	}
@@ -96,7 +96,7 @@ func EnterProfile(db *sqlx.DB, profile *itproject.Profile) error {
 			return err
 		}
 	}
-	_, err = db.Exec(`DELETE FROM artifacts WHERE username='$1';`, profile.Username)
+	_, err = db.Exec(fmt.Sprintf(`DELETE FROM artifacts WHERE username='%s';`, profile.Username))
 	if err != nil {
 		return err
 	}
@@ -106,7 +106,7 @@ func EnterProfile(db *sqlx.DB, profile *itproject.Profile) error {
 			return err
 		}
 	}
-	_, err = db.Exec(`DELETE FROM jobs WHERE username='$1';`, profile.Username)
+	_, err = db.Exec(fmt.Sprintf(`DELETE FROM jobs WHERE username='%s';`, profile.Username))
 	if err != nil {
 		return err
 	}

@@ -786,5 +786,137 @@ proto.itproject.uploadPromiseClient.prototype.upload =
 };
 
 
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?Object} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.itproject.searchClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options['format'] = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+};
+
+
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?Object} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.itproject.searchPromiseClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options['format'] = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.itproject.searchRequest,
+ *   !proto.itproject.searchResponse>}
+ */
+const methodDescriptor_search_search = new grpc.web.MethodDescriptor(
+  '/itproject.search/search',
+  grpc.web.MethodType.UNARY,
+  proto.itproject.searchRequest,
+  proto.itproject.searchResponse,
+  /**
+   * @param {!proto.itproject.searchRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.itproject.searchResponse.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.itproject.searchRequest,
+ *   !proto.itproject.searchResponse>}
+ */
+const methodInfo_search_search = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.itproject.searchResponse,
+  /**
+   * @param {!proto.itproject.searchRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.itproject.searchResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.itproject.searchRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.itproject.searchResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.itproject.searchResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.itproject.searchClient.prototype.search =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/itproject.search/search',
+      request,
+      metadata || {},
+      methodDescriptor_search_search,
+      callback);
+};
+
+
+/**
+ * @param {!proto.itproject.searchRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.itproject.searchResponse>}
+ *     A native promise that resolves to the response
+ */
+proto.itproject.searchPromiseClient.prototype.search =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/itproject.search/search',
+      request,
+      metadata || {},
+      methodDescriptor_search_search);
+};
+
+
 module.exports = proto.itproject;
 
