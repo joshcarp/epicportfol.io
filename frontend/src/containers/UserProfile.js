@@ -9,6 +9,8 @@ import {
 import UserInfoCard from '../components/UserInfoCard'
 import ImageBox from '../components/ImageBox'
 import Iframebox from '../components/Iframebox'
+import EditModal from '../components/EditModal'
+import PopModal from '../components/PopModal'
 
 const { profilesClient } = require('./../proto/api_grpc_web_pb.js');
 const profiles = new profilesClient('https://profiles.epicportfol.io');
@@ -20,6 +22,7 @@ export default function UserProfile(props) {
     let { username } = useParams();
     const [prof, setProfile] = useState(null);
     console.log(username);
+    
 
     useEffect(() => {
         var req = new getuserRequest();
@@ -75,7 +78,7 @@ export default function UserProfile(props) {
 
             {/* PROFILE CONTAINER */}
             <Grid container component={Paper} className={classes.profile} elevation={4}>
-
+            <button onClick={() => PopModal()}> test</button>
                 {/* PROFILE CARDS EXAMPLE */}
                 <Grid item className={classes.card}>
                     <UserInfoCard profile={prof} />
@@ -86,10 +89,13 @@ export default function UserProfile(props) {
                 <Grid item className={classes.card}>
                     <ImageBox profile={prof} />
                 </Grid>
-
+                
+                <EditModal profile={prof} setProfile={setProfile}/>
             </Grid>
             <Grid className={classes.footer} />
+            
         </Grid>
+        
     )
 }
 
