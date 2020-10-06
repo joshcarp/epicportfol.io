@@ -124,3 +124,20 @@ message uploadRequest {
 message uploadResponse {
     string url = 1;
 }
+
+/* --- Search service --- */
+
+service search {
+    rpc search(searchRequest) returns(searchResponse);
+}
+
+message searchRequest {
+    string term = 1;
+}
+
+message searchResponse {
+    string username = 1;
+    string full_name = 2;
+    string picture = 3;
+    string bio = 4;
+}
