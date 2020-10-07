@@ -42,9 +42,9 @@ export default function SearchPage() {
                             <Avatar alt={user.fullName} src={user.picture} className={classes.avatar}/>
                         </Grid>
                         <Grid item xs zeroMinWidth>
-                            <Link to={"/u/" + user.username}>
+                            <Link to={"/u/" + user.username}>{user.username}</Link>
                                 <Typography noWrap>{user.fullName}</Typography>
-                            </Link>
+
                             <Typography noWrap>{user.bio}</Typography>
                         </Grid>
                     </Grid>
