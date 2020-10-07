@@ -16,7 +16,7 @@ func (s *Server) Search(ctx context.Context, in *itproject.SearchRequest) (*itpr
 	return &itproject.SearchResponse{
 		Username: prof.Username,
 		FullName: prof.FullName,
-		Picture:  prof.FullName,
+		Picture:  prof.Picture,
 		Bio:      prof.Bio,
 	}, err
 }

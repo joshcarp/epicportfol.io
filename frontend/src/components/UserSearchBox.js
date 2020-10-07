@@ -1,10 +1,9 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { TextField, withStyles } from '@material-ui/core';
+import { Redirect } from 'react-router'
+import { Link } from 'react'
 
-const { searchClient } = require('./../proto/api_grpc_web_pb.js');
-const searcher = new searchClient('http://localhost:443');
-const { searchRequest } = require('./../proto/api_pb.js');
 
 const styles = {
     form: {
@@ -23,7 +22,8 @@ class UserSearchBox extends React.Component {
         super(props);
         this.state = {
             username: "",
-            isValid: true
+            isValid: true,
+            fireRedirect: false
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,22 +31,26 @@ class UserSearchBox extends React.Component {
     }
 
     handleinput(event) {
+
         this.setState({
             username: event.target.value,
         })
     }
 
     handleSubmit(event) {
-        var r = new searchRequest();
-        r.setTerm(this.state.username);
-        searcher.search(r, {}, function (err, response) {
-            console.log(response)
+        event.preventDefault()
+
+        this.setState({
+            fireRedirect: true
         })
     }
 
 
     render() {
+        const { fireRedirect } = this.state;
+        var { username } = this.state;
         const { classes } = this.props;
+        username = "/search?term="+username
         return (
             <div className="UserSearchBox">
                 <form onSubmit={this.handleSubmit} className={classes.form}>
@@ -60,6 +64,9 @@ class UserSearchBox extends React.Component {
                         onChange={this.handleinput}
                     />
                 </form>
+                {fireRedirect && (
+                    <Redirect to={username}></Redirect>
+                )}
             </div>
         );
     }

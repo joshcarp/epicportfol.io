@@ -10,12 +10,10 @@ class RegisterPage extends Component {
     state = {
         showSideDrawer: false,
     }
-
     render() {
         return (
             <div className="Homepage">
                 <img src={Logo} className="Homepage-logo" alt="logo" />
-
                 <Paper elevation={3} >
                     <h4>Register your Epic Portfolio</h4>
                     <UserRegisterForm />
