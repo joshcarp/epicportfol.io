@@ -8,6 +8,7 @@ docs: sysl          ## Make sysl documentation
 	rm -rf service-documentation/ || true
 	mkdir service-documentation
 	docker run --rm -v $$(pwd)/:/usr/it-project:rw -v $$(pwd)/service-documentation:/out:rw  anzbank/sysl-catalog:v1.4.148 --embed --outputFileName={{.Title}}.md --plantuml=https://plantuml.com/plantuml --templates=it-project/sysl/templates/project.tmpl,it-project/sysl/templates/package.tmpl ./it-project/sysl/index.sysl
+
 docs.preview: sysl  ## Preview service documentation
 	docker run --rm -v $$(pwd)/:/usr/it-project:rw -p 6900:6900 -v $$(pwd)/service-documentation:/out:rw  anzbank/sysl-catalog:v1.4.148 --serve --embed --plantuml=https://plantuml.com/plantuml ./it-project/sysl/index.sysl
 
@@ -39,6 +40,7 @@ secret:             ## Remake a jwt secret
 
 docker-compose:     ## Run all the services in build/docker-compose.yaml
 	docker-compose -f docker-compose.yaml up
+
 help:               ## Show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
