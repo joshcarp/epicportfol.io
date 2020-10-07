@@ -10,7 +10,7 @@ import { Link, useLocation, BrowserRouter as Router } from "react-router-dom";
 import Logo from '../assets/logo.svg'
 import queryString from 'query-string';
 const { searchClient } = require('./../proto/api_grpc_web_pb.js');
-const searcher = new searchClient('http://localhost:443');
+const searcher = new searchClient('https://search.epicportfol.io');
 const { searchRequest } = require('./../proto/api_pb.js');
 
 
@@ -32,8 +32,6 @@ export default function SearchPage() {
     if (prof == null) {
         return <div>Loading...</div>;
     }
-
-    console.log(prof);
     return (
         <div className="Homepage">
         <div className={classes.root}>
