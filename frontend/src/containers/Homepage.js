@@ -16,9 +16,7 @@ class Homepage extends Component {
     render() {
         return (
             <div className="Homepage">
-
                 <img src={Logo} className="Homepage-logo" alt="logo" />
-
                 <Paper elevation={3} >
                     <h5>Find your next Epic Candidate</h5>
                     <UserSearchBox />

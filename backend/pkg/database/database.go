@@ -206,3 +206,26 @@ func GetProfile(db *sqlx.DB, user string) (*itproject.Profile, error) {
 	}
 	return &prof, nil
 }
+
+func GetProfileLike(db *sqlx.DB, user string) ([]*itproject.SingleSearchResponse, error) {
+	ac := fmt.Sprintf(`Select * FROM profiles WHERE username LIKE '%%%s%%';`, user)
+	rows, err := db.Queryx(ac)
+	if err != nil {
+		return nil, err
+	}
+	profiles := []*itproject.SingleSearchResponse{}
+	for rows.Next() {
+		profile := objects.Profiles{}
+		err := rows.StructScan(&profile)
+		if err != nil {
+			return nil, err
+		}
+		profiles = append(profiles, &itproject.SingleSearchResponse{
+			Username: profile.Username,
+			Picture:  profile.ProfilePicture,
+			Bio:      profile.Bio,
+		})
+	}
+
+	return profiles, nil
+}
