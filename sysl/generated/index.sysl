@@ -163,6 +163,10 @@ itproject:
     !type searchResponse:
         @description = ""
         @source_path = "api.proto"
+        results <: sequence of singleSearchResponse
+    !type singleSearchResponse:
+        @description = ""
+        @source_path = "api.proto"
         bio <: string:
             @json_tag = "bio"
             @rpcId = "4"
