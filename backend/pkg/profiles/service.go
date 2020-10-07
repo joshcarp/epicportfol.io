@@ -2,23 +2,33 @@ package profiles
 
 import (
 	"github.com/jmoiron/sqlx"
-	"github.com/joshcarp/it-project/backend/pkg/database"
-	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
+	"github.com/joshcarp/it-project/backend/internal/config"
+	"github.com/joshcarp/it-project/backend/internal/database"
+	"github.com/joshcarp/it-project/backend/internal/proto/itproject"
 	"github.com/sirupsen/logrus"
-	"github.com/spf13/viper"
+	"google.golang.org/grpc"
 )
 
-// server is used to implement helloworld.GreeterServer.
 type Server struct {
-	config *viper.Viper
+	config config.Config
 	db     *sqlx.DB
+	log    *logrus.Logger
 	itproject.UnimplementedProfilesServer
 }
 
-func NewServer(config *viper.Viper, log *logrus.Logger) (*Server, error) {
+func NewServer(config config.Config, log *logrus.Logger) (*Server, error) {
 	db, err := database.NewDB(config)
 	if err != nil {
 		return nil, err
 	}
-	return &Server{config: config, db: db}, nil
+	return &Server{config: config, db: db, log: log}, nil
+}
+
+func RegisterService(conf config.Config, log *logrus.Logger, s *grpc.Server) error {
+	ser, err := NewServer(conf, log)
+	if err != nil {
+		return err
+	}
+	itproject.RegisterProfilesServer(s, ser)
+	return nil
 }

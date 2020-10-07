@@ -6,9 +6,9 @@ import (
 
 	"github.com/jmoiron/sqlx"
 
-	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
+	"github.com/joshcarp/it-project/backend/internal/proto/itproject"
 
-	"github.com/joshcarp/it-project/backend/pkg/auth"
+	"github.com/joshcarp/it-project/backend/internal/auth"
 
 	"github.com/stretchr/testify/require"
 )

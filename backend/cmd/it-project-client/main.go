@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
+	"github.com/joshcarp/it-project/backend/internal/proto/itproject"
 	"google.golang.org/grpc"
 )
 
