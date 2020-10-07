@@ -3,9 +3,9 @@ package profiles
 import (
 	"context"
 
-	"github.com/joshcarp/it-project/backend/pkg/database"
+	"github.com/joshcarp/it-project/backend/internal/database"
 
-	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
+	"github.com/joshcarp/it-project/backend/internal/proto/itproject"
 )
 
 func (s *Server) Getuser(ctx context.Context, in *itproject.GetuserRequest) (*itproject.Profile, error) {

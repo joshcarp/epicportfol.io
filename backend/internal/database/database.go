@@ -3,18 +3,18 @@ package database
 import (
 	"fmt"
 
-	"github.com/joshcarp/it-project/backend/pkg/objects"
+	"github.com/joshcarp/it-project/backend/internal/config"
+	"github.com/joshcarp/it-project/backend/internal/objects"
 
-	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
+	"github.com/joshcarp/it-project/backend/internal/proto/itproject"
 
 	"github.com/jmoiron/sqlx"
-	"github.com/joshcarp/it-project/backend/pkg/auth"
-	"github.com/spf13/viper"
+	"github.com/joshcarp/it-project/backend/internal/auth"
 )
 
-// NewDB creates a new database with a config and a logger
-func NewDB(conf *viper.Viper) (*sqlx.DB, error) {
-	switch conf.GetStringMapString("database")["type"] {
+/* NewDB creates a new database with a config and a logger */
+func NewDB(conf config.Config) (*sqlx.DB, error) {
+	switch conf.Database.Type {
 	case "memory":
 		return openDatabaseMemory("database/db.sql")
 	case "cloud":
@@ -25,7 +25,7 @@ func NewDB(conf *viper.Viper) (*sqlx.DB, error) {
 	return nil, fmt.Errorf("No database to open")
 }
 
-// GetAccountFromEmail returns an account with an email
+/* GetAccountFromEmail returns an account with an email */
 func GetAccountFromEmail(db *sqlx.DB, username string) (*auth.Account, error) {
 	if err := db.Ping(); err != nil {
 		return nil, err
@@ -44,7 +44,7 @@ func GetAccountFromEmail(db *sqlx.DB, username string) (*auth.Account, error) {
 	return &account, err
 }
 
-// EnterUser returns an account with an email
+/* EnterUser returns an account with an email */
 func EnterUser(db *sqlx.DB, user auth.Account) error {
 	if err := db.Ping(); err != nil {
 		return nil
@@ -60,7 +60,7 @@ VALUES ('%s', '%s', '%s', '%s', '%s', '%s');`,
 	return nil
 }
 
-// VerifyUser verifies a user by hashing the password and checking against the database
+/* VerifyUser verifies a user by hashing the password and checking against the database */
 func VerifyUser(db *sqlx.DB, email, password string) error {
 	account, err := GetAccountFromEmail(db, email)
 	if err != nil {
@@ -73,7 +73,7 @@ func VerifyUser(db *sqlx.DB, email, password string) error {
 	return nil
 }
 
-// EnterUser returns an account with an email
+/* EnterUser returns an account with an email */
 func EnterProfile(db *sqlx.DB, profile *itproject.Profile) error {
 	if err := db.Ping(); err != nil {
 		return nil
@@ -118,6 +118,7 @@ func EnterProfile(db *sqlx.DB, profile *itproject.Profile) error {
 	return nil
 }
 
+/* GetProfile gets the user profile which matches user exactly */
 func GetProfile(db *sqlx.DB, user string) (*itproject.Profile, error) {
 	ac := fmt.Sprintf("Select * FROM accounts WHERE username = '%s';", user)
 	rows, err := db.Queryx(ac)
@@ -207,6 +208,7 @@ func GetProfile(db *sqlx.DB, user string) (*itproject.Profile, error) {
 	return &prof, nil
 }
 
+/* GetProfileLike gets a the user profiles which have strings like user */
 func GetProfileLike(db *sqlx.DB, user string) ([]*itproject.SingleSearchResponse, error) {
 	ac := fmt.Sprintf(`Select * FROM profiles WHERE username LIKE '%%%s%%';`, user)
 	rows, err := db.Queryx(ac)
