@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import { TextField, withStyles, Button } from '@material-ui/core';
 
-const { LoginRequest } = require('../proto/api_pb.js')
+const { loginRequest } = require('../proto/api_pb.js')
 const { authenticateClient } = require('../proto/api_grpc_web_pb.js')
 const auth = new authenticateClient('https://authenticate.epicportfol.io')
 
@@ -60,7 +60,7 @@ class UserRegisterForm extends React.Component {
     }
     handleSubmit(event) {
         event.preventDefault()
-        var request = new LoginRequest()
+        var request = new loginRequest()
         request.email = this.state.email
         request.password = this.state.password
         request.username = this.state.username
