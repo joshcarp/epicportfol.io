@@ -20,7 +20,7 @@ proto:              ## Remake the proto generation
 	printf '%s\n%s\n' "/* eslint-disable */" "$$(cat ./frontend/src/proto/api_pb.js)" > ./frontend/src/proto/api_pb.js
 
 docker:             ## Build the authentication service
-	docker build . -t joshcarp/it-project -f build/Dockerfile
+	docker build .  --build-arg SERVICE=$(SERVICE) -t joshcarp/it-project
 
 run:                ## Run docker
 	docker run --rm -p 443:443 joshcarp/it-project
