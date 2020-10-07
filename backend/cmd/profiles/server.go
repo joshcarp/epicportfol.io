@@ -2,58 +2,22 @@
 package main
 
 import (
-	"flag"
-	"fmt"
-	"log"
-	"net"
-	"net/http"
-	"os"
-
-	"github.com/improbable-eng/grpc-web/go/grpcweb"
-
+	"github.com/joshcarp/it-project/backend/internal/server"
 	"github.com/joshcarp/it-project/backend/pkg/profiles"
 
 	"github.com/sirupsen/logrus"
 
 	_ "github.com/GoogleCloudPlatform/cloudsql-proxy/proxy/dialers/postgres"
-	"github.com/joshcarp/it-project/backend/pkg/config"
-	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/reflection"
 )
 
 func main() {
-	configFlag := flag.String("config", "local", "file (without ext) of the config file to load from config")
-	flag.Parse()
-	conf, err := config.ReadConfig(*configFlag)
-	logger := logrus.New()
+	l := logrus.New()
+	s, handler, conf, err := server.SetupServer()
 	if err != nil {
-		logger.Fatal("Cannot read config")
+		l.Fatal(err)
 	}
-	var port string
-	if p := os.Getenv("PORT"); p != "" {
-		port = p
-	} else {
-		port = config.GetProperty(conf, "server", "port")
+	if err := profiles.RegisterService(conf, l, s); err != nil {
+		l.Fatal(err)
 	}
-
-	lis, err := net.Listen("tcp", ":"+port)
-	if err != nil {
-		logger.Fatalf("failed to listen: %v", err)
-	}
-	s := grpc.NewServer()
-	reflection.Register(s)
-	server, err := profiles.NewServer(conf, logger)
-	if err != nil {
-		logger.Errorf("Cannot connect to database %v", err)
-	}
-
-	itproject.RegisterProfilesServer(s, server)
-	grpcweb_server := grpcweb.WrapServer(s, grpcweb.WithOriginFunc(func(origin string) bool {
-		// Allow all origins, DO NOT do this in production
-		return true
-	}))
-	fmt.Println("Starting server on " + port)
-	fmt.Println("Starting grpc server")
-	log.Fatal(http.Serve(lis, grpcweb_server))
+	server.Serve(conf, l, handler)
 }

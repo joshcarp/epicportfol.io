@@ -1,13 +1,13 @@
-package accounts
+package authenticate
 
 import (
 	"context"
 
-	"github.com/joshcarp/it-project/backend/pkg/database"
+	"github.com/joshcarp/it-project/backend/internal/database"
 
-	"github.com/joshcarp/it-project/backend/pkg/auth"
-	"github.com/joshcarp/it-project/backend/pkg/jwt"
-	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
+	"github.com/joshcarp/it-project/backend/internal/auth"
+	"github.com/joshcarp/it-project/backend/internal/jwt"
+	"github.com/joshcarp/it-project/backend/internal/proto/itproject"
 )
 
 func (s *Server) Register(ctx context.Context, req *itproject.RegisterRequest) (*itproject.RegisterResponse, error) {

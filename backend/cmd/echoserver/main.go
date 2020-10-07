@@ -3,12 +3,13 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"log"
 	"net"
 	"net/http"
 
-	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
+	"github.com/improbable-eng/grpc-web/go/grpcweb"
+
+	"github.com/joshcarp/it-project/backend/internal/proto/itproject"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
