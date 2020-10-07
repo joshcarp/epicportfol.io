@@ -1,93 +1,39 @@
 
-EchoService[~gRPC]:
-    @description =:
-        | EchoService is a basic service to test connections 
-    @package = "itproject"
-    @source_path = "api.proto"
-    Echo(input <: itproject.EchoRequest)[~gRPC]:
-        @description = ""
-        @source_path = "api.proto"
-        return ok <: itproject.EchoResponse
-
 authenticate[~gRPC]:
     @description =:
         | authenticate is the miroservice that handles authentication and issues JWTs to 
         |use with other services 
     @package = "itproject"
     @source_path = "api.proto"
-    Login(input <: itproject.LoginRequest)[~gRPC]:
+    login(input <: itproject.loginRequest)[~gRPC]:
         @description =:
             | Login is used to login and to acquire a jwt 
         @source_path = "api.proto"
-        return ok <: itproject.LoginResponse
-    Register(input <: itproject.RegisterRequest)[~gRPC]:
+        return ok <: itproject.loginResponse
+    register(input <: itproject.registerRequest)[~gRPC]:
         @description =:
             | Register is used to register a user and acquire a jwt 
         @source_path = "api.proto"
-        return ok <: itproject.RegisterResponse
-    RenewJWT(input <: itproject.LoginRequest)[~gRPC]:
+        return ok <: itproject.registerResponse
+    renewJWT(input <: itproject.loginRequest)[~gRPC]:
         @description =:
             | RenewJWT is used to reissue JWTs that have expired 
         @source_path = "api.proto"
-        return ok <: itproject.LoginResponse
+        return ok <: itproject.loginResponse
+
+echo[~gRPC]:
+    @description =:
+        | EchoService is a basic service to test connections 
+    @package = "itproject"
+    @source_path = "api.proto"
+    echo(input <: itproject.echoRequest)[~gRPC]:
+        @description =:
+            | echo is a method to test service deployments 
+        @source_path = "api.proto"
+        return ok <: itproject.echoResponse
 
 itproject:
     @package = "itproject"
-    !type EchoRequest:
-        @description =:
-            | EchoRequest is the request object for EchoService 
-        @source_path = "api.proto"
-        message <: string:
-            @json_tag = "message"
-            @rpcId = "1"
-    !type EchoResponse:
-        @description =:
-            | EchoResponse is the response from the EchoService 
-        @source_path = "api.proto"
-        message <: string:
-            @json_tag = "message"
-            @rpcId = "1"
-    !type LoginRequest[~empty]:
-        @description =:
-            | LoginRequest is empty because the Bas64(username:password) is contained in the 
-            |header of the request 
-        @source_path = "api.proto"
-        ...
-    !type LoginResponse:
-        @description =:
-            | LoginRequest is the response object from Login that is used in bearer authentic
-            |ation in the header: "Bearer <JWT>" 
-        @source_path = "api.proto"
-        jwt <: string:
-            @json_tag = "jwt"
-            @rpcId = "1"
-    !type RegisterRequest:
-        @description =:
-            | RegisterRequest contains all the information to register the user in the databa
-            |se 
-        @source_path = "api.proto"
-        email <: string:
-            @json_tag = "email"
-            @rpcId = "1"
-        fullName <: string:
-            @json_tag = "fullName"
-            @rpcId = "3"
-        password <: string:
-            @json_tag = "password"
-            @rpcId = "5"
-        preferredName <: string:
-            @json_tag = "preferredName"
-            @rpcId = "4"
-        username <: string:
-            @json_tag = "username"
-            @rpcId = "2"
-    !type RegisterResponse:
-        @description =:
-            | RegisterResponse is the response from the registration services 
-        @source_path = "api.proto"
-        jwt <: string:
-            @json_tag = "jwt"
-            @rpcId = "2"
     !type RenewJWTRequest[~empty]:
         @description =:
             | RenewJWTRequest is empty becayse Bearer <JWT> should be used with this method 
@@ -112,6 +58,20 @@ itproject:
         title <: string:
             @json_tag = "title"
             @rpcId = "3"
+    !type echoRequest:
+        @description =:
+            | EchoRequest is the request object for EchoService 
+        @source_path = "api.proto"
+        message <: string:
+            @json_tag = "message"
+            @rpcId = "1"
+    !type echoResponse:
+        @description =:
+            | EchoResponse is the response from the EchoService 
+        @source_path = "api.proto"
+        message <: string:
+            @json_tag = "message"
+            @rpcId = "1"
     !type getuserRequest:
         @description = ""
         @source_path = "api.proto"
@@ -133,6 +93,20 @@ itproject:
         title <: string:
             @json_tag = "title"
             @rpcId = "3"
+    !type loginRequest[~empty]:
+        @description =:
+            | LoginRequest is empty because the Bas64(username:password) is contained in the 
+            |header of the request 
+        @source_path = "api.proto"
+        ...
+    !type loginResponse:
+        @description =:
+            | LoginRequest is the response object from Login that is used in bearer authentic
+            |ation in the header: "Bearer <JWT>" 
+        @source_path = "api.proto"
+        jwt <: string:
+            @json_tag = "jwt"
+            @rpcId = "1"
     !type profile:
         @description = ""
         @source_path = "api.proto"
@@ -154,6 +128,33 @@ itproject:
         username <: string:
             @json_tag = "username"
             @rpcId = "1"
+    !type registerRequest:
+        @description =:
+            | RegisterRequest contains all the information to register the user in the databa
+            |se 
+        @source_path = "api.proto"
+        email <: string:
+            @json_tag = "email"
+            @rpcId = "1"
+        fullName <: string:
+            @json_tag = "fullName"
+            @rpcId = "3"
+        password <: string:
+            @json_tag = "password"
+            @rpcId = "5"
+        preferredName <: string:
+            @json_tag = "preferredName"
+            @rpcId = "4"
+        username <: string:
+            @json_tag = "username"
+            @rpcId = "2"
+    !type registerResponse:
+        @description =:
+            | RegisterResponse is the response from the registration services 
+        @source_path = "api.proto"
+        jwt <: string:
+            @json_tag = "jwt"
+            @rpcId = "2"
     !type searchRequest:
         @description = ""
         @source_path = "api.proto"
@@ -200,20 +201,25 @@ itproject:
             @rpcId = "1"
 
 profiles[~gRPC]:
-    @description = ""
+    @description =:
+        | profiles is a service to retrieve and update a profile that is displayed 
     @package = "itproject"
     @source_path = "api.proto"
     getuser(input <: itproject.getuserRequest)[~gRPC]:
-        @description = ""
+        @description =:
+            | getuser gets a user from a userid 
         @source_path = "api.proto"
         return ok <: itproject.profile
     updateuser(input <: itproject.profile)[~gRPC]:
-        @description = ""
+        @description =:
+            | updateuser updates a profile 
         @source_path = "api.proto"
         return ok <: itproject.updateuserResponse
 
 search[~gRPC]:
-    @description = ""
+    @description =:
+        | search is a service that is used to find a profile/user based on a search param
+        |eter 
     @package = "itproject"
     @source_path = "api.proto"
     search(input <: itproject.searchRequest)[~gRPC]:
@@ -222,11 +228,13 @@ search[~gRPC]:
         return ok <: itproject.searchResponse
 
 upload[~gRPC]:
-    @description = ""
+    @description =:
+        | upload service is used to upload static assets to gcs 
     @package = "itproject"
     @source_path = "api.proto"
     upload(input <: itproject.uploadRequest)[~gRPC]:
-        @description = ""
+        @description =:
+            | upload uploads a static asset to gcp and returns a url 
         @source_path = "api.proto"
         return ok <: itproject.uploadResponse
 

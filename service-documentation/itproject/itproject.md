@@ -3,7 +3,7 @@
 
 # itproject
 ## Integration Diagram
-<img src="https://plantuml.com/plantuml/svg/~1UDgCparByq0GmF7xVefvJZq5-iQ3XrBwaYXU6f28Xo9bt8pTjPkTC3j1HVpkKg8zz9GvBVl_xSjey9ZH20RDBrq_LkLTiIiUrbMHmxRC2yWoo4lObHKK-Ntrxq87tphuhsQL54Mx9XZr6WYyji9lPDKuNnCa9I7MpvPCiXW86lo0oV_PpHmS-QDJaqu-jYZOWEMcvKXHuSi0RD2UZi9ThBSSME0si61uSbxfN5bgahvi0jgJ0LYBy7k_jHNV98xcs-nRuLSVA3q39ZYCOR5m_kZ2-UtbqkphbpvCp64CMROyh_Q9KAphm_Jgn65wOLqR6EkUpQxPxCAmKqTHlKMb7i-lyVmFhoZMNHD-0W00__y7ufA5">
+<img src="https://plantuml.com/plantuml/svg/~1UDgCpizgup0G1l2xdcBsb9CXYPDb3o7aZxsbbnYAIm-X6DMUH6faZHcDQKlfkvUWu4DEdjE7lf-acOmUDPd0gBdHxNDPFEI7_6bRvXdiYoo7986iW4DHGfuzbdy6ElhLqRkgJH3DqhTEYHM7OALZUiTQbB4DGX1a9FdgK8LQEuHMVyBiR_fl0GRjsOWA5-ixpRg5cjgEF7g1RmMmq_NbpDJxPa-E6FuxOkrUZ1MyjiGDScnsJjSN1R1bfezuj6VR1lBgHnrrBmQzs5eBle8EK4rXjJBsRDpr__LQ7PktMCnKDOKaML_JiMCwMOSXLlExEzLyW04rroQoz9wb0-ixHxg9R77F5WCxCNb1VuDBLIrZDHrIEgIvsg1l-jRz1W00__zLjfvZ">
 
 
 
@@ -12,10 +12,10 @@
 
 | Application Name | Method |
 |----|----|
-| EchoService | [Echo](#EchoService-Echo) |
-| authenticate | [Login](#authenticate-Login) |
-| authenticate | [Register](#authenticate-Register) |
-| authenticate | [RenewJWT](#authenticate-RenewJWT) |
+| authenticate | [login](#authenticate-login) |
+| authenticate | [register](#authenticate-register) |
+| authenticate | [renewJWT](#authenticate-renewJWT) |
+| echo | [echo](#echo-echo) |
 | profiles | [getuser](#profiles-getuser) |
 | profiles | [updateuser](#profiles-updateuser) |
 | search | [search](#search-search) |
@@ -25,18 +25,18 @@
 
 | Application Name | Type Name |
 |----|----|
-| itproject | [EchoRequest](#itproject.EchoRequest) | 
-| itproject | [EchoResponse](#itproject.EchoResponse) | 
-| itproject | [LoginRequest](#itproject.LoginRequest) | 
-| itproject | [LoginResponse](#itproject.LoginResponse) | 
-| itproject | [RegisterRequest](#itproject.RegisterRequest) | 
-| itproject | [RegisterResponse](#itproject.RegisterResponse) | 
 | itproject | [RenewJWTRequest](#itproject.RenewJWTRequest) | 
 | itproject | [RenewJWTResponse](#itproject.RenewJWTResponse) | 
 | itproject | [artifact](#itproject.artifact) | 
+| itproject | [echoRequest](#itproject.echoRequest) | 
+| itproject | [echoResponse](#itproject.echoResponse) | 
 | itproject | [getuserRequest](#itproject.getuserRequest) | 
 | itproject | [job](#itproject.job) | 
+| itproject | [loginRequest](#itproject.loginRequest) | 
+| itproject | [loginResponse](#itproject.loginResponse) | 
 | itproject | [profile](#itproject.profile) | 
+| itproject | [registerRequest](#itproject.registerRequest) | 
+| itproject | [registerResponse](#itproject.registerResponse) | 
 | itproject | [searchRequest](#itproject.searchRequest) | 
 | itproject | [searchResponse](#itproject.searchResponse) | 
 | itproject | [singleSearchResponse](#itproject.singleSearchResponse) | 
@@ -47,57 +47,6 @@
 
 
 # Applications
-
-
-
-
-## Application EchoService
-
-
-- EchoService is a basic service to test connections 
-
-
-
-
-
-
-### <a name=EchoService-Echo></a>EchoService Echo
-
-<details>
-<summary>Sequence Diagram</summary>
-
-<img src="https://plantuml.com/plantuml/svg/~1UDgCZp5F-p0GnNT_YlVlakLlY91OaEEs8XPYe97QC7MeZ7ig1iUERBT2V7gKK507XhpjxltktLqnMQmeC4bdTFdSDWzgfTRBLjMuRse5pb4tM3KjLFtO_lj59wTElfKjKjOn7pl7JF0v1eUPCgzXG_5a3SsW4tObI-_Mzphg3ft-UAAKz84szfDmSrkoRBCZN4n1yB5aLVLN6rN5jbpkIjnzOzfaUzAPXarRmVde21DSY7XnHv8szp6yaSbN0x-cr0UVI5oFY8GuiuT8vENyF-O_bcHxkanVaDyFltu5003__tIXSsi0">
-
-</details>
-
-
-<details>
-<summary>Request types</summary>
-
-
-
-
-<img src="https://plantuml.com/plantuml/svg/~1UDgCaB_AmZ0SHVSynVswz1EjE4ifBIQ8ImCbpXBIq4Rwp_pIINnt4SGvPpvSBgUae7rOnu6bqR0qHHHVjRegUHQrQ2ebE4wI2sGPk4Gj5GI_gB-V6hqQ_PMPGHCXSTEoXWIQS3iWp_7FTxCtlMitS67nyzsQi1UcdnlxM2q550MUR8lH4kdEuWWAtaqTUx7IJksds3i00F__-0H2zW00">
-
-
-</details>
-
-
-<details>
-<summary>Response types</summary>
-
-
-
-
-EchoResponse is the response from the EchoService 
-
-<img src="https://plantuml.com/plantuml/svg/~1UDgCq44BWZ0Onl7xFiMJ5uioEeU8qaPqSI3h76CEDTJ9tdMAldi44HttF_zuUNbA2jg7npIoD3gMfeZgIwkhacTHYwPIWkCakK2MWKlKKa7mYrhzQFJLw5-P6JKH4c5wrrXQt4msWIRS3iXphFdEUTCFxGP3MBoxMnFs_nP5WIVROh94khCuWe8VvewzM6ddzhFSEm00__ywP4Nw">
-
-
-</details>
-
-
----
 
 
 
@@ -113,13 +62,13 @@ use with other services
 
 
 
-### <a name=authenticate-Login></a>authenticate Login
+### <a name=authenticate-login></a>authenticate login
 Login is used to login and to acquire a jwt 
 
 <details>
 <summary>Sequence Diagram</summary>
 
-<img src="https://plantuml.com/plantuml/svg/~1UDgCaB5Eyp0KHdS_nVTtwV8RN2IMAd5RaGWXGIELC7M8dEIg65AxifqAyVGeQO0C3BcZpz7nrPrF7ZQVOz8CwkObp-xJRRhRv6c2kon9mJcI3DiiHveyvFz-rCdLoRkojG_AXVROiCgQu6o3cMh3AvcWAnLe1kLH25Qhe4hb2REwlBmjc7_NvgISEkAeFfx8UtMWP_r9kBaLBEZG4COfH1oFzg0DY-E_0UAOxRai19Q3gQgWpvrI25O8S8aUbihhQjpGrZ0KWijYWIKS1QVfJ6WzEORVoAAJ8ivxwm9h6kDz1xiVeiesrg5iMf8wd9nzeofSzKljo9-iyHHTzuv4DCW7HsJawZzMtqYoSLwmDPcwE_LN0000__-Wlfnc">
+<img src="https://plantuml.com/plantuml/svg/~1UDgCa35Fmp0GHdV_YeykNJ2uI2nLuhOY4MAWaKgOEaHESYg6rAvifqByUfGqG0Q6tEZtz7ow-UHXypacpQ1kNlFiCTsckqsU9dZ8aXIS8ycmpNAaoLD-zQjEhaxUbQrzK2wqnuPLrWHd6ynK6zx815sfG3CeZqAmMWLLAa-OrUNbRS7yXpOdvTGHH_NvJDwh0xteByBTlM11XuOmJY7YQEn16nR7_mF4CTjpMGWi1rDLGPyxfH2i4E0IFIoLrzMueQrXA0INnG9BE0fEqvdGUd8CVv559qMSzzO5rZJ6-mvsFqILRQn3sRGaTJWv-qvLkEcNsf4_MUCfkkqTYMYG3ux8oDKrLZz8id5Ui3MPkZlrTm000F__10sSvW00">
 
 </details>
 
@@ -130,7 +79,7 @@ Login is used to login and to acquire a jwt
 
 
 
-<img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNwFdafsVc1QKMbgOMboWf91Ohn1lOs2XekEZa5oLdPAPeAjZPALHprN8vfEQbW0864000___-pZgr">
+<img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNwENafsVc1QKMbgOMboWf91Ohn1lOs2XekEZa5oLdPAPeAjZPALHprN8vfEQbW0864000__y4tJhL">
 
 
 </details>
@@ -145,7 +94,7 @@ Login is used to login and to acquire a jwt
 LoginRequest is the response object from Login that is used in bearer authentic
 ation in the header: "Bearer <JWT>" 
 
-<img src="https://plantuml.com/plantuml/svg/~1UDgCqB6gmZ0Knl4zJ_7TBhsY5MSffSK44QI14cSfRQWfDIav4GVntKKGmIt_-SVXy9KKMXzkrucbqR4qHLGVMfsKt8jQD9KI73l91R8CNAAM2e8VrD-NHb-D_fLrKqk4vEW6OnjDixEa4xI4ymPvZd--Shwxc7u14sRlHjs5zGz6KU31bXZl0LjGyCOExCbARVltRgy0003__xnOHLu0">
+<img src="https://plantuml.com/plantuml/svg/~1UDgCqB4AmZ0KXU4zJt7iKaKhpb9AYmdYqa29ivGsr9IQbDo8W_Zk8eZWbd_-k5nEIQ7ruNwRM1eTIrD4zQNLMScZg4LJAS5na5mWoy0bQgaW-4ajVZJwQlIlh9jQ8YIJ6unjDCtEaaxG4Yuxv3cMVEDyTpNz2YRCtesw2zi_ZAB0awqnFWBseE2D7TYBbThsdztU0G00___C-4MU">
 
 
 </details>
@@ -154,13 +103,13 @@ ation in the header: "Bearer <JWT>"
 ---
 
 
-### <a name=authenticate-Register></a>authenticate Register
+### <a name=authenticate-register></a>authenticate register
 Register is used to register a user and acquire a jwt 
 
 <details>
 <summary>Sequence Diagram</summary>
 
-<img src="https://plantuml.com/plantuml/svg/~1UDgCq45B-q0G1V3xV8htxwMN_seYU2d9jiK4yM03DPvw2DjagAlffknEHFpqqjhQWWYPuywFzvOP3nuQZp5eZdJ-N1Rt-I9VpiiymrsHvL0AMO55KIBF7if_FtHmwk2_qYo8yT9lMwex9xvhCJAzlB0JMnlX4Kn05L5ZnAnDO8oQzVTRJE7DkftnPekj-NZa4Co6d-mdu-Os8h7ICYwZa2WiUME3iASq_NE7DAMLqbM4oTcRMkpx7bOHeOgKhc9CO5rWB-W3UyAPn8GgXjBuZHg-PAj4gKDFKdTjvx5kUzPMThvxvLgkJkrB3hlE1Kwk3qmZEVgDPtPw-X_JqqhJPKD4CtRD_hXV0G00__ynpvb1">
+<img src="https://plantuml.com/plantuml/svg/~1UDgCq45B-q0G1V3xV8htxwMN_seYU2d9jiK4yM03DPvw2DjagAlffknEHFpqqjhQWWYPuywFzvOP3nuQZp5eZdJ-N1Rt-I9VpiiymrsHvL0AMO55KIBF7if_FtHmwk2_qYo8yT9lMwex9xvhCJAzlB0JMnlX4Kn05L5ZnAnDO8oQzVTRJE7DkftnPekj-NZa4Co6d-mdu-Os8h7ICYwZa2XutjWWx2bD_zmXJMcbT1LXSlQc5lk-XrL4g2AbgnWJM1VO2_h0dd0cCQ6AeJH-euOlsIfHwj2Jr5tRUQpRdhMLdUzUkPQhK_kImwvpWPFh0zD8ZdxZcPsU_iVqjD9qsH3HZ5spF-vN0000__-F3vd1">
 
 </details>
 
@@ -171,7 +120,7 @@ Register is used to register a user and acquire a jwt
 
 
 
-<img src="https://plantuml.com/plantuml/svg/~1UDgCaK5B0p4GHk_v5P-zh58hdgMK5XF4oouiwrd2PbeZsUmwCy63-Dz54B6UyewFnp3mxKKzQvcIQQenJOCgVjB3qz0zkDRrXy5Pt7VMORE1xT1s0vnz72v-q-ghrR-QCNaHh69UYgxW1S-ts6vnQQzd7bzYk4BKXUTN6lMcfrCK9UxfhP0eTZjyc3LeyZ7X3g8SyyciSImfjNwYlsxn8kypXpF7T2Hc2l_Z8iJvp7sQFUNmFSHN0000___nA62-">
+<img src="https://plantuml.com/plantuml/svg/~1UDgCaK5B0p4GHk_v5P-zh58hdgMK5XF4oowKzInXCwsHR7QTcU11_EyYYBYUyewFnp3mxKKzQncJQQenJOCgVjB3KzyzkDOT3xspkE-imsO3sw7jUZZxs5_yfjLNgtyrG_8YMCKy5rt12vvliTtYqbvFFBp4S8MeCq-lDEWDqpcA4X_fhP0eTZjyc3Lez37X3g8SyzciSIefjNwalsxs8kyJXuLZEX4pXVzn4UAyS9zcJpby3_4L003__m7NODu0">
 
 
 </details>
@@ -185,7 +134,7 @@ Register is used to register a user and acquire a jwt
 
 RegisterResponse is the response from the registration services 
 
-<img src="https://plantuml.com/plantuml/svg/~1UDgCqC4AWa0Gnl7xFiMN5uioEeU8qYxHnGNPpY6ws8gfx4nqYDuzWkZGQV_d7yFmvSIrv_jj475m8euHr9SMPwEFgbHLOPJ4GKk5987KABM1aYUp-D7Wgy6_YcQeYH1LjdF4rbUMvcaa6w4cN7P8KopbPlBDrRKhE9xzrDk6j_yUMOQdMAD_CFOWzcxin4laTcm_wxq3003__umLH_O0">
+<img src="https://plantuml.com/plantuml/svg/~1UDgCqC4AWa0Gnl7xFiMN5uioEeU8qYxHnGNPpY6ws8gfx4nqYDuzWkZGQV_d7yFmvSIrv_jj475m8euHr9SMPwEFgbHLOPJ4GKk5987KABM1aYUp-D7Wgy6_YcQeYH1vspbYwojBypIIZL0JBZkaAPPoC_dcwjeL7Cz-wct3st-FBCDJhD4_67iGUpTsuYLoExQVzTu1003__vtLI3O0">
 
 
 </details>
@@ -194,13 +143,13 @@ RegisterResponse is the response from the registration services
 ---
 
 
-### <a name=authenticate-RenewJWT></a>authenticate RenewJWT
+### <a name=authenticate-renewJWT></a>authenticate renewJWT
 RenewJWT is used to reissue JWTs that have expired 
 
 <details>
 <summary>Sequence Diagram</summary>
 
-<img src="https://plantuml.com/plantuml/svg/~1UDgCpy5Bmp0K1l1x_ehdBhqOBO8NQRCD6qJH5Mh4mmubPeyQJPEIlAhuryl6r5q6_QxVBnzvsUImB8D9sTFbawflv4esIoKhkAuh2Pn3LSEgLY2hMtNoHoUlJluhMoJIaSRUCHCynU1WfaTwHK_MQC8Pw0HjpjAxzOEEkeTUVprWIhh3H_kDS76PCxBa40wVGS6XGO-VTy-AbUNH3igIhRbeSxZwzzgG_TZ2DcVhWlDTMvZWGeGNDwAmDCJmXeRExaDdVODf23vXSRup0eezxYAY5_DJcFzMWctmS7w1VhEz_IS00F__zR1wLm00">
+<img src="https://plantuml.com/plantuml/svg/~1UDgCpy5Bmp0K1l1x_ehdBhqOBO8NIRCD6qJ15MR4mmubPeyQJPEIlAhuryl6r5s4VjVlbu-yOd9OKS2a7EZoKJStQgNMIwrgk6vg1Pn3tS2gqQ3gMttoIoUlJluhMsGoYSRUCni3fUXXPaPwmK3E6i8Pc0njoVAR2uD9feVUVDvZpgR31_U5S75PCdBa4OwVWU2GCE37tPDcLVLl1rN5Dbos9LpzUMF9lUzWMxADu7pV2XjzJF3iHvIEXXHVqTAPZvqBQyn331d5-Tv840VS9SGWvwSm_waas-Bn_0B3TdVxTm000F__DRzwrm00">
 
 </details>
 
@@ -211,7 +160,7 @@ RenewJWT is used to reissue JWTs that have expired
 
 
 
-<img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNwFdafsVc1QKMbgOMboWf91Ohn1lOs2XekEZa5oLdPAPeAjZPALHprN8vfEQbW0864000___-pZgr">
+<img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNwENafsVc1QKMbgOMboWf91Ohn1lOs2XekEZa5oLdPAPeAjZPALHprN8vfEQbW0864000__y4tJhL">
 
 
 </details>
@@ -226,7 +175,59 @@ RenewJWT is used to reissue JWTs that have expired
 LoginRequest is the response object from Login that is used in bearer authentic
 ation in the header: "Bearer <JWT>" 
 
-<img src="https://plantuml.com/plantuml/svg/~1UDgCqB6gmZ0Knl4zJ_7TBhsY5MSffSK44QI14cSfRQWfDIav4GVntKKGmIt_-SVXy9KKMXzkrucbqR4qHLGVMfsKt8jQD9KI73l91R8CNAAM2e8VrD-NHb-D_fLrKqk4vEW6OnjDixEa4xI4ymPvZd--Shwxc7u14sRlHjs5zGz6KU31bXZl0LjGyCOExCbARVltRgy0003__xnOHLu0">
+<img src="https://plantuml.com/plantuml/svg/~1UDgCqB4AmZ0KXU4zJt7iKaKhpb9AYmdYqa29ivGsr9IQbDo8W_Zk8eZWbd_-k5nEIQ7ruNwRM1eTIrD4zQNLMScZg4LJAS5na5mWoy0bQgaW-4ajVZJwQlIlh9jQ8YIJ6unjDCtEaaxG4Yuxv3cMVEDyTpNz2YRCtesw2zi_ZAB0awqnFWBseE2D7TYBbThsdztU0G00___C-4MU">
+
+
+</details>
+
+
+---
+
+
+
+
+## Application echo
+
+
+- EchoService is a basic service to test connections 
+
+
+
+
+
+
+### <a name=echo-echo></a>echo echo
+echo is a method to test service deployments 
+
+<details>
+<summary>Sequence Diagram</summary>
+
+<img src="https://plantuml.com/plantuml/svg/~1UDgCZq5Bn30GXU_v5S-zz6Aq25uapUvYWtXm2sizxM69sM6Dfab9iYB-UccjehU-op2yZu-POdPOKM1M9dJzr3PtQgEswrRLk6rg1SvHDzWqBLHztvxzehEjiszbgvHrpAVECHDyZi5XGUObBA0JzYLBRzRtEkeEdVvue9JqaHxj9-7gkcJPPaSOS0W-JbPL_tPK5TjnkIznyzrha-sxpZIuTuBpiH4ck13nx4uaRUvZU2MJBmP-IwaFFf6u7149CR77IEJbyXpBdqgo0_srhyWVXhU-0W00__-kSMlO">
+
+</details>
+
+
+<details>
+<summary>Request types</summary>
+
+
+
+
+<img src="https://plantuml.com/plantuml/svg/~1UDgCaB_AmZ0SHVSynVswz1EjE4ifBIQ8ImCbpXBIq4Rwp_pIINnt4SGvPpvSBgUae7rOnu6bqR0qHHHVjRegUHQrQ2ebE4wI2sGPk4Gj5GI_gB-V6hqQ_PMPGHCXSTEoXWIQS3iWp_7FTxCtlMitS67nyzsQiBUcdnlxM2q550MUR8lH4kdEuWWAtaqTUx7IJksds3i00F___SH35W00">
+
+
+</details>
+
+
+<details>
+<summary>Response types</summary>
+
+
+
+
+EchoResponse is the response from the EchoService 
+
+<img src="https://plantuml.com/plantuml/svg/~1UDgCq44BWZ0Onl7xFiMJ5uioEeU8qaPqSI3h76CEDTJ9tdMAldi44HttF_zuUNbA2jg7npIoD3gMfeZgIwkhacTHYwPIWkCakK2MWKlKKa7mYrhzQFJLw5-P6JKH4cjwrrXQt4msWIRS3iXphFdEUTCFxGP3MBoxMnFs_nP5WIVROh94khCuWe8VvewzM6ddzhFSEm00__zBf4Ow">
 
 
 </details>
@@ -243,11 +244,15 @@ ation in the header: "Bearer <JWT>"
 ## Application profiles
 
 
+- profiles is a service to retrieve and update a profile that is displayed 
+
+
 
 
 
 
 ### <a name=profiles-getuser></a>profiles getuser
+getuser gets a user from a userid 
 
 <details>
 <summary>Sequence Diagram</summary>
@@ -286,6 +291,7 @@ ation in the header: "Bearer <JWT>"
 
 
 ### <a name=profiles-updateuser></a>profiles updateuser
+updateuser updates a profile 
 
 <details>
 <summary>Sequence Diagram</summary>
@@ -326,6 +332,10 @@ ation in the header: "Bearer <JWT>"
 
 
 ## Application search
+
+
+- search is a service that is used to find a profile/user based on a search param
+eter 
 
 
 
@@ -375,11 +385,15 @@ ation in the header: "Bearer <JWT>"
 ## Application upload
 
 
+- upload service is used to upload static assets to gcs 
+
+
 
 
 
 
 ### <a name=upload-upload></a>upload upload
+upload uploads a static asset to gcp and returns a url 
 
 <details>
 <summary>Sequence Diagram</summary>
@@ -425,125 +439,6 @@ ation in the header: "Bearer <JWT>"
 
 
 
-<a name=itproject.EchoRequest></a><details>
-<summary>itproject.EchoRequest</summary>
-
-### itproject.EchoRequest
-
-
-- EchoRequest is the request object for EchoService 
-
-<img src="https://plantuml.com/plantuml/svg/~1UDgCq4qBWa0Gnl7xV8edBnObT0uHfHsYYmkodMFHHGLVo5bFqNUF8ABZ_iy_Xk79nTl5h-D0SN0KnmZgIukRqHSkkIeCAvorOYG9b4Qf3LXTpUP7Wwy6_qhrO4KGSTtDbNkiJdm4AxWVaQROgiEyr5tVxF07a6LuqXwZ4x6jmmdYbtvgwKMvcvhFMky0003__-CCGIm0">
-<a href="https://plantuml.com/plantuml/svg/~1UDgCqB6gmZ0Knl4zJ_7TBhsY5MSffSK4SMcWn5b26jfAssXEEedlBeA8O_xpZyFXAobe7vPfP6bqB4qHrOTMPoMFeXPDfGJ7GNA1B0ENgAM2u2VrzwNHLwD_PMRKH4Y4wLrZxukba40JBZlaEVxvnddJ3-qAGxXvTxKcR7yeYW8FjiPaYNHdiGS5FymTUxBIpkrxjrS0003__wMqHIu0">Full Diagram</a>
-
-
-#### Fields
-
-
-| Field name | Type | Description |
-|----|----|----|
-| message | string | |
-
-</details>
-<a name=itproject.EchoResponse></a><details>
-<summary>itproject.EchoResponse</summary>
-
-### itproject.EchoResponse
-
-
-- EchoResponse is the response from the EchoService 
-
-<img src="https://plantuml.com/plantuml/svg/~1UDgCqBsgma0GnV5-dkBSDBcY0Mi98S4Tn2OBOQrbIPOaa0_PMIlntKKGiTn__MCOJYd1-d2V9qgZepH5L1zQNOm-SSrDPLZXg1KZow0qQct0wcp-lZJwQlIlr4vM10ctmzeukQsBk0HMSDqZp_6lTgjlXx7Ru5UWAF2WBMOdOdk70oJuSUdfIQLRklTUhm000F__Rxv1-000">
-<a href="https://plantuml.com/plantuml/svg/~1UDgCq44BWZ0Onl7xFiMJ5uioEeU8qaPqSI3h76CEDTJ9tdMAldi44HttF_zuUNbA2jg7npIoD3gMfeZgIwkhacTHYwPIWkCakK2MWKlKKa7mYrhzQFJLw5-P6JKH4c5wrrXQt4msWIRS3iXphFdEUTCFxGP3MBoxMnFs_nP5WIVROh94khCuWe8VvewzM6ddzhFSEm00__ywP4Nw">Full Diagram</a>
-
-
-#### Fields
-
-
-| Field name | Type | Description |
-|----|----|----|
-| message | string | |
-
-</details>
-<a name=itproject.LoginRequest></a><details>
-<summary>itproject.LoginRequest</summary>
-
-### itproject.LoginRequest
-
-
-- LoginRequest is empty because the Bas64(username:password) is contained in the 
-header of the request 
-
-<img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQN-EIdP-O5fHQMfXQNA2aa5Yl46zZOA6YuwEGN9MTafcWgsDafL7FLSZcavgM0mWKG003__yg9EeS0">
-<a href="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNwFdafsVc1QKMbgOMboWf91Ohn1lOs2XekEZa5oLdPAPeAjZPALHprN8vfEQbW0864000___-pZgr">Full Diagram</a>
-
-</details>
-<a name=itproject.LoginResponse></a><details>
-<summary>itproject.LoginResponse</summary>
-
-### itproject.LoginResponse
-
-
-- LoginRequest is the response object from Login that is used in bearer authentic
-ation in the header: "Bearer <JWT>" 
-
-<img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oie-UIdP-O5fHONvESLfoef91Ohn1iesDWeQBZev1SbPsIcQ2gWA56mirEevj9Mo2elKR1IA2ufoinBvwhbSaZDIm655Y000F__-FH1N000">
-<a href="https://plantuml.com/plantuml/svg/~1UDgCqB6gmZ0Knl4zJ_7TBhsY5MSffSK44QI14cSfRQWfDIav4GVntKKGmIt_-SVXy9KKMXzkrucbqR4qHLGVMfsKt8jQD9KI73l91R8CNAAM2e8VrD-NHb-D_fLrKqk4vEW6OnjDixEa4xI4ymPvZd--Shwxc7u14sRlHjs5zGz6KU31bXZl0LjGyCOExCbARVltRgy0003__xnOHLu0">Full Diagram</a>
-
-
-#### Fields
-
-
-| Field name | Type | Description |
-|----|----|----|
-| jwt | string | |
-
-</details>
-<a name=itproject.RegisterRequest></a><details>
-<summary>itproject.RegisterRequest</summary>
-
-### itproject.RegisterRequest
-
-
-- RegisterRequest contains all the information to register the user in the databa
-se 
-
-<img src="https://plantuml.com/plantuml/svg/~1UDgCaK5Bn30GHk_v5PzxgR8kU9PbsSK4yT90YMS9pRG6qbPd4Zo8_rq44TjJtl7n60Q-isJFkKn9DTMefa4Ll-dbsTb7qvhkuep6WzK6XmEqHMiTZ7voLtzfzTNgNrMVl0Xs7OrHCd57xuKax-05BtSu7d6jRnVkNsEumIR2wOHFjGTDFYRSGpB7ULHx32Mbra_qtxrvaO-5myen3SHCOHiN8PvNxakTQGu_Gtm7003__maoOBe0">
-<a href="https://plantuml.com/plantuml/svg/~1UDgCaK5B0p4GHk_v5P-zh58hdgMK5XF4omQMU9QmcTP8ThVE97WG_xi88jqzvHqVZs7WsqlsdCkGL5EDQXfKyPSUNfnzCgtf3iveF5fjiDb0MxJMmUXdT_MVLb-j_bNroOjWrT4fIYRkwAEGv1MyuFKUsoskzUt4_LiCDuZvpDCxzVbkaMEtmvTQWmOV4nuWcUDuKciSIqgj7-ZIdRt8vyHXvfYEn4nX6HSX7cVkM-rf3B-J_0G00F__EbDal000">Full Diagram</a>
-
-
-#### Fields
-
-
-| Field name | Type | Description |
-|----|----|----|
-| email | string | |
-| fullName | string | |
-| password | string | |
-| preferredName | string | |
-| username | string | |
-
-</details>
-<a name=itproject.RegisterResponse></a><details>
-<summary>itproject.RegisterResponse</summary>
-
-### itproject.RegisterResponse
-
-
-- RegisterResponse is the response from the registration services 
-
-<img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oie1QMcPnQNf1O5fHONvESLfoef91Ohn1iesDWeQBZev1SbPsIcQ2gWgrAmirEevj9Mo2elKR1IA2ufoinBvwhbSaZDIm656I000F__hxD3z000">
-<a href="https://plantuml.com/plantuml/svg/~1UDgCqC4AWa0Gnl7xFiMN5uioEeU8qYxHnGNPpY6ws8gfx4nqYDuzWkZGQV_d7yFmvSIrv_jj475m8euHr9SMPwEFgbHLOPJ4GKk5987KABM1aYUp-D7Wgy6_YcQeYH1LjdF4rbUMvcaa6w4cN7P8KopbPlBDrRKhE9xzrDk6j_yUMOQdMAD_CFOWzcxin4laTcm_wxq3003__umLH_O0">Full Diagram</a>
-
-
-#### Fields
-
-
-| Field name | Type | Description |
-|----|----|----|
-| jwt | string | |
-
-</details>
 <a name=itproject.RenewJWTRequest></a><details>
 <summary>itproject.RenewJWTRequest</summary>
 
@@ -597,6 +492,46 @@ se
 | title | string | |
 
 </details>
+<a name=itproject.echoRequest></a><details>
+<summary>itproject.echoRequest</summary>
+
+### itproject.echoRequest
+
+
+- EchoRequest is the request object for EchoService 
+
+<img src="https://plantuml.com/plantuml/svg/~1UDgCq4qBWa0Gnl7xV8edBnObT0uHfLsYYmkodMFHGGLVo5bFqNUF8ABZ_iy_Xk79nRl5h-D0SN0KnmZgIukRDHTTwggmMk5ib4QIG1cKnaAhgztyQF3Lu5-f7fm88gwxkUB7ok8ZEC7zY3J5LXtcfUxwPeS_W2p3a_OOMSIrZ1F4B_tKqejodfhFMky0003___AiGMm0">
+<a href="https://plantuml.com/plantuml/svg/~1UDgCq4sBmZ0Gnl5xFiMplNINtIwUfPGM4yHB0oMU9QH3M-cBPjAJ-Dr54F6O__d7C3mb1-l3EeqYZKwaAQ9wqUfez5xLggcCajXfgP1ba1grDb3oOBxUDFfgzA_2ZPOP2Rb-QUYw4eS4bd7Q8C_nBVyMx_gX_S4GBduvaml_7nH5WPlunKJCjYDimS4FSoVkegIvVUxs2000__-sb4Lk">Full Diagram</a>
+
+
+#### Fields
+
+
+| Field name | Type | Description |
+|----|----|----|
+| message | string | |
+
+</details>
+<a name=itproject.echoResponse></a><details>
+<summary>itproject.echoResponse</summary>
+
+### itproject.echoResponse
+
+
+- EchoResponse is the response from the EchoService 
+
+<img src="https://plantuml.com/plantuml/svg/~1UDgCqBsgma0GnV5-dkBSDBcY0Mi98S5Tn2OBOQrbIOOaa0_PMIlntKKGiTn__MCOJYd1-N2V9qgZepH5L1zQNQmvwLetbTKAHwCqiWpAe3OMMftjtvT6Nut-bTh9YI3XTbWRbjkw22TmWkiUUOv_jLjzEupT1hy2HO47RJ6pYEiP1qZmuzBJaqfUklTUhm000F__Vxv2E000">
+<a href="https://plantuml.com/plantuml/svg/~1UDgCq44BWZ0Onl7xFiMJ5uioEeU8qaPqSI3h76CEDTJ9tdMAldi44HttF_zuUNbA2jg7npIoD3gMfeZgIwkhacTHYwPIWkCakK2MWKlKKa7mYrhzQFJLw5-P6JKH4cjwrrXQt4msWIRS3iXphFdEUTCFxGP3MBoxMnFs_nP5WIVROh94khCuWe8VvewzM6ddzhFSEm00__zBf4Ow">Full Diagram</a>
+
+
+#### Fields
+
+
+| Field name | Type | Description |
+|----|----|----|
+| message | string | |
+
+</details>
 <a name=itproject.getuserRequest></a><details>
 <summary>itproject.getuserRequest</summary>
 
@@ -638,6 +573,40 @@ se
 | title | string | |
 
 </details>
+<a name=itproject.loginRequest></a><details>
+<summary>itproject.loginRequest</summary>
+
+### itproject.loginRequest
+
+
+- LoginRequest is empty because the Bas64(username:password) is contained in the 
+header of the request 
+
+<img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNvEIdP-O5fHQMfXQNA2aa5Yl46zZOA6YuwEGN9MTafcWgsDafL7FLSZcavgM0mWKG003__z29EgS0">
+<a href="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNwENafsVc1QKMbgOMboWf91Ohn1lOs2XekEZa5oLdPAPeAjZPALHprN8vfEQbW0864000__y4tJhL">Full Diagram</a>
+
+</details>
+<a name=itproject.loginResponse></a><details>
+<summary>itproject.loginResponse</summary>
+
+### itproject.loginResponse
+
+
+- LoginRequest is the response object from Login that is used in bearer authentic
+ation in the header: "Bearer <JWT>" 
+
+<img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oievUIdP-O5fHONvESLfoef91Ohn1iesDWeQBZev1SbPsIcQ2gWA56mirEevj9Mo2elKR1IA2ufoinBvwhbSaZDIm655Y000F__26D1d000">
+<a href="https://plantuml.com/plantuml/svg/~1UDgCqB4AmZ0KXU4zJt7iKaKhpb9AYmdYqa29ivGsr9IQbDo8W_Zk8eZWbd_-k5nEIQ7ruNwRM1eTIrD4zQNLMScZg4LJAS5na5mWoy0bQgaW-4ajVZJwQlIlh9jQ8YIJ6unjDCtEaaxG4Yuxv3cMVEDyTpNz2YRCtesw2zi_ZAB0awqnFWBseE2D7TYBbThsdztU0G00___C-4MU">Full Diagram</a>
+
+
+#### Fields
+
+
+| Field name | Type | Description |
+|----|----|----|
+| jwt | string | |
+
+</details>
 <a name=itproject.profile></a><details>
 <summary>itproject.profile</summary>
 
@@ -662,6 +631,51 @@ se
 | links | sequence of STRING | |
 | picture | string | |
 | username | string | |
+
+</details>
+<a name=itproject.registerRequest></a><details>
+<summary>itproject.registerRequest</summary>
+
+### itproject.registerRequest
+
+
+- RegisterRequest contains all the information to register the user in the databa
+se 
+
+<img src="https://plantuml.com/plantuml/svg/~1UDgCaK5Bn30GHk_v5PzxgR8kU9PbsSK4yT90YMS9pRG6qbPd4Zo8_rq44TjJtl7n60Q-isJFkKn9DTMefa4Ll-dbsTb7qvhkuep6WzK6XmEqHMiTZ7voLtzfzTNgNrMVl0XsJ6EKJDpHUo79EtZ1onsEHrphsuNxrnXki8bmEk5JxK6JZmdtaCnn7jKUGqcfzHFzTszUv6FXi79C0p5JsCP5YEUL-r9dciFF4Dy1003__oyIOFe0">
+<a href="https://plantuml.com/plantuml/svg/~1UDgCaKzB0p4GH-_v53zxMQLMF4ifBIQ8bmsKU9QmcTP8zeyp2Hx4xow2I7TFUSV7OnZuxILxpgLFggb6DGsg-4iFByu-cTOS3yveF5fjiDb0MxJMmUXdT_MVLb-j_bLroOjWnNIEaecFz558yWfUy7gFxHRN-dRaxYs66yGyyVXENRvRvDZjyANMeDx7X0T8vZYSrHgdabBhUxfqanVv73dC7DE9c2aiuoB4mynzgpqDuNUIdm000F__ONDa_000">Full Diagram</a>
+
+
+#### Fields
+
+
+| Field name | Type | Description |
+|----|----|----|
+| email | string | |
+| fullName | string | |
+| password | string | |
+| preferredName | string | |
+| username | string | |
+
+</details>
+<a name=itproject.registerResponse></a><details>
+<summary>itproject.registerResponse</summary>
+
+### itproject.registerResponse
+
+
+- RegisterResponse is the response from the registration services 
+
+<img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oie5QMcPnQNf1O5fHONvESLfoef91Ohn1iesDWeQBZev1SbPsIcQ2gWgrAmirEevj9Mo2elKR1IA2ufoinBvwhbSaZDIm656I000F__m3D4D000">
+<a href="https://plantuml.com/plantuml/svg/~1UDgCqC4AWa0Gnl7xFiMN5uioEeU8qYxHnGNPpY6ws8gfx4nqYDuzWkZGQV_d7yFmvSIrv_jj475m8euHr9SMPwEFgbHLOPJ4GKk5987KABM1aYUp-D7Wgy6_YcQeYH1vspbYwojBypIIZL0JBZkaAPPoC_dcwjeL7Cz-wct3st-FBCDJhD4_67iGUpTsuYLoExQVzTu1003__vtLI3O0">Full Diagram</a>
+
+
+#### Fields
+
+
+| Field name | Type | Description |
+|----|----|----|
+| jwt | string | |
 
 </details>
 <a name=itproject.searchRequest></a><details>

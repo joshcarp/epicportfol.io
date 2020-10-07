@@ -11,17 +11,17 @@ package itproject;
 service authenticate {
 
     /* Register is used to register a user and acquire a jwt */
-    rpc Register(RegisterRequest) returns (RegisterResponse){};
+    rpc register(registerRequest) returns (registerResponse){};
 
     /* Login is used to login and to acquire a jwt */
-    rpc Login(LoginRequest) returns (LoginResponse){};
+    rpc login(loginRequest) returns (loginResponse){};
 
     /* RenewJWT is used to reissue JWTs that have expired */
-    rpc RenewJWT(LoginRequest) returns (LoginResponse){};
+    rpc renewJWT(loginRequest) returns (loginResponse){};
 }
 
 /* RegisterRequest contains all the information to register the user in the database */
-message RegisterRequest {
+message registerRequest {
     string email = 1;
     string username = 2;
     string fullName = 3;
@@ -30,16 +30,16 @@ message RegisterRequest {
 }
 
 /* RegisterResponse is the response from the registration services */
-message RegisterResponse{
+message registerResponse{
     string jwt = 2;
 }
 
 /* LoginRequest is empty because the Bas64(username:password) is contained in the header of the request */
-message LoginRequest {
+message loginRequest {
 }
 
 /* LoginRequest is the response object from Login that is used in bearer authentication in the header: "Bearer <JWT>" */
-message LoginResponse {
+message loginResponse {
     string jwt = 1;
 }
 
@@ -56,24 +56,31 @@ message RenewJWTRequest {
 /* --- EchoService --- */
 
 /* EchoRequest is the request object for EchoService */
-message EchoRequest {
+message echoRequest {
     string message = 1;
 }
 
 /* EchoResponse is the response from the EchoService */
-message EchoResponse {
+message echoResponse {
     string message = 1;
 }
 
 /* EchoService is a basic service to test connections */
-service EchoService {
-    rpc Echo(EchoRequest) returns (EchoResponse);
+service echo {
+
+    /* echo is a method to test service deployments */
+    rpc echo(echoRequest) returns (echoResponse);
 }
 
 /* --- Profiles service --- */
 
+/* profiles is a service to retrieve and update a profile that is displayed */
 service profiles {
+
+    /* getuser gets a user from a userid */
     rpc getuser(getuserRequest) returns (profile);
+
+    /* updateuser updates a profile */
     rpc updateuser(profile) returns (updateuserResponse);
 }
 
@@ -94,7 +101,6 @@ message profile {
 }
 
 message updateuserResponse{
-
 }
 
 message job {
@@ -112,7 +118,10 @@ message artifact {
 
 /* -- Upload Service -- */
 
+/* upload service is used to upload static assets to gcs */
 service upload {
+
+    /* upload uploads a static asset to gcp and returns a url */
     rpc upload(uploadRequest) returns(uploadResponse);
 }
 
@@ -127,6 +136,7 @@ message uploadResponse {
 
 /* --- Search service --- */
 
+/* search is a service that is used to find a profile/user based on a search parameter */
 service search {
     rpc search(searchRequest) returns(searchResponse);
 }

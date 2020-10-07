@@ -19,10 +19,10 @@ db[~db]:
 
 authenticate:
     @project="itproject"
-    Login:
+    login:
         basic authentication
         db <- retrieve user
-    Register:
+    register:
         db <- insert user
 
 profiles:
@@ -45,6 +45,10 @@ upload:
 frontend:
     @project="itproject"
     register:
-        envoy <- Register
+        authenticate <- register
     login:
-        envoy <- Login
+        authenticate <- login
+    search:
+        search <- search
+    u/user:
+        profiles <- getuser

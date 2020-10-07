@@ -73,240 +73,240 @@ proto.itproject.authenticatePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.itproject.RegisterRequest,
- *   !proto.itproject.RegisterResponse>}
+ *   !proto.itproject.registerRequest,
+ *   !proto.itproject.registerResponse>}
  */
-const methodDescriptor_authenticate_Register = new grpc.web.MethodDescriptor(
-  '/itproject.authenticate/Register',
+const methodDescriptor_authenticate_register = new grpc.web.MethodDescriptor(
+  '/itproject.authenticate/register',
   grpc.web.MethodType.UNARY,
-  proto.itproject.RegisterRequest,
-  proto.itproject.RegisterResponse,
+  proto.itproject.registerRequest,
+  proto.itproject.registerResponse,
   /**
-   * @param {!proto.itproject.RegisterRequest} request
+   * @param {!proto.itproject.registerRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.itproject.RegisterResponse.deserializeBinary
+  proto.itproject.registerResponse.deserializeBinary
 );
 
 
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.itproject.RegisterRequest,
- *   !proto.itproject.RegisterResponse>}
+ *   !proto.itproject.registerRequest,
+ *   !proto.itproject.registerResponse>}
  */
-const methodInfo_authenticate_Register = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.itproject.RegisterResponse,
+const methodInfo_authenticate_register = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.itproject.registerResponse,
   /**
-   * @param {!proto.itproject.RegisterRequest} request
+   * @param {!proto.itproject.registerRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.itproject.RegisterResponse.deserializeBinary
+  proto.itproject.registerResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.itproject.RegisterRequest} request The
+ * @param {!proto.itproject.registerRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.itproject.RegisterResponse)}
+ * @param {function(?grpc.web.Error, ?proto.itproject.registerResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.itproject.RegisterResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.itproject.registerResponse>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.itproject.authenticateClient.prototype.register =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/itproject.authenticate/Register',
+      '/itproject.authenticate/register',
       request,
       metadata || {},
-      methodDescriptor_authenticate_Register,
+      methodDescriptor_authenticate_register,
       callback);
 };
 
 
 /**
- * @param {!proto.itproject.RegisterRequest} request The
+ * @param {!proto.itproject.registerRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.itproject.RegisterResponse>}
+ * @return {!Promise<!proto.itproject.registerResponse>}
  *     A native promise that resolves to the response
  */
 proto.itproject.authenticatePromiseClient.prototype.register =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/itproject.authenticate/Register',
+      '/itproject.authenticate/register',
       request,
       metadata || {},
-      methodDescriptor_authenticate_Register);
+      methodDescriptor_authenticate_register);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.itproject.LoginRequest,
- *   !proto.itproject.LoginResponse>}
+ *   !proto.itproject.loginRequest,
+ *   !proto.itproject.loginResponse>}
  */
-const methodDescriptor_authenticate_Login = new grpc.web.MethodDescriptor(
-  '/itproject.authenticate/Login',
+const methodDescriptor_authenticate_login = new grpc.web.MethodDescriptor(
+  '/itproject.authenticate/login',
   grpc.web.MethodType.UNARY,
-  proto.itproject.LoginRequest,
-  proto.itproject.LoginResponse,
+  proto.itproject.loginRequest,
+  proto.itproject.loginResponse,
   /**
-   * @param {!proto.itproject.LoginRequest} request
+   * @param {!proto.itproject.loginRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.itproject.LoginResponse.deserializeBinary
+  proto.itproject.loginResponse.deserializeBinary
 );
 
 
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.itproject.LoginRequest,
- *   !proto.itproject.LoginResponse>}
+ *   !proto.itproject.loginRequest,
+ *   !proto.itproject.loginResponse>}
  */
-const methodInfo_authenticate_Login = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.itproject.LoginResponse,
+const methodInfo_authenticate_login = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.itproject.loginResponse,
   /**
-   * @param {!proto.itproject.LoginRequest} request
+   * @param {!proto.itproject.loginRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.itproject.LoginResponse.deserializeBinary
+  proto.itproject.loginResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.itproject.LoginRequest} request The
+ * @param {!proto.itproject.loginRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.itproject.LoginResponse)}
+ * @param {function(?grpc.web.Error, ?proto.itproject.loginResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.itproject.LoginResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.itproject.loginResponse>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.itproject.authenticateClient.prototype.login =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/itproject.authenticate/Login',
+      '/itproject.authenticate/login',
       request,
       metadata || {},
-      methodDescriptor_authenticate_Login,
+      methodDescriptor_authenticate_login,
       callback);
 };
 
 
 /**
- * @param {!proto.itproject.LoginRequest} request The
+ * @param {!proto.itproject.loginRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.itproject.LoginResponse>}
+ * @return {!Promise<!proto.itproject.loginResponse>}
  *     A native promise that resolves to the response
  */
 proto.itproject.authenticatePromiseClient.prototype.login =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/itproject.authenticate/Login',
+      '/itproject.authenticate/login',
       request,
       metadata || {},
-      methodDescriptor_authenticate_Login);
+      methodDescriptor_authenticate_login);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.itproject.LoginRequest,
- *   !proto.itproject.LoginResponse>}
+ *   !proto.itproject.loginRequest,
+ *   !proto.itproject.loginResponse>}
  */
-const methodDescriptor_authenticate_RenewJWT = new grpc.web.MethodDescriptor(
-  '/itproject.authenticate/RenewJWT',
+const methodDescriptor_authenticate_renewJWT = new grpc.web.MethodDescriptor(
+  '/itproject.authenticate/renewJWT',
   grpc.web.MethodType.UNARY,
-  proto.itproject.LoginRequest,
-  proto.itproject.LoginResponse,
+  proto.itproject.loginRequest,
+  proto.itproject.loginResponse,
   /**
-   * @param {!proto.itproject.LoginRequest} request
+   * @param {!proto.itproject.loginRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.itproject.LoginResponse.deserializeBinary
+  proto.itproject.loginResponse.deserializeBinary
 );
 
 
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.itproject.LoginRequest,
- *   !proto.itproject.LoginResponse>}
+ *   !proto.itproject.loginRequest,
+ *   !proto.itproject.loginResponse>}
  */
-const methodInfo_authenticate_RenewJWT = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.itproject.LoginResponse,
+const methodInfo_authenticate_renewJWT = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.itproject.loginResponse,
   /**
-   * @param {!proto.itproject.LoginRequest} request
+   * @param {!proto.itproject.loginRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.itproject.LoginResponse.deserializeBinary
+  proto.itproject.loginResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.itproject.LoginRequest} request The
+ * @param {!proto.itproject.loginRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.itproject.LoginResponse)}
+ * @param {function(?grpc.web.Error, ?proto.itproject.loginResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.itproject.LoginResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.itproject.loginResponse>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.itproject.authenticateClient.prototype.renewJWT =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/itproject.authenticate/RenewJWT',
+      '/itproject.authenticate/renewJWT',
       request,
       metadata || {},
-      methodDescriptor_authenticate_RenewJWT,
+      methodDescriptor_authenticate_renewJWT,
       callback);
 };
 
 
 /**
- * @param {!proto.itproject.LoginRequest} request The
+ * @param {!proto.itproject.loginRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.itproject.LoginResponse>}
+ * @return {!Promise<!proto.itproject.loginResponse>}
  *     A native promise that resolves to the response
  */
 proto.itproject.authenticatePromiseClient.prototype.renewJWT =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/itproject.authenticate/RenewJWT',
+      '/itproject.authenticate/renewJWT',
       request,
       metadata || {},
-      methodDescriptor_authenticate_RenewJWT);
+      methodDescriptor_authenticate_renewJWT);
 };
 
 
@@ -318,7 +318,7 @@ proto.itproject.authenticatePromiseClient.prototype.renewJWT =
  * @struct
  * @final
  */
-proto.itproject.EchoServiceClient =
+proto.itproject.echoClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
@@ -344,7 +344,7 @@ proto.itproject.EchoServiceClient =
  * @struct
  * @final
  */
-proto.itproject.EchoServicePromiseClient =
+proto.itproject.echoPromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
@@ -365,80 +365,80 @@ proto.itproject.EchoServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.itproject.EchoRequest,
- *   !proto.itproject.EchoResponse>}
+ *   !proto.itproject.echoRequest,
+ *   !proto.itproject.echoResponse>}
  */
-const methodDescriptor_EchoService_Echo = new grpc.web.MethodDescriptor(
-  '/itproject.EchoService/Echo',
+const methodDescriptor_echo_echo = new grpc.web.MethodDescriptor(
+  '/itproject.echo/echo',
   grpc.web.MethodType.UNARY,
-  proto.itproject.EchoRequest,
-  proto.itproject.EchoResponse,
+  proto.itproject.echoRequest,
+  proto.itproject.echoResponse,
   /**
-   * @param {!proto.itproject.EchoRequest} request
+   * @param {!proto.itproject.echoRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.itproject.EchoResponse.deserializeBinary
+  proto.itproject.echoResponse.deserializeBinary
 );
 
 
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.itproject.EchoRequest,
- *   !proto.itproject.EchoResponse>}
+ *   !proto.itproject.echoRequest,
+ *   !proto.itproject.echoResponse>}
  */
-const methodInfo_EchoService_Echo = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.itproject.EchoResponse,
+const methodInfo_echo_echo = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.itproject.echoResponse,
   /**
-   * @param {!proto.itproject.EchoRequest} request
+   * @param {!proto.itproject.echoRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.itproject.EchoResponse.deserializeBinary
+  proto.itproject.echoResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.itproject.EchoRequest} request The
+ * @param {!proto.itproject.echoRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.itproject.EchoResponse)}
+ * @param {function(?grpc.web.Error, ?proto.itproject.echoResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.itproject.EchoResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.itproject.echoResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.itproject.EchoServiceClient.prototype.echo =
+proto.itproject.echoClient.prototype.echo =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/itproject.EchoService/Echo',
+      '/itproject.echo/echo',
       request,
       metadata || {},
-      methodDescriptor_EchoService_Echo,
+      methodDescriptor_echo_echo,
       callback);
 };
 
 
 /**
- * @param {!proto.itproject.EchoRequest} request The
+ * @param {!proto.itproject.echoRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.itproject.EchoResponse>}
+ * @return {!Promise<!proto.itproject.echoResponse>}
  *     A native promise that resolves to the response
  */
-proto.itproject.EchoServicePromiseClient.prototype.echo =
+proto.itproject.echoPromiseClient.prototype.echo =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/itproject.EchoService/Echo',
+      '/itproject.echo/echo',
       request,
       metadata || {},
-      methodDescriptor_EchoService_Echo);
+      methodDescriptor_echo_echo);
 };
 
 
