@@ -136,6 +136,10 @@ message searchRequest {
 }
 
 message searchResponse {
+    repeated singleSearchResponse results = 1;
+}
+
+message singleSearchResponse {
     string username = 1;
     string full_name = 2;
     string picture = 3;

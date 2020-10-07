@@ -32,26 +32,29 @@ export default function SearchPage() {
     if (prof == null) {
         return <div>Loading...</div>;
     }
-    console.log(prof)
+
+    console.log(prof);
     return (
         <div className="Homepage">
         <div className={classes.root}>
             <Paper className={classes.paper}>
-                <Grid container wrap="nowrap" spacing={2}>
-                    <Grid item>
-                        <Avatar alt={prof.fullName} src={prof.picture} className={classes.avatar} />
+                {prof.resultsList.map(user =>
+                    <Grid container wrap="nowrap" spacing={2}>
+                        <Grid item>
+                            <Avatar alt={user.fullName} src={user.picture} className={classes.avatar}/>
+                        </Grid>
+                        <Grid item xs zeroMinWidth>
+                            <Link to={"/u/" + user.username}>
+                                <Typography noWrap>{user.fullName}</Typography>
+                            </Link>
+                            <Typography noWrap>{user.bio}</Typography>
+                        </Grid>
                     </Grid>
-                    <Grid item xs zeroMinWidth>
-                        <Link to={"/u/"+prof.username}>
-                            <Typography noWrap>{prof.fullName}</Typography>
-                        </Link>
-                        <Typography noWrap>{prof.bio}</Typography>
-
-                    </Grid>
-                </Grid>
+                )}
             </Paper>
-        </div></div>
-    );
+        </div>
+        </div>
+    )
 }
 // CSS Theming
 const useStyles = makeStyles((theme) => ({
