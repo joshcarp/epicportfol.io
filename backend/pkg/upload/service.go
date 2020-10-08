@@ -6,6 +6,9 @@ import (
 	"fmt"
 	"path"
 
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
+
 	"github.com/joshcarp/it-project/backend/internal/config"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
@@ -24,6 +27,9 @@ func NewServer(config config.Config, log *logrus.Logger) (*Server, error) {
 }
 
 func (s *Server) Upload(ctx context.Context, in *itproject.UploadRequest) (*itproject.UploadResponse, error) {
+	if in.Name == "" || in.Content == nil || len(in.Content) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "invalid name or content")
+	}
 	a, _ := auth.Salt()
 	filename := a + path.Ext(in.GetName())
 	err := UploadFile(bytes.NewReader(in.GetContent()), bucketname, filename)
