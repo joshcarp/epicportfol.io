@@ -7,6 +7,7 @@ require (
 	github.com/GoogleCloudPlatform/cloudsql-proxy v0.0.0-20191009163259-e802c2cb94ae
 	github.com/desertbit/timer v0.0.0-20180107155436-c41aec40b27f // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/ghodss/yaml v1.0.0
 	github.com/go-sql-driver/mysql v1.5.0 // indirect
 	github.com/golang/protobuf v1.4.2
 	github.com/improbable-eng/grpc-web v0.13.0
@@ -19,6 +20,7 @@ require (
 	github.com/proullon/ramsql v0.0.0-20181213202341-817cee58a244
 	github.com/rs/cors v1.7.0 // indirect
 	github.com/sirupsen/logrus v1.2.0
+	github.com/spf13/afero v1.1.2
 	github.com/spf13/viper v1.4.0
 	github.com/stretchr/testify v1.5.1
 	github.com/ziutek/mymysql v1.5.4 // indirect

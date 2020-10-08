@@ -4,6 +4,7 @@ import './App.css'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import RegisterPage from './containers/RegisterPage'
 import React, { useEffect, useState } from 'react'
+import SearchPage from "./containers/SearchPage";
 
 export default function App() {
     useEffect(() => {
@@ -20,7 +21,8 @@ export default function App() {
                     <Homepage />
                 </Route>
                 <Route path="/u/:username" children={<UserProfile />}>
-
+                </Route>
+                <Route path="/search" children={<SearchPage />}>
                 </Route>
             </Switch>
         </Router>

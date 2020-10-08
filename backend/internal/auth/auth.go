@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/joshcarp/it-project/backend/pkg/jwt"
+	"github.com/joshcarp/it-project/backend/internal/jwt"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
 )

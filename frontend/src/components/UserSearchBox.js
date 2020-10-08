@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { TextField, withStyles } from '@material-ui/core';
+import { Redirect } from 'react-router'
+import { Link } from 'react'
 
 
 const styles = {
@@ -20,20 +22,35 @@ class UserSearchBox extends React.Component {
         super(props);
         this.state = {
             username: "",
-            isValid: true
+            isValid: true,
+            fireRedirect: false
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleinput = this.handleinput.bind(this)
     }
 
+    handleinput(event) {
+
+        this.setState({
+            username: event.target.value,
+        })
+    }
 
     handleSubmit(event) {
-        // TODO: USER SEARCH REDIRECT FUNCTIONALITY
+        event.preventDefault()
+
+        this.setState({
+            fireRedirect: true
+        })
     }
 
 
     render() {
+        const { fireRedirect } = this.state;
+        var { username } = this.state;
         const { classes } = this.props;
+        username = "/search?term="+username
         return (
             <div className="UserSearchBox">
                 <form onSubmit={this.handleSubmit} className={classes.form}>
@@ -44,8 +61,12 @@ class UserSearchBox extends React.Component {
                         variant="outlined"
                         name="username"
                         type="search"
+                        onChange={this.handleinput}
                     />
                 </form>
+                {fireRedirect && (
+                    <Redirect to={username}></Redirect>
+                )}
             </div>
         );
     }

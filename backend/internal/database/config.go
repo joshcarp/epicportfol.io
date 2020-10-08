@@ -5,24 +5,22 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/spf13/viper"
-
 	"github.com/pkg/errors"
 
 	_ "github.com/GoogleCloudPlatform/cloudsql-proxy/proxy/dialers/postgres"
 	"github.com/jmoiron/sqlx"
-	"github.com/joshcarp/it-project/backend/pkg/config"
+	"github.com/joshcarp/it-project/backend/internal/config"
 	_ "github.com/lib/pq"
 	_ "github.com/proullon/ramsql/driver"
 )
 
 // openDatabaseCloud opens a cloud sql connection
-func openDatabaseCloud(conf *viper.Viper) (*sqlx.DB, error) {
+func openDatabaseCloud(conf config.Config) (*sqlx.DB, error) {
 	dsn := fmt.Sprintf("host=%s dbname=%s user=%s password=%s sslmode=disable",
-		config.GetProperty(conf, "database", "host"),
-		config.GetProperty(conf, "database", "dbname"),
-		config.GetProperty(conf, "database", "user"),
-		config.GetProperty(conf, "database", "password"),
+		conf.Database.Host,
+		conf.Database.Dbname,
+		conf.Database.User,
+		conf.Database.Password,
 	)
 	db, err := sqlx.Open("cloudsqlpostgres", dsn)
 	if err != nil {
@@ -32,13 +30,13 @@ func openDatabaseCloud(conf *viper.Viper) (*sqlx.DB, error) {
 }
 
 // openDatabaseCloud opens a normal database connection
-func openDatabaseLocal(conf *viper.Viper) (*sqlx.DB, error) {
+func openDatabaseLocal(conf config.Config) (*sqlx.DB, error) {
 	dsn := fmt.Sprintf("host=%s port=%s dbname=%s user=%s password=%s sslmode=disable",
-		config.GetProperty(conf, "database", "host"),
-		config.GetProperty(conf, "database", "port"),
-		config.GetProperty(conf, "database", "dbname"),
-		config.GetProperty(conf, "database", "user"),
-		config.GetProperty(conf, "database", "password"),
+		conf.Database.Host,
+		conf.Database.Port,
+		conf.Database.Dbname,
+		conf.Database.User,
+		conf.Database.Password,
 	)
 	db, err := sqlx.Open("postgres", dsn)
 	if err != nil {
