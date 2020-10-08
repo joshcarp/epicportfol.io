@@ -5,30 +5,50 @@ _[~project]:
         itproject
 
 db[~db]:
+    @project="itproject"
     insert user:
         insert user
     retrieve user:
         return user
+    get_profile:
+        return profile
+    search_profiles:
+        return matching profiles
+    update_profile:
+        return ok
 
 authenticate:
-    Login:
+    @project="itproject"
+    login:
         basic authentication
         db <- retrieve user
-    Register:
+    register:
         db <- insert user
 
+profiles:
+    @project="itproject"
+    getuser:
+        db <- get_profile
+    updateuser:
+        db <- update_profile
 
+search:
+    @project="itproject"
+    search:
+        db <- search_profiles
 
-envoy:
-    Register:
-        authenticate <- Register
-    Login:
-        authenticate <- Register
-
+upload:
+    @project="itproject"
+    upload:
+        db <- update_profile
 
 frontend:
     @project="itproject"
     register:
-        envoy <- Register
+        authenticate <- register
     login:
-        envoy <- Login
+        authenticate <- login
+    search:
+        search <- search
+    u/user:
+        profiles <- getuser

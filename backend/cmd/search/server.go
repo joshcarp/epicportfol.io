@@ -1,9 +1,8 @@
-// Package main implements a server for Greeter service.
 package main
 
 import (
 	"github.com/joshcarp/it-project/backend/internal/server"
-	"github.com/joshcarp/it-project/backend/pkg/profiles"
+	"github.com/joshcarp/it-project/backend/pkg/search"
 
 	"github.com/sirupsen/logrus"
 
@@ -16,7 +15,7 @@ func main() {
 	if err != nil {
 		l.Fatal(err)
 	}
-	if err := profiles.RegisterService(conf, l, s); err != nil {
+	if err := search.RegisterService(conf, l, s); err != nil {
 		l.Fatal(err)
 	}
 	server.Serve(conf, l, handler)

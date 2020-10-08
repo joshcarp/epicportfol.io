@@ -3,12 +3,13 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"log"
 	"net"
 	"net/http"
 
-	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
+	"github.com/improbable-eng/grpc-web/go/grpcweb"
+
+	"github.com/joshcarp/it-project/backend/internal/proto/itproject"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
@@ -18,7 +19,7 @@ func main() {
 
 	s := grpc.NewServer()
 	reflection.Register(s)
-	itproject.RegisterEchoServiceServer(s, &server{})
+	itproject.RegisterEchoServer(s, &server{})
 	fmt.Println("Starting grpc server")
 	grpcweb_server := grpcweb.WrapServer(s)
 	fmt.Println("Starting grpc server")
@@ -26,7 +27,7 @@ func main() {
 }
 
 type server struct {
-	itproject.UnimplementedEchoServiceServer
+	itproject.UnimplementedEchoServer
 }
 
 func (s *server) Echo(ctx context.Context, req *itproject.EchoRequest) (*itproject.EchoResponse, error) {

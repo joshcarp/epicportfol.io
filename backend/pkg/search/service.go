@@ -1,4 +1,4 @@
-package profiles
+package search
 
 import (
 	"github.com/jmoiron/sqlx"
@@ -9,11 +9,12 @@ import (
 	"google.golang.org/grpc"
 )
 
+// server is used to implement helloworld.GreeterServer.
 type Server struct {
 	config config.Config
 	db     *sqlx.DB
 	log    *logrus.Logger
-	itproject.UnimplementedProfilesServer
+	itproject.UnimplementedSearchServer
 }
 
 func NewServer(config config.Config, log *logrus.Logger) (*Server, error) {
@@ -29,6 +30,6 @@ func RegisterService(conf config.Config, log *logrus.Logger, s *grpc.Server) err
 	if err != nil {
 		return err
 	}
-	itproject.RegisterProfilesServer(s, ser)
+	itproject.RegisterSearchServer(s, ser)
 	return nil
 }

@@ -6,9 +6,13 @@ const yaml = require('js-yaml');
 const { profilesClient } = require('./../proto/api_grpc_web_pb.js');
 const profiles = new profilesClient('https://profiles.epicportfol.io');
 const { getuserRequest, profile } = require('./../proto/api_pb.js');
-export default function EditModal(props) {
+const {profileFromJson} = require('./../components/convertor.js');
 
-    const updateUser = (user) => console.log(Object.assign(new profile(), yaml.safeLoad(user)));
+export default function EditModal(props) {
+    const updateUser = (user) =>
+        profiles.updateuser(profileFromJson(yaml.safeLoad(user)), {}, function (err, response) {
+            console.log(err);
+    });
 
     //this updates the the text area with the profile data and allows you to edit it
     const [jsonValue, setJson] = useState(yaml.safeDump(props.profile));

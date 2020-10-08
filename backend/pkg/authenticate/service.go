@@ -1,4 +1,4 @@
-package profiles
+package authenticate
 
 import (
 	"github.com/jmoiron/sqlx"
@@ -11,9 +11,9 @@ import (
 
 type Server struct {
 	config config.Config
-	db     *sqlx.DB
 	log    *logrus.Logger
-	itproject.UnimplementedProfilesServer
+	db     *sqlx.DB
+	itproject.UnimplementedAuthenticateServer
 }
 
 func NewServer(config config.Config, log *logrus.Logger) (*Server, error) {
@@ -25,10 +25,10 @@ func NewServer(config config.Config, log *logrus.Logger) (*Server, error) {
 }
 
 func RegisterService(conf config.Config, log *logrus.Logger, s *grpc.Server) error {
-	ser, err := NewServer(conf, log)
+	accountServer, err := NewServer(conf, log)
 	if err != nil {
 		return err
 	}
-	itproject.RegisterProfilesServer(s, ser)
+	itproject.RegisterAuthenticateServer(s, accountServer)
 	return nil
 }

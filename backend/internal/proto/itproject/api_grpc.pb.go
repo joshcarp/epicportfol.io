@@ -35,7 +35,7 @@ func NewAuthenticateClient(cc grpc.ClientConnInterface) AuthenticateClient {
 
 func (c *authenticateClient) Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error) {
 	out := new(RegisterResponse)
-	err := c.cc.Invoke(ctx, "/itproject.authenticate/Register", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/itproject.authenticate/register", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -44,7 +44,7 @@ func (c *authenticateClient) Register(ctx context.Context, in *RegisterRequest, 
 
 func (c *authenticateClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
 	out := new(LoginResponse)
-	err := c.cc.Invoke(ctx, "/itproject.authenticate/Login", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/itproject.authenticate/login", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -53,7 +53,7 @@ func (c *authenticateClient) Login(ctx context.Context, in *LoginRequest, opts .
 
 func (c *authenticateClient) RenewJWT(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
 	out := new(LoginResponse)
-	err := c.cc.Invoke(ctx, "/itproject.authenticate/RenewJWT", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/itproject.authenticate/renewJWT", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -151,15 +151,15 @@ var _Authenticate_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*AuthenticateServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Register",
+			MethodName: "register",
 			Handler:    _Authenticate_Register_Handler,
 		},
 		{
-			MethodName: "Login",
+			MethodName: "login",
 			Handler:    _Authenticate_Login_Handler,
 		},
 		{
-			MethodName: "RenewJWT",
+			MethodName: "renewJWT",
 			Handler:    _Authenticate_RenewJWT_Handler,
 		},
 	},
@@ -167,76 +167,78 @@ var _Authenticate_serviceDesc = grpc.ServiceDesc{
 	Metadata: "api.proto",
 }
 
-// EchoServiceClient is the client API for EchoService service.
+// EchoClient is the client API for Echo service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type EchoServiceClient interface {
+type EchoClient interface {
+	// echo is a method to test service deployments
 	Echo(ctx context.Context, in *EchoRequest, opts ...grpc.CallOption) (*EchoResponse, error)
 }
 
-type echoServiceClient struct {
+type echoClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewEchoServiceClient(cc grpc.ClientConnInterface) EchoServiceClient {
-	return &echoServiceClient{cc}
+func NewEchoClient(cc grpc.ClientConnInterface) EchoClient {
+	return &echoClient{cc}
 }
 
-func (c *echoServiceClient) Echo(ctx context.Context, in *EchoRequest, opts ...grpc.CallOption) (*EchoResponse, error) {
+func (c *echoClient) Echo(ctx context.Context, in *EchoRequest, opts ...grpc.CallOption) (*EchoResponse, error) {
 	out := new(EchoResponse)
-	err := c.cc.Invoke(ctx, "/itproject.EchoService/Echo", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/itproject.echo/echo", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// EchoServiceServer is the server API for EchoService service.
-// All implementations must embed UnimplementedEchoServiceServer
+// EchoServer is the server API for Echo service.
+// All implementations must embed UnimplementedEchoServer
 // for forward compatibility
-type EchoServiceServer interface {
+type EchoServer interface {
+	// echo is a method to test service deployments
 	Echo(context.Context, *EchoRequest) (*EchoResponse, error)
-	mustEmbedUnimplementedEchoServiceServer()
+	mustEmbedUnimplementedEchoServer()
 }
 
-// UnimplementedEchoServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedEchoServiceServer struct {
+// UnimplementedEchoServer must be embedded to have forward compatible implementations.
+type UnimplementedEchoServer struct {
 }
 
-func (*UnimplementedEchoServiceServer) Echo(context.Context, *EchoRequest) (*EchoResponse, error) {
+func (*UnimplementedEchoServer) Echo(context.Context, *EchoRequest) (*EchoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Echo not implemented")
 }
-func (*UnimplementedEchoServiceServer) mustEmbedUnimplementedEchoServiceServer() {}
+func (*UnimplementedEchoServer) mustEmbedUnimplementedEchoServer() {}
 
-func RegisterEchoServiceServer(s *grpc.Server, srv EchoServiceServer) {
-	s.RegisterService(&_EchoService_serviceDesc, srv)
+func RegisterEchoServer(s *grpc.Server, srv EchoServer) {
+	s.RegisterService(&_Echo_serviceDesc, srv)
 }
 
-func _EchoService_Echo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Echo_Echo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(EchoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EchoServiceServer).Echo(ctx, in)
+		return srv.(EchoServer).Echo(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/itproject.EchoService/Echo",
+		FullMethod: "/itproject.echo/Echo",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EchoServiceServer).Echo(ctx, req.(*EchoRequest))
+		return srv.(EchoServer).Echo(ctx, req.(*EchoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _EchoService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "itproject.EchoService",
-	HandlerType: (*EchoServiceServer)(nil),
+var _Echo_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "itproject.echo",
+	HandlerType: (*EchoServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Echo",
-			Handler:    _EchoService_Echo_Handler,
+			MethodName: "echo",
+			Handler:    _Echo_Echo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -247,7 +249,9 @@ var _EchoService_serviceDesc = grpc.ServiceDesc{
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ProfilesClient interface {
+	// getuser gets a user from a userid
 	Getuser(ctx context.Context, in *GetuserRequest, opts ...grpc.CallOption) (*Profile, error)
+	// updateuser updates a profile
 	Updateuser(ctx context.Context, in *Profile, opts ...grpc.CallOption) (*UpdateuserResponse, error)
 }
 
@@ -281,7 +285,9 @@ func (c *profilesClient) Updateuser(ctx context.Context, in *Profile, opts ...gr
 // All implementations must embed UnimplementedProfilesServer
 // for forward compatibility
 type ProfilesServer interface {
+	// getuser gets a user from a userid
 	Getuser(context.Context, *GetuserRequest) (*Profile, error)
+	// updateuser updates a profile
 	Updateuser(context.Context, *Profile) (*UpdateuserResponse, error)
 	mustEmbedUnimplementedProfilesServer()
 }
@@ -359,6 +365,7 @@ var _Profiles_serviceDesc = grpc.ServiceDesc{
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UploadClient interface {
+	// upload uploads a static asset to gcp and returns a url
 	Upload(ctx context.Context, in *UploadRequest, opts ...grpc.CallOption) (*UploadResponse, error)
 }
 
@@ -383,6 +390,7 @@ func (c *uploadClient) Upload(ctx context.Context, in *UploadRequest, opts ...gr
 // All implementations must embed UnimplementedUploadServer
 // for forward compatibility
 type UploadServer interface {
+	// upload uploads a static asset to gcp and returns a url
 	Upload(context.Context, *UploadRequest) (*UploadResponse, error)
 	mustEmbedUnimplementedUploadServer()
 }
@@ -425,6 +433,82 @@ var _Upload_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "upload",
 			Handler:    _Upload_Upload_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "api.proto",
+}
+
+// SearchClient is the client API for Search service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type SearchClient interface {
+	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error)
+}
+
+type searchClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewSearchClient(cc grpc.ClientConnInterface) SearchClient {
+	return &searchClient{cc}
+}
+
+func (c *searchClient) Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error) {
+	out := new(SearchResponse)
+	err := c.cc.Invoke(ctx, "/itproject.search/search", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// SearchServer is the server API for Search service.
+// All implementations must embed UnimplementedSearchServer
+// for forward compatibility
+type SearchServer interface {
+	Search(context.Context, *SearchRequest) (*SearchResponse, error)
+	mustEmbedUnimplementedSearchServer()
+}
+
+// UnimplementedSearchServer must be embedded to have forward compatible implementations.
+type UnimplementedSearchServer struct {
+}
+
+func (*UnimplementedSearchServer) Search(context.Context, *SearchRequest) (*SearchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Search not implemented")
+}
+func (*UnimplementedSearchServer) mustEmbedUnimplementedSearchServer() {}
+
+func RegisterSearchServer(s *grpc.Server, srv SearchServer) {
+	s.RegisterService(&_Search_serviceDesc, srv)
+}
+
+func _Search_Search_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SearchRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServer).Search(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/itproject.search/Search",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServer).Search(ctx, req.(*SearchRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Search_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "itproject.search",
+	HandlerType: (*SearchServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "search",
+			Handler:    _Search_Search_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
