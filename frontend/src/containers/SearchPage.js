@@ -35,23 +35,6 @@ export default function SearchPage() {
     if (prof == null) {
         return <div>Loading...</div>
     }
-    {
-        /*<Grid container wrap="nowrap" spacing={2}>
-        <Grid item>
-            <Avatar
-                alt={user.fullName}
-                src={user.picture}
-                className={classes.avatar}
-            />
-        </Grid>
-        <Grid item xs zeroMinWidth>
-            <Link to={'/u/' + user.username}>{user.username}</Link>
-            <Typography noWrap>{user.fullName}</Typography>
-
-            <Typography noWrap>{user.bio}</Typography>
-        </Grid>
-    </Grid>*/
-    }
     return (
         <div className="Homepage">
             <div className={classes.root}>
@@ -65,19 +48,14 @@ export default function SearchPage() {
                                 component={Link}
                                 to={'/u/' + user.username}
                             >
-                                {/*<Link to={'/u/' + user.username}>
-                                    {user.username}
-                                </Link>
-                    <Typography noWrap>{user.fullName}</Typography>*/}
                                 <ListItemAvatar>
                                     <Avatar
-                                        alt={user.fullName}
                                         src={user.picture}
                                         className={classes.avatar}
                                     />
                                 </ListItemAvatar>
                                 <ListItemText
-                                    primary={user.fullName}
+                                    primary={user.username}
                                     secondary={
                                         <React.Fragment>
                                             <Typography
@@ -85,12 +63,9 @@ export default function SearchPage() {
                                                 variant="body2"
                                                 className={classes.inline}
                                                 color="textPrimary"
-                                            ></Typography>
-                                            {
-                                                <Typography noWrap>
-                                                    {user.bio}
-                                                </Typography>
-                                            }
+                                            >
+                                                {user.bio}
+                                            </Typography>
                                         </React.Fragment>
                                     }
                                 />
