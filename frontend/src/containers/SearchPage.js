@@ -20,7 +20,7 @@ const { searchRequest } = require('./../proto/api_pb.js')
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
-        maxWidth: '36ch',
+        maxWidth: '50ch',
         backgroundColor: theme.palette.background.paper,
     },
     inline: {
@@ -48,44 +48,44 @@ export default function SearchPage() {
     }
     return (
         <div className="Homepage">
-            <div className={classes.root}>
-                <Paper elevation={3} className={classes.paper}>
-                    {prof.resultsList.map((user) => (
-                        <List className={classes.root}>
-                            <Divider variant="inset" component="li" />
-                            <ListItem
-                                alignItems="flex-start"
-                                button
-                                component={Link}
-                                to={'/u/' + user.username}
-                            >
-                                <ListItemAvatar>
-                                    <Avatar
-                                        src={user.picture}
-                                        className={classes.avatar}
-                                    />
-                                </ListItemAvatar>
-                                <ListItemText
-                                    primary={user.username}
-                                    secondary={
-                                        <React.Fragment>
-                                            <Typography
-                                                component="span"
-                                                variant="body2"
-                                                className={classes.inline}
-                                                color="textPrimary"
-                                            >
-                                                {user.bio}
-                                            </Typography>
-                                        </React.Fragment>
-                                    }
+            <img src={Logo} className="Homepage-logo" alt="logo" />
+            <Paper elevation={4} className={classes.paper} square={false}>
+                <h4>Search Results</h4>
+                {prof.resultsList.map((user) => (
+                    <List className={classes.root}>
+                        <Divider variant="inset" component="li" />
+                        <ListItem
+                            alignItems="flex-start"
+                            button
+                            component={Link}
+                            to={'/u/' + user.username}
+                        >
+                            <ListItemAvatar>
+                                <Avatar
+                                    src={user.picture}
+                                    className={classes.avatar}
                                 />
-                            </ListItem>
-                            <Divider variant="inset" component="li" />
-                        </List>
-                    ))}
-                </Paper>
-            </div>
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={user.username}
+                                secondary={
+                                    <React.Fragment>
+                                        <Typography
+                                            component="span"
+                                            variant="body2"
+                                            className={classes.inline}
+                                            color="textPrimary"
+                                        >
+                                            {user.bio}
+                                        </Typography>
+                                    </React.Fragment>
+                                }
+                            />
+                        </ListItem>
+                        <Divider variant="inset" component="li" />
+                    </List>
+                ))}
+            </Paper>
         </div>
     )
 }
