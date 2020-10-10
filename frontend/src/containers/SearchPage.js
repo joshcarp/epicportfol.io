@@ -17,6 +17,17 @@ const { searchClient } = require('./../proto/api_grpc_web_pb.js')
 const searcher = new searchClient('https://search.epicportfol.io')
 const { searchRequest } = require('./../proto/api_pb.js')
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: '100%',
+        maxWidth: '36ch',
+        backgroundColor: theme.palette.background.paper,
+    },
+    inline: {
+        display: 'inline',
+    },
+}))
+
 function useQuery() {
     return new URLSearchParams(useLocation().search)
 }
@@ -78,14 +89,3 @@ export default function SearchPage() {
         </div>
     )
 }
-// CSS Theming
-const useStyles = makeStyles((theme) => ({
-    root: {
-        width: '100%',
-        maxWidth: '36ch',
-        backgroundColor: theme.palette.background.paper,
-    },
-    inline: {
-        display: 'inline',
-    },
-}))
