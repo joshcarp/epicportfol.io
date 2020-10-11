@@ -2,6 +2,8 @@ name: deploy www
 on:
   push:
     branches: [ master ]
+    paths:
+        - 'frontend/**'
 
 jobs:
   build:
