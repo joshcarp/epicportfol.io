@@ -2,6 +2,9 @@ name: deploy echoserver
 on:
   push:
     branches: [ master ]
+    paths:
+        - 'backend/**'
+        - 'config/**'
 
 jobs:
   build:
