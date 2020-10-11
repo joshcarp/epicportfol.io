@@ -49,7 +49,12 @@ export default function SearchPage() {
     return (
         <div className="Homepage">
             <img src={Logo} className="Homepage-logo" alt="logo" />
-            <Paper elevation={4} className={classes.paper} square={false}>
+            <Paper
+                elevation={4}
+                className={classes.paper}
+                square={false}
+                style={{ maxHeight: 450, overflow: 'auto' }}
+            >
                 <h4>Search Results</h4>
                 {prof.resultsList.map((user) => (
                     <List className={classes.root}>
