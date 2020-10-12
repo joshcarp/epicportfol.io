@@ -48,7 +48,10 @@ export default function SearchPage() {
     }
     return (
         <div className="Homepage">
-            <img src={Logo} className="Homepage-logo" alt="logo" />
+            <Link to="/">
+                <img src={Logo} className="Homepage-logo" alt="logo" />
+            </Link>
+
             <Paper
                 elevation={4}
                 className={classes.paper}
