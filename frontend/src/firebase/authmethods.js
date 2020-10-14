@@ -12,6 +12,8 @@ export const authMethods = {
                 console.error(err)
             })
     },
+
+
     signin: (email, password) => {
 
     },
