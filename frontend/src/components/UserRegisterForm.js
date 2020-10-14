@@ -1,25 +1,23 @@
 import React from 'react'
-import PropTypes from 'prop-types';
-import { TextField, withStyles, Button } from '@material-ui/core';
+import PropTypes from 'prop-types'
+import { TextField, withStyles, Button } from '@material-ui/core'
 
 const { loginRequest } = require('../proto/api_pb.js')
 const { authenticateClient } = require('../proto/api_grpc_web_pb.js')
 const auth = new authenticateClient('https://authenticate.epicportfol.io')
 
 const styles = {
-    form: {
-
-    },
+    form: {},
     field: {
-        margin: "10px",
-        background: "white",
+        margin: '10px',
+        background: 'white',
         width: '80%',
     },
     button: {
-        margin: "5px",
+        margin: '5px',
         width: '80%',
     },
-};
+}
 
 // Component to create form that registers users and redirects
 // to profile page.
@@ -79,7 +77,7 @@ class UserRegisterForm extends React.Component {
         })
     }
     render() {
-        const { classes } = this.props;
+        const { classes } = this.props
 
         return (
             <div className="UserLoginForm">
@@ -133,17 +131,18 @@ class UserRegisterForm extends React.Component {
                         type="submit"
                         name="Submit"
                         variant="contained"
-                        color="primary"
-                    >Submit</Button>
+                        color="secondary"
+                    >
+                        Register
+                    </Button>
                 </form>
             </div>
         )
     }
 }
 
-
 UserRegisterForm.propTypes = {
     classes: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(styles)(UserRegisterForm);
+export default withStyles(styles)(UserRegisterForm)

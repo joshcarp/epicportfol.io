@@ -13,6 +13,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import Avatar from '@material-ui/core/Avatar'
 import Logo from '../assets/logo.svg'
 import queryString from 'query-string'
+import Nav from './Nav.js'
 const { searchClient } = require('./../proto/api_grpc_web_pb.js')
 const searcher = new searchClient('https://search.epicportfol.io')
 const { searchRequest } = require('./../proto/api_pb.js')
@@ -47,53 +48,56 @@ export default function SearchPage() {
         return <div>Loading...</div>
     }
     return (
-        <div className="Homepage">
-            <Link to="/">
-                <img src={Logo} className="Homepage-logo" alt="logo" />
-            </Link>
+        <>
+            <Nav />
+            <div className="Homepage">
+                <Link to="/">
+                    <img src={Logo} className="Homepage-logo" alt="logo" />
+                </Link>
 
-            <Paper
-                elevation={4}
-                className={classes.paper}
-                square={false}
-                style={{ maxHeight: 450, overflow: 'auto' }}
-            >
-                <h4>Search Results</h4>
-                {prof.resultsList.map((user) => (
-                    <List className={classes.root}>
-                        <Divider variant="inset" component="li" />
-                        <ListItem
-                            alignItems="flex-start"
-                            button
-                            component={Link}
-                            to={'/u/' + user.username}
-                        >
-                            <ListItemAvatar>
-                                <Avatar
-                                    src={user.picture}
-                                    className={classes.avatar}
+                <Paper
+                    elevation={4}
+                    className={classes.paper}
+                    square={false}
+                    style={{ maxHeight: 450, overflow: 'auto' }}
+                >
+                    <h4>Search Results</h4>
+                    {prof.resultsList.map((user) => (
+                        <List className={classes.root}>
+                            <Divider variant="inset" component="li" />
+                            <ListItem
+                                alignItems="flex-start"
+                                button
+                                component={Link}
+                                to={'/u/' + user.username}
+                            >
+                                <ListItemAvatar>
+                                    <Avatar
+                                        src={user.picture}
+                                        className={classes.avatar}
+                                    />
+                                </ListItemAvatar>
+                                <ListItemText
+                                    primary={user.username}
+                                    secondary={
+                                        <React.Fragment>
+                                            <Typography
+                                                component="span"
+                                                variant="body2"
+                                                className={classes.inline}
+                                                color="textPrimary"
+                                            >
+                                                {user.bio}
+                                            </Typography>
+                                        </React.Fragment>
+                                    }
                                 />
-                            </ListItemAvatar>
-                            <ListItemText
-                                primary={user.username}
-                                secondary={
-                                    <React.Fragment>
-                                        <Typography
-                                            component="span"
-                                            variant="body2"
-                                            className={classes.inline}
-                                            color="textPrimary"
-                                        >
-                                            {user.bio}
-                                        </Typography>
-                                    </React.Fragment>
-                                }
-                            />
-                        </ListItem>
-                        <Divider variant="inset" component="li" />
-                    </List>
-                ))}
-            </Paper>
-        </div>
+                            </ListItem>
+                            <Divider variant="inset" component="li" />
+                        </List>
+                    ))}
+                </Paper>
+            </div>
+        </>
     )
 }
