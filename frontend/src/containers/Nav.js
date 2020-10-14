@@ -15,6 +15,7 @@ import MailIcon from '@material-ui/icons/Mail'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import MoreIcon from '@material-ui/icons/MoreVert'
 import { Home } from '@material-ui/icons'
+import UserSearchBox from '../components/UserSearchBox'
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -173,19 +174,7 @@ export default function PrimarySearchAppBar() {
                         <Home fontSize="large" />
                     </IconButton>
 
-                    <div className={classes.search}>
-                        <div className={classes.searchIcon}>
-                            <SearchIcon />
-                        </div>
-                        <InputBase
-                            placeholder="Search…"
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
-                    </div>
+                    <UserSearchBox />
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
                         <IconButton
