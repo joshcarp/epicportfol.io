@@ -96,8 +96,6 @@ class UserLoginForm extends React.Component {
                     </Button>
                     <Button
                         className={classes.button}
-                        type="submit"
-                        name="Submit"
                         variant="contained"
                         color="secondary"
                         href="/register"
