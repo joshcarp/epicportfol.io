@@ -1,25 +1,23 @@
-import React from "react";
-import PropTypes from 'prop-types';
-import { TextField, withStyles, Button } from '@material-ui/core';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { TextField, withStyles, Button } from '@material-ui/core'
 
-const { loginRequest } = require('../proto/api_pb.js');
-const { authenticateClient } = require('../proto/api_grpc_web_pb.js');
-const auth = new authenticateClient('https://authenticate.epicportfol.io');
+const { loginRequest } = require('../proto/api_pb.js')
+const { authenticateClient } = require('../proto/api_grpc_web_pb.js')
+const auth = new authenticateClient('https://authenticate.epicportfol.io')
 
 const styles = {
-    form: {
-
-    },
+    form: {},
     field: {
-        margin: "5px",
+        margin: '5px',
         background: 'white',
         width: '80%',
     },
     button: {
-        margin: "5px",
+        margin: '5px',
         width: '80%',
     },
-};
+}
 
 // Component to create form that logs user into their profile and redirects
 // to profile page.
@@ -61,7 +59,7 @@ class UserLoginForm extends React.Component {
         })
     }
     render() {
-        const { classes } = this.props;
+        const { classes } = this.props
         return (
             <div className="UserLoginForm">
                 <form onSubmit={this.handleSubmit} className={classes.form}>
@@ -92,16 +90,27 @@ class UserLoginForm extends React.Component {
                         name="Submit"
                         variant="contained"
                         color="primary"
-                    > Submit </Button>
+                    >
+                        {' '}
+                        Login{' '}
+                    </Button>
+                    <Button
+                        className={classes.button}
+                        variant="contained"
+                        color="secondary"
+                        href="/register"
+                    >
+                        {' '}
+                        Register{' '}
+                    </Button>
                 </form>
             </div>
         )
     }
 }
 
-
 UserLoginForm.propTypes = {
     classes: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(styles)(UserLoginForm);
+export default withStyles(styles)(UserLoginForm)
