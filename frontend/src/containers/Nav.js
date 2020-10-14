@@ -170,7 +170,12 @@ export default function PrimarySearchAppBar() {
         <div className={classes.grow}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton edge="start" color="inherit" aria-label="home">
+                    <IconButton
+                        edge="start"
+                        color="inherit"
+                        aria-label="home"
+                        href="/"
+                    >
                         <Home fontSize="large" />
                     </IconButton>
 
