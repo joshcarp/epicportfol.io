@@ -6,15 +6,34 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from './reducers';
+import AuthProvider from './provider/AuthProvider';
+import {BrowserRouter} from 'react-router-dom';
+
 
 const store = createStore(reducers);
 
 
 ReactDOM.render(
+    // <BrowserRouter>
+    //     <AuthProvider>
+    //         <App />
+    //     </AuthProvider>
+    // </BrowserRouter>
+    // , document.getElementById('root')
+
     <Provider store={store}>
-        <App />
+        <AuthProvider>
+            <App />
+        </AuthProvider>
+
     </Provider>,
     document.querySelector('#root')
+
+    // <Provider store={store}>
+    //     <App />
+    // </Provider>,
+    // document.querySelector('#root')
+
   // <React.StrictMode>
   //   <App />
   // </React.StrictMode>,
