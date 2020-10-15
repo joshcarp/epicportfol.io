@@ -1,6 +1,10 @@
 import React, {useContext} from 'react'
 import PropTypes from 'prop-types';
 import { TextField, withStyles, Button } from '@material-ui/core';
+import {firebaseAuth} from '../provider/AuthProvider'
+import {withRouter} from 'react-router-dom'
+
+
 
 const { LoginRequest } = require('../proto/api_pb.js')
 const { authenticateClient } = require('../proto/api_grpc_web_pb.js')
@@ -78,6 +82,8 @@ class UserRegisterForm extends React.Component {
             console.log(localStorage)
         })
     }
+
+
     render() {
         const { classes } = this.props;
 

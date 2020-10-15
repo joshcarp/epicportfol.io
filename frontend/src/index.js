@@ -14,20 +14,20 @@ const store = createStore(reducers);
 
 
 ReactDOM.render(
-    // <BrowserRouter>
-    //     <AuthProvider>
-    //         <App />
-    //     </AuthProvider>
-    // </BrowserRouter>
-    // , document.getElementById('root')
-
-    <Provider store={store}>
+    <BrowserRouter>
         <AuthProvider>
             <App />
         </AuthProvider>
+    </BrowserRouter>
+    , document.getElementById('root')
 
-    </Provider>,
-    document.querySelector('#root')
+    // <Provider store={store}>
+    //     <AuthProvider>
+    //         <App />
+    //     </AuthProvider>
+    //
+    // </Provider>,
+    // document.querySelector('#root')
 
     // <Provider store={store}>
     //     <App />
