@@ -10,22 +10,31 @@ import {firebaseAuth} from './provider/AuthProvider'
 import Signup from './components/Signup'
 
 
+import {Redirect} from 'react-router-dom'
+import Signin from './components/Signin'
+import Home from './components/Home'
+import './App.css';
+
 
 
 export default function App() {
-    const {handleSignup} = useContext(firebaseAuth)
-    console.log(handleSignup)
+    const { token } = useContext(firebaseAuth)
+    console.log(token)
 
     return (
         <Router>
             <Switch>
+                <Route exact path='/' render={rProps => token === null ? <Signin /> : <Home />} />
+                <Route exact path='/signin' component={Signin} />
+                <Route exact path='/signup' component={Signup} />
+
                 <Route exact path="/register">
                     <RegisterPage />
                 </Route>
 
-                <Route exact path="/signup">
-                    <Signup />
-                </Route>
+                {/*<Route exact path="/signup">*/}
+                {/*    <Signup />*/}
+                {/*</Route>*/}
 
                 <Route exact path="/">
                     <Homepage />
