@@ -8,8 +8,6 @@ import (
 
 	"github.com/joshcarp/it-project/backend/internal/auth"
 
-	"github.com/joshcarp/it-project/backend/internal/database"
-
 	"github.com/joshcarp/it-project/backend/internal/jwt"
 	"github.com/joshcarp/it-project/backend/internal/proto/itproject"
 )
@@ -19,7 +17,7 @@ func (s *Server) Login(ctx context.Context, req *itproject.LoginRequest) (*itpro
 	if err != nil {
 		return nil, err
 	}
-	if err := database.VerifyUser(s.db, username, password); err != nil {
+	if err := s.db.VerifyUser(username, password); err != nil {
 		return nil, status.Error(codes.PermissionDenied, "Incorrect username or password")
 	}
 	token, err := jwt.Issue(map[string]interface{}{"email": username})

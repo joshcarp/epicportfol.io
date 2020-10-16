@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"os"
 
+	"cloud.google.com/go/firestore"
+
 	"github.com/sirupsen/logrus"
 
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
@@ -14,6 +16,11 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
+
+type Server struct {
+	config.Config
+	*firestore.Client
+}
 
 func SetupServer() (*grpc.Server, http.Handler, config.Config, error) {
 	configFlag := flag.String("config", "config/local.yaml", "file (without ext) of the config file to load from config")
