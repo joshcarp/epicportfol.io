@@ -1,8 +1,6 @@
 package profiles
 
 import (
-	"os"
-
 	"github.com/joshcarp/it-project/backend/internal/config"
 	"github.com/joshcarp/it-project/backend/internal/database"
 	"github.com/joshcarp/it-project/backend/internal/proto/itproject"
@@ -23,7 +21,7 @@ func NewServer(config config.Config, log *logrus.Logger) (*Server, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &Server{config: config, db: db, log: log, auth: os.Getenv("AUTHENTICATE") != "FALSE"}, nil
+	return &Server{config: config, db: db, log: log, auth: false}, nil
 }
 
 func RegisterService(conf config.Config, log *logrus.Logger, s *grpc.Server) error {
