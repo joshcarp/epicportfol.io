@@ -233,80 +233,80 @@ proto.itproject.authenticatePromiseClient.prototype.login =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.itproject.loginRequest,
- *   !proto.itproject.loginResponse>}
+ *   !proto.itproject.verifyRequest,
+ *   !proto.itproject.verifyResponse>}
  */
-const methodDescriptor_authenticate_renewJWT = new grpc.web.MethodDescriptor(
-  '/itproject.authenticate/renewJWT',
+const methodDescriptor_authenticate_verify = new grpc.web.MethodDescriptor(
+  '/itproject.authenticate/verify',
   grpc.web.MethodType.UNARY,
-  proto.itproject.loginRequest,
-  proto.itproject.loginResponse,
+  proto.itproject.verifyRequest,
+  proto.itproject.verifyResponse,
   /**
-   * @param {!proto.itproject.loginRequest} request
+   * @param {!proto.itproject.verifyRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.itproject.loginResponse.deserializeBinary
+  proto.itproject.verifyResponse.deserializeBinary
 );
 
 
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.itproject.loginRequest,
- *   !proto.itproject.loginResponse>}
+ *   !proto.itproject.verifyRequest,
+ *   !proto.itproject.verifyResponse>}
  */
-const methodInfo_authenticate_renewJWT = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.itproject.loginResponse,
+const methodInfo_authenticate_verify = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.itproject.verifyResponse,
   /**
-   * @param {!proto.itproject.loginRequest} request
+   * @param {!proto.itproject.verifyRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.itproject.loginResponse.deserializeBinary
+  proto.itproject.verifyResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.itproject.loginRequest} request The
+ * @param {!proto.itproject.verifyRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.itproject.loginResponse)}
+ * @param {function(?grpc.web.Error, ?proto.itproject.verifyResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.itproject.loginResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.itproject.verifyResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.itproject.authenticateClient.prototype.renewJWT =
+proto.itproject.authenticateClient.prototype.verify =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/itproject.authenticate/renewJWT',
+      '/itproject.authenticate/verify',
       request,
       metadata || {},
-      methodDescriptor_authenticate_renewJWT,
+      methodDescriptor_authenticate_verify,
       callback);
 };
 
 
 /**
- * @param {!proto.itproject.loginRequest} request The
+ * @param {!proto.itproject.verifyRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.itproject.loginResponse>}
+ * @return {!Promise<!proto.itproject.verifyResponse>}
  *     A native promise that resolves to the response
  */
-proto.itproject.authenticatePromiseClient.prototype.renewJWT =
+proto.itproject.authenticatePromiseClient.prototype.verify =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/itproject.authenticate/renewJWT',
+      '/itproject.authenticate/verify',
       request,
       metadata || {},
-      methodDescriptor_authenticate_renewJWT);
+      methodDescriptor_authenticate_verify);
 };
 
 

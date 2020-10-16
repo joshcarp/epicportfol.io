@@ -16,7 +16,10 @@ db[~db]:
         return matching profiles
     update_profile:
         return ok
-
+assets[~db]:
+    @project="itproject"
+    upload:
+        return url
 authenticate:
     @project="itproject"
     login:
@@ -40,15 +43,18 @@ search:
 upload:
     @project="itproject"
     upload:
-        db <- update_profile
+        assets <- upload
 
 frontend:
     @project="itproject"
     register:
         authenticate <- register
+        . <- u/user
     login:
         authenticate <- login
+        . <- u/user
     search:
         search <- search
+        display users
     u/user:
         profiles <- getuser

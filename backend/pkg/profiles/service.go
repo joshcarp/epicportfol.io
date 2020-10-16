@@ -12,6 +12,7 @@ type Server struct {
 	config config.Config
 	db     database.Server
 	log    *logrus.Logger
+	auth   bool
 	itproject.UnimplementedProfilesServer
 }
 
@@ -20,7 +21,7 @@ func NewServer(config config.Config, log *logrus.Logger) (*Server, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &Server{config: config, db: db, log: log}, nil
+	return &Server{config: config, db: db, log: log, auth: false}, nil
 }
 
 func RegisterService(conf config.Config, log *logrus.Logger, s *grpc.Server) error {
