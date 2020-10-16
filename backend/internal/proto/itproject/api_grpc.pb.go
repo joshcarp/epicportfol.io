@@ -21,8 +21,8 @@ type AuthenticateClient interface {
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
 	// Login is used to login and to acquire a jwt
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
-	// RenewJWT is used to reissue JWTs that have expired
-	RenewJWT(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
+	// verifyUser is used to verify if a user has permissions to edit an profile; used for frontend rendering
+	Verify(ctx context.Context, in *VerifyRequest, opts ...grpc.CallOption) (*VerifyResponse, error)
 }
 
 type authenticateClient struct {
@@ -51,9 +51,9 @@ func (c *authenticateClient) Login(ctx context.Context, in *LoginRequest, opts .
 	return out, nil
 }
 
-func (c *authenticateClient) RenewJWT(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
-	out := new(LoginResponse)
-	err := c.cc.Invoke(ctx, "/itproject.authenticate/renewJWT", in, out, opts...)
+func (c *authenticateClient) Verify(ctx context.Context, in *VerifyRequest, opts ...grpc.CallOption) (*VerifyResponse, error) {
+	out := new(VerifyResponse)
+	err := c.cc.Invoke(ctx, "/itproject.authenticate/verify", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -68,8 +68,8 @@ type AuthenticateServer interface {
 	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
 	// Login is used to login and to acquire a jwt
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
-	// RenewJWT is used to reissue JWTs that have expired
-	RenewJWT(context.Context, *LoginRequest) (*LoginResponse, error)
+	// verifyUser is used to verify if a user has permissions to edit an profile; used for frontend rendering
+	Verify(context.Context, *VerifyRequest) (*VerifyResponse, error)
 	mustEmbedUnimplementedAuthenticateServer()
 }
 
@@ -83,8 +83,8 @@ func (*UnimplementedAuthenticateServer) Register(context.Context, *RegisterReque
 func (*UnimplementedAuthenticateServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
 }
-func (*UnimplementedAuthenticateServer) RenewJWT(context.Context, *LoginRequest) (*LoginResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RenewJWT not implemented")
+func (*UnimplementedAuthenticateServer) Verify(context.Context, *VerifyRequest) (*VerifyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Verify not implemented")
 }
 func (*UnimplementedAuthenticateServer) mustEmbedUnimplementedAuthenticateServer() {}
 
@@ -128,20 +128,20 @@ func _Authenticate_Login_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Authenticate_RenewJWT_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LoginRequest)
+func _Authenticate_Verify_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VerifyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthenticateServer).RenewJWT(ctx, in)
+		return srv.(AuthenticateServer).Verify(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/itproject.authenticate/RenewJWT",
+		FullMethod: "/itproject.authenticate/Verify",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthenticateServer).RenewJWT(ctx, req.(*LoginRequest))
+		return srv.(AuthenticateServer).Verify(ctx, req.(*VerifyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -159,8 +159,8 @@ var _Authenticate_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Authenticate_Login_Handler,
 		},
 		{
-			MethodName: "renewJWT",
-			Handler:    _Authenticate_RenewJWT_Handler,
+			MethodName: "verify",
+			Handler:    _Authenticate_Verify_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

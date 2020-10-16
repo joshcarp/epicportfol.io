@@ -12,5 +12,6 @@ func (s *Server) Getuser(ctx context.Context, in *itproject.GetuserRequest) (*it
 }
 
 func (s *Server) Updateuser(ctx context.Context, in *itproject.Profile) (*itproject.UpdateuserResponse, error) {
+
 	return &itproject.UpdateuserResponse{}, s.db.EnterProfile(in)
 }
