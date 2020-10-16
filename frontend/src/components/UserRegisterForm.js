@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { TextField, withStyles, Button } from '@material-ui/core'
 
-const { loginRequest } = require('../proto/api_pb.js')
+const { registerRequest } = require('../proto/api_pb.js')
 const { authenticateClient } = require('../proto/api_grpc_web_pb.js')
 const auth = new authenticateClient('https://authenticate.epicportfol.io')
 
@@ -65,12 +65,12 @@ class UserRegisterForm extends React.Component {
     }
     handleSubmit(event) {
         event.preventDefault()
-        var request = new loginRequest()
+        var request = new registerRequest()
         request.setEmail(this.state.email)
         request.setPassword(this.state.password)
         request.setUsername(this.state.username)
-        request.setFullName(this.state.name)
-        request.setPreferredName(this.state.preferredName)
+        request.setFullname(this.state.name)
+        request.setPreferredname(this.state.preferredName)
         var meta = {
             authorization:
                 'Basic ' +
