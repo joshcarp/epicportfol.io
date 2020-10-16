@@ -146,12 +146,18 @@ message searchRequest {
 }
 
 message searchResponse {
-    repeated singleSearchResponse results = 1;
+    repeated profile results = 1;
 }
 
-message singleSearchResponse {
+/* --- Search service --- */
+
+/* Account is an account that is stored in the database */
+
+message account {
     string username = 1;
-    string full_name = 2;
-    string picture = 3;
-    string bio = 4;
+    string email = 2;
+    string preferred_name = 3;
+    string name = 4;
+    string password = 5;
+    string salt = 6;
 }

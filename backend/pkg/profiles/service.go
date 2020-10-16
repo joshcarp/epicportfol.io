@@ -1,7 +1,6 @@
 package profiles
 
 import (
-	"github.com/jmoiron/sqlx"
 	"github.com/joshcarp/it-project/backend/internal/config"
 	"github.com/joshcarp/it-project/backend/internal/database"
 	"github.com/joshcarp/it-project/backend/internal/proto/itproject"
@@ -11,13 +10,13 @@ import (
 
 type Server struct {
 	config config.Config
-	db     *sqlx.DB
+	db     database.Server
 	log    *logrus.Logger
 	itproject.UnimplementedProfilesServer
 }
 
 func NewServer(config config.Config, log *logrus.Logger) (*Server, error) {
-	db, err := database.NewDB(config)
+	db, err := database.New(config.GCP.ProjectID)
 	if err != nil {
 		return nil, err
 	}

@@ -1,8 +1,4 @@
-database:
-    type: cloud
-    host: joshcarp-it-project:us-central1:joshcarp-it-project-2
-    dbname: postgres
-    user: postgres
-    password: FA4p48K15vCPlC27
 server:
     port:  443
+gcp:
+    projectid:  "joshcarp-it-project"

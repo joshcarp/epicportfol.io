@@ -46,6 +46,27 @@ itproject:
         jwt <: string:
             @json_tag = "jwt"
             @rpcId = "1"
+    !type account:
+        @description = ""
+        @source_path = "api.proto"
+        email <: string:
+            @json_tag = "email"
+            @rpcId = "2"
+        name <: string:
+            @json_tag = "name"
+            @rpcId = "4"
+        password <: string:
+            @json_tag = "password"
+            @rpcId = "5"
+        preferred_name <: string:
+            @json_tag = "preferredName"
+            @rpcId = "3"
+        salt <: string:
+            @json_tag = "salt"
+            @rpcId = "6"
+        username <: string:
+            @json_tag = "username"
+            @rpcId = "1"
     !type artifact:
         @description = ""
         @source_path = "api.proto"
@@ -164,22 +185,7 @@ itproject:
     !type searchResponse:
         @description = ""
         @source_path = "api.proto"
-        results <: sequence of singleSearchResponse
-    !type singleSearchResponse:
-        @description = ""
-        @source_path = "api.proto"
-        bio <: string:
-            @json_tag = "bio"
-            @rpcId = "4"
-        full_name <: string:
-            @json_tag = "fullName"
-            @rpcId = "2"
-        picture <: string:
-            @json_tag = "picture"
-            @rpcId = "3"
-        username <: string:
-            @json_tag = "username"
-            @rpcId = "1"
+        results <: sequence of profile
     !type updateuserResponse[~empty]:
         @description = ""
         @source_path = "api.proto"

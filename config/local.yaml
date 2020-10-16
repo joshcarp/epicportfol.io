@@ -9,3 +9,5 @@ database:
     password: 1234
 server:
     port:  443
+gcp:
+    projectid:  "joshcarp-it-project"

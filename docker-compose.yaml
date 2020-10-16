@@ -8,13 +8,7 @@ services:
             args:
                 SERVICE:  authenticate
         ports:
-            - 443:443
-    echo:
-        build:
-            context: .
-            dockerfile: Dockerfile
-            args:
-                SERVICE:  echoserver
-        ports:
-            - 8080:8080
+            - 444:444
+        environment:
+            PORT: 444
 

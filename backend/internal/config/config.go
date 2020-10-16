@@ -23,11 +23,14 @@ type Config struct {
 		Schema   string `yaml:"schema"`
 		Host     string `yaml:"host"`
 		Dbname   string `yaml:"dbname"`
-		Port     string `yaml:"port"`
+		Port     int    `yaml:"port"`
 		User     string `yaml:"user"`
 		Password string `yaml:"password"`
 	} `yaml:"database"`
 	Server struct {
 		Port string `yaml:"port"`
 	} `yaml:"server"`
+	GCP struct {
+		ProjectID string `yaml:"projectID"`
+	} `yaml:"gcp"`
 }
