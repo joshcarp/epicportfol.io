@@ -3,7 +3,7 @@
 
 # itproject
 ## Integration Diagram
-<img src="https://plantuml.com/plantuml/svg/~1UDgCpizgup0G1l2xdcBsb9CXYPDb3o7aZxsbbnYAIm-X6DMUH6faZHcDQKlfkvUWu4DEdjE7lf-acOmUDPd0gBdHxNDPFEI7_6bRvXdiYoo7986iW4DHGfuzbdy6ElhLqRkgJH3DqhTEYHM7OALZUiTQbB4DGX1a9FdgK8LQEuHMVyBiR_fl0GRjsOWA5-ixpRg5cjgEF7g1RmMmq_NbpDJxPa-E6FuxOkrUZ1MyjiGDScnsJjSN1R1bfezuj6VR1lBgHnrrBmQzs5eBle8EK4rXjJBsRDpr__LQ7PktMCnKDOKaML_JiMCwMOSXLlExEzLyW04rroQoz9wb0-ixHxg9R77F5WCxCNb1VuDBLIrZDHrIEgIvsg1l-jRz1W00__zLjfvZ">
+<img src="https://plantuml.com/plantuml/svg/~1UDgCZasBsp0GXk_pAwQdd0pvS48F8UJ3RkabXkBIWob6jIUHDh9aHcDsbsN_-n8KVCZ9SthHyxoZcKqUcCrmqZpKmv-o-9cVyz-7Ci_mL6Gv9Wbc1PwB4lFiL_bjL2TldNmhx8Cebg6p84OieP6U_Gir0jgqX468oSjxJn0QPGaxzOQBpUfxYfhCLGk4ct6zOjLXuxlUEtA27u1uLCtjodvmxSbRp_Z3UbRshpP2T-gv9OxaQ5Lp0yG3it-DJoSsNV0EFg4QUkjL-mzLm7gEswqsLstlF-zsKAaGI4A42wZdc2IxUwhK89gSc4O9HRnyxhR_8rX1lOoz5LGz-uknz5YPFdNgT1G3AMvqrDRFsdhKBkoTa7lSlu5w4z5oJEinfR0drmwT_Ge00F__AswZSW00">
 
 
 
@@ -14,7 +14,7 @@
 |----|----|
 | authenticate | [login](#authenticate-login) |
 | authenticate | [register](#authenticate-register) |
-| authenticate | [renewJWT](#authenticate-renewJWT) |
+| authenticate | [verify](#authenticate-verify) |
 | echo | [echo](#echo-echo) |
 | profiles | [getuser](#profiles-getuser) |
 | profiles | [updateuser](#profiles-updateuser) |
@@ -25,8 +25,7 @@
 
 | Application Name | Type Name |
 |----|----|
-| itproject | [RenewJWTRequest](#itproject.RenewJWTRequest) | 
-| itproject | [RenewJWTResponse](#itproject.RenewJWTResponse) | 
+| itproject | [account](#itproject.account) | 
 | itproject | [artifact](#itproject.artifact) | 
 | itproject | [echoRequest](#itproject.echoRequest) | 
 | itproject | [echoResponse](#itproject.echoResponse) | 
@@ -39,10 +38,11 @@
 | itproject | [registerResponse](#itproject.registerResponse) | 
 | itproject | [searchRequest](#itproject.searchRequest) | 
 | itproject | [searchResponse](#itproject.searchResponse) | 
-| itproject | [singleSearchResponse](#itproject.singleSearchResponse) | 
 | itproject | [updateuserResponse](#itproject.updateuserResponse) | 
 | itproject | [uploadRequest](#itproject.uploadRequest) | 
 | itproject | [uploadResponse](#itproject.uploadResponse) | 
+| itproject | [verifyRequest](#itproject.verifyRequest) | 
+| itproject | [verifyResponse](#itproject.verifyResponse) | 
 
 
 
@@ -143,13 +143,14 @@ RegisterResponse is the response from the registration services
 ---
 
 
-### <a name=authenticate-renewJWT></a>authenticate renewJWT
-RenewJWT is used to reissue JWTs that have expired 
+### <a name=authenticate-verify></a>authenticate verify
+verifyUser is used to verify if a user has permissions to edit an profile; used
+ for frontend rendering 
 
 <details>
 <summary>Sequence Diagram</summary>
 
-<img src="https://plantuml.com/plantuml/svg/~1UDgCpy5Bmp0K1l1x_ehdBhqOBO8NIRCD6qJ15MR4mmubPeyQJPEIlAhuryl6r5s4VjVlbu-yOd9OKS2a7EZoKJStQgNMIwrgk6vg1Pn3tS2gqQ3gMttoIoUlJluhMsGoYSRUCni3fUXXPaPwmK3E6i8Pc0njoVAR2uD9feVUVDvZpgR31_U5S75PCdBa4OwVWU2GCE37tPDcLVLl1rN5Dbos9LpzUMF9lUzWMxADu7pV2XjzJF3iHvIEXXHVqTAPZvqBQyn331d5-Tv840VS9SGWvwSm_waas-Bn_0B3TdVxTm000F__DRzwrm00">
+<img src="https://plantuml.com/plantuml/svg/~1UDgCZp5Fmp0GXNV_YaUNB1WY91QKfAr8X1Xef1Ac3f5nZs9mxCY-LC2lHoqjwb8fR_s-ztINZ8v84epAGPs_DFL3jQYMywOgSL-N5QH4MMDHDwZAn-RYNnszElfMCOki0W-T5Tex3jvYeWP-9yT6AwO9L4IRYlXfNA-2wj2fhoUAKMtesVmGRcvJmOOjuRI6J69BmRnzYpm_Gv3dOYMBDiNTqLMQpNOdjQbOPLBkMQQzzG6lTg32S1_y1sc--ciiAVRUHSgkzrA1x61l0f4hffUO7b4XrdIwFoEtthtz6m00__yVv7dG">
 
 </details>
 
@@ -160,7 +161,7 @@ RenewJWT is used to reissue JWTs that have expired
 
 
 
-<img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNwENafsVc1QKMbgOMboWf91Ohn1lOs2XekEZa5oLdPAPeAjZPALHprN8vfEQbW0864000__y4tJhL">
+<img src="https://plantuml.com/plantuml/svg/~1UDgCa3qBmZ00HFVyYhDB5QquIoaj9eXB0oNE4jgeaJQj-H14_EyYY7FU_3YELpelhGz3Jz9eI9eYYfzQ7GNViverbM0KEquPiWoKe-O2Z1x4xAz6hqP_9MqldKEYpHHy0kbmsY3FCQUhqRPNtIsW_MJ7cshz-g6iFZyRTG_AUHG5NcI9u9GrSb3OmdchpOMyIQbCzuts2G00___QfqI7">
 
 
 </details>
@@ -172,10 +173,8 @@ RenewJWT is used to reissue JWTs that have expired
 
 
 
-LoginRequest is the response object from Login that is used in bearer authentic
-ation in the header: "Bearer <JWT>" 
 
-<img src="https://plantuml.com/plantuml/svg/~1UDgCqB4AmZ0KXU4zJt7iKaKhpb9AYmdYqa29ivGsr9IQbDo8W_Zk8eZWbd_-k5nEIQ7ruNwRM1eTIrD4zQNLMScZg4LJAS5na5mWoy0bQgaW-4ajVZJwQlIlh9jQ8YIJ6unjDCtEaaxG4Yuxv3cMVEDyTpNz2YRCtesw2zi_ZAB0awqnFWBseE2D7TYBbThsdztU0G00___C-4MU">
+<img src="https://plantuml.com/plantuml/svg/~1UDgCa37BmZ0OXFVyYlkwz1EjE4ifBIQ8ImCbpbBRY97ObBnH4F6_YoA2MvxnU3YEAocqFbpEbgNHi3H551-rsYgv5hLeAYKuLf8BP1cuH2qL1D-elwyQtHgzbNMs9K9orTuSRescqGsa4xI4tG9vZdy-Sxuxcdu24qRlJheByryRHO4xc-AT6jrZYRrpbZrOgOV-TTup003__qR8HwG0">
 
 
 </details>
@@ -371,7 +370,7 @@ eter
 
 
 
-<img src="https://plantuml.com/plantuml/svg/~1UDgCai5Bmp0OnU_vAvwzJ3DRkkiePSCMyRB2LiybPfzR94jhlkGa-zz5tCI2Gh_Zu_VUBuUiE2WVuicAsUGJinactGLTFxVDOxsfj-kshl3GL3NI55M3JTEYhfxQcnzqykhajmfj5JCI9kNrSKiyz8ufWM9qEOe2jzLzx_NHxEzWmk3xDz8X6zCeIto8EJnnj86nX9GxUe_aDA5WumwMTgD6AQKuNzMNshTpyR_pZvsh-SNqM8A3D-uWvdYDrdPEdUXtE1WTeXz5aScFiRFeSiWqHP9dcKpGBSIAtFxh0tm6003__v4MXpi0">
+<img src="https://plantuml.com/plantuml/svg/~1UDgCayzkip0GnEz-Ylsuv2ifKVxSeYXAL53LIv1IUaR6R1fJOrFR7AegxruX80LK97nZlCpC_YGVZANQbhaWiyc7p6OmwJIZnxSeV0vEmVaO1JuyXNu0dWT-2ASmWi1_YVxTHoUxJkvAcA36W4ErvHVAh7606eYNiDl1V_zHQNRbwGDmMsYL8REBTX3sU_WcSqZHCCqBovM4BHYhkNmdSn1SVdI_BRS2VuLRcvkff8bSZKPcAcdJcCeBAh-wpYcrQ7h2tut66cWqfMZtNe-MABIwS85jaJils8Bhlk9dYP8Xx5fzxxfa3WbNtGgOKowwmgKK8fOqnwvO8HcuPYgf3Ikimylwn_g-uCoMkcTN6jJzYFlg1gbcrpEQGac3DO7DA87-T0kYmJVerD2gIjr8l0RNyy1PBXQk0_5oAAn8lEa9Qt90cLQlxYS00F__NnFusm00">
 
 
 </details>
@@ -398,7 +397,7 @@ upload uploads a static asset to gcp and returns a url
 <details>
 <summary>Sequence Diagram</summary>
 
-<img src="https://plantuml.com/plantuml/svg/~1UDgCa3rFmp0GXlVx5KUNBXXI91QKkAr8X1Xef1Ac3j4rFYfJDuvi1o5-FSf7eH9BRhBkVVIyriqd3ypdE6b6TFrMv4_P9jkkYop5nppDK0XCSzpa1MRfSt7rYqwsJluhh7mW5zgJWShMmLc3ixOnbjGCoMCPWQ90U_ACCxKVTWlmHrqtvEY49_fwOU_fmA_wc_7kFeAWWs4S91YByGL9yc-7IG8x8Si87yuKLK5_Kk2k6Sj8o7BHXue2buspxzemu1-rwAXOY1wpHq35b-6kYpfzN5bZ7UvDorA7njaFhiBDKBfbtzZQStpRGnBZaJuuvbekht5vZYHS-YDOSQsws_q4003__tcDZ880">
+<img src="https://plantuml.com/plantuml/svg/~1UDgCaC5FWp0KX-_zAtxkiejLCF5YeDiYn7Xm91DFEv0tU5dGGabRZF6lDmXpIxpmJitxldnjkfmzOhd4h9dKpLkUFQNRTBV9qmIFMP92IYGPjbcED7dEh_xKsTNPRnLhvydwlj6YDAstHcFHTzfGjG0v586eoDE176D1ph5tupuKxgDkExBKeA6l5tQEZlnQVpFkxWFXQwyPOmYHd4uYZl_j4CTYBrKHuE5aKUdhJ_8yt8uYaAe8pn1d6WuqadB4LWjKV4dt0nkwKMcqiJZedbNjEslUkVGtOt37hZEju-ZsLrA89ljecLkrkiRgX9Iux0TYpMqrVDnF0000__yBRejw">
 
 </details>
 
@@ -439,28 +438,15 @@ upload uploads a static asset to gcp and returns a url
 
 
 
-<a name=itproject.RenewJWTRequest></a><details>
-<summary>itproject.RenewJWTRequest</summary>
+<a name=itproject.account></a><details>
+<summary>itproject.account</summary>
 
-### itproject.RenewJWTRequest
-
-
-- RenewJWTRequest is empty becayse Bearer <JWT> should be used with this method 
-
-<img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQN1ANcfPPxXOS4fHQMfXQNA2aa5Yl46zZOA6YuwEGN9MTafcWgsDafL7FLSZcavgM0WWOG003__tzhEuG0">
-<a href="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNw0MbvgMMUuM71AKMbgOMboWf91Ohn1lOs2XekEZa5oLdPAPeAjZPALHprN8vfEQbWC864000__-qEZko">Full Diagram</a>
-
-</details>
-<a name=itproject.RenewJWTResponse></a><details>
-<summary>itproject.RenewJWTResponse</summary>
-
-### itproject.RenewJWTResponse
+### itproject.account
 
 
-- RenewJWTResponse is used to renew jwts 
 
-<img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oie1QNcfPPxXOS4fHONvESLfoef91Ohn1iesDWeQBZev1SbPsIcQ2gWgrAmirEevj9Mo2elKR1IA2ufoinBvwhbSaZDIm656I000F__YiD3LW00">
-<a href="https://plantuml.com/plantuml/svg/~1UDgCqB4AmZ0KXU4zJt7iKaKhpb9AYmcYGmCbuYYb3TfIav8RwI2-kmZYu9H__hXSJaw-Tlvn7rWS78jZ1FMbnKd9lIX5LIZ1iPDS84d09Kgf8FX1pNuq-6hmhwmPQY94bJPwEfvLfMcqXdI4cd3P84qnvolhcblNBj3vqTbUDtxzxv5bUB8b-ibZ2_AkCrVsOhasxMUzTm000F__P0z7M000">Full Diagram</a>
+<img src="https://plantuml.com/plantuml/svg/~1UDgCaK5Bn30GXU_v5S-zL5aNFCkoj9WWNXgGU2v34hMGfZAJua7yxo8KQJtbtRwPZs7WjLA8op8brLH7DGsgighTYxEFfZVFdJCQ3rORd4xG5hrrCFh9NVsfrLUhVrK-aGWEvFsyv7802OOxdC-urhSp-_Snt61TudB1bpeYJZGct4CAZ_bD7P5fYbl-897FcSDknl4rCiSm_BU5Kjdo8f7tphTgOmw_BVm4003__o2pNZu0">
+<a href="https://plantuml.com/plantuml/svg/~1UDgCqK5B0p4G1U1xViMpbrLgnREKqcA2UEc2hESo9AD6iacPoU91_EyY5Edsb7TxmySmC5kj97KQa-cQOxeEJJdHtUlGFxczUzaDpkAnjmwh5MoFVJ_0sUVXwfysRss-rVX4gbYGzsNATG5I7EwnNkFQtXRn7p7S8DQZb4_szUx4iDdWsop18yM41sYLcD_D4fb6Fkz7Klqg4cOpuJSMuN2ur4gfdlT9MURcnsmvXxz__0O00F__HLHYG000">Full Diagram</a>
 
 
 #### Fields
@@ -468,7 +454,12 @@ upload uploads a static asset to gcp and returns a url
 
 | Field name | Type | Description |
 |----|----|----|
-| jwt | string | |
+| email | string | |
+| name | string | |
+| password | string | |
+| preferred_name | string | |
+| salt | string | |
+| username | string | |
 
 </details>
 <a name=itproject.artifact></a><details>
@@ -704,8 +695,8 @@ se
 
 
 
-<img src="https://plantuml.com/plantuml/svg/~1UDgCaC5gX30OXEzvYgaNsxH2pqL4QKBfnO2cvnBYJnNIsERNqxBllYmi2zxodRyPXcbvSsdRVuCein5bYInkQlTbpOVkzT1PhV1kb4PLGHdqnaAhJ_jmLxDRixSA7nmp2YQN_3mG_wsHgO1ZVB-Yhl6eNjRavsLwmj51q-0adf68zx0ntY3bIFyxHK-eUOa_WSP3ef5Id4LBSReUUWa00F__-75E7W00">
-<a href="https://plantuml.com/plantuml/svg/~1UDgCai5Bmp0OnU_vAvwzJ3DRkkiePSCMyRB2LiybPfzR94jhlkGa-zz5tCI2Gh_Zu_VUBuUiE2WVuicAsUGJinactGLTFxVDOxsfj-kshl3GL3NI55M3JTEYhfxQcnzqykhajmfj5JCI9kNrSKiyz8ufWM9qEOe2jzLzx_NHxEzWmk3xDz8X6zCeIto8EJnnj86nX9GxUe_aDA5WumwMTgD6AQKuNzMNshTpyR_pZvsh-SNqM8A3D-uWvdYDrdPEdUXtE1WTeXz5aScFiRFeSiWqHP9dcKpGBSIAtFxh0tm6003__v4MXpi0">Full Diagram</a>
+<img src="https://plantuml.com/plantuml/svg/~1UDgCqB5gmp0Gnl5TJ_7LYrkrXix569jAb2uMECeSX7p11iLsTFOKykuX40BPz9z_7CTNy-hYkfs2o9CJUOwa7hJPM_EdMzqrLYly6gLH5506hR7Gwj--FMdorUHVXG-E6HcJYtxeY9TvOihW68Tlb2NUrTSS_J3s7tWrg2fSn2SYyHPMnW-atD5veyaJoYNEnp5G9QMuYfgc_hxXBG00__yBs4Ze">
+<a href="https://plantuml.com/plantuml/svg/~1UDgCayzkip0GnEz-Ylsuv2ifKVxSeYXAL53LIv1IUaR6R1fJOrFR7AegxruX80LK97nZlCpC_YGVZANQbhaWiyc7p6OmwJIZnxSeV0vEmVaO1JuyXNu0dWT-2ASmWi1_YVxTHoUxJkvAcA36W4ErvHVAh7606eYNiDl1V_zHQNRbwGDmMsYL8REBTX3sU_WcSqZHCCqBovM4BHYhkNmdSn1SVdI_BRS2VuLRcvkff8bSZKPcAcdJcCeBAh-wpYcrQ7h2tut66cWqfMZtNe-MABIwS85jaJils8Bhlk9dYP8Xx5fzxxfa3WbNtGgOKowwmgKK8fOqnwvO8HcuPYgf3Ikimylwn_g-uCoMkcTN6jJzYFlg1gbcrpEQGac3DO7DA87-T0kYmJVerD2gIjr8l0RNyy1PBXQk0_5oAAn8lEa9Qt90cLQlxYS00F__NnFusm00">Full Diagram</a>
 
 
 #### Fields
@@ -713,29 +704,7 @@ se
 
 | Field name | Type | Description |
 |----|----|----|
-| results | sequence of singleSearchResponse | |
-
-</details>
-<a name=itproject.singleSearchResponse></a><details>
-<summary>itproject.singleSearchResponse</summary>
-
-### itproject.singleSearchResponse
-
-
-
-<img src="https://plantuml.com/plantuml/svg/~1UDgCq35BnJ0K1U0zl-BubYhF1yvIIei9uj90ZNE9QMm3QLfoaqdyxoA8M7X3pdZuk5nEIqd7b5VFgkAmga9HVcdtfkIpwCNGAS7n9Bd0vG8kqKi5mL_KpHyjlbhyApDU4-54BipUlbeTpJ9OshT0zWHD61zGrxZbzriqYvlkS4sYQV39pdXt6nv1ARemipC-ilTZqAlzN-xEf1mFLIORZ-oBjJPCFxj_1m00__yClrj0">
-<a href="https://plantuml.com/plantuml/svg/~1UDgCaK5B0p4GHk_v5P-zh58hdgMK5XF4ImCrdalCZhkHRB9aafFutqKGSQ67lEFZpJ0mUousbpe5qJKZkWvD_AQ7LwEVr56T3aP9F6gfiDb0QXorWPBFvkelRTxQVAjmmJ9ZnJuEWLx8PZUUYESKcLQmZFCzjbjSozkKtUZx6_Wov_H1hjnTci5kXq-nnfjFU02NxECWrdYl8PoZdUY_dBqhDIzKPShBx4liAVO_7_WE003___bVNq80">Full Diagram</a>
-
-
-#### Fields
-
-
-| Field name | Type | Description |
-|----|----|----|
-| bio | string | |
-| full_name | string | |
-| picture | string | |
-| username | string | |
+| results | sequence of profile | |
 
 </details>
 <a name=itproject.updateuserResponse></a><details>
@@ -786,6 +755,44 @@ se
 | Field name | Type | Description |
 |----|----|----|
 | url | string | |
+
+</details>
+<a name=itproject.verifyRequest></a><details>
+<summary>itproject.verifyRequest</summary>
+
+### itproject.verifyRequest
+
+
+
+<img src="https://plantuml.com/plantuml/svg/~1UDgCqB4AmZ0Gnl4zJ_7PfOeMdAMK5XF4fO4IPmdjgOMsOYuHH7nt4KHmot_-SHnVoTuw7yP1fD69D4LKNreTZDwfMZMLKH9RBHMo35AZrWPAxitiHwElHlygsi4o8xcJwq-FXcw1s2UmZECQUOwvN5rTU-cx1Vu8YW9FiKHWSfCT2HkmT_rq5YzHqjHz9di7003__sdZGzC0">
+<a href="https://plantuml.com/plantuml/svg/~1UDgCqBqAmZ0KnV4zJt7iKaKhpb9AYmdYqa29iuGsQgGVcfiA8hwx22AuvJ__k5nEJbuxFtOjYuDZSOoWlhJOAxaLfQWA9JWsaWia2RX4AHK4twd9ZmPV3VwLrQqcGdGtpXuVbRcDXdm4JJYiaAQOyiNWwhDjPh3-weQBgVto3oFBy6HpZ6HShpk3DSWxsv_OY-McRpxZlGC00F__Gsr7rG00">Full Diagram</a>
+
+
+#### Fields
+
+
+| Field name | Type | Description |
+|----|----|----|
+| username | string | |
+
+</details>
+<a name=itproject.verifyResponse></a><details>
+<summary>itproject.verifyResponse</summary>
+
+### itproject.verifyResponse
+
+
+
+<img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiebQKMPQPL1gKM5-Jd5QSgAIGMAyGRADZOA6YuwEGN9MTafcWgeAfHiBDJgERIXeXcfgOeM2aavUVdSDLoEQJcfO2231000F__RKH3eW00">
+<a href="https://plantuml.com/plantuml/svg/~1UDgCa37BmZ0OXFVyYlkwz1EjE4ifBIQ8ImCbpbBRY97ObBnH4F6_YoA2MvxnU3YEAocqFbpEbgNHi3H551-rsYgv5hLeAYKuLf8BP1cuH2qL1D-elwyQtHgzbNMs9K9orTuSRescqGsa4xI4tG9vZdy-Sxuxcdu24qRlJheByryRHO4xc-AT6jrZYRrpbZrOgOV-TTup003__qR8HwG0">Full Diagram</a>
+
+
+#### Fields
+
+
+| Field name | Type | Description |
+|----|----|----|
+| verified | bool | |
 
 </details>
 
