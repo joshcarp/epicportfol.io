@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { TextField, withStyles, Button } from '@material-ui/core'
+import { Redirect } from 'react-router'
 
 const { loginRequest } = require('../proto/api_pb.js')
 const { authenticateClient } = require('../proto/api_grpc_web_pb.js')
@@ -27,6 +28,7 @@ class UserLoginForm extends React.Component {
         this.state = {
             password: '',
             username: '',
+            loggedin:false,
         }
         this.handleUname = this.handleUname.bind(this)
         this.handlepwd = this.handlepwd.bind(this)
@@ -57,11 +59,18 @@ class UserLoginForm extends React.Component {
             console.log(localStorage)
             // console.log(err.code, err.message)//, response.getJwt())
         })
+        this.setState({loggedin: true})
     }
     render() {
         const { classes } = this.props
+        const { loggedin } = this.state
+        var { username } = this.state
+        username = "/u/"+username
         return (
             <div className="UserLoginForm">
+                {(loggedin &&
+                    <Redirect to={username}></Redirect>
+                )}
                 <form onSubmit={this.handleSubmit} className={classes.form}>
                     <TextField
                         className={classes.field}

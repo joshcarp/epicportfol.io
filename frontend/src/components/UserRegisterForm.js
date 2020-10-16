@@ -93,9 +93,6 @@ class UserRegisterForm extends React.Component {
         const { classes } = this.props
         const { registered } = this.state
         var { username } = this.state
-        console.log("Path")
-        console.log(username)
-        console.log(registered)
         username = "/u/"+username
         return (
             <div className="UserLoginForm">
