@@ -100,8 +100,5 @@ func (s Server) GetProfileLike(term string) ([]*itproject.Profile, error) {
 		}
 		snapshot, err = a.Next()
 	}
-	if err != nil {
-		return nil, err
-	}
 	return results, nil
 }

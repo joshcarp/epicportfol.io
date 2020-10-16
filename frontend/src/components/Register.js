@@ -4,7 +4,7 @@ import '../App.css';
 import { useState } from 'react'
 const { User } = require('../proto/api_pb.js');
 const { authenticateClient } = require('../proto/api_grpc_web_pb.js');
-const auth = new authenticateClient('http://localhost:8081');
+const auth = new authenticateClient('https://authenticate.epicportfol.io');
 
 
 
