@@ -55,7 +55,7 @@ class UserRegisterForm extends React.Component {
     }
     handlePreferredName(event) {
         this.setState({
-            email: event.target.value,
+            preferredName: event.target.value,
         })
     }
     handlepwd(event) {
@@ -107,7 +107,7 @@ class UserRegisterForm extends React.Component {
                         variant="outlined"
                         name="preferredname"
                         type="text"
-                        onChange={this.handle}
+                        onChange={this.handlePreferredName}
                         value={this.state.preferredName}
                         required
                     />
