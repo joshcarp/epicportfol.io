@@ -15,11 +15,12 @@ authenticate[~gRPC]:
             | Register is used to register a user and acquire a jwt 
         @source_path = "api.proto"
         return ok <: itproject.registerResponse
-    renewJWT(input <: itproject.loginRequest)[~gRPC]:
+    verify(input <: itproject.verifyRequest)[~gRPC]:
         @description =:
-            | RenewJWT is used to reissue JWTs that have expired 
+            | verifyUser is used to verify if a user has permissions to edit an profile; used
+            | for frontend rendering 
         @source_path = "api.proto"
-        return ok <: itproject.loginResponse
+        return ok <: itproject.verifyResponse
 
 echo[~gRPC]:
     @description =:
@@ -34,18 +35,6 @@ echo[~gRPC]:
 
 itproject:
     @package = "itproject"
-    !type RenewJWTRequest[~empty]:
-        @description =:
-            | RenewJWTRequest is empty becayse Bearer <JWT> should be used with this method 
-        @source_path = "api.proto"
-        ...
-    !type RenewJWTResponse:
-        @description =:
-            | RenewJWTResponse is used to renew jwts 
-        @source_path = "api.proto"
-        jwt <: string:
-            @json_tag = "jwt"
-            @rpcId = "1"
     !type account:
         @description = ""
         @source_path = "api.proto"
@@ -204,6 +193,18 @@ itproject:
         @source_path = "api.proto"
         url <: string:
             @json_tag = "url"
+            @rpcId = "1"
+    !type verifyRequest:
+        @description = ""
+        @source_path = "api.proto"
+        username <: string:
+            @json_tag = "username"
+            @rpcId = "1"
+    !type verifyResponse:
+        @description = ""
+        @source_path = "api.proto"
+        verified <: bool:
+            @json_tag = "verified"
             @rpcId = "1"
 
 profiles[~gRPC]:
