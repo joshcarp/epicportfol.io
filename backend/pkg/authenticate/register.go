@@ -16,7 +16,7 @@ func (s *Server) Register(ctx context.Context, req *itproject.RegisterRequest) (
 	if err := s.db.EnterUser(account); err != nil {
 		return nil, err
 	}
-	token, err := jwt.Issue(map[string]interface{}{"username": req.Email})
+	token, err := jwt.Issue(map[string]interface{}{"username": req.Username})
 	if err := s.db.EnterProfile(&itproject.Profile{
 		Username: account.Username,
 		Email:    account.Email,

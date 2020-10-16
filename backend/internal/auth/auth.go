@@ -12,7 +12,6 @@ import (
 	"github.com/joshcarp/it-project/backend/internal/proto/itproject"
 
 	"github.com/joshcarp/it-project/backend/internal/jwt"
-	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
 )
 
@@ -57,28 +56,29 @@ func SaltPassword(password, salt string) string {
 }
 
 // EnsureValidToken ensures that the context of an incoming request is valid
-func EnsureValidToken(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
+func GetToken(ctx context.Context) (map[string]interface{}, error) {
 	md, ok := metadata.FromIncomingContext(ctx)
 	if !ok {
 		return nil, fmt.Errorf("No auth found")
 	}
-	if err := valid(md["authorization"]); err != nil {
+	claims, err := valid(md["authorization"])
+	if err != nil {
 		return nil, err
 	}
-	return handler(ctx, req)
+	return claims, nil
 }
 
 // valid validates the authorization.
-func valid(authorization []string) error {
+func valid(authorization []string) (map[string]interface{}, error) {
 	if len(authorization) < 1 {
-		return fmt.Errorf("auth not found")
+		return nil, fmt.Errorf("auth not found")
 	}
 	token := strings.TrimPrefix(authorization[0], "Bearer ")
 	jwtToken := jwt.Decode(token)
 	if err := jwtToken.Valid(); err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return jwtToken, nil
 }
 
 /* BasicAuth gets the */
@@ -95,5 +95,4 @@ func BasicAuth(ctx context.Context) (whatever string, asdasd string, err error) 
 		return "", "", fmt.Errorf("auth not valid: need in form Base64(username:password)")
 	}
 	return tmp[0], tmp[1], nil
-
 }
