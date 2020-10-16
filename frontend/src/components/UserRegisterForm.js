@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { TextField, withStyles, Button } from '@material-ui/core'
+import { Redirect } from 'react-router'
 
 const { registerRequest } = require('../proto/api_pb.js')
 const { authenticateClient } = require('../proto/api_grpc_web_pb.js')
@@ -30,6 +31,7 @@ class UserRegisterForm extends React.Component {
             email: '',
             name: '',
             preferredName: '',
+            registered: false,
         }
         this.handleUname = this.handleUname.bind(this)
         this.handlepwd = this.handlepwd.bind(this)
@@ -71,6 +73,7 @@ class UserRegisterForm extends React.Component {
         request.setUsername(this.state.username)
         request.setFullname(this.state.name)
         request.setPreferredname(this.state.preferredName)
+
         var meta = {
             authorization:
                 'Basic ' +
@@ -82,12 +85,20 @@ class UserRegisterForm extends React.Component {
                 : localStorage.setItem('token', response.getJwt())
             console.log(localStorage)
         })
+        this.setState({
+            registered: true
+        })
     }
     render() {
         const { classes } = this.props
-
+        const { registered } = this.state
+        var { username } = this.state
+        username = "/u/"+username
         return (
             <div className="UserLoginForm">
+                {(registered &&
+                    <Redirect to={username}></Redirect>
+                )}
                 <form onSubmit={this.handleSubmit}>
                     <TextField
                         className={classes.field}
