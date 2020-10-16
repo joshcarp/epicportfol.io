@@ -16,9 +16,19 @@ service authenticate {
     /* Login is used to login and to acquire a jwt */
     rpc login(loginRequest) returns (loginResponse){};
 
-    /* RenewJWT is used to reissue JWTs that have expired */
-    rpc renewJWT(loginRequest) returns (loginResponse){};
+    /* verifyUser is used to verify if a user has permissions to edit an profile; used for frontend rendering */
+    rpc verify(verifyRequest) returns (verifyResponse);
 }
+
+message verifyRequest {
+    string username = 1;
+}
+
+message verifyResponse {
+    bool verified = 1;
+}
+
+
 
 /* RegisterRequest contains all the information to register the user in the database */
 message registerRequest {
@@ -42,16 +52,6 @@ message loginRequest {
 message loginResponse {
     string jwt = 1;
 }
-
-/* RenewJWTResponse is used to renew jwts */
-message RenewJWTResponse {
-    string jwt = 1;
-}
-
-/* RenewJWTRequest is empty becayse Bearer <JWT> should be used with this method */
-message RenewJWTRequest {
-}
-
 
 /* --- EchoService --- */
 
