@@ -15,6 +15,7 @@ var global = Function('return this')();
 
 goog.exportSymbol('proto.itproject.RenewJWTRequest', null, global);
 goog.exportSymbol('proto.itproject.RenewJWTResponse', null, global);
+goog.exportSymbol('proto.itproject.account', null, global);
 goog.exportSymbol('proto.itproject.artifact', null, global);
 goog.exportSymbol('proto.itproject.echoRequest', null, global);
 goog.exportSymbol('proto.itproject.echoResponse', null, global);
@@ -27,7 +28,6 @@ goog.exportSymbol('proto.itproject.registerRequest', null, global);
 goog.exportSymbol('proto.itproject.registerResponse', null, global);
 goog.exportSymbol('proto.itproject.searchRequest', null, global);
 goog.exportSymbol('proto.itproject.searchResponse', null, global);
-goog.exportSymbol('proto.itproject.singleSearchResponse', null, global);
 goog.exportSymbol('proto.itproject.updateuserResponse', null, global);
 goog.exportSymbol('proto.itproject.uploadRequest', null, global);
 goog.exportSymbol('proto.itproject.uploadResponse', null, global);
@@ -398,16 +398,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.itproject.singleSearchResponse = function(opt_data) {
+proto.itproject.account = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.itproject.singleSearchResponse, jspb.Message);
+goog.inherits(proto.itproject.account, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.itproject.singleSearchResponse.displayName = 'proto.itproject.singleSearchResponse';
+  proto.itproject.account.displayName = 'proto.itproject.account';
 }
 
 
@@ -3048,7 +3048,7 @@ proto.itproject.searchResponse.prototype.toObject = function(opt_includeInstance
 proto.itproject.searchResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     resultsList: jspb.Message.toObjectList(msg.getResultsList(),
-    proto.itproject.singleSearchResponse.toObject, includeInstance)
+    proto.itproject.profile.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -3086,8 +3086,8 @@ proto.itproject.searchResponse.deserializeBinaryFromReader = function(msg, reade
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.itproject.singleSearchResponse;
-      reader.readMessage(value,proto.itproject.singleSearchResponse.deserializeBinaryFromReader);
+      var value = new proto.itproject.profile;
+      reader.readMessage(value,proto.itproject.profile.deserializeBinaryFromReader);
       msg.addResults(value);
       break;
     default:
@@ -3124,24 +3124,24 @@ proto.itproject.searchResponse.serializeBinaryToWriter = function(message, write
     writer.writeRepeatedMessage(
       1,
       f,
-      proto.itproject.singleSearchResponse.serializeBinaryToWriter
+      proto.itproject.profile.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * repeated singleSearchResponse results = 1;
- * @return {!Array<!proto.itproject.singleSearchResponse>}
+ * repeated profile results = 1;
+ * @return {!Array<!proto.itproject.profile>}
  */
 proto.itproject.searchResponse.prototype.getResultsList = function() {
-  return /** @type{!Array<!proto.itproject.singleSearchResponse>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.itproject.singleSearchResponse, 1));
+  return /** @type{!Array<!proto.itproject.profile>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.itproject.profile, 1));
 };
 
 
 /**
- * @param {!Array<!proto.itproject.singleSearchResponse>} value
+ * @param {!Array<!proto.itproject.profile>} value
  * @return {!proto.itproject.searchResponse} returns this
 */
 proto.itproject.searchResponse.prototype.setResultsList = function(value) {
@@ -3150,12 +3150,12 @@ proto.itproject.searchResponse.prototype.setResultsList = function(value) {
 
 
 /**
- * @param {!proto.itproject.singleSearchResponse=} opt_value
+ * @param {!proto.itproject.profile=} opt_value
  * @param {number=} opt_index
- * @return {!proto.itproject.singleSearchResponse}
+ * @return {!proto.itproject.profile}
  */
 proto.itproject.searchResponse.prototype.addResults = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.itproject.singleSearchResponse, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.itproject.profile, opt_index);
 };
 
 
@@ -3184,8 +3184,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.itproject.singleSearchResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.itproject.singleSearchResponse.toObject(opt_includeInstance, this);
+proto.itproject.account.prototype.toObject = function(opt_includeInstance) {
+  return proto.itproject.account.toObject(opt_includeInstance, this);
 };
 
 
@@ -3194,16 +3194,18 @@ proto.itproject.singleSearchResponse.prototype.toObject = function(opt_includeIn
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.itproject.singleSearchResponse} msg The msg instance to transform.
+ * @param {!proto.itproject.account} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.itproject.singleSearchResponse.toObject = function(includeInstance, msg) {
+proto.itproject.account.toObject = function(includeInstance, msg) {
   var f, obj = {
     username: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    fullName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    picture: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    bio: jspb.Message.getFieldWithDefault(msg, 4, "")
+    email: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    preferredName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    name: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    password: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    salt: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -3217,23 +3219,23 @@ proto.itproject.singleSearchResponse.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.itproject.singleSearchResponse}
+ * @return {!proto.itproject.account}
  */
-proto.itproject.singleSearchResponse.deserializeBinary = function(bytes) {
+proto.itproject.account.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.itproject.singleSearchResponse;
-  return proto.itproject.singleSearchResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.itproject.account;
+  return proto.itproject.account.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.itproject.singleSearchResponse} msg The message object to deserialize into.
+ * @param {!proto.itproject.account} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.itproject.singleSearchResponse}
+ * @return {!proto.itproject.account}
  */
-proto.itproject.singleSearchResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.itproject.account.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -3246,15 +3248,23 @@ proto.itproject.singleSearchResponse.deserializeBinaryFromReader = function(msg,
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setFullName(value);
+      msg.setEmail(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setPicture(value);
+      msg.setPreferredName(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setBio(value);
+      msg.setName(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPassword(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSalt(value);
       break;
     default:
       reader.skipField();
@@ -3269,9 +3279,9 @@ proto.itproject.singleSearchResponse.deserializeBinaryFromReader = function(msg,
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.itproject.singleSearchResponse.prototype.serializeBinary = function() {
+proto.itproject.account.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.itproject.singleSearchResponse.serializeBinaryToWriter(this, writer);
+  proto.itproject.account.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -3279,11 +3289,11 @@ proto.itproject.singleSearchResponse.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.itproject.singleSearchResponse} message
+ * @param {!proto.itproject.account} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.itproject.singleSearchResponse.serializeBinaryToWriter = function(message, writer) {
+proto.itproject.account.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getUsername();
   if (f.length > 0) {
@@ -3292,24 +3302,38 @@ proto.itproject.singleSearchResponse.serializeBinaryToWriter = function(message,
       f
     );
   }
-  f = message.getFullName();
+  f = message.getEmail();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getPicture();
+  f = message.getPreferredName();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
-  f = message.getBio();
+  f = message.getName();
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getPassword();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = message.getSalt();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
       f
     );
   }
@@ -3320,71 +3344,107 @@ proto.itproject.singleSearchResponse.serializeBinaryToWriter = function(message,
  * optional string username = 1;
  * @return {string}
  */
-proto.itproject.singleSearchResponse.prototype.getUsername = function() {
+proto.itproject.account.prototype.getUsername = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.itproject.singleSearchResponse} returns this
+ * @return {!proto.itproject.account} returns this
  */
-proto.itproject.singleSearchResponse.prototype.setUsername = function(value) {
+proto.itproject.account.prototype.setUsername = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional string full_name = 2;
+ * optional string email = 2;
  * @return {string}
  */
-proto.itproject.singleSearchResponse.prototype.getFullName = function() {
+proto.itproject.account.prototype.getEmail = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.itproject.singleSearchResponse} returns this
+ * @return {!proto.itproject.account} returns this
  */
-proto.itproject.singleSearchResponse.prototype.setFullName = function(value) {
+proto.itproject.account.prototype.setEmail = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string picture = 3;
+ * optional string preferred_name = 3;
  * @return {string}
  */
-proto.itproject.singleSearchResponse.prototype.getPicture = function() {
+proto.itproject.account.prototype.getPreferredName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.itproject.singleSearchResponse} returns this
+ * @return {!proto.itproject.account} returns this
  */
-proto.itproject.singleSearchResponse.prototype.setPicture = function(value) {
+proto.itproject.account.prototype.setPreferredName = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional string bio = 4;
+ * optional string name = 4;
  * @return {string}
  */
-proto.itproject.singleSearchResponse.prototype.getBio = function() {
+proto.itproject.account.prototype.getName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.itproject.singleSearchResponse} returns this
+ * @return {!proto.itproject.account} returns this
  */
-proto.itproject.singleSearchResponse.prototype.setBio = function(value) {
+proto.itproject.account.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string password = 5;
+ * @return {string}
+ */
+proto.itproject.account.prototype.getPassword = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.itproject.account} returns this
+ */
+proto.itproject.account.prototype.setPassword = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional string salt = 6;
+ * @return {string}
+ */
+proto.itproject.account.prototype.getSalt = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.itproject.account} returns this
+ */
+proto.itproject.account.prototype.setSalt = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 

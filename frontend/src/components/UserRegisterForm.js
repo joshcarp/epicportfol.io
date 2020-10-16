@@ -29,12 +29,14 @@ class UserRegisterForm extends React.Component {
             username: '',
             email: '',
             name: '',
+            preferredName: '',
         }
         this.handleUname = this.handleUname.bind(this)
         this.handlepwd = this.handlepwd.bind(this)
         this.handleName = this.handleName.bind(this)
         this.handleEmail = this.handleEmail.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.handlePreferredName = this.handlePreferredName.bind(this)
     }
     handleUname(event) {
         this.setState({
@@ -51,6 +53,11 @@ class UserRegisterForm extends React.Component {
             email: event.target.value,
         })
     }
+    handlePreferredName(event) {
+        this.setState({
+            preferredName: event.target.value,
+        })
+    }
     handlepwd(event) {
         this.setState({
             password: event.target.value,
@@ -59,11 +66,11 @@ class UserRegisterForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault()
         var request = new loginRequest()
-        request.email = this.state.email
-        request.password = this.state.password
-        request.username = this.state.username
-        request.fullName = this.state.fullName
-        request.preferredName = this.state.preferredName
+        request.setEmail(this.state.email)
+        request.setPassword(this.state.password)
+        request.setUsername(this.state.username)
+        request.setFullName(this.state.name)
+        request.setPreferredName(this.state.preferredName)
         var meta = {
             authorization:
                 'Basic ' +
@@ -91,6 +98,17 @@ class UserRegisterForm extends React.Component {
                         type="text"
                         onChange={this.handleName}
                         value={this.state.name}
+                        required
+                    />
+                    <TextField
+                        className={classes.field}
+                        id="preferredname"
+                        label="Preferred Name"
+                        variant="outlined"
+                        name="preferredname"
+                        type="text"
+                        onChange={this.handlePreferredName}
+                        value={this.state.preferredName}
                         required
                     />
                     <TextField

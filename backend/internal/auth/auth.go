@@ -9,6 +9,8 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/joshcarp/it-project/backend/internal/proto/itproject"
+
 	"github.com/joshcarp/it-project/backend/internal/jwt"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
@@ -36,13 +38,13 @@ func Salt() (string, error) {
 	return string(hexSalt), err
 }
 
-func NewAccount(email, name, username, preferred_name, password string) (*Account, error) {
+func NewAccount(email, name, username, preferred_name, password string) (*itproject.Account, error) {
 	salt, err := Salt()
 	if err != nil {
 		return nil, err
 	}
 	hashedPass := SaltPassword(password, salt)
-	return &Account{Email: email, Name: name, Username: username, Preferred_name: preferred_name, Password: hashedPass, Salt: salt}, nil
+	return &itproject.Account{Email: email, Name: name, Username: username, PreferredName: preferred_name, Password: hashedPass, Salt: salt}, nil
 }
 
 func SaltPassword(password, salt string) string {
