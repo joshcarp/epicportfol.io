@@ -44,6 +44,8 @@ docker-compose:     ## Run all the services in build/docker-compose.yaml
 help:               ## Show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
-.PHONY: fontend
+.PHONY: fontend presentation
 fontend:
 	cd frontend && npm install && npm start
+presentation:
+	rm -rf docs && mkdir docs &&  cd presentation && hugo -t reveal-hugo && mv public/* ../docs && echo "docs.epicportfol.io" >> ../docs/CNAME
