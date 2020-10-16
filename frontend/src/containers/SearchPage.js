@@ -15,7 +15,7 @@ import Logo from '../assets/logo.svg'
 import queryString from 'query-string'
 import Nav from './Nav.js'
 const { searchClient } = require('./../proto/api_grpc_web_pb.js')
-const searcher = new searchClient('http://localhost:443')
+const searcher = new searchClient('https://search.epicportfol.io')
 const { searchRequest } = require('./../proto/api_pb.js')
 
 const useStyles = makeStyles((theme) => ({
