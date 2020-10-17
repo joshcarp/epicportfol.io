@@ -20,9 +20,39 @@ const { searchRequest } = require('./../proto/api_pb.js')
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        minHeight: '100%',
+        justifyContent: 'center',
+        backgroundColor: 'rgb(50, 50, 50)',
+        backgroundImage: 'url("/home-bg.jpg")',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+        backgroundSize: 'cover',
+    },
+    profile: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        justifyContent: 'center',
+        maxWidth: '80vmin',
+        minWidth: '60vmin',
+        paddingTop: theme.spacing(3),
+        paddingBottom: theme.spacing(3),
+        marginTop: 40,
+        marginBottom: 60,
+    },
+    card: {
+        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(3),
         width: '100%',
-        maxWidth: '50ch',
-        backgroundColor: theme.palette.background.paper,
+        justifyContent: 'center',
+    },
+    paper: {
+        height: 200,
+        width: 200,
+    },
+    footer: {
+        height: 20,
     },
     inline: {
         display: 'inline',
@@ -37,8 +67,8 @@ export default function SearchPage() {
     let query = useQuery()
     var term = query.get('term')
     var r = new searchRequest()
-    const [prof, setProfile] = useState(null)
     r.setTerm(term)
+    const [prof, setProfile] = useState(null)
     useEffect(() => {
         searcher.search(r, {}, function (err, response) {
             setProfile(response.toObject())
@@ -50,20 +80,25 @@ export default function SearchPage() {
     return (
         <>
             <Nav />
-            <div className="Homepage">
+            <Grid container className="Homepage">
+                {/* LOGO */}
                 <Link to="/">
-                    <img src={Logo} className="Homepage-logo" alt="logo" />
+                    <img src={Logo} style={{ height: "20vmin" }} alt="logo" />
                 </Link>
-
-                <Paper
+                {/* SEARCH PAPER CONTAINER */}
+                <Grid
+                    container
+                    component={Paper}
+                    className={classes.profile}
                     elevation={4}
-                    className={classes.paper}
-                    square={false}
-                    style={{ maxHeight: 450, overflow: 'auto' }}
                 >
-                    <h4>Search Results</h4>
+                    {/* SEARCH TERM TEXT */}
+                    <Typography variant="h6">
+                        Search Results for "{term}"
+                    </Typography>
+                    {/* SEARCH RESULTS */}
                     {prof.resultsList.map((user) => (
-                        <List className={classes.root}>
+                        <List className={classes.card}>
                             <Divider variant="inset" component="li" />
                             <ListItem
                                 alignItems="flex-start"
@@ -74,6 +109,7 @@ export default function SearchPage() {
                                 <ListItemAvatar>
                                     <Avatar
                                         src={user.picture}
+                                        alt={user.fullName}
                                         className={classes.avatar}
                                     />
                                 </ListItemAvatar>
@@ -96,8 +132,8 @@ export default function SearchPage() {
                             <Divider variant="inset" component="li" />
                         </List>
                     ))}
-                </Paper>
-            </div>
+                </Grid>
+            </Grid>
         </>
     )
 }
