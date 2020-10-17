@@ -73,7 +73,7 @@ export default function SearchPage() {
         searcher.search(r, {}, function (err, response) {
             setProfile(response.toObject())
         })
-    }, [])
+    })
     if (prof == null) {
         return <div>Loading...</div>
     }
@@ -94,6 +94,7 @@ export default function SearchPage() {
                 >
                     {/* SEARCH TERM TEXT */}
                     <Typography variant="h6">
+
                         Search Results for "{term}"
                     </Typography>
                     {/* SEARCH RESULTS */}
