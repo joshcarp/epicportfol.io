@@ -13,12 +13,19 @@ service authenticate {
     /* Register is used to register a user and acquire a jwt */
     rpc register(registerRequest) returns (registerResponse){};
 
+    /* Register is used to register a user and acquire a jwt */
+    rpc registerFirebase(empty) returns (empty){};
+
     /* Login is used to login and to acquire a jwt */
     rpc login(loginRequest) returns (loginResponse){};
 
     /* verifyUser is used to verify if a user has permissions to edit an profile; used for frontend rendering */
     rpc verify(verifyRequest) returns (verifyResponse);
 }
+
+message empty{
+}
+
 
 message verifyRequest {
     string username = 1;

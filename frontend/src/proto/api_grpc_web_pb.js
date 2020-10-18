@@ -153,6 +153,86 @@ proto.itproject.authenticatePromiseClient.prototype.register =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.itproject.empty,
+ *   !proto.itproject.empty>}
+ */
+const methodDescriptor_authenticate_registerFirebase = new grpc.web.MethodDescriptor(
+  '/itproject.authenticate/registerFirebase',
+  grpc.web.MethodType.UNARY,
+  proto.itproject.empty,
+  proto.itproject.empty,
+  /**
+   * @param {!proto.itproject.empty} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.itproject.empty.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.itproject.empty,
+ *   !proto.itproject.empty>}
+ */
+const methodInfo_authenticate_registerFirebase = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.itproject.empty,
+  /**
+   * @param {!proto.itproject.empty} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.itproject.empty.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.itproject.empty} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.itproject.empty)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.itproject.empty>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.itproject.authenticateClient.prototype.registerFirebase =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/itproject.authenticate/registerFirebase',
+      request,
+      metadata || {},
+      methodDescriptor_authenticate_registerFirebase,
+      callback);
+};
+
+
+/**
+ * @param {!proto.itproject.empty} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.itproject.empty>}
+ *     A native promise that resolves to the response
+ */
+proto.itproject.authenticatePromiseClient.prototype.registerFirebase =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/itproject.authenticate/registerFirebase',
+      request,
+      metadata || {},
+      methodDescriptor_authenticate_registerFirebase);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.itproject.loginRequest,
  *   !proto.itproject.loginResponse>}
  */
