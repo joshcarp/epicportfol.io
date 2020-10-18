@@ -55,8 +55,8 @@ func SaltPassword(password, salt string) string {
 	return string(hexPassword)
 }
 
-// EnsureValidToken ensures that the context of an incoming request is valid
-func GetToken(ctx context.Context) (map[string]interface{}, error) {
+// EnsureValidToken ensures that the context of an incoming request is ValidJwt
+func GetToken(ctx context.Context, valid func([]string) (map[string]interface{}, error)) (map[string]interface{}, error) {
 	md, ok := metadata.FromIncomingContext(ctx)
 	if !ok {
 		return nil, fmt.Errorf("No auth found")
@@ -68,8 +68,8 @@ func GetToken(ctx context.Context) (map[string]interface{}, error) {
 	return claims, nil
 }
 
-// valid validates the authorization.
-func valid(authorization []string) (map[string]interface{}, error) {
+// ValidJwt validates the authorization.
+func ValidJwt(authorization []string) (map[string]interface{}, error) {
 	if len(authorization) < 1 {
 		return nil, fmt.Errorf("auth not found")
 	}
@@ -92,7 +92,7 @@ func BasicAuth(ctx context.Context) (whatever string, asdasd string, err error) 
 	unamePwd, _ := base64.StdEncoding.DecodeString(token)
 	tmp := strings.Split(string(unamePwd), ":")
 	if len(tmp) < 2 {
-		return "", "", fmt.Errorf("auth not valid: need in form Base64(username:password)")
+		return "", "", fmt.Errorf("auth not ValidJwt: need in form Base64(username:password)")
 	}
 	return tmp[0], tmp[1], nil
 }
