@@ -4,10 +4,8 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"path"
 
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	"github.com/vincent-petithory/dataurl"
 
 	"github.com/joshcarp/it-project/backend/internal/config"
 	"github.com/sirupsen/logrus"
@@ -27,13 +25,17 @@ func NewServer(config config.Config, log *logrus.Logger) (*Server, error) {
 }
 
 func (s *Server) Upload(ctx context.Context, in *itproject.UploadRequest) (*itproject.UploadResponse, error) {
-	if in.Name == "" || in.Content == nil || len(in.Content) == 0 {
-		return nil, status.Error(codes.InvalidArgument, "invalid name or content")
+	filename, _ := auth.Salt()
+	dataURL, err := dataurl.DecodeString(in.GetDataurl())
+	if err != nil {
+		return nil, err
 	}
-	a, _ := auth.Salt()
-	filename := a + path.Ext(in.GetName())
-	err := UploadFile(bytes.NewReader(in.GetContent()), bucketname, filename)
-	return &itproject.UploadResponse{Url: fmt.Sprintf("https://storage.googleapis.com/%s/%s", bucketname, filename)}, err
+	err = UploadFile(bytes.NewReader(dataURL.Data), bucketname, filename, dataURL.MediaType.ContentType())
+	if err != nil {
+		return nil, err
+	}
+	url := fmt.Sprintf("https://storage.googleapis.com/%s/%s", bucketname, filename)
+	return &itproject.UploadResponse{Url: url}, err
 }
 
 func RegisterService(conf config.Config, log *logrus.Logger, s *grpc.Server) error {

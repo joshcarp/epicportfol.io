@@ -126,8 +126,7 @@ service upload {
 }
 
 message uploadRequest {
-    string name = 1;
-    bytes content = 2;
+    string dataurl = 1;
 }
 
 message uploadResponse {
