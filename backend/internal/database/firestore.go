@@ -87,7 +87,7 @@ func (s Server) GetProfile(user string) (*itproject.Profile, error) {
 }
 
 func (s Server) GetProfileLike(term string) ([]*itproject.Profile, error) {
-	a := s.Client.Collection("accounts").Documents(context.Background())
+	a := s.Client.Collection("profiles").Documents(context.Background())
 	snapshot, err := a.Next()
 	var results []*itproject.Profile
 	for snapshot != nil && err == nil {
