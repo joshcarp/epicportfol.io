@@ -21,6 +21,9 @@ func (s *Server) Updateuser(ctx context.Context, in *itproject.Profile) (*itproj
 		creds, err := auth.GetToken(ctx, auth.ValidJwt)
 		if err != nil {
 			creds, err = auth.GetToken(ctx, s.Firebase.ValidJwt)
+			if err != nil {
+				return nil, err
+			}
 			username, ok = creds["user_id"]
 			if !ok {
 				return nil, fmt.Errorf("Unauthorized")
