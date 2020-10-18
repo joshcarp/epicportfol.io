@@ -19,6 +19,8 @@ const _ = grpc.SupportPackageIsVersion6
 type AuthenticateClient interface {
 	// Register is used to register a user and acquire a jwt
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
+	// Register is used to register a user and acquire a jwt
+	RegisterFirebase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error)
 	// Login is used to login and to acquire a jwt
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 	// verifyUser is used to verify if a user has permissions to edit an profile; used for frontend rendering
@@ -36,6 +38,15 @@ func NewAuthenticateClient(cc grpc.ClientConnInterface) AuthenticateClient {
 func (c *authenticateClient) Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error) {
 	out := new(RegisterResponse)
 	err := c.cc.Invoke(ctx, "/itproject.authenticate/register", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authenticateClient) RegisterFirebase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, "/itproject.authenticate/registerFirebase", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -66,6 +77,8 @@ func (c *authenticateClient) Verify(ctx context.Context, in *VerifyRequest, opts
 type AuthenticateServer interface {
 	// Register is used to register a user and acquire a jwt
 	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
+	// Register is used to register a user and acquire a jwt
+	RegisterFirebase(context.Context, *Empty) (*Empty, error)
 	// Login is used to login and to acquire a jwt
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
 	// verifyUser is used to verify if a user has permissions to edit an profile; used for frontend rendering
@@ -79,6 +92,9 @@ type UnimplementedAuthenticateServer struct {
 
 func (*UnimplementedAuthenticateServer) Register(context.Context, *RegisterRequest) (*RegisterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Register not implemented")
+}
+func (*UnimplementedAuthenticateServer) RegisterFirebase(context.Context, *Empty) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterFirebase not implemented")
 }
 func (*UnimplementedAuthenticateServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
@@ -106,6 +122,24 @@ func _Authenticate_Register_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthenticateServer).Register(ctx, req.(*RegisterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Authenticate_RegisterFirebase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthenticateServer).RegisterFirebase(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/itproject.authenticate/RegisterFirebase",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthenticateServer).RegisterFirebase(ctx, req.(*Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -153,6 +187,10 @@ var _Authenticate_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "register",
 			Handler:    _Authenticate_Register_Handler,
+		},
+		{
+			MethodName: "registerFirebase",
+			Handler:    _Authenticate_RegisterFirebase_Handler,
 		},
 		{
 			MethodName: "login",

@@ -4,6 +4,7 @@ go 1.14
 
 require (
 	cloud.google.com/go v0.44.3
+	firebase.google.com/go v3.13.0+incompatible
 	github.com/GoogleCloudPlatform/cloudsql-proxy v0.0.0-20191009163259-e802c2cb94ae
 	github.com/desertbit/timer v0.0.0-20180107155436-c41aec40b27f // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible

@@ -1,13 +1,6 @@
-database:
-    # type can be local/cloud/memory
-    type: memory
-    schema: database/db.sql
-    host: localhost
-    dbname: postgres
-    port: 5432
-    user: postgres
-    password: 1234
 server:
     port:  443
 gcp:
     projectid:  "joshcarp-it-project"
+    databaseurl:   "https://joshcarp-it-project.firebaseio.com"
+    storagebucket: "joshcarp-it-project.appspot.com"
