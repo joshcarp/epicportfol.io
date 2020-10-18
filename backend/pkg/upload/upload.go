@@ -13,7 +13,7 @@ import (
 
 const bucketname = `joshcarp-it-project-storage`
 
-func UploadFile(r io.Reader, bucket, object string) error {
+func UploadFile(r io.Reader, bucket, object, mimetype string) error {
 	ctx := context.Background()
 	client, err := storage.NewClient(ctx)
 	if err != nil {
@@ -32,8 +32,11 @@ func UploadFile(r io.Reader, bucket, object string) error {
 	if err := wr.Close(); err != nil {
 		return fmt.Errorf("Writer.Close: %v", err)
 	}
+	if mimetype == "" {
+		mimetype = mime.TypeByExtension(path.Ext(object))
+	}
 	if _, err = wc.Update(ctx, storage.ObjectAttrsToUpdate{
-		ContentType: interface{}(mime.TypeByExtension(path.Ext(object))),
+		ContentType: interface{}(mimetype),
 	}); err != nil {
 		return err
 	}

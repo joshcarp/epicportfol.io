@@ -2625,8 +2625,7 @@ proto.itproject.uploadRequest.prototype.toObject = function(opt_includeInstance)
  */
 proto.itproject.uploadRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    content: msg.getContent_asB64()
+    dataurl: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2665,11 +2664,7 @@ proto.itproject.uploadRequest.deserializeBinaryFromReader = function(msg, reader
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setName(value);
-      break;
-    case 2:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setContent(value);
+      msg.setDataurl(value);
       break;
     default:
       reader.skipField();
@@ -2700,17 +2695,10 @@ proto.itproject.uploadRequest.prototype.serializeBinary = function() {
  */
 proto.itproject.uploadRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getName();
+  f = message.getDataurl();
   if (f.length > 0) {
     writer.writeString(
       1,
-      f
-    );
-  }
-  f = message.getContent_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      2,
       f
     );
   }
@@ -2718,10 +2706,10 @@ proto.itproject.uploadRequest.serializeBinaryToWriter = function(message, writer
 
 
 /**
- * optional string name = 1;
+ * optional string dataurl = 1;
  * @return {string}
  */
-proto.itproject.uploadRequest.prototype.getName = function() {
+proto.itproject.uploadRequest.prototype.getDataurl = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -2730,50 +2718,8 @@ proto.itproject.uploadRequest.prototype.getName = function() {
  * @param {string} value
  * @return {!proto.itproject.uploadRequest} returns this
  */
-proto.itproject.uploadRequest.prototype.setName = function(value) {
+proto.itproject.uploadRequest.prototype.setDataurl = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional bytes content = 2;
- * @return {string}
- */
-proto.itproject.uploadRequest.prototype.getContent = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * optional bytes content = 2;
- * This is a type-conversion wrapper around `getContent()`
- * @return {string}
- */
-proto.itproject.uploadRequest.prototype.getContent_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getContent()));
-};
-
-
-/**
- * optional bytes content = 2;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getContent()`
- * @return {!Uint8Array}
- */
-proto.itproject.uploadRequest.prototype.getContent_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getContent()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.itproject.uploadRequest} returns this
- */
-proto.itproject.uploadRequest.prototype.setContent = function(value) {
-  return jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 
