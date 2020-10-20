@@ -9,6 +9,8 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "dotenv": "^8.2.0",
+    "firebase": "^7.24.0",
     "google-protobuf": "^3.13.0",
     "grpc": "^1.24.3",
     "grpc-web": "^1.2.1",
