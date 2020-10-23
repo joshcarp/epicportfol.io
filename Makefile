@@ -49,4 +49,4 @@ fontend:
 	cd frontend && npm install && npm start
 
 website:
-	cd hugo && hugo -t reveal-hugo && mv  public/* ../docs
+	rm -rf docs/* && echo "docs.epicportfol.io" > docs/CNAME && cd hugo && hugo -t reveal-hugo && mv  public/* ../docs
