@@ -47,3 +47,6 @@ help:               ## Show this help.
 .PHONY: fontend
 fontend:
 	cd frontend && npm install && npm start
+
+website:
+	cd hugo && hugo -t reveal-hugo && mv  public/* ../docs
