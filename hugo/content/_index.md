@@ -15,4 +15,17 @@ outputs = ["Reveal"]
 ---
 # Back-end
 ---
-# Deployment and CI
+# Our teams philoophy
+- "Integrate everything"
+
+---
+{{< figure src="gh.svg" height="600">}}
+
+---
+# CI/CD 
+![](cloudbuild-ghactions.svg)
+
+---
+# CI/CD 
+
+{{< figure src="workflows.yml.png" height="500">}}
