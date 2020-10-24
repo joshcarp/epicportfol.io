@@ -1,8 +1,18 @@
 +++
-title = "My presentation"
+title = "epicportfol.io"
 outputs = ["Reveal"]
 +++
 
-# Hello world!
-
-This is my first slide.
+# epicportfol.io
+---
+# Key users
+---
+# Requirements from the Stakeholders
+---
+# Design
+---
+# Front-end
+---
+# Back-end
+---
+# Deployment and CI
