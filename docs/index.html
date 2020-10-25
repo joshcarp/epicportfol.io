@@ -28,19 +28,246 @@
 </figure>
 
 </section><section>
-<h1 id="backendci">Backend/CI</h1>
+<h1 id="ci">CI</h1>
+
+
+<span class='fragment '
+  >
+  <ul>
+<li>Robust</li>
+</ul>
+
+</span>
+
+
+<span class='fragment '
+  >
+  <ul>
+<li>Simple and integrated</li>
+</ul>
+
+</span>
+
+
+<span class='fragment '
+  >
+  <ul>
+<li>Easy to extend</li>
+</ul>
+
+</span>
+</section><section>
+<figure>
+    <img src="pipeline-old.svg" height="500"/> 
+</figure>
+
+</section><section>
+<!-- raw HTML omitted -->
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">cloudbuild</th>
+<th align="center">gh actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">
+
+<span class='fragment '
+  >
+  reliable
+</span></td>
+<td align="center">
+
+<span class='fragment '
+  >
+  ✓
+</span></td>
+<td align="center">
+
+<span class='fragment '
+  >
+  ✓
+</span></td>
+</tr>
+<tr>
+<td align="center">
+
+<span class='fragment '
+  >
+  maintainability
+</span></td>
+<td align="center">
+
+<span class='fragment '
+  >
+  ✗
+</span></td>
+<td align="center">
+
+<span class='fragment '
+  >
+  ✓
+</span></td>
+</tr>
+<tr>
+<td align="center">
+
+<span class='fragment '
+  >
+  extendable
+</span></td>
+<td align="center">
+
+<span class='fragment '
+  >
+  ✗
+</span></td>
+<td align="center">
+
+<span class='fragment '
+  >
+  ✓
+</span></td>
+</tr>
+<tr>
+<td align="center">
+
+<span class='fragment '
+  >
+  integrated
+</span></td>
+<td align="center">
+
+<span class='fragment '
+  >
+  ✗
+</span></td>
+<td align="center">
+
+<span class='fragment '
+  >
+  ✓
+</span></td>
+</tr>
+</tbody>
+</table>
+<!-- raw HTML omitted -->
+</section><section>
+<figure>
+    <img src="workflows.yml.png" height="500"/> 
+</figure>
+
 </section><section>
 <figure>
     <img src="pipeline.svg" height="500"/> 
 </figure>
 
 </section><section>
-<p><img src="cloudbuild-ghactions.svg" alt=""></p>
-</section><section>
-<figure>
-    <img src="workflows.yml.png" height="500"/> 
-</figure>
+<h1 id="rest-services">Rest services</h1>
+<ul>
+<li>
 
+<span class='fragment '
+  >
+  manual
+</span></li>
+<li>
+
+<span class='fragment '
+  >
+  manual documentation
+</span></li>
+<li>
+
+<span class='fragment '
+  >
+  manual server interfaces
+</span></li>
+<li>
+
+<span class='fragment '
+  >
+  manual clients
+</span></li>
+</ul>
+</section><section>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="nohighlight" data-noescape>
+  <span style="color:#a6e22e">componentDidMount</span>() {
+    <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#34;https://api.example.com/items&#34;</span>) <span style="color:#75715e">// or is it /item?
+</span><span style="color:#75715e"></span>      .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">res</span> =&gt; <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>())
+      .<span style="color:#a6e22e">then</span>(
+        (<span style="color:#a6e22e">result</span>) =&gt; {
+          <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">setState</span>({
+            <span style="color:#a6e22e">isLoaded</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+            <span style="color:#a6e22e">items</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">items</span>
+          });
+        },
+
+</code></pre></div></section><section>
+<h1 id="solution">Solution</h1>
+<ul>
+<li>Client + Server generation</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="nohighlight" data-noescape><span style="color:#75715e">/* upload service is used to upload static assets to gcs */</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">service</span> upload {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    <span style="color:#75715e">/* upload uploads a static asset to gcp and returns a url */</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    <span style="color:#66d9ef">rpc</span> upload(uploadRequest) <span style="color:#66d9ef">returns</span>(uploadResponse);<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">uploadRequest</span> {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    <span style="color:#66d9ef">string</span> dataurl <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">uploadResponse</span> {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    <span style="color:#66d9ef">string</span> url <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div></section><section>
+<p>Server implementation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="nohighlight" data-noescape><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">UploadServer</span> <span style="color:#66d9ef">interface</span> {
+	<span style="color:#75715e">// upload uploads a static asset to gcp and returns a url
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">Upload</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#f92672">*</span><span style="color:#a6e22e">UploadRequest</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">UploadResponse</span>, <span style="color:#66d9ef">error</span>)
+}
+</code></pre></div><p>Client implementation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="nohighlight" data-noescape><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">upload</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">uploadClient</span>(<span style="color:#e6db74">&#39;https://upload.epicportfol.io&#39;</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">request</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">uploadRequest</span>();
+<span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">setDataurl</span>(<span style="color:#a6e22e">reader</span>.<span style="color:#a6e22e">result</span>);
+<span style="color:#a6e22e">upload</span>.<span style="color:#a6e22e">upload</span>(<span style="color:#a6e22e">request</span>, {}, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">response</span>) {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">err</span>);
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">response</span>)
+});
+</code></pre></div></section><section>
+<h3 id="automatic-documentation">Automatic documentation</h3>
+<!-- raw HTML omitted -->
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><figure>
+    <img src="integration.png" height="400"/> 
+</figure>
+</td>
+<td align="center"><figure>
+    <img src="index.png" width="400"/> 
+</figure>
+</td>
+<td align="center"><figure>
+    <img src="upload.png" width="400"/> 
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- raw HTML omitted -->
 </section><section>
 <h1 id="client-requirements">Client requirements</h1>
 </section><section>
