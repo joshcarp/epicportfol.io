@@ -6,9 +6,48 @@ outputs = ["Reveal"]
 ---
 # Intro
 
+
+
+|   |  |
+|:------:|:------:|
+{{% fragment %}} Angus {{% /fragment %}}  | {{% fragment %}} Our Team and Philosophy {{% /fragment %}}  |
+{{% fragment %}} Josh {{% /fragment %}}  | {{% fragment %}} CI/CD & Back-end {{% /fragment %}}  |
+{{% fragment %}} Kevin {{% /fragment %}}  | {{% fragment %}} Client Requirements {{% /fragment %}}  |
+{{% fragment %}} Haohan {{% /fragment %}}  | {{% fragment %}} Design {{% /fragment %}}  |
+{{% fragment %}} Philip {{% /fragment %}}  | {{% fragment %}} Front-end {{% /fragment %}}  |
+
+
+
+
+
 ---
 ## Integrate everything
 {{< figure src="gh.svg" height="550">}}
+
+---
+## Integrate Everything
+{{< figure src="gh-screenshot.png" height="550">}}
+
+---
+## Agile Mindset
+
+"Make decisions and re-avaulate when more information comes to light"
+
+
+---
+## Adapting to Challenges
+***Deployment***
+
+Cloud Build -> GitHub Actions
+
+***Database***
+
+Cloud SQL -> Cloud Datastore
+
+***Authentication***
+
+DIY Login/Register (JWT) -> Firebase
+
 
 ---
 
