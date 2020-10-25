@@ -8,7 +8,7 @@ docs: sysl          ## Make sysl documentation
 	rm -rf service-documentation/ || true
 	mkdir service-documentation
 	docker run --rm -v $$(pwd)/:/usr/it-project:rw -v $$(pwd)/service-documentation:/out:rw  anzbank/sysl-catalog:v1.4.148 --embed --outputFileName={{.Title}}.md --plantuml=https://plantuml.com/plantuml --templates=it-project/sysl/templates/project.tmpl,it-project/sysl/templates/package.tmpl ./it-project/sysl/index.sysl
-	docker run --rm -v $$(pwd)/:/usr/it-project:rw -v $$(pwd)/docs/services:/out:rw  anzbank/sysl-catalog:v1.4.148 --type=html --embed --outputFileName=index.html --plantuml=https://plantuml.com/plantuml --templates=it-project/sysl/templates/project.tmpl,it-project/sysl/templates/package.tmpl ./it-project/sysl/index.sysl
+	docker run --rm -v $$(pwd)/:/usr/it-project:rw -v $$(pwd)/docs/services:/out:rw  anzbank/sysl-catalog:v1.4.148 --type=html --embed --outputFileName=index.html --plantuml=https://plantuml.com/plantuml --templates=it-project/sysl/templates/project-html.tmpl,it-project/sysl/templates/package.tmpl ./it-project/sysl/index.sysl
 
 docs.preview: sysl  ## Preview service documentation
 	docker run --rm -v $$(pwd)/:/usr/it-project:rw -p 6900:6900 -v $$(pwd)/service-documentation:/out:rw  anzbank/sysl-catalog:v1.4.148 --serve --embed --plantuml=https://plantuml.com/plantuml ./it-project/sysl/index.sysl
