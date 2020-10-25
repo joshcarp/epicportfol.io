@@ -43,10 +43,6 @@ outputs = ["Reveal"]
 
 ---
 
-{{< figure src="pipeline.svg" height="500">}}
-
----
-
 # Rest services
 
 * {{% fragment %}} manual {{% /fragment %}} 
@@ -124,6 +120,9 @@ upload.upload(request, {}, function (err, response) {
  
  </div>
  
+---
+
+{{< figure src="pipeline.svg" height="500">}}
 
 
 ---
