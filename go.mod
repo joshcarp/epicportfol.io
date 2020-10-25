@@ -16,6 +16,8 @@ require (
 	github.com/lib/pq v1.1.1 // indirect
 	github.com/mwitkow/go-conntrack v0.0.0-20161129095857-cc309e4a2223 // indirect
 	github.com/rs/cors v1.7.0 // indirect
+	github.com/shurcooL/go v0.0.0-20200502201357-93f07166e636 // indirect
+	github.com/shurcooL/go-goon v0.0.0-20170922171312-37c2f522c041 // indirect
 	github.com/sirupsen/logrus v1.2.0
 	github.com/spf13/afero v1.1.2
 	github.com/stretchr/testify v1.5.1

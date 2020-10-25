@@ -3,7 +3,7 @@
 
 # itproject
 ## Integration Diagram
-<img src="https://plantuml.com/plantuml/svg/~1UDgCZasBsp0GXk_pAwQdd0pvS48F8UJ3RkabXkBIWob6jIUHDh9aHcDsbsN_-n8KVCZ9SthHyxoZcKqUcCrmqZpKmv-o-9cVyz-7Ci_mL6Gv9Wbc1PwB4lFiL_bjL2TldNmhx8Cebg6p84OieP6U_Gir0jgqX468oSjxJn0QPGaxzOQBpUfxYfhCLGk4ct6zOjLXuxlUEtA27u1uLCtjodvmxSbRp_Z3UbRshpP2T-gv9OxaQ5Lp0yG3it-DJoSsNV0EFg4QUkjL-mzLm7gEswqsLstlF-zsKAaGI4A42wZdc2IxUwhK89gSc4O9HRnyxhR_8rX1lOoz5LGz-uknz5YPFdNgT1G3AMvqrDRFsdhKBkoTa7lSlu5w4z5oJEinfR0drmwT_Ge00F__AswZSW00">
+<img src="https://plantuml.com/plantuml/svg/~1UDgCZasBsp0GXk_pAwQdd0n9d8GUGiY7tT9B3CMb1rECQayYRMJ9ZCRiBil-zoKe-92Jv_IYvtarCviyC9lXf7ceXpzbyJC_vxyFPPxXgSXoJ1BC2ZmN9URPh_BRg4x-TVAji0-YM8REWXYnX4PwzY_K26ZJ4WOX9Y_lFK5eb2Nir1ikDkdt5MeoLoqGRiRrYbM7ZUzwxyW9VW3YKJMtA_l1jITlFUCFwrdPlze8tQddbZYIerND3H0FpFurFftOTC4x-8HA3QB9YMcKq3zK0UivRhVQNBMzxz_je6h_Hx20Uev9ihkdgcT_CPP2HCkdJhqSnK2A6nsrz5bBHstehLTjr5RF5wWGI1whrb2lOciDrOMz4tAFtWRgJKJpCQLZMiAUN3jqzYi00F__4VoZQ000">
 
 
 
@@ -14,6 +14,7 @@
 |----|----|
 | authenticate | [login](#authenticate-login) |
 | authenticate | [register](#authenticate-register) |
+| authenticate | [registerFirebase](#authenticate-registerFirebase) |
 | authenticate | [verify](#authenticate-verify) |
 | echo | [echo](#echo-echo) |
 | profiles | [getuser](#profiles-getuser) |
@@ -29,6 +30,7 @@
 | itproject | [artifact](#itproject.artifact) | 
 | itproject | [echoRequest](#itproject.echoRequest) | 
 | itproject | [echoResponse](#itproject.echoResponse) | 
+| itproject | [empty](#itproject.empty) | 
 | itproject | [getuserRequest](#itproject.getuserRequest) | 
 | itproject | [job](#itproject.job) | 
 | itproject | [loginRequest](#itproject.loginRequest) | 
@@ -135,6 +137,45 @@ Register is used to register a user and acquire a jwt
 RegisterResponse is the response from the registration services 
 
 <img src="https://plantuml.com/plantuml/svg/~1UDgCqC4AWa0Gnl7xFiMN5uioEeU8qYxHnGNPpY6ws8gfx4nqYDuzWkZGQV_d7yFmvSIrv_jj475m8euHr9SMPwEFgbHLOPJ4GKk5987KABM1aYUp-D7Wgy6_YcQeYH1vspbYwojBypIIZL0JBZkaAPPoC_dcwjeL7Cz-wct3st-FBCDJhD4_67iGUpTsuYLoExQVzTu1003__vtLI3O0">
+
+
+</details>
+
+
+---
+
+
+### <a name=authenticate-registerFirebase></a>authenticate registerFirebase
+Register is used to register a user and acquire a jwt 
+
+<details>
+<summary>Sequence Diagram</summary>
+
+<img src="https://plantuml.com/plantuml/svg/~1UDgCa35Fmp0GXNV_YgDB5WmH4WjAt5R480OQ2SBK8Rgwfs1mxCY-8E3NerO5LM9etlg-x-bqsUI8B8D9EQ3BbwQ-rolzj6nq1RTrfK5Ag6fOrGtewg4v-qCdhqw-LImIO-InTy84pp4ucE78h-JP6cIQ0IPeSv7UhHymOWyzVZvIIjZHi_qckBhE1Ljs1CSQ518YTJOnnJiRQOE9H5cUPA0inLggDeUR_puQjXyxiSt5kf1oJnKck11XuqPIbeSOtiZm1VK3VnMN-qv1SO2wIEJL_1pclvKIMpgUNP3Vxdxn4m00__z36e7k">
+
+</details>
+
+
+<details>
+<summary>Request types</summary>
+
+
+
+
+<img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNwANc5fHKAYaa5Yl46zZOA6YuwEGN9MTafcWgsDafL7FLSZcavgM0GWGG003__rF4E080">
+
+
+</details>
+
+
+<details>
+<summary>Response types</summary>
+
+
+
+
+
+<img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNwANc5fHKAYaa5Yl46zZOA6YuwEGN9MTafcWgsDafL7FLSZcavgM0GWGG003__rF4E080">
 
 
 </details>
@@ -408,7 +449,7 @@ upload uploads a static asset to gcp and returns a url
 
 
 
-<img src="https://plantuml.com/plantuml/svg/~1UDgCa35BnJ0OHVVyYckNAhNYN4ffCK5S6YXnbfW6ZRH9JRuC8k-_Fnuytfmp7owNCoRIaVA-iReOLjSeugfExqg-Ybaian8SBv8Bj2sun2mL17zJTpUrUBNuApERJWcLyqUc2ZhXunbzZtl-6ABvTki371qn_5X3J_dOWbuN-vjj8Wm3_ba34pnPJ-Zm-KSsiGPUxnOT4aNdlzY9ZTQlbuJd0000__-iMqYf">
+<img src="https://plantuml.com/plantuml/svg/~1UDgCa36hmZ0OHVVyYlkwz3sU5MSffSK4SMcWn5b24pGIsvfycSJ_Be8uvyo7o-MqaNIWTFEip8QL9RBugDrHoRtenT0fmR6JNA2gm2LwgI3uGVryrUpLxAziz3f656vQ4XNG4QSDwXg_V3M7yUBC7nmjORxQaTPfyRCsWxqd6mbDWmVxXz6aK_3O8b9mqvazMMidysxs2W00__-GMqG4">
 
 
 </details>
@@ -521,6 +562,17 @@ upload uploads a static asset to gcp and returns a url
 | Field name | Type | Description |
 |----|----|----|
 | message | string | |
+
+</details>
+<a name=itproject.empty></a><details>
+<summary>itproject.empty</summary>
+
+### itproject.empty
+
+
+
+<img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNfEOMb5GgAIGMAyGRsDWeQBZev1SbPsIcQ2hOsIbKSzLoEQJcfO0211000F__8C4tr000">
+<a href="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNwANc5fHKAYaa5Yl46zZOA6YuwEGN9MTafcWgsDafL7FLSZcavgM0GWGG003__rF4E080">Full Diagram</a>
 
 </details>
 <a name=itproject.getuserRequest></a><details>
@@ -725,8 +777,8 @@ se
 
 
 
-<img src="https://plantuml.com/plantuml/svg/~1UDgCq47BWa0Gnl7xVehdzU8R9dGM4QLTeeiBifrZqwK4NSiP3n5zzmWYwBR_yuzXU4fYE_Co3Y8EJiGnWlhGwc3qJjMggOoIs6gfaAQG6hKsK79l_huq-6hmhw8TB16YvJfCjclSRN744IpXk46Uur-kfxczzDqAFmH5WOT8q4wUdMTaEDtPaKZWxUYGWNZk_LayHUbyznxm5G00__yi2qVb">
-<a href="https://plantuml.com/plantuml/svg/~1UDgCq45hWp0Onl5xFiKpBsuunyuYeYnXx690ilF8OcWjcjZazL1Altifb49l-Pz_lBmyRIGTQ5jcbYV7yXn9tMdtg-ItwCNGAS7n9Rb0MO9Bz591y1_ryg39LvD_PMRMCIBRrjdhSR37pKRAe2F-Fb7NUENlFfZzDBvXeZNuWpNqyOJHD3Yp0iOxievGuVz4Dh82JYyM5IA5oUtOXRNMZRSfhm400F__FH5Bvm00">Full Diagram</a>
+<img src="https://plantuml.com/plantuml/svg/~1UDgCqB4AmZ0Gnl4zJ_7PfOeMdAMK5XF4fO4IPpcQeeNOQYwPn7SNGGIt_ESVn_7L7CY7U7CYJqxaEPBwqkPaz46rgckCajXhgL0Ka1gjDb3oQ1O_cdmr-LVHEs965kzk9jiDZpXmo42CynPbYQNSpBw_ZdQ5FuAgmbEiOIbGz0uxSF3ZT14lKG-J_Ips3W00__yRXqD0">
+<a href="https://plantuml.com/plantuml/svg/~1UDgCqB6gmZ0Knl4zJ_7TBhsY5MSffSK4SMcWn5b24xGIsvgSJEAxYo22M_xpZyFXgmDfJ_7cM9uSotCazQ7DKSczQ4NNAC6naroWAC0bMgaW-47zVMdorUHVMUzq2CZYx2PjEdkFDb067N3Qe2pnprUJxo-3MM2WsKzNszFw1wEgy61B64qwUeSj0lbXFBCdg-retjkz0W00___mO4T2">Full Diagram</a>
 
 
 #### Fields
@@ -734,8 +786,7 @@ se
 
 | Field name | Type | Description |
 |----|----|----|
-| content | bytes | |
-| name | string | |
+| dataurl | string | |
 
 </details>
 <a name=itproject.uploadResponse></a><details>
