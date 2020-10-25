@@ -3,29 +3,35 @@ title = "epicportfol.io"
 outputs = ["Reveal"]
 +++
 
-# epicportfol.io
 ---
-# Key users
----
-# Requirements from the Stakeholders
----
-# Design
----
-# Front-end
----
-# Back-end
----
-# Our teams philoophy
-- "Integrate everything"
+# Intro
 
 ---
-{{< figure src="gh.svg" height="600">}}
+## Integrate everything
+{{< figure src="gh.svg" height="550">}}
 
 ---
-# CI/CD 
+
+# Backend/CI
+
+---
+{{< figure src="pipeline.svg" height="500">}}
+
+---
+
 ![](cloudbuild-ghactions.svg)
 
 ---
-# CI/CD 
-
 {{< figure src="workflows.yml.png" height="500">}}
+
+
+---
+# Client requirements
+
+---
+# Design
+
+---
+# Frontend
+
+---
