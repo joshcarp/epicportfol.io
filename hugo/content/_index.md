@@ -155,7 +155,7 @@ upload.upload(request, {}, function (err, response) {
 
 |   |  |  | 
 |:------:|:------:|:------:|
- {{< figure src="integration.png" height="400">}} | {{< figure src="index.png" width="400">}} | {{< figure src="upload.png" width="400">}}
+ {{< figure src="integration.png" height="300">}} | {{< figure src="index.png" width="400">}} | {{< figure src="upload.png" width="400">}}
  
  
  </div>
@@ -226,10 +226,12 @@ What are the core values an ePortfolio platform needs?
 - Integrates with Material UI
 - Industry’s most popular framework
  
+ ---
 # Editor 
 
-{{< figure src="editmodal.png" height="400" >}}
+{{< figure src="editmodaler.png" height="500" >}}
 
+---
 # Learn from User Interaction
 
 {{< figure src="graph.png" height="400" >}}
