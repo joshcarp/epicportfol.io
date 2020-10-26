@@ -44,7 +44,6 @@ export default function UserProfile(props) {
                     className={classes.profile}
                     elevation={4}
                 >
-                    <button onClick={() => PopModal()}> test</button>
                     <Grid item className={classes.card}>
                         <UserInfoCard profile={prof} />
                     </Grid>
@@ -54,7 +53,6 @@ export default function UserProfile(props) {
                     <Grid item className={classes.card}>
                         <ImageBox profile={prof} />
                     </Grid>
-                    <EditModal profile={prof} setProfile={setProfile} />
                 </Grid>
                 <Grid className={classes.footer} />
             </Grid>
