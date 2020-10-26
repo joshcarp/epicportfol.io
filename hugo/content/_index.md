@@ -109,7 +109,7 @@ DIY components -> Material UI
     //...
 ```
 ---
-# GPRC + Proto
+# GRPC + Proto
 - Client + Server generation
 
 ```proto
@@ -169,10 +169,20 @@ upload.upload(request, {}, function (err, response) {
 ---
 # Design
 
-1.  Wireframes 
-2.  Brand  
+1.  Brand
+2.  Wireframes 
 3.  Aesthetics  
-4.  Material UI  
+4.  Material UI
+ 
+---
+# Brand
+
+{{< figure src="logo-progress.png" height="500">}}
+
+---
+# Brand
+
+{{< figure src="logo-current.png" height="500">}}
 
 ---
 # Wireframes
@@ -197,16 +207,6 @@ The Profile
 {{< figure src="joshcarp.png" height="550" >}}
 
 ---
-# Brand
-
-{{< figure src="logo-progress.png" height="500">}}
-
----
-# Brand
-
-{{< figure src="logo-current.png" height="500">}}
-
----
 # Aesthetics
 
 What are the core values an ePortfolio platform needs?
@@ -214,7 +214,7 @@ What are the core values an ePortfolio platform needs?
 *  Responsive  
 *  Modern  
 *  Familiar 
-*  Straightforward  
+*  Intuitive
 
 ---
 # Material UI
@@ -222,7 +222,7 @@ What are the core values an ePortfolio platform needs?
 *  Responsive   ☑ 
 *  Modern   ☑ 
 *  Familiar   ☑ 
-*  Straightforward   ☑ 
+*  Intuitive   ☑ 
 
 ---
 # Why React?
