@@ -15,7 +15,7 @@ import MailIcon from '@material-ui/icons/Mail'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import MoreIcon from '@material-ui/icons/MoreVert'
 import { Home } from '@material-ui/icons'
-import UserSearchBox from '../components/UserSearchBox'
+import UserSearchBox from '../components/NavSearchBox'
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -168,7 +168,7 @@ export default function PrimarySearchAppBar() {
 
     return (
         <div className={classes.grow}>
-            <AppBar position="static">
+            <AppBar position="static" style={{ backgroundColor: "#1569CE" }}>
                 <Toolbar>
                     <IconButton
                         edge="start"
