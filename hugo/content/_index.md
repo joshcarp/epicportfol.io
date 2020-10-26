@@ -3,6 +3,13 @@ title = "epicportfol.io"
 outputs = ["Reveal"]
 +++
 
+
+{{< figure src="logo.svg" height="550">}}
+___by epic corp___
+---
+
+{{< figure src="screenshot1.png" height="550">}}
+
 ---
 # Intro
 
@@ -10,11 +17,11 @@ outputs = ["Reveal"]
 
 |   |  |
 |:------:|:------:|
-{{% fragment %}} Angus {{% /fragment %}}  | {{% fragment %}} Our Team and Philosophy {{% /fragment %}}  |
-{{% fragment %}} Josh {{% /fragment %}}  | {{% fragment %}} CI/CD & Back-end {{% /fragment %}}  |
-{{% fragment %}} Kevin {{% /fragment %}}  | {{% fragment %}} Client Requirements {{% /fragment %}}  |
-{{% fragment %}} Haohan {{% /fragment %}}  | {{% fragment %}} Design {{% /fragment %}}  |
-{{% fragment %}} Philip {{% /fragment %}}  | {{% fragment %}} Front-end {{% /fragment %}}  |
+ Angus   |  Our Team and Philosophy   |
+ Josh   |  CI/CD & Back-end   |
+ Kevin   |  Client Requirements   |
+ Haohan   |  Design   |
+ Philip   |  Front-end   |
 
 
 
@@ -48,16 +55,20 @@ Cloud SQL -> Cloud Datastore
 
 DIY Login/Register (JWT) -> Firebase
 
+***Design***
+
+DIY components -> Material UI
+
 
 ---
 
-# CI
+# CI/CD
 
-{{% fragment %}} - Robust {{% /fragment %}}
+ - Robust 
 
-{{% fragment %}} - Simple and integrated {{% /fragment %}}
+ - Simple and integrated 
 
-{{% fragment %}} - Easy to extend {{% /fragment %}}
+ - Easy to extend 
 
 ---
 
@@ -69,10 +80,10 @@ DIY Login/Register (JWT) -> Firebase
 
 |   | cloudbuild | gh actions | 
 |:------:|:------:|:------:|
-{{% fragment %}} reliable {{% /fragment %}}  | {{% fragment %}} ✓ {{% /fragment %}}  |  {{% fragment %}} ✓ {{% /fragment %}}  |
-{{% fragment %}} maintainability {{% /fragment %}} |  {{% fragment %}} ✗ {{% /fragment %}} |   {{% fragment %}} ✓ {{% /fragment %}} | 
-{{% fragment %}} extendable {{% /fragment %}} |  {{% fragment %}} ✗ {{% /fragment %}} |   {{% fragment %}} ✓ {{% /fragment %}} |
-{{% fragment %}} integrated {{% /fragment %}}  | {{% fragment %}} ✗ {{% /fragment %}} |  {{% fragment %}} ✓ {{% /fragment %}} |
+ reliable   |  ✓   |   ✓   |
+ maintainability  |   ✗  |    ✓  | 
+ extendable  |   ✗  |    ✓  |
+ integrated   |  ✗  |   ✓  |
 
 </div>
 
@@ -84,10 +95,10 @@ DIY Login/Register (JWT) -> Firebase
 
 # Rest services
 
-* {{% fragment %}} manual {{% /fragment %}} 
-* {{% fragment %}} manual documentation {{% /fragment %}} 
-* {{% fragment %}} manual server interfaces {{% /fragment %}}
-* {{% fragment %}} manual clients {{% /fragment %}} 
+*  manual  
+*  manual documentation  
+*  manual server interfaces 
+*  manual clients  
 
 ---
 ```react
@@ -95,18 +106,10 @@ DIY Login/Register (JWT) -> Firebase
   componentDidMount() {
     fetch("https://api.example.com/items") // or is it /item?
       .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            items: result.items
-          });
-        },
-
+    //...
 ```
 ---
-# Solution
-
+# GPRC + Proto
 - Client + Server generation
 
 ```proto
@@ -128,23 +131,12 @@ message uploadResponse {
 
 ---
 
-Server implementation:
-```go
-type UploadServer interface {
-	// upload uploads a static asset to gcp and returns a url
-	Upload(context.Context, *UploadRequest) (*UploadResponse, error)
-}
-```
-
-Client implementation:
 ```react
 const upload = new uploadClient('https://upload.epicportfol.io');
 var request = new uploadRequest();
 request.setDataurl(reader.result);
 upload.upload(request, {}, function (err, response) {
-    console.log(err);
-    console.log(response)
-});
+    //...
 ```
 
 ---
@@ -168,14 +160,19 @@ upload.upload(request, {}, function (err, response) {
 ---
 
 # Client requirements
+- Project Goal
+- Design
+- Users
+- Technology
+- Potential users
 
 ---
 # Design
 
-1. {{% fragment %}} Wireframes {{% /fragment %}}
-2. {{% fragment %}} Brand {{% /fragment %}} 
-3. {{% fragment %}} Aesthetics {{% /fragment %}} 
-4. {{% fragment %}} Material UI {{% /fragment %}} 
+1.  Wireframes 
+2.  Brand  
+3.  Aesthetics  
+4.  Material UI  
 
 ---
 # Wireframes
@@ -185,11 +182,19 @@ The Homepage
 {{< figure src="wireframe-homepage.png" >}}
 
 ---
+
+{{< figure src="screenshot1.png" height="550">}}
+
+---
 # Wireframes
 
 The Profile
 
 {{< figure src="wireframe-profile.png" height="400" >}}
+
+---
+
+{{< figure src="joshcarp.png" height="550" >}}
 
 ---
 # Brand
@@ -206,18 +211,18 @@ The Profile
 
 What are the core values an ePortfolio platform needs?
 
-* {{% fragment %}} Responsive {{% /fragment %}} 
-* {{% fragment %}} Modern {{% /fragment %}} 
-* {{% fragment %}} Familiar {{% /fragment %}}
-* {{% fragment %}} Straightforward {{% /fragment %}} 
+*  Responsive  
+*  Modern  
+*  Familiar 
+*  Straightforward  
 
 ---
 # Material UI
 
-* {{% fragment %}} Responsive {{% /fragment %}} {{% fragment %}} ☑ {{% /fragment %}}
-* {{% fragment %}} Modern {{% /fragment %}} {{% fragment %}} ☑ {{% /fragment %}}
-* {{% fragment %}} Familiar {{% /fragment %}} {{% fragment %}} ☑ {{% /fragment %}}
-* {{% fragment %}} Straightforward {{% /fragment %}} {{% fragment %}} ☑ {{% /fragment %}}
+*  Responsive   ☑ 
+*  Modern   ☑ 
+*  Familiar   ☑ 
+*  Straightforward   ☑ 
 
 ---
 # Why React?
@@ -235,3 +240,7 @@ What are the core values an ePortfolio platform needs?
 # Learn from User Interaction
 
 {{< figure src="graph.png" height="400" >}}
+
+---
+# ___Pre order now!___
+
