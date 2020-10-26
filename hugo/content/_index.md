@@ -172,6 +172,53 @@ upload.upload(request, {}, function (err, response) {
 ---
 # Design
 
+1. {{% fragment %}} Wireframes {{% /fragment %}}
+2. {{% fragment %}} Brand {{% /fragment %}} 
+3. {{% fragment %}} Aesthetics {{% /fragment %}} 
+4. {{% fragment %}} Material UI {{% /fragment %}} 
+
+---
+# Wireframes
+
+The Homepage
+
+{{< figure src="wireframe-homepage.png" >}}
+
+---
+# Wireframes
+
+The Profile
+
+{{< figure src="wireframe-profile.png" height="400" >}}
+
+---
+# Brand
+
+{{< figure src="logo-progress.png" height="500">}}
+
+---
+# Brand
+
+{{< figure src="logo-current.png" height="500">}}
+
+---
+# Aesthetics
+
+What are the core values an ePortfolio platform needs?
+
+* {{% fragment %}} Responsive {{% /fragment %}} 
+* {{% fragment %}} Modern {{% /fragment %}} 
+* {{% fragment %}} Familiar {{% /fragment %}}
+* {{% fragment %}} Straightforward {{% /fragment %}} 
+
+---
+# Material UI
+
+* {{% fragment %}} Responsive {{% /fragment %}} {{% fragment %}} ☑ {{% /fragment %}}
+* {{% fragment %}} Modern {{% /fragment %}} {{% fragment %}} ☑ {{% /fragment %}}
+* {{% fragment %}} Familiar {{% /fragment %}} {{% fragment %}} ☑ {{% /fragment %}}
+* {{% fragment %}} Straightforward {{% /fragment %}} {{% fragment %}} ☑ {{% /fragment %}}
+
 ---
 # Frontend
 
