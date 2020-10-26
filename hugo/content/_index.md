@@ -220,6 +220,16 @@ What are the core values an ePortfolio platform needs?
 * {{% fragment %}} Straightforward {{% /fragment %}} {{% fragment %}} ☑ {{% /fragment %}}
 
 ---
-# Frontend
+# Why React?
 
----
+- Modularity suits development style
+- Integrates with Material UI
+- Industry’s most popular framework
+ 
+# Editor 
+
+{{< figure src="editmodal.png" height="400" >}}
+
+# Learn from User Interaction
+
+{{< figure src="graph.png" height="400" >}}
