@@ -47,6 +47,9 @@ upload:
 
 frontend:
     @project="itproject"
+    upload:
+        upload <- upload
+
     register:
         authenticate <- register
         . <- u/user
