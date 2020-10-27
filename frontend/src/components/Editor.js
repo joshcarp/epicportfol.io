@@ -11,8 +11,6 @@ const { profilesClient, uploadClient } = require('./../proto/api_grpc_web_pb.js'
 const profiles = new profilesClient('http://localhost:443');
 const {profileFromJson} = require('./../components/convertor.js');
 
-const content = {"entityMap":{},"blocks":[{"key":"637gr","text":"Initialized from content state.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
-
 class ProfileEditor extends Component {
     constructor(props) {
         super(props);

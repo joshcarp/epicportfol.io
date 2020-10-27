@@ -9,6 +9,5 @@ export function profileFromJson(p){
     j.setBio(p.bio)
     j.setContent(p.content)
     j.setLinksList(p.linksList)
-    // j.setArtifactsList(p.artifactsList)
     return j
 }
