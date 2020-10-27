@@ -10,7 +10,7 @@ import PopModal from '../components/PopModal'
 import Nav from '../containers/Nav'
 
 const { profilesClient } = require('./../proto/api_grpc_web_pb.js')
-const profiles = new profilesClient('https://profiles.epicportfol.io')
+const profiles = new profilesClient('http://localhost:443')
 const { getuserRequest, profile } = require('./../proto/api_pb.js')
 const yaml = require('js-yaml')
 
@@ -47,7 +47,7 @@ export default function UserProfile(props) {
                     <Grid item className={classes.card}>
                         <UserInfoCard profile={prof} />
                     </Grid>
-                    <ProfileEditor profile={prof} setProfile={setProfile} />
+                    <ProfileEditor profile={prof}/>
                 </Grid>
                 <Grid className={classes.footer} />
             </Grid>

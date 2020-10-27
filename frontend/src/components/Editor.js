@@ -2,24 +2,43 @@ import React, { Component } from 'react';
 import { convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToMarkdown from 'draftjs-to-markdown';
-import { EditorState } from 'draft-js';
+import htmlToDraft from 'html-to-draftjs';
+import { EditorState, ContentState } from 'draft-js';
 import {withStyles} from "@material-ui/core";
 import './styles.css';
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+const { profilesClient, uploadClient } = require('./../proto/api_grpc_web_pb.js');
+const profiles = new profilesClient('http://localhost:443');
+const {profileFromJson} = require('./../components/convertor.js');
+
 const content = {"entityMap":{},"blocks":[{"key":"637gr","text":"Initialized from content state.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
 
 class ProfileEditor extends Component {
     constructor(props) {
-        super(props)
-        this.state = {
-            editorState: EditorState.createEmpty(),
+        super(props);
+        const html = props.profile.content;
+        const contentBlock = htmlToDraft(html);
+        if (contentBlock) {
+            const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
+            const editorState = EditorState.createWithContent(contentState);
+            this.state = {
+                editorState,
+            };
         }
         this.onEditorStateChange = this.onEditorStateChange.bind(this);
+        this.updateUser = this.updateUser.bind(this);
     };
+    updateUser(user) {
+        profiles.updateuser(profileFromJson(user), {}, function (err, response) {
+            console.log(err);
+        });
+    }
     onEditorStateChange (editorState) {
         this.setState({
             editorState,
         });
+        this.props.profile.content = draftToMarkdown(convertToRaw(editorState.getCurrentContent()))
+        this.updateUser(this.props.profile)
     };
 
     render() {
@@ -31,6 +50,7 @@ class ProfileEditor extends Component {
                 <div className="demo-section-wrapper">
                     <div className="demo-editor-wrapper">
                         <Editor
+                            editorState={editorState}
                             wrapperClassName="demo-wrapper"
                             editorClassName="demo-editor"
                             onEditorStateChange={this.onEditorStateChange}

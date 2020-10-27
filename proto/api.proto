@@ -102,9 +102,9 @@ message profile {
 
     string picture = 4;
     string bio = 5;
-    repeated job jobs = 6 [json_name = "jobsList"];
-    repeated artifact artifacts = 7 [json_name = "artifactsList"];;
     repeated string links = 8 [json_name = "linksList"];
+
+    string content = 6;
 }
 
 message updateuserResponse{
