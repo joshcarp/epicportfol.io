@@ -5,7 +5,7 @@ import Timeline from '../components/Timeline'
 import { makeStyles, Grid, Paper } from '@material-ui/core'
 import UserInfoCard from '../components/UserInfoCard'
 import ImageBox from '../components/ImageBox'
-import EditModal from '../components/EditModal'
+import ProfileEditor from '../components/Editor'
 import PopModal from '../components/PopModal'
 import Nav from '../containers/Nav'
 
@@ -47,12 +47,7 @@ export default function UserProfile(props) {
                     <Grid item className={classes.card}>
                         <UserInfoCard profile={prof} />
                     </Grid>
-                    <Grid item className={classes.card}>
-                        <Timeline profile={prof} />
-                    </Grid>
-                    <Grid item className={classes.card}>
-                        <ImageBox profile={prof} />
-                    </Grid>
+                    <ProfileEditor profile={prof} setProfile={setProfile} />
                 </Grid>
                 <Grid className={classes.footer} />
             </Grid>
