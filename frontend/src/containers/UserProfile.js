@@ -17,6 +17,7 @@ const yaml = require('js-yaml')
 export default function UserProfile(props) {
     const classes = useStyles()
     let { username } = useParams()
+    const [comp, setComp] = useState(null)
     const [prof, setProfile] = useState(null)
     console.log(username)
     useEffect(() => {
@@ -34,6 +35,9 @@ export default function UserProfile(props) {
     if (prof == null) {
         return <div>Loading...</div>
     }
+
+    let search = window.location.search;
+    let params = new URLSearchParams(search);
     return (
         <>
             <Nav />
@@ -47,7 +51,11 @@ export default function UserProfile(props) {
                     <Grid item className={classes.card}>
                         <UserInfoCard profile={prof} />
                     </Grid>
-                    <ProfileEditor profile={prof}/>
+                    {
+                        (params.get('edit'))
+                        ? <ProfileEditor profile={prof}/>
+                        : prof.content
+                    }
                 </Grid>
                 <Grid className={classes.footer} />
             </Grid>

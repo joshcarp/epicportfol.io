@@ -7,9 +7,11 @@ import { EditorState, ContentState } from 'draft-js';
 import {withStyles} from "@material-ui/core";
 import './styles.css';
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import draftToHtml from 'draftjs-to-html';
 const { profilesClient, uploadClient } = require('./../proto/api_grpc_web_pb.js');
 const profiles = new profilesClient('http://localhost:443');
 const {profileFromJson} = require('./../components/convertor.js');
+
 
 class ProfileEditor extends Component {
     constructor(props) {
@@ -35,7 +37,7 @@ class ProfileEditor extends Component {
         this.setState({
             editorState,
         });
-        this.props.profile.content = draftToMarkdown(convertToRaw(editorState.getCurrentContent()))
+        this.props.profile.content = draftToHtml(convertToRaw(editorState.getCurrentContent()))
         this.updateUser(this.props.profile)
     };
 
@@ -56,7 +58,7 @@ class ProfileEditor extends Component {
                         <textarea
                             disabled
                             className="demo-content no-focus"
-                            value={editorState && draftToMarkdown(convertToRaw(editorState.getCurrentContent()))}
+                            value={editorState && draftToHtml(convertToRaw(editorState.getCurrentContent()))}
                         />
                     </div>
                 </div>
