@@ -38,6 +38,7 @@ export default function UserProfile(props) {
 
     let search = window.location.search;
     let params = new URLSearchParams(search);
+    console.log(prof.content)
     return (
         <>
             <Nav />
@@ -51,11 +52,15 @@ export default function UserProfile(props) {
                     <Grid item className={classes.card}>
                         <UserInfoCard profile={prof} />
                     </Grid>
+                    <Grid>
+                    <div>
                     {
                         (params.get('edit'))
                         ? <ProfileEditor profile={prof}/>
-                        : prof.content
+                        : <div dangerouslySetInnerHTML={{ __html: prof.content }} />
                     }
+                    </div>
+                    </Grid>
                 </Grid>
                 <Grid className={classes.footer} />
             </Grid>

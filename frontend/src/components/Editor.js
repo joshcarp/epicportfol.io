@@ -8,10 +8,28 @@ import {withStyles} from "@material-ui/core";
 import './styles.css';
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import draftToHtml from 'draftjs-to-html';
-const { profilesClient, uploadClient } = require('./../proto/api_grpc_web_pb.js');
+const { profilesClient, uploadClient, uploadRequest } = require('./../proto/api_grpc_web_pb.js');
+const upload = new uploadClient('https://upload.epicportfol.io');
 const profiles = new profilesClient('http://localhost:443');
 const {profileFromJson} = require('./../components/convertor.js');
 
+function uploadImageCallBack(file) {
+    return new Promise(
+        (resolve, reject) => {
+            var req = new uploadRequest();
+            const reader = new FileReader();
+            reader.onload = function() {
+                req.setDataurl(reader.result)
+                upload.upload(req, {},function (err, response) {
+                    console.log(err);
+                    console.log(response)
+                    resolve({ data: { link: response.getUrl()}})
+                });
+            }
+            reader.readAsDataURL(file)
+        }
+    );
+}
 
 class ProfileEditor extends Component {
     constructor(props) {
@@ -54,11 +72,24 @@ class ProfileEditor extends Component {
                             wrapperClassName="demo-wrapper"
                             editorClassName="demo-editor"
                             onEditorStateChange={this.onEditorStateChange}
+                            toolbar={{
+                                inline: { inDropdown: true },
+                                list: { inDropdown: true },
+                                textAlign: { inDropdown: true },
+                                link: { inDropdown: true },
+                                history: { inDropdown: true },
+                                image: {
+                                    uploadCallback: uploadImageCallBack,
+                                    previewImage: false,
+
+                                }
+                            }}
                         />
                         <textarea
                             disabled
                             className="demo-content no-focus"
                             value={editorState && draftToHtml(convertToRaw(editorState.getCurrentContent()))}
+
                         />
                     </div>
                 </div>
