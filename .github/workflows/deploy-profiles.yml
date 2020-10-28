@@ -1,7 +1,7 @@
-name: deploy profiles
+name: deploy profilesv2
 on:
   push:
-    branches: [ master ]
+    branches: [ feature/wysiwyg ]
     paths:
         - 'backend/**'
         - 'config/**'
@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Replace SERVICE arg in dockerfile
         run:  |
-          sed -i 's/${SERVICE}/profiles/g' Dockerfile
+          sed -i 's/${SERVICE}/profilesv2/g' Dockerfile
         env:
             SERVICE: authenticate
       - name: Setup - gcloud / gsutil
@@ -31,18 +31,18 @@ jobs:
         run: |-
           gcloud builds submit \
             --quiet \
-            --tag "gcr.io/joshcarp-it-project/profiles:$GITHUB_SHA"
+            --tag "gcr.io/joshcarp-it-project/profilesv2:$GITHUB_SHA"
       - name: Deploy
         run: |-
-          gcloud run deploy "profiles" \
+          gcloud run deploy "profilesv2" \
             --quiet \
             --region "us-central1" \
-            --image "gcr.io/joshcarp-it-project/profiles:$GITHUB_SHA" \
+            --image "gcr.io/joshcarp-it-project/profilesv2:$GITHUB_SHA" \
             --platform "managed" \
             --allow-unauthenticated
       - name: Set permissions
         run: |-
-          gcloud run services add-iam-policy-binding profiles \
+          gcloud run services add-iam-policy-binding profilesv2 \
             --member="allUsers" \
             --role="roles/run.invoker" \
             --platform managed

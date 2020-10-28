@@ -1,7 +1,7 @@
-name: deploy www
+name: deploy wwwv2
 on:
   push:
-    branches: [ master ]
+    branches: [ feature/wysiwyg ]
     paths:
         - 'frontend/**'
 
@@ -27,18 +27,18 @@ jobs:
         run: |-
           gcloud builds submit \
             --quiet \
-            --tag "gcr.io/joshcarp-it-project/www:$GITHUB_SHA"
+            --tag "gcr.io/joshcarp-it-project/wwwv2:$GITHUB_SHA"
       - name: Deploy
         run: |-
-          gcloud run deploy "www" \
+          gcloud run deploy "wwwv2" \
             --quiet \
             --region "us-central1" \
-            --image "gcr.io/joshcarp-it-project/www:$GITHUB_SHA" \
+            --image "gcr.io/joshcarp-it-project/wwwv2:$GITHUB_SHA" \
             --platform "managed" \
             --allow-unauthenticated
       - name: Set permissions
         run: |-
-          gcloud run services add-iam-policy-binding www \
+          gcloud run services add-iam-policy-binding wwwv2 \
             --member="allUsers" \
             --role="roles/run.invoker" \
             --platform managed

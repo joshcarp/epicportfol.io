@@ -10,7 +10,7 @@ import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import draftToHtml from 'draftjs-to-html';
 const { profilesClient, uploadClient, uploadRequest } = require('./../proto/api_grpc_web_pb.js');
 const upload = new uploadClient('https://upload.epicportfol.io');
-const profiles = new profilesClient('http://localhost:443');
+const profiles = new profilesClient('https://profilesv2-ogaheemccq-uc.a.run.app/');
 const {profileFromJson} = require('./../components/convertor.js');
 
 function uploadImageCallBack(file) {
