@@ -1,4 +1,4 @@
-name: deploy profilesv2
+name: deploy profiles
 on:
   push:
     branches: [ feature/wysiwyg ]
@@ -29,18 +29,18 @@ jobs:
         run: |-
           gcloud builds submit \
             --quiet \
-            --tag "gcr.io/joshcarp-it-project/profilesv2:$GITHUB_SHA"
+            --tag "gcr.io/joshcarp-it-project/profiles:$GITHUB_SHA"
       - name: Deploy
         run: |-
-          gcloud run deploy "profilesv2" \
+          gcloud run deploy "profiles" \
             --quiet \
             --region "us-central1" \
-            --image "gcr.io/joshcarp-it-project/profilesv2:$GITHUB_SHA" \
+            --image "gcr.io/joshcarp-it-project/profiles:$GITHUB_SHA" \
             --platform "managed" \
             --allow-unauthenticated
       - name: Set permissions
         run: |-
-          gcloud run services add-iam-policy-binding profilesv2 \
+          gcloud run services add-iam-policy-binding profiles \
             --member="allUsers" \
             --role="roles/run.invoker" \
             --platform managed
