@@ -7,8 +7,8 @@ export function profileFromJson(p){
     j.setEmail(p.email)
     j.setPicture(p.picture)
     j.setBio(p.bio)
+    j.setContent(p.content)
     j.setLinksList(p.linksList)
-    // j.setArtifactsList(p.artifactsList)
     j.setArtifactsList(
         p.artifactsList.map(a => {
             var art = new artifact();

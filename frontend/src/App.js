@@ -20,8 +20,9 @@ export default function App() {
                 <Route exact path="/">
                     <Homepage />
                 </Route>
-                <Route path="/u/:username" children={<UserProfile />}>
+                <Route path="/u/:username/" children={<UserProfile />}>
                 </Route>
+
                 <Route path="/search" children={<SearchPage />}>
                 </Route>
             </Switch>
