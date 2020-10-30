@@ -11,8 +11,8 @@ import Nav from '../containers/Nav'
 import {Redirect} from "react-router";
 
 const { profilesClient, authenticateClient, verifyRequest } = require('./../proto/api_grpc_web_pb.js')
-const profiles = new profilesClient('https://profilesv2-ogaheemccq-uc.a.run.app')
-const authenticate = new authenticateClient('http://localhost:444')
+const profiles = new profilesClient('https://profiles.epicportfol.io')
+const authenticate = new authenticateClient('https://authenticate.epicportfol.io')
 const { getuserRequest, profile } = require('./../proto/api_pb.js')
 const yaml = require('js-yaml')
 
