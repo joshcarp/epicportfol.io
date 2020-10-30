@@ -1,7 +1,7 @@
 name: deploy www
 on:
   push:
-    branches: [ feature/wysiwyg ]
+    branches: [ master ]
     paths:
         - 'frontend/**'
 
