@@ -133,6 +133,9 @@ itproject:
         bio <: string:
             @json_tag = "bio"
             @rpcId = "5"
+        content <: string:
+            @json_tag = "content"
+            @rpcId = "9"
         email <: string:
             @json_tag = "email"
             @rpcId = "2"

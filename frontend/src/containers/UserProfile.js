@@ -1,24 +1,29 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import {Route, useParams} from 'react-router-dom'
 import Timeline from '../components/Timeline'
 
 import { makeStyles, Grid, Paper } from '@material-ui/core'
 import UserInfoCard from '../components/UserInfoCard'
 import ImageBox from '../components/ImageBox'
-import EditModal from '../components/EditModal'
+import ProfileEditor from '../components/Editor'
 import PopModal from '../components/PopModal'
 import Nav from '../containers/Nav'
+import {Redirect} from "react-router";
 
-const { profilesClient } = require('./../proto/api_grpc_web_pb.js')
+const { profilesClient, authenticateClient, verifyRequest } = require('./../proto/api_grpc_web_pb.js')
 const profiles = new profilesClient('https://profiles.epicportfol.io')
+const authenticate = new authenticateClient('https://authenticate.epicportfol.io')
 const { getuserRequest, profile } = require('./../proto/api_pb.js')
 const yaml = require('js-yaml')
 
 export default function UserProfile(props) {
     const classes = useStyles()
     let { username } = useParams()
+    const [comp, setComp] = useState(null)
     const [prof, setProfile] = useState(null)
+    const [authed, setAuthed] = useState(false)
     console.log(username)
+
     useEffect(() => {
         var req = new getuserRequest()
         req.setUserid(username)
@@ -30,28 +35,50 @@ export default function UserProfile(props) {
             }
         })
     }, [])
+    useEffect(()=>{
+        var req = new verifyRequest()
+        req.setUsername(window.location.pathname.replace("/u/", ""))
+        const meta = {authorization: 'Bearer ' + localStorage.getItem('token')}
+        authenticate.verify(req, meta, function (err, response) {
+            setAuthed(response.getVerified())
+        })
+        }, [])
+
 
     if (prof == null) {
         return <div>Loading...</div>
     }
+
+    let search = window.location.search;
+    let params = new URLSearchParams(search);
+    console.log(prof.content)
     return (
         <>
             <Nav />
             <Grid container className={classes.root}>
-                <Grid
-                    container
+                <Grid container
                     component={Paper}
                     className={classes.profile}
-                    elevation={4}
-                >
+                    elevation={4}>
                     <Grid item className={classes.card}>
+                        {
+                            authed && (params.get('edit') !== 'true') &&
+                            <button onClick={() => params.set('edit', 'true')}>Edit</button>
+                        }
+                        {
+                            authed && (params.get('edit') === 'true') &&
+                            <button onClick={() => params.set('edit', 'false')}>Save</button>
+                        }
                         <UserInfoCard profile={prof} />
                     </Grid>
-                    <Grid item className={classes.card}>
-                        <Timeline profile={prof} />
-                    </Grid>
-                    <Grid item className={classes.card}>
-                        <ImageBox profile={prof} />
+                    <Grid container className={classes.card}>
+                    <div container className={classes.card}>
+                    {
+                        (params.get('edit'))
+                        ? <ProfileEditor profile={prof}/>
+                        : <div dangerouslySetInnerHTML={{ __html: prof.content }} />
+                    }
+                    </div>
                     </Grid>
                 </Grid>
                 <Grid className={classes.footer} />

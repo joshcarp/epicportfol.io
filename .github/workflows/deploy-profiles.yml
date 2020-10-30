@@ -2,9 +2,7 @@ name: deploy profiles
 on:
   push:
     branches: [ master ]
-    paths:
-        - 'backend/**'
-        - 'config/**'
+
 
 jobs:
   build:

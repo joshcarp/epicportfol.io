@@ -121,14 +121,8 @@ export default function UserInfoCard(props) {
             {/* BIO TITLE + BODY */}
             <Grid container className={classes.bioColumn}>
                 <Grid item className={classes.field}>
-                    <Typography variant='h6' color='textPrimary'>
-                        <strong>
-                            About Me
-                            </strong>
-                    </Typography>
                 </Grid>
                 <Grid item className={classes.field}>
-                    {props.profile.bio}
                 </Grid>
             </Grid>
 

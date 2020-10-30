@@ -1799,7 +1799,7 @@ proto.itproject.getuserRequest.prototype.setUserid = function(value) {
  * @private {!Array<number>}
  * @const
  */
-proto.itproject.profile.repeatedFields_ = [6,7,8];
+proto.itproject.profile.repeatedFields_ = [8,6,7];
 
 
 
@@ -1837,11 +1837,12 @@ proto.itproject.profile.toObject = function(includeInstance, msg) {
     fullName: jspb.Message.getFieldWithDefault(msg, 3, ""),
     picture: jspb.Message.getFieldWithDefault(msg, 4, ""),
     bio: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    linksList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f,
     jobsList: jspb.Message.toObjectList(msg.getJobsList(),
     proto.itproject.job.toObject, includeInstance),
     artifactsList: jspb.Message.toObjectList(msg.getArtifactsList(),
     proto.itproject.artifact.toObject, includeInstance),
-    linksList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f
+    content: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -1898,6 +1899,10 @@ proto.itproject.profile.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setBio(value);
       break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addLinks(value);
+      break;
     case 6:
       var value = new proto.itproject.job;
       reader.readMessage(value,proto.itproject.job.deserializeBinaryFromReader);
@@ -1908,9 +1913,9 @@ proto.itproject.profile.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,proto.itproject.artifact.deserializeBinaryFromReader);
       msg.addArtifacts(value);
       break;
-    case 8:
+    case 9:
       var value = /** @type {string} */ (reader.readString());
-      msg.addLinks(value);
+      msg.setContent(value);
       break;
     default:
       reader.skipField();
@@ -1976,6 +1981,13 @@ proto.itproject.profile.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getLinksList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      8,
+      f
+    );
+  }
   f = message.getJobsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
@@ -1992,10 +2004,10 @@ proto.itproject.profile.serializeBinaryToWriter = function(message, writer) {
       proto.itproject.artifact.serializeBinaryToWriter
     );
   }
-  f = message.getLinksList();
+  f = message.getContent();
   if (f.length > 0) {
-    writer.writeRepeatedString(
-      8,
+    writer.writeString(
+      9,
       f
     );
   }
@@ -2093,6 +2105,43 @@ proto.itproject.profile.prototype.setBio = function(value) {
 
 
 /**
+ * repeated string links = 8;
+ * @return {!Array<string>}
+ */
+proto.itproject.profile.prototype.getLinksList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 8));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.itproject.profile} returns this
+ */
+proto.itproject.profile.prototype.setLinksList = function(value) {
+  return jspb.Message.setField(this, 8, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.itproject.profile} returns this
+ */
+proto.itproject.profile.prototype.addLinks = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 8, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.itproject.profile} returns this
+ */
+proto.itproject.profile.prototype.clearLinksList = function() {
+  return this.setLinksList([]);
+};
+
+
+/**
  * repeated job jobs = 6;
  * @return {!Array<!proto.itproject.job>}
  */
@@ -2169,39 +2218,20 @@ proto.itproject.profile.prototype.clearArtifactsList = function() {
 
 
 /**
- * repeated string links = 8;
- * @return {!Array<string>}
+ * optional string content = 9;
+ * @return {string}
  */
-proto.itproject.profile.prototype.getLinksList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 8));
-};
-
-
-/**
- * @param {!Array<string>} value
- * @return {!proto.itproject.profile} returns this
- */
-proto.itproject.profile.prototype.setLinksList = function(value) {
-  return jspb.Message.setField(this, 8, value || []);
+proto.itproject.profile.prototype.getContent = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
 
 
 /**
  * @param {string} value
- * @param {number=} opt_index
  * @return {!proto.itproject.profile} returns this
  */
-proto.itproject.profile.prototype.addLinks = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 8, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.itproject.profile} returns this
- */
-proto.itproject.profile.prototype.clearLinksList = function() {
-  return this.setLinksList([]);
+proto.itproject.profile.prototype.setContent = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
