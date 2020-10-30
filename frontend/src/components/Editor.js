@@ -47,7 +47,8 @@ class ProfileEditor extends Component {
         this.updateUser = this.updateUser.bind(this);
     };
     updateUser(user) {
-        profiles.updateuser(profileFromJson(user), {}, function (err, response) {
+        const meta = {authorization: 'Bearer ' + localStorage.getItem('token')}
+        profiles.updateuser(profileFromJson(user), meta, function (err, response) {
             console.log(err);
         });
     }
