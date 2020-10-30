@@ -8,9 +8,11 @@ import ImageBox from '../components/ImageBox'
 import ProfileEditor from '../components/Editor'
 import PopModal from '../components/PopModal'
 import Nav from '../containers/Nav'
+import {Redirect} from "react-router";
 
-const { profilesClient } = require('./../proto/api_grpc_web_pb.js')
-const profiles = new profilesClient('http://localhost:443')
+const { profilesClient, authenticateClient, verifyRequest } = require('./../proto/api_grpc_web_pb.js')
+const profiles = new profilesClient('https://profilesv2-ogaheemccq-uc.a.run.app')
+const authenticate = new authenticateClient('http://localhost:444')
 const { getuserRequest, profile } = require('./../proto/api_pb.js')
 const yaml = require('js-yaml')
 
@@ -19,7 +21,9 @@ export default function UserProfile(props) {
     let { username } = useParams()
     const [comp, setComp] = useState(null)
     const [prof, setProfile] = useState(null)
+    const [authed, setAuthed] = useState(false)
     console.log(username)
+
     useEffect(() => {
         var req = new getuserRequest()
         req.setUserid(username)
@@ -31,6 +35,15 @@ export default function UserProfile(props) {
             }
         })
     }, [])
+    useEffect(()=>{
+        var req = new verifyRequest()
+        req.setUsername(window.location.pathname.replace("/u/", ""))
+        const meta = {authorization: 'Bearer ' + localStorage.getItem('token')}
+        authenticate.verify(req, meta, function (err, response) {
+            setAuthed(response.getVerified())
+        })
+        }, [])
+
 
     if (prof == null) {
         return <div>Loading...</div>
@@ -43,17 +56,23 @@ export default function UserProfile(props) {
         <>
             <Nav />
             <Grid container className={classes.root}>
-                <Grid
-                    container
+                <Grid container
                     component={Paper}
                     className={classes.profile}
-                    elevation={4}
-                >
+                    elevation={4}>
                     <Grid item className={classes.card}>
+                        {
+                            authed && (params.get('edit') !== 'true') &&
+                            <button onClick={() => params.set('edit', 'true')}>Edit</button>
+                        }
+                        {
+                            authed && (params.get('edit') === 'true') &&
+                            <button onClick={() => params.set('edit', 'false')}>Save</button>
+                        }
                         <UserInfoCard profile={prof} />
                     </Grid>
-                    <Grid>
-                    <div>
+                    <Grid container className={classes.card}>
+                    <div container className={classes.card}>
                     {
                         (params.get('edit'))
                         ? <ProfileEditor profile={prof}/>

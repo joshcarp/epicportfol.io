@@ -70,7 +70,7 @@ class ProfileEditor extends Component {
                         <Editor
                             editorState={editorState}
                             wrapperClassName="demo-wrapper"
-                            editorClassName="demo-editor"
+                            editorClassName="demo-wrapper-medium"
                             onEditorStateChange={this.onEditorStateChange}
                             toolbar={{
                                 inline: { inDropdown: true },
@@ -80,16 +80,10 @@ class ProfileEditor extends Component {
                                 history: { inDropdown: true },
                                 image: {
                                     uploadCallback: uploadImageCallBack,
-                                    previewImage: false,
+                                    previewImage: true,
 
                                 }
                             }}
-                        />
-                        <textarea
-                            disabled
-                            className="demo-content no-focus"
-                            value={editorState && draftToHtml(convertToRaw(editorState.getCurrentContent()))}
-
                         />
                     </div>
                 </div>
@@ -98,7 +92,8 @@ class ProfileEditor extends Component {
         );
     }
 }
-const styles = `.demo-root {
+const styles = `
+.demo-root {
   width: 90%;
   display: flex;
   font-family: Roboto;
@@ -135,7 +130,7 @@ const styles = `.demo-root {
   width: 650px !important;
   display: block !important;
   margin-bottom: 50px !important;
-  height: 300px !important;
+  height: 1000px !important;
 }
 .demo-editor {
   height: 275px !important;
@@ -170,7 +165,7 @@ const styles = `.demo-root {
   background: #f3f3f3 !important;
   border: 1px solid #e3e3e3 !important;
 }
-.demo-editor-plain {
+.c {
   height: 80% !important;
   border-width: 0px !important;
 }
