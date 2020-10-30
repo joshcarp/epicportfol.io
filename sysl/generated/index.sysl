@@ -129,18 +129,20 @@ itproject:
     !type profile:
         @description = ""
         @source_path = "api.proto"
+        artifacts <: sequence of artifact
         bio <: string:
             @json_tag = "bio"
             @rpcId = "5"
         content <: string:
             @json_tag = "content"
-            @rpcId = "6"
+            @rpcId = "9"
         email <: string:
             @json_tag = "email"
             @rpcId = "2"
         full_name <: string:
             @json_tag = "fullName"
             @rpcId = "3"
+        jobs <: sequence of job
         links <: sequence of string
         picture <: string:
             @json_tag = "picture"
