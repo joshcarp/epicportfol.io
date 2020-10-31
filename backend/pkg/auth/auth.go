@@ -15,15 +15,6 @@ import (
 	"google.golang.org/grpc/metadata"
 )
 
-type Account struct {
-	Email          string `db:"email"`
-	Name           string `db:"name"`
-	Username       string `db:"username"`
-	Preferred_name string `db:"preferred_name"`
-	Password       string `db:"password"`
-	Salt           string `db:"salt"`
-}
-
 const saltlen = 32
 
 func Salt() (string, error) {

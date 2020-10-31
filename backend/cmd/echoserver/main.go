@@ -1,3 +1,4 @@
+/* EchoService is a basic service to test connections */
 package main
 
 import (

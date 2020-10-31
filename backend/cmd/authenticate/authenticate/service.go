@@ -9,6 +9,7 @@ import (
 	"google.golang.org/grpc"
 )
 
+/* Server is the struct that implements the authenticate service interface */
 type Server struct {
 	config   config.Config
 	log      *logrus.Logger

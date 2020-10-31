@@ -1,7 +1,8 @@
+/* upload service is used to upload static assets to gcs */
 package main
 
 import (
-	"github.com/joshcarp/it-project/backend/internal/upload"
+	"github.com/joshcarp/it-project/backend/cmd/upload/upload"
 	"github.com/joshcarp/it-project/backend/pkg/server"
 	"github.com/sirupsen/logrus"
 

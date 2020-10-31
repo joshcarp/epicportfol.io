@@ -1,6 +1,7 @@
 package upload
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"io"
@@ -8,10 +9,31 @@ import (
 	"path"
 	"time"
 
+	"github.com/joshcarp/it-project/backend/pkg/auth"
+	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
+	"github.com/vincent-petithory/dataurl"
+
 	"cloud.google.com/go/storage"
 )
 
 const bucketname = `joshcarp-it-project-storage`
+
+/* upload service is used to upload static assets to gcs */
+func (s *Server) Upload(ctx context.Context, in *itproject.UploadRequest) (*itproject.UploadResponse, error) {
+	filename, _ := auth.Salt()
+	dataURL, err := dataurl.DecodeString(in.GetDataurl())
+	if err != nil {
+		s.log.Error(err)
+		return nil, err
+	}
+	err = UploadFile(bytes.NewReader(dataURL.Data), bucketname, filename, dataURL.MediaType.ContentType())
+	if err != nil {
+		s.log.Error(err)
+		return nil, err
+	}
+	url := fmt.Sprintf("https://storage.googleapis.com/%s/%s", bucketname, filename)
+	return &itproject.UploadResponse{Url: url}, err
+}
 
 func UploadFile(r io.Reader, bucket, object, mimetype string) error {
 	ctx := context.Background()

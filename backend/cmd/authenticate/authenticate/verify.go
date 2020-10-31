@@ -7,6 +7,7 @@ import (
 	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
 )
 
+/* Verify allows for the frontend to check if a user can edit a page */
 func (s *Server) Verify(ctx context.Context, req *itproject.VerifyRequest) (*itproject.VerifyResponse, error) {
 	var username interface{}
 	var ok bool

@@ -89,7 +89,7 @@ itproject:
             @rpcId = "1"
     !type empty[~empty]:
         @description =:
-            | empty is an empty type for messages that don't need a payload
+            | empty is an empty type for messages that don't need a payload 
         @source_path = "api.proto"
         ...
     !type getuserRequest:

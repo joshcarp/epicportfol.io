@@ -1,8 +1,8 @@
-// Package main implements a server for Greeter service.
+/* profiles is a service to retrieve and update a profile that is displayed */
 package main
 
 import (
-	"github.com/joshcarp/it-project/backend/internal/profiles"
+	"github.com/joshcarp/it-project/backend/cmd/profiles/profiles"
 	"github.com/joshcarp/it-project/backend/pkg/server"
 
 	"github.com/sirupsen/logrus"

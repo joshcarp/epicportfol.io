@@ -1,9 +1,10 @@
+/* authenticate is the miroservice that handles authentication and issues JWTs to use with other services */
 package main
 
 import (
 	"github.com/sirupsen/logrus"
 
-	"github.com/joshcarp/it-project/backend/internal/authenticate"
+	"github.com/joshcarp/it-project/backend/cmd/authenticate/authenticate"
 	"github.com/joshcarp/it-project/backend/pkg/server"
 
 	_ "github.com/GoogleCloudPlatform/cloudsql-proxy/proxy/dialers/postgres"

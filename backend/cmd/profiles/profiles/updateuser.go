@@ -8,6 +8,7 @@ import (
 	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
 )
 
+/* updateuser updates a profile */
 func (s *Server) Updateuser(ctx context.Context, in *itproject.Profile) (*itproject.Empty, error) {
 	var username interface{}
 	var ok bool

@@ -36,6 +36,7 @@ func New(conf config.Config) (Firebase, error) {
 	}, nil
 }
 
+/* ValidJwt is used to verify an authorization header */
 func (f Firebase) ValidJwt(authorization []string) (map[string]interface{}, error) {
 	if len(authorization) < 1 {
 		return nil, fmt.Errorf("auth not found")

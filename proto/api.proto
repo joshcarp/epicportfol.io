@@ -23,7 +23,7 @@ service authenticate {
     rpc verify(verifyRequest) returns (verifyResponse);
 }
 
-/* empty is an empty type for messages that don't need a payload*/
+/* empty is an empty type for messages that don't need a payload */
 message empty{}
 
 /* verifyRequest is used in the veryfy endpoint */

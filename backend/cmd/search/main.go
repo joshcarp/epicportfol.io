@@ -1,7 +1,8 @@
+/* search is a service that is used to find a profile/user based on a search parameter */
 package main
 
 import (
-	"github.com/joshcarp/it-project/backend/internal/search"
+	"github.com/joshcarp/it-project/backend/cmd/search/search"
 	"github.com/joshcarp/it-project/backend/pkg/server"
 
 	"github.com/sirupsen/logrus"
