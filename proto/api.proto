@@ -21,6 +21,14 @@ service authenticate {
 
     /* verifyUser is used to verify if a user has permissions to edit an profile; used for frontend rendering */
     rpc verify(verifyRequest) returns (verifyResponse);
+
+    /* getClaims is used to get which user is logged in */
+    rpc getClaims(empty) returns (getClaimsResponse);
+}
+
+/* getClaimsResponse contains a username */
+message getClaimsResponse {
+    string username = 1;
 }
 
 /* empty is an empty type for messages that don't need a payload */
@@ -35,7 +43,6 @@ message verifyRequest {
 message verifyResponse {
     bool verified = 1;
 }
-
 
 
 /* RegisterRequest contains all the information to register the user in the database */

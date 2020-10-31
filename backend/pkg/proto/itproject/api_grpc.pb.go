@@ -25,6 +25,8 @@ type AuthenticateClient interface {
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 	// verifyUser is used to verify if a user has permissions to edit an profile; used for frontend rendering
 	Verify(ctx context.Context, in *VerifyRequest, opts ...grpc.CallOption) (*VerifyResponse, error)
+	// getClaims is used to get which user is logged in
+	GetClaims(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetClaimsResponse, error)
 }
 
 type authenticateClient struct {
@@ -71,6 +73,15 @@ func (c *authenticateClient) Verify(ctx context.Context, in *VerifyRequest, opts
 	return out, nil
 }
 
+func (c *authenticateClient) GetClaims(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetClaimsResponse, error) {
+	out := new(GetClaimsResponse)
+	err := c.cc.Invoke(ctx, "/itproject.authenticate/getClaims", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthenticateServer is the server API for Authenticate service.
 // All implementations must embed UnimplementedAuthenticateServer
 // for forward compatibility
@@ -83,6 +94,8 @@ type AuthenticateServer interface {
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
 	// verifyUser is used to verify if a user has permissions to edit an profile; used for frontend rendering
 	Verify(context.Context, *VerifyRequest) (*VerifyResponse, error)
+	// getClaims is used to get which user is logged in
+	GetClaims(context.Context, *Empty) (*GetClaimsResponse, error)
 	mustEmbedUnimplementedAuthenticateServer()
 }
 
@@ -101,6 +114,9 @@ func (*UnimplementedAuthenticateServer) Login(context.Context, *LoginRequest) (*
 }
 func (*UnimplementedAuthenticateServer) Verify(context.Context, *VerifyRequest) (*VerifyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Verify not implemented")
+}
+func (*UnimplementedAuthenticateServer) GetClaims(context.Context, *Empty) (*GetClaimsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetClaims not implemented")
 }
 func (*UnimplementedAuthenticateServer) mustEmbedUnimplementedAuthenticateServer() {}
 
@@ -180,6 +196,24 @@ func _Authenticate_Verify_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Authenticate_GetClaims_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthenticateServer).GetClaims(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/itproject.authenticate/GetClaims",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthenticateServer).GetClaims(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Authenticate_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "itproject.authenticate",
 	HandlerType: (*AuthenticateServer)(nil),
@@ -199,6 +233,10 @@ var _Authenticate_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "verify",
 			Handler:    _Authenticate_Verify_Handler,
+		},
+		{
+			MethodName: "getClaims",
+			Handler:    _Authenticate_GetClaims_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
