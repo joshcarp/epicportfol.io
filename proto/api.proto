@@ -11,26 +11,27 @@ package itproject;
 service authenticate {
 
     /* Register is used to register a user and acquire a jwt */
-    rpc register(registerRequest) returns (registerResponse){};
+    rpc register(registerRequest) returns (registerResponse);
 
     /* Register is used to register a user and acquire a jwt */
-    rpc registerFirebase(empty) returns (empty){};
+    rpc registerFirebase(empty) returns (empty);
 
     /* Login is used to login and to acquire a jwt */
-    rpc login(loginRequest) returns (loginResponse){};
+    rpc login(loginRequest) returns (loginResponse);
 
     /* verifyUser is used to verify if a user has permissions to edit an profile; used for frontend rendering */
     rpc verify(verifyRequest) returns (verifyResponse);
 }
 
-message empty{
-}
+/* empty is an empty type for messages that don't need a payload */
+message empty{}
 
-
+/* verifyRequest is used in the veryfy endpoint */
 message verifyRequest {
     string username = 1;
 }
 
+/* verifyResponse is a message that has verified=true if the authenticated used has the ability to edit the page*/
 message verifyResponse {
     bool verified = 1;
 }
@@ -88,13 +89,14 @@ service profiles {
     rpc getuser(getuserRequest) returns (profile);
 
     /* updateuser updates a profile */
-    rpc updateuser(profile) returns (updateuserResponse);
+    rpc updateuser(profile) returns (empty);
 }
 
 message getuserRequest {
     string userid = 1;
 }
 
+/* profile is the data model of the page that is displayed to a user */
 message profile {
     string username = 1;
     string email = 2;
@@ -106,9 +108,6 @@ message profile {
     repeated job jobs = 6 [json_name = "jobsList"];
     repeated artifact artifacts = 7 [json_name = "artifactsList"];
     string content = 9;
-}
-
-message updateuserResponse{
 }
 
 message job {
@@ -143,6 +142,7 @@ message uploadResponse {
 
 /* --- Search service --- */
 
+
 /* search is a service that is used to find a profile/user based on a search parameter */
 service search {
     rpc search(searchRequest) returns(searchResponse);
@@ -156,9 +156,9 @@ message searchResponse {
     repeated profile results = 1;
 }
 
-/* --- Search service --- */
+/* --- -------------- --- */
 
-/* Account is an account that is stored in the database */
+/* Account is an account that is stored in the firebase database */
 
 message account {
     string username = 1;

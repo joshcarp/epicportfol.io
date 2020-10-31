@@ -88,7 +88,8 @@ itproject:
             @json_tag = "message"
             @rpcId = "1"
     !type empty[~empty]:
-        @description = ""
+        @description =:
+            | empty is an empty type for messages that don't need a payload 
         @source_path = "api.proto"
         ...
     !type getuserRequest:
@@ -127,7 +128,8 @@ itproject:
             @json_tag = "jwt"
             @rpcId = "1"
     !type profile:
-        @description = ""
+        @description =:
+            | profile is the data model of the page that is displayed to a user 
         @source_path = "api.proto"
         artifacts <: sequence of artifact
         bio <: string:
@@ -187,10 +189,6 @@ itproject:
         @description = ""
         @source_path = "api.proto"
         results <: sequence of profile
-    !type updateuserResponse[~empty]:
-        @description = ""
-        @source_path = "api.proto"
-        ...
     !type uploadRequest:
         @description = ""
         @source_path = "api.proto"
@@ -204,13 +202,16 @@ itproject:
             @json_tag = "url"
             @rpcId = "1"
     !type verifyRequest:
-        @description = ""
+        @description =:
+            | verifyRequest is used in the veryfy endpoint 
         @source_path = "api.proto"
         username <: string:
             @json_tag = "username"
             @rpcId = "1"
     !type verifyResponse:
-        @description = ""
+        @description =:
+            | verifyResponse is a message that has verified=true if the authenticated used ha
+            |s the ability to edit the page
         @source_path = "api.proto"
         verified <: bool:
             @json_tag = "verified"
@@ -230,7 +231,7 @@ profiles[~gRPC]:
         @description =:
             | updateuser updates a profile 
         @source_path = "api.proto"
-        return ok <: itproject.updateuserResponse
+        return ok <: itproject.empty
 
 search[~gRPC]:
     @description =:
