@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from 'prop-types';
 import { TextField, withStyles } from '@material-ui/core';
 import { Redirect } from 'react-router'
-import { Link } from 'react'
-
 
 const styles = {
     form: {
