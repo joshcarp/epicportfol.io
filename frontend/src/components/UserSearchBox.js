@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from 'prop-types';
 import { TextField, withStyles } from '@material-ui/core';
 import { Redirect } from 'react-router'
-import { Link } from 'react'
 
 
 const styles = {
@@ -50,7 +49,7 @@ class UserSearchBox extends React.Component {
         const { fireRedirect } = this.state;
         var { username } = this.state;
         const { classes } = this.props;
-        username = "/search?term="+username
+        username = "/search?term=" + username
         return (
             <div className="UserSearchBox">
                 <form onSubmit={this.handleSubmit} className={classes.form}>

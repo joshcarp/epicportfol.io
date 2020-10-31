@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { TextField, withStyles, InputBase, Paper } from '@material-ui/core';
+import { withStyles, InputBase, Paper } from '@material-ui/core';
 import { Redirect } from 'react-router'
-import { Link } from 'react'
 
 
 const styles = {

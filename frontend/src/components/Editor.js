@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
 import { convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
-import draftToMarkdown from 'draftjs-to-markdown';
+// import draftToMarkdown from 'draftjs-to-markdown';
 import htmlToDraft from 'html-to-draftjs';
 import { EditorState, ContentState } from 'draft-js';
-import {withStyles} from "@material-ui/core";
+import { withStyles } from "@material-ui/core";
 import './styles.css';
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import draftToHtml from 'draftjs-to-html';
 const { profilesClient, uploadClient, uploadRequest } = require('./../proto/api_grpc_web_pb.js');
 const upload = new uploadClient('https://upload.epicportfol.io');
 const profiles = new profilesClient('https://profiles.epicportfol.io');
-const {profileFromJson} = require('./../components/convertor.js');
+const { profileFromJson } = require('./../components/convertor.js');
 
 function uploadImageCallBack(file) {
     return new Promise(
         (resolve, reject) => {
             var req = new uploadRequest();
             const reader = new FileReader();
-            reader.onload = function() {
+            reader.onload = function () {
                 req.setDataurl(reader.result)
-                upload.upload(req, {},function (err, response) {
+                upload.upload(req, {}, function (err, response) {
                     console.log(err);
                     console.log(response)
-                    resolve({ data: { link: response.getUrl()}})
+                    resolve({ data: { link: response.getUrl() } })
                 });
             }
             reader.readAsDataURL(file)
@@ -47,12 +47,12 @@ class ProfileEditor extends Component {
         this.updateUser = this.updateUser.bind(this);
     };
     updateUser(user) {
-        const meta = {authorization: 'Bearer ' + localStorage.getItem('token')}
+        const meta = { authorization: 'Bearer ' + localStorage.getItem('token') }
         profiles.updateuser(profileFromJson(user), meta, function (err, response) {
             console.log(err);
         });
     }
-    onEditorStateChange (editorState) {
+    onEditorStateChange(editorState) {
         this.setState({
             editorState,
         });
@@ -65,30 +65,30 @@ class ProfileEditor extends Component {
         return (
 
             <div className="demo-root">
-            <div className="demo-section">
-                <div className="demo-section-wrapper">
-                    <div className="demo-editor-wrapper">
-                        <Editor
-                            editorState={editorState}
-                            wrapperClassName="demo-wrapper"
-                            editorClassName="demo-wrapper-medium"
-                            onEditorStateChange={this.onEditorStateChange}
-                            toolbar={{
-                                inline: { inDropdown: true },
-                                list: { inDropdown: true },
-                                textAlign: { inDropdown: true },
-                                link: { inDropdown: true },
-                                history: { inDropdown: true },
-                                image: {
-                                    uploadCallback: uploadImageCallBack,
-                                    previewImage: true,
+                <div className="demo-section">
+                    <div className="demo-section-wrapper">
+                        <div className="demo-editor-wrapper">
+                            <Editor
+                                editorState={editorState}
+                                wrapperClassName="demo-wrapper"
+                                editorClassName="demo-wrapper-medium"
+                                onEditorStateChange={this.onEditorStateChange}
+                                toolbar={{
+                                    inline: { inDropdown: true },
+                                    list: { inDropdown: true },
+                                    textAlign: { inDropdown: true },
+                                    link: { inDropdown: true },
+                                    history: { inDropdown: true },
+                                    image: {
+                                        uploadCallback: uploadImageCallBack,
+                                        previewImage: true,
 
-                                }
-                            }}
-                        />
+                                    }
+                                }}
+                            />
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
         );
     }

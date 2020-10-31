@@ -8,13 +8,6 @@ import UserSearchBox from '../components/UserSearchBox'
 import UserLoginForm from '../components/UserLoginForm'
 import Nav from './Nav.js'
 
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
-import MenuIcon from '@material-ui/icons/Menu'
-
 class Homepage extends Component {
     state = {
         showSideDrawer: false,

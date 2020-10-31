@@ -3,7 +3,7 @@ import UserProfile from './containers/UserProfile'
 import './App.css'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import RegisterPage from './containers/RegisterPage'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import SearchPage from "./containers/SearchPage";
 
 export default function App() {

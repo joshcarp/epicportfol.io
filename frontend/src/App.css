@@ -83,7 +83,7 @@ input {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: rgb(0, 0, 0);
-  background-image: url("/home-bg.jpg");
+  background-image: url("./home-bg.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
@@ -107,7 +107,7 @@ input {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: rgb(0, 0, 0);
-  background-image: url("/home-bg.jpg");
+  background-image: url("./home-bg.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;

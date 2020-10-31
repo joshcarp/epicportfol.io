@@ -5,16 +5,16 @@ const yaml = require('js-yaml');
 const { profilesClient, uploadClient } = require('./../proto/api_grpc_web_pb.js');
 const profiles = new profilesClient('https://profiles.epicportfol.io');
 const upload = new uploadClient('https://upload.epicportfol.io');
-const { getuserRequest, profile, uploadRequest } = require('./../proto/api_pb.js');
-const {profileFromJson} = require('./../components/convertor.js');
+const { uploadRequest } = require('./../proto/api_pb.js');
+const { profileFromJson } = require('./../components/convertor.js');
 
 export default function EditModal(props) {
-    const [filename, setFilename] = useState("initial value")
+    const [setFilename] = useState("initial value")
 
     const updateUser = (user) =>
         profiles.updateuser(profileFromJson(yaml.safeLoad(user)), {}, function (err, response) {
             console.log(err);
-    });
+        });
 
     //this updates the the text area with the profile data and allows you to edit it
     const [jsonValue, setJson] = useState(yaml.safeDump(props.profile));
@@ -22,7 +22,7 @@ export default function EditModal(props) {
     const onFileChange = event => {
         setFilename(event.target.files[0].name)
         const reader = new FileReader();
-        reader.onload = function(){
+        reader.onload = function () {
             console.log(reader.result);
             var u = new uploadRequest();
             u.setDataurl(reader.result);
