@@ -2,8 +2,8 @@
 package main
 
 import (
-	"github.com/joshcarp/it-project/backend/internal/server"
-	"github.com/joshcarp/it-project/backend/pkg/profiles"
+	"github.com/joshcarp/it-project/backend/internal/profiles"
+	"github.com/joshcarp/it-project/backend/pkg/server"
 
 	"github.com/sirupsen/logrus"
 

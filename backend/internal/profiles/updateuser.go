@@ -4,17 +4,11 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/joshcarp/it-project/backend/internal/auth"
-
-	"github.com/joshcarp/it-project/backend/internal/proto/itproject"
+	"github.com/joshcarp/it-project/backend/pkg/auth"
+	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
 )
 
-func (s *Server) Getuser(ctx context.Context, in *itproject.GetuserRequest) (*itproject.Profile, error) {
-	p, err := s.db.GetProfile(in.Userid)
-	return p, err
-}
-
-func (s *Server) Updateuser(ctx context.Context, in *itproject.Profile) (*itproject.UpdateuserResponse, error) {
+func (s *Server) Updateuser(ctx context.Context, in *itproject.Profile) (*itproject.Empty, error) {
 	var username interface{}
 	var ok bool
 	if s.auth {
@@ -38,5 +32,5 @@ func (s *Server) Updateuser(ctx context.Context, in *itproject.Profile) (*itproj
 			return nil, fmt.Errorf("Unauthorized")
 		}
 	}
-	return &itproject.UpdateuserResponse{}, s.db.EnterProfile(in)
+	return &itproject.Empty{}, s.db.EnterProfile(in)
 }

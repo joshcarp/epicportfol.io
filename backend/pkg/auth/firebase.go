@@ -8,7 +8,7 @@ import (
 	"firebase.google.com/go/auth"
 
 	firebase "firebase.google.com/go"
-	"github.com/joshcarp/it-project/backend/internal/config"
+	"github.com/joshcarp/it-project/backend/pkg/config"
 )
 
 type Firebase struct {

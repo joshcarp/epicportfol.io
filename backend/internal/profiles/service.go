@@ -1,20 +1,21 @@
-package authenticate
+package profiles
 
 import (
-	"github.com/joshcarp/it-project/backend/internal/auth"
-	"github.com/joshcarp/it-project/backend/internal/config"
-	"github.com/joshcarp/it-project/backend/internal/database"
-	"github.com/joshcarp/it-project/backend/internal/proto/itproject"
+	"github.com/joshcarp/it-project/backend/pkg/auth"
+	"github.com/joshcarp/it-project/backend/pkg/config"
+	"github.com/joshcarp/it-project/backend/pkg/database"
+	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 )
 
 type Server struct {
 	config   config.Config
-	log      *logrus.Logger
 	db       database.Server
+	log      *logrus.Logger
+	auth     bool
 	Firebase auth.Firebase
-	itproject.UnimplementedAuthenticateServer
+	itproject.UnimplementedProfilesServer
 }
 
 func NewServer(config config.Config, log *logrus.Logger) (*Server, error) {
@@ -26,14 +27,14 @@ func NewServer(config config.Config, log *logrus.Logger) (*Server, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &Server{config: config, db: db, log: log, Firebase: Firebase}, nil
+	return &Server{config: config, db: db, log: log, auth: true, Firebase: Firebase}, nil
 }
 
 func RegisterService(conf config.Config, log *logrus.Logger, s *grpc.Server) error {
-	accountServer, err := NewServer(conf, log)
+	ser, err := NewServer(conf, log)
 	if err != nil {
 		return err
 	}
-	itproject.RegisterAuthenticateServer(s, accountServer)
+	itproject.RegisterProfilesServer(s, ser)
 	return nil
 }

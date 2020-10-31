@@ -658,13 +658,13 @@ proto.itproject.profilesPromiseClient.prototype.getuser =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.itproject.profile,
- *   !proto.itproject.updateuserResponse>}
+ *   !proto.itproject.empty>}
  */
 const methodDescriptor_profiles_updateuser = new grpc.web.MethodDescriptor(
   '/itproject.profiles/updateuser',
   grpc.web.MethodType.UNARY,
   proto.itproject.profile,
-  proto.itproject.updateuserResponse,
+  proto.itproject.empty,
   /**
    * @param {!proto.itproject.profile} request
    * @return {!Uint8Array}
@@ -672,7 +672,7 @@ const methodDescriptor_profiles_updateuser = new grpc.web.MethodDescriptor(
   function(request) {
     return request.serializeBinary();
   },
-  proto.itproject.updateuserResponse.deserializeBinary
+  proto.itproject.empty.deserializeBinary
 );
 
 
@@ -680,10 +680,10 @@ const methodDescriptor_profiles_updateuser = new grpc.web.MethodDescriptor(
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
  *   !proto.itproject.profile,
- *   !proto.itproject.updateuserResponse>}
+ *   !proto.itproject.empty>}
  */
 const methodInfo_profiles_updateuser = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.itproject.updateuserResponse,
+  proto.itproject.empty,
   /**
    * @param {!proto.itproject.profile} request
    * @return {!Uint8Array}
@@ -691,7 +691,7 @@ const methodInfo_profiles_updateuser = new grpc.web.AbstractClientBase.MethodInf
   function(request) {
     return request.serializeBinary();
   },
-  proto.itproject.updateuserResponse.deserializeBinary
+  proto.itproject.empty.deserializeBinary
 );
 
 
@@ -700,9 +700,9 @@ const methodInfo_profiles_updateuser = new grpc.web.AbstractClientBase.MethodInf
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.itproject.updateuserResponse)}
+ * @param {function(?grpc.web.Error, ?proto.itproject.empty)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.itproject.updateuserResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.itproject.empty>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.itproject.profilesClient.prototype.updateuser =
@@ -721,7 +721,7 @@ proto.itproject.profilesClient.prototype.updateuser =
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.itproject.updateuserResponse>}
+ * @return {!Promise<!proto.itproject.empty>}
  *     A native promise that resolves to the response
  */
 proto.itproject.profilesPromiseClient.prototype.updateuser =

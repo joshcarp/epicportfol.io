@@ -1,9 +1,9 @@
 package search
 
 import (
-	"github.com/joshcarp/it-project/backend/internal/config"
-	"github.com/joshcarp/it-project/backend/internal/database"
-	"github.com/joshcarp/it-project/backend/internal/proto/itproject"
+	"github.com/joshcarp/it-project/backend/pkg/config"
+	"github.com/joshcarp/it-project/backend/pkg/database"
+	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 )

@@ -290,7 +290,7 @@ type ProfilesClient interface {
 	// getuser gets a user from a userid
 	Getuser(ctx context.Context, in *GetuserRequest, opts ...grpc.CallOption) (*Profile, error)
 	// updateuser updates a profile
-	Updateuser(ctx context.Context, in *Profile, opts ...grpc.CallOption) (*UpdateuserResponse, error)
+	Updateuser(ctx context.Context, in *Profile, opts ...grpc.CallOption) (*Empty, error)
 }
 
 type profilesClient struct {
@@ -310,8 +310,8 @@ func (c *profilesClient) Getuser(ctx context.Context, in *GetuserRequest, opts .
 	return out, nil
 }
 
-func (c *profilesClient) Updateuser(ctx context.Context, in *Profile, opts ...grpc.CallOption) (*UpdateuserResponse, error) {
-	out := new(UpdateuserResponse)
+func (c *profilesClient) Updateuser(ctx context.Context, in *Profile, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
 	err := c.cc.Invoke(ctx, "/itproject.profiles/updateuser", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -326,7 +326,7 @@ type ProfilesServer interface {
 	// getuser gets a user from a userid
 	Getuser(context.Context, *GetuserRequest) (*Profile, error)
 	// updateuser updates a profile
-	Updateuser(context.Context, *Profile) (*UpdateuserResponse, error)
+	Updateuser(context.Context, *Profile) (*Empty, error)
 	mustEmbedUnimplementedProfilesServer()
 }
 
@@ -337,7 +337,7 @@ type UnimplementedProfilesServer struct {
 func (*UnimplementedProfilesServer) Getuser(context.Context, *GetuserRequest) (*Profile, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Getuser not implemented")
 }
-func (*UnimplementedProfilesServer) Updateuser(context.Context, *Profile) (*UpdateuserResponse, error) {
+func (*UnimplementedProfilesServer) Updateuser(context.Context, *Profile) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Updateuser not implemented")
 }
 func (*UnimplementedProfilesServer) mustEmbedUnimplementedProfilesServer() {}

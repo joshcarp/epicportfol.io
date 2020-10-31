@@ -9,9 +9,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/joshcarp/it-project/backend/internal/proto/itproject"
+	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
 
-	"github.com/joshcarp/it-project/backend/internal/jwt"
+	"github.com/joshcarp/it-project/backend/pkg/jwt"
 	"google.golang.org/grpc/metadata"
 )
 

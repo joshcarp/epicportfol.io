@@ -6,10 +6,10 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"github.com/joshcarp/it-project/backend/internal/auth"
+	"github.com/joshcarp/it-project/backend/pkg/auth"
 
-	"github.com/joshcarp/it-project/backend/internal/jwt"
-	"github.com/joshcarp/it-project/backend/internal/proto/itproject"
+	"github.com/joshcarp/it-project/backend/pkg/jwt"
+	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
 )
 
 func (s *Server) Login(ctx context.Context, req *itproject.LoginRequest) (*itproject.LoginResponse, error) {

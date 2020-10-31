@@ -3,7 +3,7 @@ package search
 import (
 	"context"
 
-	"github.com/joshcarp/it-project/backend/internal/proto/itproject"
+	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
 )
 
 func (s *Server) Search(ctx context.Context, in *itproject.SearchRequest) (*itproject.SearchResponse, error) {

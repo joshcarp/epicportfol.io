@@ -20,8 +20,6 @@ func UploadFile(r io.Reader, bucket, object, mimetype string) error {
 		return fmt.Errorf("storage.NewClient: %v", err)
 	}
 	defer client.Close()
-
-	// Open local file.
 	ctx, cancel := context.WithTimeout(ctx, time.Second*50)
 	defer cancel()
 	wc := client.Bucket(bucket).Object(object)

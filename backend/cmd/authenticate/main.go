@@ -3,8 +3,8 @@ package main
 import (
 	"github.com/sirupsen/logrus"
 
-	"github.com/joshcarp/it-project/backend/internal/server"
-	"github.com/joshcarp/it-project/backend/pkg/authenticate"
+	"github.com/joshcarp/it-project/backend/internal/authenticate"
+	"github.com/joshcarp/it-project/backend/pkg/server"
 
 	_ "github.com/GoogleCloudPlatform/cloudsql-proxy/proxy/dialers/postgres"
 )
