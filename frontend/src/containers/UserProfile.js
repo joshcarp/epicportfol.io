@@ -1,25 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import {Route, useParams} from 'react-router-dom'
-import Timeline from '../components/Timeline'
+import { useParams } from 'react-router-dom'
+// import Timeline from '../components/Timeline'
 
 import { makeStyles, Grid, Paper } from '@material-ui/core'
 import UserInfoCard from '../components/UserInfoCard'
-import ImageBox from '../components/ImageBox'
 import ProfileEditor from '../components/Editor'
-import PopModal from '../components/PopModal'
 import Nav from '../containers/Nav'
-import {Redirect} from "react-router";
 
 const { profilesClient, authenticateClient, verifyRequest } = require('./../proto/api_grpc_web_pb.js')
 const profiles = new profilesClient('https://profiles.epicportfol.io')
 const authenticate = new authenticateClient('https://authenticate.epicportfol.io')
-const { getuserRequest, profile } = require('./../proto/api_pb.js')
-const yaml = require('js-yaml')
+const { getuserRequest } = require('./../proto/api_pb.js')
 
 export default function UserProfile(props) {
     const classes = useStyles()
     let { username } = useParams()
-    const [comp, setComp] = useState(null)
+    // const [comp, setComp] = useState(null)
     const [prof, setProfile] = useState(null)
     const [authed, setAuthed] = useState(false)
     console.log(username)
@@ -34,15 +30,16 @@ export default function UserProfile(props) {
                 setProfile(response.toObject())
             }
         })
-    }, [])
-    useEffect(()=>{
+    }, [username])
+
+    useEffect(() => {
         var req = new verifyRequest()
         req.setUsername(window.location.pathname.replace("/u/", ""))
-        const meta = {authorization: 'Bearer ' + localStorage.getItem('token')}
+        const meta = { authorization: 'Bearer ' + localStorage.getItem('token') }
         authenticate.verify(req, meta, function (err, response) {
             setAuthed(response.getVerified())
         })
-        }, [])
+    }, [])
 
 
     if (prof == null) {
@@ -72,13 +69,13 @@ export default function UserProfile(props) {
                         <UserInfoCard profile={prof} />
                     </Grid>
                     <Grid container className={classes.card}>
-                    <div container className={classes.card}>
-                    {
-                        (params.get('edit'))
-                        ? <ProfileEditor profile={prof}/>
-                        : <div dangerouslySetInnerHTML={{ __html: prof.content }} />
-                    }
-                    </div>
+                        <div container className={classes.card}>
+                            {
+                                (params.get('edit'))
+                                    ? <ProfileEditor profile={prof} />
+                                    : <div dangerouslySetInnerHTML={{ __html: prof.content }} />
+                            }
+                        </div>
                     </Grid>
                 </Grid>
                 <Grid className={classes.footer} />
