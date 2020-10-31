@@ -5,7 +5,6 @@ import (
 	"fmt"
 
 	"github.com/joshcarp/it-project/backend/pkg/auth"
-	"github.com/joshcarp/it-project/backend/pkg/jwt"
 	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
 )
 
@@ -27,7 +26,7 @@ func (s *Server) Register(ctx context.Context, req *itproject.RegisterRequest) (
 		return nil, err
 	}
 	/* Issue a JWT with username claims */
-	token, err := jwt.Issue(map[string]interface{}{"username": req.Username})
+	token, err := auth.Issue(map[string]interface{}{"username": req.Username})
 	if err := s.db.EnterProfile(&itproject.Profile{
 		Username: account.Username,
 		Email:    account.Email,

@@ -8,7 +8,6 @@ import (
 
 	"github.com/joshcarp/it-project/backend/pkg/auth"
 
-	"github.com/joshcarp/it-project/backend/pkg/jwt"
 	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
 )
 
@@ -23,6 +22,6 @@ func (s *Server) Login(ctx context.Context, req *itproject.LoginRequest) (*itpro
 		return nil, status.Error(codes.PermissionDenied, "Incorrect username or password")
 	}
 	/* Issue JWT with username */
-	token, err := jwt.Issue(map[string]interface{}{"username": username})
+	token, err := auth.Issue(map[string]interface{}{"username": username})
 	return &itproject.LoginResponse{Jwt: token}, err
 }
