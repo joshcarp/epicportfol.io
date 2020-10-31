@@ -5,6 +5,11 @@ authenticate[~gRPC]:
         |use with other services 
     @package = "itproject"
     @source_path = "api.proto"
+    getClaims(input <: itproject.empty)[~gRPC]:
+        @description =:
+            | getClaims is used to get which user is logged in 
+        @source_path = "api.proto"
+        return ok <: itproject.getClaimsResponse
     login(input <: itproject.loginRequest)[~gRPC]:
         @description =:
             | Login is used to login and to acquire a jwt 
@@ -92,6 +97,13 @@ itproject:
             | empty is an empty type for messages that don't need a payload 
         @source_path = "api.proto"
         ...
+    !type getClaimsResponse:
+        @description =:
+            | getClaimsResponse contains a username 
+        @source_path = "api.proto"
+        username <: string:
+            @json_tag = "username"
+            @rpcId = "1"
     !type getuserRequest:
         @description = ""
         @source_path = "api.proto"
