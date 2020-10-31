@@ -1,3 +1,4 @@
+/* EchoService is a basic service to test connections */
 package main
 
 import (
@@ -9,7 +10,7 @@ import (
 
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 
-	"github.com/joshcarp/it-project/backend/internal/proto/itproject"
+	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )

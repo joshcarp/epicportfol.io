@@ -1,3 +1,0 @@
-package jwt
-
-const secret = `7b323b388f9817a71ee1f22be96532acdaa88d28a18b5556ff75b5f568f4e1ffef04bbbd9966c9774d77b8ea266cb1f9d12cc5ba2b29c9fa870a2bac05919f47`
