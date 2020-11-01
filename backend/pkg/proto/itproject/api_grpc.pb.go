@@ -11,21 +11,21 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion6
+const _ = grpc.SupportPackageIsVersion7
 
 // AuthenticateClient is the client API for Authenticate service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AuthenticateClient interface {
-	// Register is used to register a user and acquire a jwt
+	// register is used to register a user and acquire a JWT
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
-	// Register is used to register a user and acquire a jwt
+	// registerFirebase is used to register a user and acquire a JWT
 	RegisterFirebase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error)
-	// Login is used to login and to acquire a jwt
+	// Login is used to login to acquire a JWT
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
-	// verifyUser is used to verify if a user has permissions to edit an profile; used for frontend rendering
+	// verify is used to verify if a user has permissions to edit a profile
 	Verify(ctx context.Context, in *VerifyRequest, opts ...grpc.CallOption) (*VerifyResponse, error)
-	// getClaims is used to get which user is logged in
+	// getClaims is used to get which user is currently logged in
 	GetClaims(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetClaimsResponse, error)
 }
 
@@ -86,15 +86,15 @@ func (c *authenticateClient) GetClaims(ctx context.Context, in *Empty, opts ...g
 // All implementations must embed UnimplementedAuthenticateServer
 // for forward compatibility
 type AuthenticateServer interface {
-	// Register is used to register a user and acquire a jwt
+	// register is used to register a user and acquire a JWT
 	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
-	// Register is used to register a user and acquire a jwt
+	// registerFirebase is used to register a user and acquire a JWT
 	RegisterFirebase(context.Context, *Empty) (*Empty, error)
-	// Login is used to login and to acquire a jwt
+	// Login is used to login to acquire a JWT
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
-	// verifyUser is used to verify if a user has permissions to edit an profile; used for frontend rendering
+	// verify is used to verify if a user has permissions to edit a profile
 	Verify(context.Context, *VerifyRequest) (*VerifyResponse, error)
-	// getClaims is used to get which user is logged in
+	// getClaims is used to get which user is currently logged in
 	GetClaims(context.Context, *Empty) (*GetClaimsResponse, error)
 	mustEmbedUnimplementedAuthenticateServer()
 }
@@ -103,24 +103,31 @@ type AuthenticateServer interface {
 type UnimplementedAuthenticateServer struct {
 }
 
-func (*UnimplementedAuthenticateServer) Register(context.Context, *RegisterRequest) (*RegisterResponse, error) {
+func (UnimplementedAuthenticateServer) Register(context.Context, *RegisterRequest) (*RegisterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Register not implemented")
 }
-func (*UnimplementedAuthenticateServer) RegisterFirebase(context.Context, *Empty) (*Empty, error) {
+func (UnimplementedAuthenticateServer) RegisterFirebase(context.Context, *Empty) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterFirebase not implemented")
 }
-func (*UnimplementedAuthenticateServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
+func (UnimplementedAuthenticateServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
 }
-func (*UnimplementedAuthenticateServer) Verify(context.Context, *VerifyRequest) (*VerifyResponse, error) {
+func (UnimplementedAuthenticateServer) Verify(context.Context, *VerifyRequest) (*VerifyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Verify not implemented")
 }
-func (*UnimplementedAuthenticateServer) GetClaims(context.Context, *Empty) (*GetClaimsResponse, error) {
+func (UnimplementedAuthenticateServer) GetClaims(context.Context, *Empty) (*GetClaimsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetClaims not implemented")
 }
-func (*UnimplementedAuthenticateServer) mustEmbedUnimplementedAuthenticateServer() {}
+func (UnimplementedAuthenticateServer) mustEmbedUnimplementedAuthenticateServer() {}
 
-func RegisterAuthenticateServer(s *grpc.Server, srv AuthenticateServer) {
+// UnsafeAuthenticateServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to AuthenticateServer will
+// result in compilation errors.
+type UnsafeAuthenticateServer interface {
+	mustEmbedUnimplementedAuthenticateServer()
+}
+
+func RegisterAuthenticateServer(s grpc.ServiceRegistrar, srv AuthenticateServer) {
 	s.RegisterService(&_Authenticate_serviceDesc, srv)
 }
 
@@ -134,7 +141,7 @@ func _Authenticate_Register_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/itproject.authenticate/Register",
+		FullMethod: "/itproject.authenticate/register",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthenticateServer).Register(ctx, req.(*RegisterRequest))
@@ -152,7 +159,7 @@ func _Authenticate_RegisterFirebase_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/itproject.authenticate/RegisterFirebase",
+		FullMethod: "/itproject.authenticate/registerFirebase",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthenticateServer).RegisterFirebase(ctx, req.(*Empty))
@@ -170,7 +177,7 @@ func _Authenticate_Login_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/itproject.authenticate/Login",
+		FullMethod: "/itproject.authenticate/login",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthenticateServer).Login(ctx, req.(*LoginRequest))
@@ -188,7 +195,7 @@ func _Authenticate_Verify_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/itproject.authenticate/Verify",
+		FullMethod: "/itproject.authenticate/verify",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthenticateServer).Verify(ctx, req.(*VerifyRequest))
@@ -206,7 +213,7 @@ func _Authenticate_GetClaims_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/itproject.authenticate/GetClaims",
+		FullMethod: "/itproject.authenticate/getClaims",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthenticateServer).GetClaims(ctx, req.(*Empty))
@@ -281,12 +288,19 @@ type EchoServer interface {
 type UnimplementedEchoServer struct {
 }
 
-func (*UnimplementedEchoServer) Echo(context.Context, *EchoRequest) (*EchoResponse, error) {
+func (UnimplementedEchoServer) Echo(context.Context, *EchoRequest) (*EchoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Echo not implemented")
 }
-func (*UnimplementedEchoServer) mustEmbedUnimplementedEchoServer() {}
+func (UnimplementedEchoServer) mustEmbedUnimplementedEchoServer() {}
 
-func RegisterEchoServer(s *grpc.Server, srv EchoServer) {
+// UnsafeEchoServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to EchoServer will
+// result in compilation errors.
+type UnsafeEchoServer interface {
+	mustEmbedUnimplementedEchoServer()
+}
+
+func RegisterEchoServer(s grpc.ServiceRegistrar, srv EchoServer) {
 	s.RegisterService(&_Echo_serviceDesc, srv)
 }
 
@@ -300,7 +314,7 @@ func _Echo_Echo_Handler(srv interface{}, ctx context.Context, dec func(interface
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/itproject.echo/Echo",
+		FullMethod: "/itproject.echo/echo",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(EchoServer).Echo(ctx, req.(*EchoRequest))
@@ -372,15 +386,22 @@ type ProfilesServer interface {
 type UnimplementedProfilesServer struct {
 }
 
-func (*UnimplementedProfilesServer) Getuser(context.Context, *GetuserRequest) (*Profile, error) {
+func (UnimplementedProfilesServer) Getuser(context.Context, *GetuserRequest) (*Profile, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Getuser not implemented")
 }
-func (*UnimplementedProfilesServer) Updateuser(context.Context, *Profile) (*Empty, error) {
+func (UnimplementedProfilesServer) Updateuser(context.Context, *Profile) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Updateuser not implemented")
 }
-func (*UnimplementedProfilesServer) mustEmbedUnimplementedProfilesServer() {}
+func (UnimplementedProfilesServer) mustEmbedUnimplementedProfilesServer() {}
 
-func RegisterProfilesServer(s *grpc.Server, srv ProfilesServer) {
+// UnsafeProfilesServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ProfilesServer will
+// result in compilation errors.
+type UnsafeProfilesServer interface {
+	mustEmbedUnimplementedProfilesServer()
+}
+
+func RegisterProfilesServer(s grpc.ServiceRegistrar, srv ProfilesServer) {
 	s.RegisterService(&_Profiles_serviceDesc, srv)
 }
 
@@ -394,7 +415,7 @@ func _Profiles_Getuser_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/itproject.profiles/Getuser",
+		FullMethod: "/itproject.profiles/getuser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProfilesServer).Getuser(ctx, req.(*GetuserRequest))
@@ -412,7 +433,7 @@ func _Profiles_Updateuser_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/itproject.profiles/Updateuser",
+		FullMethod: "/itproject.profiles/updateuser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProfilesServer).Updateuser(ctx, req.(*Profile))
@@ -475,12 +496,19 @@ type UploadServer interface {
 type UnimplementedUploadServer struct {
 }
 
-func (*UnimplementedUploadServer) Upload(context.Context, *UploadRequest) (*UploadResponse, error) {
+func (UnimplementedUploadServer) Upload(context.Context, *UploadRequest) (*UploadResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Upload not implemented")
 }
-func (*UnimplementedUploadServer) mustEmbedUnimplementedUploadServer() {}
+func (UnimplementedUploadServer) mustEmbedUnimplementedUploadServer() {}
 
-func RegisterUploadServer(s *grpc.Server, srv UploadServer) {
+// UnsafeUploadServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to UploadServer will
+// result in compilation errors.
+type UnsafeUploadServer interface {
+	mustEmbedUnimplementedUploadServer()
+}
+
+func RegisterUploadServer(s grpc.ServiceRegistrar, srv UploadServer) {
 	s.RegisterService(&_Upload_serviceDesc, srv)
 }
 
@@ -494,7 +522,7 @@ func _Upload_Upload_Handler(srv interface{}, ctx context.Context, dec func(inter
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/itproject.upload/Upload",
+		FullMethod: "/itproject.upload/upload",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UploadServer).Upload(ctx, req.(*UploadRequest))
@@ -551,12 +579,19 @@ type SearchServer interface {
 type UnimplementedSearchServer struct {
 }
 
-func (*UnimplementedSearchServer) Search(context.Context, *SearchRequest) (*SearchResponse, error) {
+func (UnimplementedSearchServer) Search(context.Context, *SearchRequest) (*SearchResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Search not implemented")
 }
-func (*UnimplementedSearchServer) mustEmbedUnimplementedSearchServer() {}
+func (UnimplementedSearchServer) mustEmbedUnimplementedSearchServer() {}
 
-func RegisterSearchServer(s *grpc.Server, srv SearchServer) {
+// UnsafeSearchServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SearchServer will
+// result in compilation errors.
+type UnsafeSearchServer interface {
+	mustEmbedUnimplementedSearchServer()
+}
+
+func RegisterSearchServer(s grpc.ServiceRegistrar, srv SearchServer) {
 	s.RegisterService(&_Search_serviceDesc, srv)
 }
 
@@ -570,7 +605,7 @@ func _Search_Search_Handler(srv interface{}, ctx context.Context, dec func(inter
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/itproject.search/Search",
+		FullMethod: "/itproject.search/search",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SearchServer).Search(ctx, req.(*SearchRequest))

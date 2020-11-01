@@ -1,34 +1,33 @@
 
 authenticate[~gRPC]:
     @description =:
-        | authenticate is the miroservice that handles authentication and issues JWTs to 
-        |use with other services 
+        |authenticate 
+        |miroservice that handles authentication and issues JWTs with username claims.
     @package = "itproject"
     @source_path = "api.proto"
     getClaims(input <: itproject.empty)[~gRPC]:
         @description =:
-            | getClaims is used to get which user is logged in 
+            | getClaims is used to get which user is currently logged in 
         @source_path = "api.proto"
         return ok <: itproject.getClaimsResponse
     login(input <: itproject.loginRequest)[~gRPC]:
         @description =:
-            | Login is used to login and to acquire a jwt 
+            | Login is used to login to acquire a JWT 
         @source_path = "api.proto"
         return ok <: itproject.loginResponse
     register(input <: itproject.registerRequest)[~gRPC]:
         @description =:
-            | Register is used to register a user and acquire a jwt 
+            | register is used to register a user and acquire a JWT 
         @source_path = "api.proto"
         return ok <: itproject.registerResponse
     registerFirebase(input <: itproject.empty)[~gRPC]:
         @description =:
-            | Register is used to register a user and acquire a jwt 
+            | registerFirebase is used to register a user and acquire a JWT 
         @source_path = "api.proto"
         return ok <: itproject.empty
     verify(input <: itproject.verifyRequest)[~gRPC]:
         @description =:
-            | verifyUser is used to verify if a user has permissions to edit an profile; used
-            | for frontend rendering 
+            | verify is used to verify if a user has permissions to edit a profile 
         @source_path = "api.proto"
         return ok <: itproject.verifyResponse
 
@@ -46,7 +45,10 @@ echo[~gRPC]:
 itproject:
     @package = "itproject"
     !type account:
-        @description = ""
+        @description =:
+            | 
+            |account is an account that is stored in the firebase database.
+            |account contains all of the username/passwords and hashes.
         @source_path = "api.proto"
         email <: string:
             @json_tag = "email"
@@ -67,7 +69,8 @@ itproject:
             @json_tag = "username"
             @rpcId = "1"
     !type artifact:
-        @description = ""
+        @description =:
+            | artifact is a generic entry in the frontend 
         @source_path = "api.proto"
         description <: string:
             @json_tag = "description"
@@ -80,14 +83,14 @@ itproject:
             @rpcId = "3"
     !type echoRequest:
         @description =:
-            | EchoRequest is the request object for EchoService 
+            | echoRequest is the request object for EchoService 
         @source_path = "api.proto"
         message <: string:
             @json_tag = "message"
             @rpcId = "1"
     !type echoResponse:
         @description =:
-            | EchoResponse is the response from the EchoService 
+            | echoResponse is the response from the EchoService 
         @source_path = "api.proto"
         message <: string:
             @json_tag = "message"
@@ -105,13 +108,15 @@ itproject:
             @json_tag = "username"
             @rpcId = "1"
     !type getuserRequest:
-        @description = ""
+        @description =:
+            | getuserRequest contains a username to respond 
         @source_path = "api.proto"
         userid <: string:
             @json_tag = "userid"
             @rpcId = "1"
     !type job:
-        @description = ""
+        @description =:
+            | job contains information to display in the frontend timeline 
         @source_path = "api.proto"
         company <: string:
             @json_tag = "company"
@@ -127,13 +132,13 @@ itproject:
             @rpcId = "3"
     !type loginRequest[~empty]:
         @description =:
-            | LoginRequest is empty because the Bas64(username:password) is contained in the 
+            | loginRequest is empty because the Bas64(username:password) is contained in the 
             |header of the request 
         @source_path = "api.proto"
         ...
     !type loginResponse:
         @description =:
-            | LoginRequest is the response object from Login that is used in bearer authentic
+            | loginRequest is the response object from Login that is used in bearer authentic
             |ation in the header: "Bearer <JWT>" 
         @source_path = "api.proto"
         jwt <: string:
@@ -166,7 +171,7 @@ itproject:
             @rpcId = "1"
     !type registerRequest:
         @description =:
-            | RegisterRequest contains all the information to register the user in the databa
+            | registerRequest contains all the information to register the user in the databa
             |se 
         @source_path = "api.proto"
         email <: string:
@@ -192,25 +197,37 @@ itproject:
             @json_tag = "jwt"
             @rpcId = "2"
     !type searchRequest:
-        @description = ""
+        @description =:
+            | searchRequest has the term query that should be searched for 
         @source_path = "api.proto"
         term <: string:
             @json_tag = "term"
             @rpcId = "1"
     !type searchResponse:
-        @description = ""
+        @description =:
+            | searchResponse is a type that contains the profiles that match the search term 
         @source_path = "api.proto"
         results <: sequence of profile
     !type uploadRequest:
-        @description = ""
+        @description =:
+            | upload request contains the data to upload an asset to gcp 
         @source_path = "api.proto"
         dataurl <: string:
+            @description =:
+                | dataurl is a string that conforms to the data url schema: https:
+                |developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs 
             @json_tag = "dataurl"
             @rpcId = "1"
     !type uploadResponse:
-        @description = ""
+        @description =:
+            | uploadResponse contains the url of the static asset 
         @source_path = "api.proto"
         url <: string:
+            @description =:
+                | 
+                |url is in the form https:
+                |storage.googleapis.com/joshcarp-it-project-storage/<assetname>  
+                |where assetname is a randomly assigned string 
             @json_tag = "url"
             @rpcId = "1"
     !type verifyRequest:
