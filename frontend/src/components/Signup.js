@@ -3,6 +3,7 @@
 import React, {useContext} from 'react';
 import {firebaseAuth} from '../components/provider/AuthProvider';
 import {withRouter} from 'react-router-dom'
+import { TextField, withStyles, Button } from '@material-ui/core'
 
 const Signup = (props) => {
 
@@ -25,11 +26,22 @@ const Signup = (props) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            Signup
+            
             {/* make inputs  */}
-            <input onChange={handleChange} name="email" placeholder='email' value={inputs.email} />
-            <input onChange={handleChange} name="password" placeholder='password' value={inputs.password} />
-            <button>signup</button>
+            <TextField onChange={handleChange} variant="outlined" name="name" placeholder='Full Name' value={inputs.email} />
+            <TextField onChange={handleChange} variant="outlined" name="preferred" placeholder='Preferred Name' value={inputs.password} />
+            <TextField onChange={handleChange} variant="outlined" name="email" placeholder='Email' value={inputs.email} />
+            <TextField onChange={handleChange} variant="outlined" name="username" placeholder='Username' value={inputs.email} />
+            <TextField onChange={handleChange} variant="outlined" name="password" placeholder='Password' value={inputs.password} />
+            <Button
+                        
+                        type="submit"
+                        name="Submit"
+                        variant="contained"
+                        color="secondary"
+                    >
+                        Register
+                    </Button>
             {errors.length > 0 ? errors.map(error => <p style={{color: 'red'}}>{error}</p> ) : null}
         </form>
     );
