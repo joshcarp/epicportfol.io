@@ -28,7 +28,7 @@ export default function App() {
     return (
         <Router>
             <Switch>
-                <Route exact path='/' render={rProps => token === null ? <Signin /> : <Home />} />
+                <Route exact path='/saf' render={rProps => token === null ? <Signin /> : <Home />} />
                 <Route exact path='/signin' component={Signin} />
                 <Route exact path='/signup' component={Signup} />
 
