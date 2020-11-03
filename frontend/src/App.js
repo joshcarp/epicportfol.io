@@ -28,7 +28,7 @@ export default function App() {
     return (
         <Router>
             <Switch>
-                <Route exact path='/' render={rProps => token === null ? <Homepage /> : <Homepage />} />
+                {/*<Route exact path='/' render={rProps => token === null ? <Homepage /> : <Homepage />} />*/}
                 <Route exact path='/signin' component={Signin} />
                 <Route exact path='/signup' component={Signup} />
 
