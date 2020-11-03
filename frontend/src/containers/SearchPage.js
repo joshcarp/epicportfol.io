@@ -11,7 +11,6 @@ import Divider from '@material-ui/core/Divider'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import Avatar from '@material-ui/core/Avatar'
-import Logo from '../assets/logo.svg'
 import Nav from './Nav.js'
 import LoadingScreen from '../components/LoadingScreen'
 const { searchClient } = require('./../proto/api_grpc_web_pb.js')
