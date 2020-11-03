@@ -12,6 +12,7 @@
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
     "draftjs-to-markdown": "^0.6.0",
+    "firebase": "^8.0.0",
     "google-protobuf": "^3.13.0",
     "grpc": "^1.24.3",
     "grpc-web": "^1.2.1",
