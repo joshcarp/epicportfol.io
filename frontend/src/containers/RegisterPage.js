@@ -6,7 +6,6 @@ import Logo from '../assets/logo.svg'
 
 import UserRegisterForm from '../components/UserRegisterForm'
 import Nav from './Nav.js'
-import Signup from '../components/Signup.js'
 
 class RegisterPage extends Component {
     state = {
@@ -20,7 +19,7 @@ class RegisterPage extends Component {
                     <img src={Logo} className="Homepage-logo" alt="logo" />
                     <Paper elevation={3}>
                         <h4>Register your Epic Portfolio</h4>
-                        <Signup />
+                        <UserRegisterForm />
                         <br />
                     </Paper>
                 </div>

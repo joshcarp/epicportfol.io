@@ -4,7 +4,7 @@ import {authMethods} from '../firebase/authmethods'
 export const firebaseAuth = React.createContext()
 
 const AuthProvider = (props) => {
-    const initState = {email: '', password: '', username: ''}
+    const initState = {email: '', password: ''}
     const [inputs, setInputs] = useState(initState)
     const [errors, setErrors] = useState([])
     const [token, setToken] = useState(null)
@@ -15,7 +15,7 @@ const AuthProvider = (props) => {
         // middle man between firebase and signup
         console.log('handleSignup')
         // calling signup from firebase server
-        authMethods.signup(inputs.email, inputs.password, inputs.username, setErrors ,setToken )
+        authMethods.signup(inputs.email, inputs.password,setErrors ,setToken )
         console.log(errors, token)
     }
     const handleSignin = () => {

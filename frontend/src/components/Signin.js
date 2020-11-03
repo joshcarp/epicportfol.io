@@ -2,11 +2,9 @@
 // add useContext
 import React, {useContext} from 'react';
 import {firebaseAuth} from '../components/provider/AuthProvider'
-import PropTypes from 'prop-types'
-import { TextField, withStyles, Button } from '@material-ui/core'
-import { Redirect } from 'react-router'
 
 const Signin = () => {
+
 
     const {handleSignin, inputs, setInputs, errors} = useContext(firebaseAuth)
 
@@ -24,30 +22,11 @@ const Signin = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-           
+            Signin
             {/* make inputs  */}
-             
-            <TextField variant="outlined" onChange={handleChange} name="email" placeholder='email' value={inputs.email} />
-            <TextField variant="outlined" onChange={handleChange} name="password" placeholder='password' value={inputs.password} />
-            <Button
-                        
-                        type="submit"
-                        
-                        variant="contained"
-                        color="primary"
-                    >
-                        {' '}
-                        Login{' '}
-                    </Button>
-                    <Button
-                        
-                        variant="contained"
-                        color="secondary"
-                        href="/register"
-                    >
-                        {' '}
-                        Register{' '}
-                    </Button>
+            <input onChange={handleChange} name="email" placeholder='email' value={inputs.email} />
+            <input onChange={handleChange} name="password" placeholder='password' value={inputs.password} />
+            <button>signin</button>
             {errors.length > 0 ? errors.map(error => <p style={{color: 'red'}}>{error}</p> ) : null}
         </form>
     );
