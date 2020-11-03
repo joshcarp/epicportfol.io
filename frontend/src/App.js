@@ -13,7 +13,7 @@ import Signup from './components/Signup'
 
 import {Redirect} from 'react-router-dom'
 import Signin from './components/Signin'
-import Home from './components/Home'
+import Logout from './components/Logout'
 import './App.css';
 
 export default function App() {
@@ -28,7 +28,7 @@ export default function App() {
     return (
         <Router>
             <Switch>
-                <Route exact path='/' render={rProps => token === null ? <Homepage /> : <Home />} />
+                <Route exact path='/' render={rProps => token === null ? <Homepage /> : <Homepage />} />
                 <Route exact path='/signin' component={Signin} />
                 <Route exact path='/signup' component={Signup} />
 
