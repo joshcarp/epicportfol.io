@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {firebaseAuth} from '../components/provider/AuthProvider'
-import { TextField, withStyles, Button } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 
 const { loginRequest } = require('../proto/api_pb.js')
 const { authenticateClient } = require('../proto/api_grpc_web_pb.js')

@@ -7,8 +7,6 @@ import Logo from '../assets/logo.svg'
 import UserSearchBox from '../components/UserSearchBox'
 import UserLoginForm from '../components/UserLoginForm'
 import Nav from './Nav.js'
-import Signin from '../components/Signin'
-import Signup from '../components/Signup'
 
 class Homepage extends Component {
     state = {
