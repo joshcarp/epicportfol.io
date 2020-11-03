@@ -5,7 +5,10 @@ import { useParams } from 'react-router-dom'
 import { makeStyles, Grid, Paper } from '@material-ui/core'
 import UserInfoCard from '../components/UserInfoCard'
 import ProfileEditor from '../components/Editor'
+import BioEditModal from '../components/BioEditModal'
 import Nav from '../containers/Nav'
+import PopModal from '../components/PopModal'
+import TimelineEditor from '../components/TimelineEditor'
 
 const { profilesClient, authenticateClient, verifyRequest } = require('./../proto/api_grpc_web_pb.js')
 const profiles = new profilesClient('https://profiles.epicportfol.io')
@@ -57,6 +60,11 @@ export default function UserProfile(props) {
                     component={Paper}
                     className={classes.profile}
                     elevation={4}>
+                        <BioEditModal profile={prof}/>
+                        <TimelineEditor profile={prof}/>
+                        <button onClick={() =>PopModal("bio")}>Edit Bio</button>
+                        <button onClick={() => PopModal("timeline")}>Edit Timeline</button>
+                        
                     <Grid item className={classes.card}>
                         {
                             authed && (params.get('edit') !== 'true') &&
