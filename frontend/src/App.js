@@ -6,7 +6,21 @@ import RegisterPage from './containers/RegisterPage'
 import React, { useEffect } from 'react'
 import SearchPage from "./containers/SearchPage";
 
+import {useContext} from 'react'
+import {firebaseAuth} from './components/provider/AuthProvider'
+import Signup from './components/Signup'
+
+
+import {Redirect} from 'react-router-dom'
+import Signin from './components/Signin'
+import Home from './components/Home'
+import './App.css';
+
 export default function App() {
+
+    const { token } = useContext(firebaseAuth)
+    console.log(token)
+
     useEffect(() => {
         document.title = "Epic Portfolio"
     }, []);
@@ -14,6 +28,10 @@ export default function App() {
     return (
         <Router>
             <Switch>
+                <Route exact path='/' render={rProps => token === null ? <Homepage /> : <Home />} />
+                <Route exact path='/signin' component={Signin} />
+                <Route exact path='/signup' component={Signup} />
+
                 <Route exact path="/register">
                     <RegisterPage />
                 </Route>
