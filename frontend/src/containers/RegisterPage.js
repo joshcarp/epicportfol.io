@@ -6,7 +6,7 @@ import Logo from '../assets/logo.svg'
 
 import UserRegisterForm from '../components/UserRegisterForm'
 import Nav from './Nav.js'
-import Signup from '../components/Signup.js'
+
 
 class RegisterPage extends Component {
     state = {

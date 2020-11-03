@@ -6,10 +6,10 @@ const Logout = (props) => {
     const {handleSignout,} = useContext(firebaseAuth)
     const { token } = useContext(firebaseAuth)
 
-    if (localStorage.getItem('token')) {
-        return <button onClick={handleSignout}>sign out </button>;
+    if (token === null) {
+        return <p>no user signed in</p>;
       }
-      return <p>no user signed in</p>;
+      return <button onClick={handleSignout}>sign out </button>;
     }
 
 
