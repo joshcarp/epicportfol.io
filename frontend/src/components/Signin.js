@@ -22,8 +22,8 @@ const Signin = () => {
         <form onSubmit={handleSubmit}>
             Signin
             {/* make inputs  */}
-            <input onChange={handleChange} name="email" placeholder='email' value={inputs.email} />
-            <input onChange={handleChange} name="password" placeholder='password' value={inputs.password} />
+            <input onChange={handleChange} name="email" placeholder='Email' value={inputs.email} />
+            <input onChange={handleChange} name="password" type='password' placeholder='Password' value={inputs.password} />
             <button>signin</button>
             {errors.length > 0 ? errors.map(error => <p style={{color: 'red'}}>{error}</p> ) : null}
         </form>
