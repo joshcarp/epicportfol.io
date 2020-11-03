@@ -20,7 +20,7 @@ class RegisterPage extends Component {
                     <img src={Logo} className="Homepage-logo" alt="logo" />
                     <Paper elevation={3}>
                         <h4>Register your Epic Portfolio</h4>
-                        <Signup />
+                        <UserRegisterForm />
                         <br />
                     </Paper>
                 </div>

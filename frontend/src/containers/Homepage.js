@@ -29,7 +29,7 @@ class Homepage extends Component {
                     <br />
                     <Paper elevation={3}>
                         <h5>Login to your Epic Portfolio</h5>
-                        <Signin />
+                        <UserLoginForm />
                         <br />
                     </Paper>
                     <br />

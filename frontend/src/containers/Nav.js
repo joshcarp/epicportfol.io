@@ -203,7 +203,6 @@ export default function PrimarySearchAppBar() {
                             <MoreIcon />
                         </IconButton>
                     </div>
-                    <Logout />
                 </Toolbar>
                 
             </AppBar>
