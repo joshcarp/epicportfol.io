@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 // import Timeline from '../components/Timeline'
-
+import LoadingScreen from '../components/LoadingScreen'
 import { makeStyles, Grid, Paper } from '@material-ui/core'
 import UserInfoCard from '../components/UserInfoCard'
 import ProfileEditor from '../components/Editor'
@@ -43,7 +43,9 @@ export default function UserProfile(props) {
 
 
     if (prof == null) {
-        return <div>Loading...</div>
+        return (
+            <LoadingScreen />
+        )
     }
 
     let search = window.location.search;
@@ -99,10 +101,11 @@ const useStyles = makeStyles((theme) => ({
     profile: {
         display: 'flex',
         flexWrap: 'wrap',
-        alignItems: 'center',
+        alignItems: 'left',
         justifyContent: 'center',
         maxWidth: '80vmin',
         minWidth: '60vmin',
+        minHeight: '83vmin',
         marginTop: 40,
         marginBottom: 60,
     },
@@ -117,5 +120,9 @@ const useStyles = makeStyles((theme) => ({
     },
     footer: {
         height: 20,
+    },
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
     },
 }))

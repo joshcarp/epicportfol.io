@@ -13,6 +13,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import Avatar from '@material-ui/core/Avatar'
 import Logo from '../assets/logo.svg'
 import Nav from './Nav.js'
+import LoadingScreen from '../components/LoadingScreen'
 const { searchClient } = require('./../proto/api_grpc_web_pb.js')
 const searcher = new searchClient('https://search.epicportfol.io')
 const { searchRequest } = require('./../proto/api_pb.js')
@@ -74,16 +75,12 @@ export default function SearchPage() {
         })
     })
     if (prof == null) {
-        return <div>Loading...</div>
+        return <LoadingScreen />
     }
     return (
         <>
             <Nav />
             <Grid container className="Homepage">
-                {/* LOGO */}
-                <Link to="/">
-                    <img src={Logo} style={{ height: "20vmin" }} alt="logo" />
-                </Link>
                 {/* SEARCH PAPER CONTAINER */}
                 <Grid
                     container
