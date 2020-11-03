@@ -7,6 +7,7 @@ import Logo from '../assets/logo.svg'
 import UserSearchBox from '../components/UserSearchBox'
 import UserLoginForm from '../components/UserLoginForm'
 import Nav from './Nav.js'
+import Signin from '../components/Signin.js'
 
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -34,7 +35,7 @@ class Homepage extends Component {
                     <br />
                     <Paper elevation={3}>
                         <h5>Login to your Epic Portfolio</h5>
-                        <UserLoginForm />
+                        <Signin />
                         <br />
                     </Paper>
                     <br />
