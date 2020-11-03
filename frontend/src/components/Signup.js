@@ -31,7 +31,7 @@ const Signup = (props) => {
             <TextField onChange={handleChange} variant="outlined" name="name" placeholder='Full Name' />
             <TextField onChange={handleChange} variant="outlined" name="preferred" placeholder='Preferred Name'  />
             <TextField onChange={handleChange} variant="outlined" name="email" placeholder='Email' value={inputs.email} />
-            <TextField onChange={handleChange} variant="outlined" name="username" placeholder='Username'  />
+            <TextField onChange={handleChange} variant="outlined" name="username" placeholder='Username' value={inputs.username} />
             <TextField onChange={handleChange} variant="outlined" name="password" placeholder='Password' value={inputs.password} />
             <Button
                         
