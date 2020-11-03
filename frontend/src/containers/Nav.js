@@ -13,6 +13,8 @@ import MoreIcon from '@material-ui/icons/MoreVert'
 import { Home } from '@material-ui/icons'
 import UserSearchBox from '../components/NavSearchBox'
 
+import Logout from '../components/Logout'
+
 const useStyles = makeStyles((theme) => ({
     grow: {
         flexGrow: 1,
@@ -201,10 +203,13 @@ export default function PrimarySearchAppBar() {
                             <MoreIcon />
                         </IconButton>
                     </div>
+                    <Logout />
                 </Toolbar>
+                
             </AppBar>
             {renderMobileMenu}
             {renderMenu}
+            
         </div>
     )
 }
