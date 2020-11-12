@@ -22,6 +22,6 @@ func (s *Server) Login(ctx context.Context, req *itproject.LoginRequest) (*itpro
 		return nil, status.Error(codes.PermissionDenied, "Incorrect username or password")
 	}
 	/* Issue JWT with username */
-	token, err := auth.Issue(map[string]interface{}{"username": username})
+	token, err := auth.Issue(map[string]interface{}{"username": username}, string(s.secret))
 	return &itproject.LoginResponse{Jwt: token}, err
 }

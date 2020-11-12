@@ -1,3 +1,22 @@
 package auth
 
-const secret = `7b323b388f9817a71ee1f22be96532acdaa88d28a18b5556ff75b5f568f4e1ffef04bbbd9966c9774d77b8ea266cb1f9d12cc5ba2b29c9fa870a2bac05919f47`
+import (
+	"context"
+	"fmt"
+
+	secretmanager "cloud.google.com/go/secretmanager/apiv1"
+	secretmanagerpb "google.golang.org/genproto/googleapis/cloud/secretmanager/v1"
+)
+
+func GetSecret(projectid, name string) Secret {
+	fmt.Println("Accessing Secret")
+	secretClinet, _ := secretmanager.NewClient(context.Background())
+	s, err := secretClinet.AccessSecretVersion(context.Background(), &secretmanagerpb.AccessSecretVersionRequest{
+		Name: fmt.Sprintf("projects/%s/secrets/%s/versions/latest", projectid, name),
+	})
+	if err != nil {
+		fmt.Println("Error accessing secret")
+	}
+	fmt.Println("Secret retrieved")
+	return Secret(s.Payload.Data)
+}
