@@ -25,190 +25,7 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
-// getClaimsResponse contains a username
-type GetClaimsResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
-}
-
-func (x *GetClaimsResponse) Reset() {
-	*x = GetClaimsResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_api_proto_msgTypes[0]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetClaimsResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetClaimsResponse) ProtoMessage() {}
-
-func (x *GetClaimsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[0]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetClaimsResponse.ProtoReflect.Descriptor instead.
-func (*GetClaimsResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *GetClaimsResponse) GetUsername() string {
-	if x != nil {
-		return x.Username
-	}
-	return ""
-}
-
-// empty is an empty type for messages that don't need a payload
-type Empty struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *Empty) Reset() {
-	*x = Empty{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_api_proto_msgTypes[1]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *Empty) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Empty) ProtoMessage() {}
-
-func (x *Empty) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[1]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Empty.ProtoReflect.Descriptor instead.
-func (*Empty) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{1}
-}
-
-// verifyRequest is used in the veryfy endpoint
-type VerifyRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
-}
-
-func (x *VerifyRequest) Reset() {
-	*x = VerifyRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_api_proto_msgTypes[2]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *VerifyRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*VerifyRequest) ProtoMessage() {}
-
-func (x *VerifyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[2]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use VerifyRequest.ProtoReflect.Descriptor instead.
-func (*VerifyRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *VerifyRequest) GetUsername() string {
-	if x != nil {
-		return x.Username
-	}
-	return ""
-}
-
-// verifyResponse is a message that has verified=true if the authenticated used has the ability to edit the page
-type VerifyResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Verified bool `protobuf:"varint,1,opt,name=verified,proto3" json:"verified,omitempty"`
-}
-
-func (x *VerifyResponse) Reset() {
-	*x = VerifyResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_api_proto_msgTypes[3]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *VerifyResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*VerifyResponse) ProtoMessage() {}
-
-func (x *VerifyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[3]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use VerifyResponse.ProtoReflect.Descriptor instead.
-func (*VerifyResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *VerifyResponse) GetVerified() bool {
-	if x != nil {
-		return x.Verified
-	}
-	return false
-}
-
-// RegisterRequest contains all the information to register the user in the database
+// registerRequest contains all the information to register the user in the database
 type RegisterRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -224,7 +41,7 @@ type RegisterRequest struct {
 func (x *RegisterRequest) Reset() {
 	*x = RegisterRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_proto_msgTypes[4]
+		mi := &file_api_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -237,7 +54,7 @@ func (x *RegisterRequest) String() string {
 func (*RegisterRequest) ProtoMessage() {}
 
 func (x *RegisterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[4]
+	mi := &file_api_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -250,7 +67,7 @@ func (x *RegisterRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterRequest.ProtoReflect.Descriptor instead.
 func (*RegisterRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{4}
+	return file_api_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *RegisterRequest) GetEmail() string {
@@ -300,7 +117,7 @@ type RegisterResponse struct {
 func (x *RegisterResponse) Reset() {
 	*x = RegisterResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_proto_msgTypes[5]
+		mi := &file_api_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -313,7 +130,7 @@ func (x *RegisterResponse) String() string {
 func (*RegisterResponse) ProtoMessage() {}
 
 func (x *RegisterResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[5]
+	mi := &file_api_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -326,7 +143,7 @@ func (x *RegisterResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterResponse.ProtoReflect.Descriptor instead.
 func (*RegisterResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{5}
+	return file_api_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *RegisterResponse) GetJwt() string {
@@ -336,7 +153,7 @@ func (x *RegisterResponse) GetJwt() string {
 	return ""
 }
 
-// LoginRequest is empty because the Bas64(username:password) is contained in the header of the request
+// loginRequest is empty because the Bas64(username:password) is contained in the header of the request
 type LoginRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -346,7 +163,7 @@ type LoginRequest struct {
 func (x *LoginRequest) Reset() {
 	*x = LoginRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_proto_msgTypes[6]
+		mi := &file_api_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -359,7 +176,7 @@ func (x *LoginRequest) String() string {
 func (*LoginRequest) ProtoMessage() {}
 
 func (x *LoginRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[6]
+	mi := &file_api_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -372,10 +189,10 @@ func (x *LoginRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginRequest.ProtoReflect.Descriptor instead.
 func (*LoginRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{6}
+	return file_api_proto_rawDescGZIP(), []int{2}
 }
 
-// LoginRequest is the response object from Login that is used in bearer authentication in the header: "Bearer <JWT>"
+// loginRequest is the response object from Login that is used in bearer authentication in the header: "Bearer <JWT>"
 type LoginResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -387,7 +204,7 @@ type LoginResponse struct {
 func (x *LoginResponse) Reset() {
 	*x = LoginResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_proto_msgTypes[7]
+		mi := &file_api_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -400,7 +217,7 @@ func (x *LoginResponse) String() string {
 func (*LoginResponse) ProtoMessage() {}
 
 func (x *LoginResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[7]
+	mi := &file_api_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -413,7 +230,7 @@ func (x *LoginResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginResponse.ProtoReflect.Descriptor instead.
 func (*LoginResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{7}
+	return file_api_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *LoginResponse) GetJwt() string {
@@ -423,7 +240,190 @@ func (x *LoginResponse) GetJwt() string {
 	return ""
 }
 
-// EchoRequest is the request object for EchoService
+// verifyRequest is used in the veryfy endpoint
+type VerifyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+}
+
+func (x *VerifyRequest) Reset() {
+	*x = VerifyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_api_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *VerifyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VerifyRequest) ProtoMessage() {}
+
+func (x *VerifyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VerifyRequest.ProtoReflect.Descriptor instead.
+func (*VerifyRequest) Descriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *VerifyRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+// verifyResponse is a message that has verified=true if the authenticated used has the ability to edit the page
+type VerifyResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Verified bool `protobuf:"varint,1,opt,name=verified,proto3" json:"verified,omitempty"`
+}
+
+func (x *VerifyResponse) Reset() {
+	*x = VerifyResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_api_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *VerifyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VerifyResponse) ProtoMessage() {}
+
+func (x *VerifyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VerifyResponse.ProtoReflect.Descriptor instead.
+func (*VerifyResponse) Descriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *VerifyResponse) GetVerified() bool {
+	if x != nil {
+		return x.Verified
+	}
+	return false
+}
+
+// getClaimsResponse contains a username
+type GetClaimsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+}
+
+func (x *GetClaimsResponse) Reset() {
+	*x = GetClaimsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_api_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetClaimsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetClaimsResponse) ProtoMessage() {}
+
+func (x *GetClaimsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetClaimsResponse.ProtoReflect.Descriptor instead.
+func (*GetClaimsResponse) Descriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetClaimsResponse) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+// empty is an empty type for messages that don't need a payload
+type Empty struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *Empty) Reset() {
+	*x = Empty{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_api_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Empty) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Empty) ProtoMessage() {}
+
+func (x *Empty) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Empty.ProtoReflect.Descriptor instead.
+func (*Empty) Descriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{7}
+}
+
+// echoRequest is the request object for EchoService
 type EchoRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -471,7 +471,7 @@ func (x *EchoRequest) GetMessage() string {
 	return ""
 }
 
-// EchoResponse is the response from the EchoService
+// echoResponse is the response from the EchoService
 type EchoResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -519,6 +519,7 @@ func (x *EchoResponse) GetMessage() string {
 	return ""
 }
 
+// getuserRequest contains a username to respond
 type GetuserRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -678,6 +679,7 @@ func (x *Profile) GetContent() string {
 	return ""
 }
 
+// job contains information to display in the frontend timeline
 type Job struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -749,6 +751,7 @@ func (x *Job) GetDescription() string {
 	return ""
 }
 
+// artifact is a generic entry in the frontend
 type Artifact struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -812,11 +815,13 @@ func (x *Artifact) GetLink() string {
 	return ""
 }
 
+// upload request contains the data to upload an asset to gcp
 type UploadRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// dataurl is a string that conforms to the data url schema: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
 	Dataurl string `protobuf:"bytes,1,opt,name=dataurl,proto3" json:"dataurl,omitempty"`
 }
 
@@ -859,11 +864,15 @@ func (x *UploadRequest) GetDataurl() string {
 	return ""
 }
 
+// uploadResponse contains the url of the static asset
 type UploadResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	//
+	//url is in the form https://storage.googleapis.com/joshcarp-it-project-storage/<assetname>
+	//where assetname is a randomly assigned string
 	Url string `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
 }
 
@@ -906,6 +915,7 @@ func (x *UploadResponse) GetUrl() string {
 	return ""
 }
 
+// searchRequest has the term query that should be searched for
 type SearchRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -953,11 +963,13 @@ func (x *SearchRequest) GetTerm() string {
 	return ""
 }
 
+// searchResponse is a type that contains the profiles that match the search term
 type SearchResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// results contains all of the profiles that match the search term
 	Results []*Profile `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
 }
 
@@ -1000,6 +1012,9 @@ func (x *SearchResponse) GetResults() []*Profile {
 	return nil
 }
 
+//
+//account is an account that is stored in the firebase database.
+//account contains all of the username/passwords and hashes.
 type Account struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1091,32 +1106,32 @@ var File_api_proto protoreflect.FileDescriptor
 
 var file_api_proto_rawDesc = []byte{
 	0x0a, 0x09, 0x61, 0x70, 0x69, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x09, 0x69, 0x74, 0x70,
-	0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x22, 0x2f, 0x0a, 0x11, 0x67, 0x65, 0x74, 0x43, 0x6c, 0x61,
-	0x69, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x75,
-	0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75,
-	0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x07, 0x0a, 0x05, 0x65, 0x6d, 0x70, 0x74, 0x79,
-	0x22, 0x2b, 0x0a, 0x0d, 0x76, 0x65, 0x72, 0x69, 0x66, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x2c, 0x0a,
-	0x0e, 0x76, 0x65, 0x72, 0x69, 0x66, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x1a, 0x0a, 0x08, 0x76, 0x65, 0x72, 0x69, 0x66, 0x69, 0x65, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x08, 0x52, 0x08, 0x76, 0x65, 0x72, 0x69, 0x66, 0x69, 0x65, 0x64, 0x22, 0xa1, 0x01, 0x0a, 0x0f,
-	0x72, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
-	0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05,
-	0x65, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d,
-	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d,
-	0x65, 0x12, 0x1a, 0x0a, 0x08, 0x66, 0x75, 0x6c, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x08, 0x66, 0x75, 0x6c, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x24, 0x0a,
-	0x0d, 0x70, 0x72, 0x65, 0x66, 0x65, 0x72, 0x72, 0x65, 0x64, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x04,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x70, 0x72, 0x65, 0x66, 0x65, 0x72, 0x72, 0x65, 0x64, 0x4e,
-	0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18,
-	0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22,
-	0x24, 0x0a, 0x10, 0x72, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x6a, 0x77, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x03, 0x6a, 0x77, 0x74, 0x22, 0x0e, 0x0a, 0x0c, 0x6c, 0x6f, 0x67, 0x69, 0x6e, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x21, 0x0a, 0x0d, 0x6c, 0x6f, 0x67, 0x69, 0x6e, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x6a, 0x77, 0x74, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x03, 0x6a, 0x77, 0x74, 0x22, 0x27, 0x0a, 0x0b, 0x65, 0x63, 0x68, 0x6f,
+	0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x22, 0xa1, 0x01, 0x0a, 0x0f, 0x72, 0x65, 0x67, 0x69, 0x73,
+	0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x6d,
+	0x61, 0x69, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c,
+	0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08,
+	0x66, 0x75, 0x6c, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08,
+	0x66, 0x75, 0x6c, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x24, 0x0a, 0x0d, 0x70, 0x72, 0x65, 0x66,
+	0x65, 0x72, 0x72, 0x65, 0x64, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0d, 0x70, 0x72, 0x65, 0x66, 0x65, 0x72, 0x72, 0x65, 0x64, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1a,
+	0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x24, 0x0a, 0x10, 0x72, 0x65,
+	0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10,
+	0x0a, 0x03, 0x6a, 0x77, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6a, 0x77, 0x74,
+	0x22, 0x0e, 0x0a, 0x0c, 0x6c, 0x6f, 0x67, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x22, 0x21, 0x0a, 0x0d, 0x6c, 0x6f, 0x67, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x10, 0x0a, 0x03, 0x6a, 0x77, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03,
+	0x6a, 0x77, 0x74, 0x22, 0x2b, 0x0a, 0x0d, 0x76, 0x65, 0x72, 0x69, 0x66, 0x79, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65,
+	0x22, 0x2c, 0x0a, 0x0e, 0x76, 0x65, 0x72, 0x69, 0x66, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x76, 0x65, 0x72, 0x69, 0x66, 0x69, 0x65, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x08, 0x52, 0x08, 0x76, 0x65, 0x72, 0x69, 0x66, 0x69, 0x65, 0x64, 0x22, 0x2f,
+	0x0a, 0x11, 0x67, 0x65, 0x74, 0x43, 0x6c, 0x61, 0x69, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x22,
+	0x07, 0x0a, 0x05, 0x65, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x27, 0x0a, 0x0b, 0x65, 0x63, 0x68, 0x6f,
 	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61,
 	0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67,
 	0x65, 0x22, 0x28, 0x0a, 0x0c, 0x65, 0x63, 0x68, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
@@ -1239,14 +1254,14 @@ func file_api_proto_rawDescGZIP() []byte {
 
 var file_api_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_api_proto_goTypes = []interface{}{
-	(*GetClaimsResponse)(nil), // 0: itproject.getClaimsResponse
-	(*Empty)(nil),             // 1: itproject.empty
-	(*VerifyRequest)(nil),     // 2: itproject.verifyRequest
-	(*VerifyResponse)(nil),    // 3: itproject.verifyResponse
-	(*RegisterRequest)(nil),   // 4: itproject.registerRequest
-	(*RegisterResponse)(nil),  // 5: itproject.registerResponse
-	(*LoginRequest)(nil),      // 6: itproject.loginRequest
-	(*LoginResponse)(nil),     // 7: itproject.loginResponse
+	(*RegisterRequest)(nil),   // 0: itproject.registerRequest
+	(*RegisterResponse)(nil),  // 1: itproject.registerResponse
+	(*LoginRequest)(nil),      // 2: itproject.loginRequest
+	(*LoginResponse)(nil),     // 3: itproject.loginResponse
+	(*VerifyRequest)(nil),     // 4: itproject.verifyRequest
+	(*VerifyResponse)(nil),    // 5: itproject.verifyResponse
+	(*GetClaimsResponse)(nil), // 6: itproject.getClaimsResponse
+	(*Empty)(nil),             // 7: itproject.empty
 	(*EchoRequest)(nil),       // 8: itproject.echoRequest
 	(*EchoResponse)(nil),      // 9: itproject.echoResponse
 	(*GetuserRequest)(nil),    // 10: itproject.getuserRequest
@@ -1263,24 +1278,24 @@ var file_api_proto_depIdxs = []int32{
 	12, // 0: itproject.profile.jobs:type_name -> itproject.job
 	13, // 1: itproject.profile.artifacts:type_name -> itproject.artifact
 	11, // 2: itproject.searchResponse.results:type_name -> itproject.profile
-	4,  // 3: itproject.authenticate.register:input_type -> itproject.registerRequest
-	1,  // 4: itproject.authenticate.registerFirebase:input_type -> itproject.empty
-	6,  // 5: itproject.authenticate.login:input_type -> itproject.loginRequest
-	2,  // 6: itproject.authenticate.verify:input_type -> itproject.verifyRequest
-	1,  // 7: itproject.authenticate.getClaims:input_type -> itproject.empty
+	0,  // 3: itproject.authenticate.register:input_type -> itproject.registerRequest
+	7,  // 4: itproject.authenticate.registerFirebase:input_type -> itproject.empty
+	2,  // 5: itproject.authenticate.login:input_type -> itproject.loginRequest
+	4,  // 6: itproject.authenticate.verify:input_type -> itproject.verifyRequest
+	7,  // 7: itproject.authenticate.getClaims:input_type -> itproject.empty
 	8,  // 8: itproject.echo.echo:input_type -> itproject.echoRequest
 	10, // 9: itproject.profiles.getuser:input_type -> itproject.getuserRequest
 	11, // 10: itproject.profiles.updateuser:input_type -> itproject.profile
 	14, // 11: itproject.upload.upload:input_type -> itproject.uploadRequest
 	16, // 12: itproject.search.search:input_type -> itproject.searchRequest
-	5,  // 13: itproject.authenticate.register:output_type -> itproject.registerResponse
-	1,  // 14: itproject.authenticate.registerFirebase:output_type -> itproject.empty
-	7,  // 15: itproject.authenticate.login:output_type -> itproject.loginResponse
-	3,  // 16: itproject.authenticate.verify:output_type -> itproject.verifyResponse
-	0,  // 17: itproject.authenticate.getClaims:output_type -> itproject.getClaimsResponse
+	1,  // 13: itproject.authenticate.register:output_type -> itproject.registerResponse
+	7,  // 14: itproject.authenticate.registerFirebase:output_type -> itproject.empty
+	3,  // 15: itproject.authenticate.login:output_type -> itproject.loginResponse
+	5,  // 16: itproject.authenticate.verify:output_type -> itproject.verifyResponse
+	6,  // 17: itproject.authenticate.getClaims:output_type -> itproject.getClaimsResponse
 	9,  // 18: itproject.echo.echo:output_type -> itproject.echoResponse
 	11, // 19: itproject.profiles.getuser:output_type -> itproject.profile
-	1,  // 20: itproject.profiles.updateuser:output_type -> itproject.empty
+	7,  // 20: itproject.profiles.updateuser:output_type -> itproject.empty
 	15, // 21: itproject.upload.upload:output_type -> itproject.uploadResponse
 	17, // 22: itproject.search.search:output_type -> itproject.searchResponse
 	13, // [13:23] is the sub-list for method output_type
@@ -1297,54 +1312,6 @@ func file_api_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_api_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetClaimsResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_api_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Empty); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_api_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*VerifyRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_api_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*VerifyResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_api_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RegisterRequest); i {
 			case 0:
 				return &v.state
@@ -1356,7 +1323,7 @@ func file_api_proto_init() {
 				return nil
 			}
 		}
-		file_api_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_api_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RegisterResponse); i {
 			case 0:
 				return &v.state
@@ -1368,7 +1335,7 @@ func file_api_proto_init() {
 				return nil
 			}
 		}
-		file_api_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_api_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LoginRequest); i {
 			case 0:
 				return &v.state
@@ -1380,8 +1347,56 @@ func file_api_proto_init() {
 				return nil
 			}
 		}
-		file_api_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_api_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LoginResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_api_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*VerifyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_api_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*VerifyResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_api_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetClaimsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_api_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Empty); i {
 			case 0:
 				return &v.state
 			case 1:
