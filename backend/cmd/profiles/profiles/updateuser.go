@@ -13,7 +13,7 @@ func (s *Server) Updateuser(ctx context.Context, in *itproject.Profile) (*itproj
 	var username interface{}
 	var ok bool
 	if s.auth {
-		creds, err := auth.GetToken(ctx, auth.ValidJwt)
+		creds, err := auth.GetToken(ctx, s.secret.ValidJwt)
 		if err != nil {
 			creds, err = auth.GetToken(ctx, s.Firebase.ValidJwt)
 			if err != nil {

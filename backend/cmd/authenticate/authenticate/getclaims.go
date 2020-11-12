@@ -8,11 +8,12 @@ import (
 	"github.com/joshcarp/it-project/backend/pkg/proto/itproject"
 )
 
+//auth.GetToken(ctx, auth.GetSecret(s.config.GCP.ProjectID, s.config.GCP.SecretName).ValidJwt)
 /* GetClaims returns which user is currently logged in */
 func (s *Server) GetClaims(ctx context.Context, _ *itproject.Empty) (*itproject.GetClaimsResponse, error) {
 	var username interface{}
 	var ok bool
-	creds, err := auth.GetToken(ctx, auth.ValidJwt)
+	creds, err := auth.GetToken(ctx, s.secret.ValidJwt)
 	if err != nil || creds == nil {
 		creds, err = auth.GetToken(ctx, s.Firebase.ValidJwt)
 		if err != nil {

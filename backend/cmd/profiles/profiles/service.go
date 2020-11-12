@@ -11,6 +11,7 @@ import (
 
 type Server struct {
 	config   config.Config
+	secret   auth.Secret
 	db       database.Server
 	log      *logrus.Logger
 	auth     bool
@@ -27,7 +28,7 @@ func NewServer(config config.Config, log *logrus.Logger) (*Server, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &Server{config: config, db: db, log: log, auth: true, Firebase: Firebase}, nil
+	return &Server{config: config, db: db, log: log, auth: true, Firebase: Firebase, secret: auth.GetSecret(config.GCP.ProjectNum, config.GCP.SecretName)}, nil
 }
 
 func RegisterService(conf config.Config, log *logrus.Logger, s *grpc.Server) error {

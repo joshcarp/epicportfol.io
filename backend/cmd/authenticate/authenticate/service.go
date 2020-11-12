@@ -12,6 +12,7 @@ import (
 /* Server is the struct that implements the authenticate service interface */
 type Server struct {
 	config   config.Config
+	secret   auth.Secret
 	log      *logrus.Logger
 	db       database.Server
 	Firebase auth.Firebase
@@ -27,7 +28,7 @@ func NewServer(config config.Config, log *logrus.Logger) (*Server, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &Server{config: config, db: db, log: log, Firebase: Firebase}, nil
+	return &Server{config: config, db: db, log: log, Firebase: Firebase, secret: auth.GetSecret(config.GCP.ProjectNum, config.GCP.SecretName)}, nil
 }
 
 func RegisterService(conf config.Config, log *logrus.Logger, s *grpc.Server) error {

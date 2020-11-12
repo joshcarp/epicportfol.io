@@ -26,7 +26,7 @@ func (s *Server) Register(ctx context.Context, req *itproject.RegisterRequest) (
 		return nil, err
 	}
 	/* Issue a JWT with username claims */
-	token, err := auth.Issue(map[string]interface{}{"username": req.Username})
+	token, err := auth.Issue(map[string]interface{}{"username": req.Username}, string(s.secret))
 	if err := s.db.EnterProfile(&itproject.Profile{
 		Username: account.Username,
 		Email:    account.Email,
