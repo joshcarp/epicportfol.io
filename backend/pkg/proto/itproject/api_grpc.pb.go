@@ -17,15 +17,15 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AuthenticateClient interface {
-	// Register is used to register a user and acquire a jwt
+	// register is used to register a user and acquire a JWT
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
-	// Register is used to register a user and acquire a jwt
+	// registerFirebase is used to register a user and acquire a JWT
 	RegisterFirebase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error)
-	// Login is used to login and to acquire a jwt
+	// Login is used to login to acquire a JWT
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
-	// verifyUser is used to verify if a user has permissions to edit an profile; used for frontend rendering
+	// verify is used to verify if a user has permissions to edit a profile
 	Verify(ctx context.Context, in *VerifyRequest, opts ...grpc.CallOption) (*VerifyResponse, error)
-	// getClaims is used to get which user is logged in
+	// getClaims is used to get which user is currently logged in
 	GetClaims(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetClaimsResponse, error)
 }
 
@@ -86,15 +86,15 @@ func (c *authenticateClient) GetClaims(ctx context.Context, in *Empty, opts ...g
 // All implementations must embed UnimplementedAuthenticateServer
 // for forward compatibility
 type AuthenticateServer interface {
-	// Register is used to register a user and acquire a jwt
+	// register is used to register a user and acquire a JWT
 	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
-	// Register is used to register a user and acquire a jwt
+	// registerFirebase is used to register a user and acquire a JWT
 	RegisterFirebase(context.Context, *Empty) (*Empty, error)
-	// Login is used to login and to acquire a jwt
+	// Login is used to login to acquire a JWT
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
-	// verifyUser is used to verify if a user has permissions to edit an profile; used for frontend rendering
+	// verify is used to verify if a user has permissions to edit a profile
 	Verify(context.Context, *VerifyRequest) (*VerifyResponse, error)
-	// getClaims is used to get which user is logged in
+	// getClaims is used to get which user is currently logged in
 	GetClaims(context.Context, *Empty) (*GetClaimsResponse, error)
 	mustEmbedUnimplementedAuthenticateServer()
 }

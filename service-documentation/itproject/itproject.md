@@ -3,7 +3,7 @@
 
 # itproject
 ## Integration Diagram
-<img src="https://plantuml.com/plantuml/svg/~1UDgCZisgsp0GXVVp5DDLLeOaTa8N8UJ7RkacXkBIXIb6jIUH6baoep5jkTntlmG5BxBoh0xwlgEPnUo1nG9dpLCz_gZAhyMb-7wiYXpFPLvWac1UugMiiCY_LPycTVQlis-5Gn35ClOMn8WbD3Am_qEjW3OTOH1Yyl9_80YjieIz-eUhRVevGqtcfWN2tRX1iUgnzVtW7Jd1Dq0ygVP-Op-wxkojP_nYFIlxKnkX1_NS4KToiggz0-AHsV-DJsSsVV0Etg5MesXoObebz0jLm6Q9kvqsDsqV-_TxgBlV4QoWMMAIx1-f7jXVZQKGqVgbqwmdCP3YLaSjVTNIIHi7wrKNjUpr0XK2oNFL1feijZPGNzax8VViRQ7PHhISKZgbzPGoE93hnjv-1000__zp9ALo">
+<img src="https://plantuml.com/plantuml/svg/~1UDgCZasBsp0GXk_pAwQdd0n9d8GUGiY7tT9B3CMb1rECQayYRMJ9ZCRiBil-zoKe-92Jv_IYvvrvD9iyC9lXf7bK3t_AucT-pdyVoZp3Kv7bc2IO5NWkIiopN-MtiJhvwkI_mZw8OXaw2sB44XhfsRzG8w1DInY4cBoyzmIXKPQmKs-usAJVLwZ9NBL0k1dNArOTDhxhlICd-068HzNShkm7rvwyzOm_h6Tb_seZTAUUM-98ZbOrDq0yCFlN-7HYqmNlu1Egdlt5M0h_K0MivxZTQdFLzkxUxQ1g_qUmW7gEIRAxfogGuaP7i7pQg9TZRUYjLssifS-7LGWa3-iAwZHkhQ1IWsXoOXeb5F7wMR4U5HVsJiWz91keDn6jnxGSqtnCAUp9jKDdlm800F__CyYbSm00">
 
 
 
@@ -12,6 +12,7 @@
 
 | Application Name | Method |
 |----|----|
+| authenticate | [getClaims](#authenticate-getClaims) |
 | authenticate | [login](#authenticate-login) |
 | authenticate | [register](#authenticate-register) |
 | authenticate | [registerFirebase](#authenticate-registerFirebase) |
@@ -31,6 +32,7 @@
 | itproject | [echoRequest](#itproject.echoRequest) | 
 | itproject | [echoResponse](#itproject.echoResponse) | 
 | itproject | [empty](#itproject.empty) | 
+| itproject | [getClaimsResponse](#itproject.getClaimsResponse) | 
 | itproject | [getuserRequest](#itproject.getuserRequest) | 
 | itproject | [job](#itproject.job) | 
 | itproject | [loginRequest](#itproject.loginRequest) | 
@@ -40,7 +42,6 @@
 | itproject | [registerResponse](#itproject.registerResponse) | 
 | itproject | [searchRequest](#itproject.searchRequest) | 
 | itproject | [searchResponse](#itproject.searchResponse) | 
-| itproject | [updateuserResponse](#itproject.updateuserResponse) | 
 | itproject | [uploadRequest](#itproject.uploadRequest) | 
 | itproject | [uploadResponse](#itproject.uploadResponse) | 
 | itproject | [verifyRequest](#itproject.verifyRequest) | 
@@ -56,16 +57,56 @@
 ## Application authenticate
 
 
-- authenticate is the miroservice that handles authentication and issues JWTs to 
-use with other services 
+- authenticate 
+miroservice that handles authentication and issues JWTs with username claims.
 
 
 
 
+
+
+### <a name=authenticate-getClaims></a>authenticate getClaims
+getClaims is used to get which user is currently logged in 
+
+<details>
+<summary>Sequence Diagram</summary>
+
+<img src="https://plantuml.com/plantuml/svg/~1UDgCaC5Amq0GXk_x56ClkRWQ12-IR5kQHJpOG8sd7iAu7UBgPZViJaHyUccf9HSX__N_lfbXijaHMGQpSaRNhqtzgBTwjsvq1PkwqY0bL3LiwmPqzTHSNT3PKsVVAbQ9CVBOEs62vnWSB73aT_9i3J8j01EqkKYVrWyOiOSUlvyf9UpenVuGtDtdWYqxWga6XOIEUEFGzacKvVybbANOIzNcy30nqB3zEg9jBlQ5bAUwCC6526zk96LvYE633DzSf1sb8VX4nUs9Kr2SXIuIURMyXkLVfSI1fYjMv0_75_m6003___2cVU00">
+
+</details>
+
+
+<details>
+<summary>Request types</summary>
+
+
+
+
+<img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNwANc5fHKAYaa5Yl46zZOA6YuwEGN9MTafcWgsDafL7FLSZcavgM0GWGG003__rF4E080">
+
+
+</details>
+
+
+<details>
+<summary>Response types</summary>
+
+
+
+
+getClaimsResponse contains a username 
+
+<img src="https://plantuml.com/plantuml/svg/~1UDgCa37BmZ0OXFVyYlkwz1EjE4ifBKqGbmPAd2MqeKRQjEHD9_6_Yo0kBddcvuxZIWhQXtKQMHeDIrD4yL6hYv8dqOYsKeAZbbmWoy0b6gaW-5dzVTNerkYjh1ir4PB1X7hKTgBMq38xCWaquNf0dkEVxsRVtMo_WGsBd--c2_kV08e23xR5IiOxFHaSGS5RDx0dAuthtoU-0W00__-MWqgf">
+
+
+</details>
+
+
+---
 
 
 ### <a name=authenticate-login></a>authenticate login
-Login is used to login and to acquire a jwt 
+Login is used to login to acquire a JWT 
 
 <details>
 <summary>Sequence Diagram</summary>
@@ -93,7 +134,7 @@ Login is used to login and to acquire a jwt
 
 
 
-LoginRequest is the response object from Login that is used in bearer authentic
+loginRequest is the response object from Login that is used in bearer authentic
 ation in the header: "Bearer <JWT>" 
 
 <img src="https://plantuml.com/plantuml/svg/~1UDgCqB4AmZ0KXU4zJt7iKaKhpb9AYmdYqa29ivGsr9IQbDo8W_Zk8eZWbd_-k5nEIQ7ruNwRM1eTIrD4zQNLMScZg4LJAS5na5mWoy0bQgaW-4ajVZJwQlIlh9jQ8YIJ6unjDCtEaaxG4Yuxv3cMVEDyTpNz2YRCtesw2zi_ZAB0awqnFWBseE2D7TYBbThsdztU0G00___C-4MU">
@@ -106,7 +147,7 @@ ation in the header: "Bearer <JWT>"
 
 
 ### <a name=authenticate-register></a>authenticate register
-Register is used to register a user and acquire a jwt 
+register is used to register a user and acquire a JWT 
 
 <details>
 <summary>Sequence Diagram</summary>
@@ -146,7 +187,7 @@ RegisterResponse is the response from the registration services
 
 
 ### <a name=authenticate-registerFirebase></a>authenticate registerFirebase
-Register is used to register a user and acquire a jwt 
+registerFirebase is used to register a user and acquire a JWT 
 
 <details>
 <summary>Sequence Diagram</summary>
@@ -174,6 +215,7 @@ Register is used to register a user and acquire a jwt
 
 
 
+empty is an empty type for messages that don't need a payload 
 
 <img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNwANc5fHKAYaa5Yl46zZOA6YuwEGN9MTafcWgsDafL7FLSZcavgM0GWGG003__rF4E080">
 
@@ -185,8 +227,7 @@ Register is used to register a user and acquire a jwt
 
 
 ### <a name=authenticate-verify></a>authenticate verify
-verifyUser is used to verify if a user has permissions to edit an profile; used
- for frontend rendering 
+verify is used to verify if a user has permissions to edit a profile 
 
 <details>
 <summary>Sequence Diagram</summary>
@@ -214,6 +255,8 @@ verifyUser is used to verify if a user has permissions to edit an profile; used
 
 
 
+verifyResponse is a message that has verified=true if the authenticated used ha
+s the ability to edit the page
 
 <img src="https://plantuml.com/plantuml/svg/~1UDgCa37BmZ0OXFVyYlkwz1EjE4ifBIQ8ImCbpbBRY97ObBnH4F6_YoA2MvxnU3YEAocqFbpEbgNHi3H551-rsYgv5hLeAYKuLf8BP1cuH2qL1D-elwyQtHgzbNMs9K9orTuSRescqGsa4xI4tG9vZdy-Sxuxcdu24qRlJheByryRHO4xc-AT6jrZYRrpbZrOgOV-TTup003__qR8HwG0">
 
@@ -265,7 +308,7 @@ echo is a method to test service deployments
 
 
 
-EchoResponse is the response from the EchoService 
+echoResponse is the response from the EchoService 
 
 <img src="https://plantuml.com/plantuml/svg/~1UDgCq44BWZ0Onl7xFiMJ5uioEeU8qaPqSI3h76CEDTJ9tdMAldi44HttF_zuUNbA2jg7npIoD3gMfeZgIwkhacTHYwPIWkCakK2MWKlKKa7mYrhzQFJLw5-P6JKH4cjwrrXQt4msWIRS3iXphFdEUTCFxGP3MBoxMnFs_nP5WIVROh94khCuWe8VvewzM6ddzhFSEm00__zBf4Ow">
 
@@ -320,8 +363,9 @@ getuser gets a user from a userid
 
 
 
+profile is the data model of the page that is displayed to a user 
 
-<img src="https://plantuml.com/plantuml/svg/~1UDgCai5kip0GXEz-YlcvvAzJeYJ7A8eI5LJr4gIMdf4nJcjgR6gRGrNbtQk8a9AeIEoDsM7cqyfRvvdrJQN8PFIGoGIZvcpTlQR9OxoFdtTf7E4XYMA48Q84-oH573sb_oxMqQcZMGbNp3a4p7fvODox0CmXcsEznl_etbZ-BeixI5zRKmhkPvqHcms-oHI5SDpAsakZiOBpLketCeMI-gF_xQLNubSuThsboS-LYy7AqkHT6pTLpVHNFxbWNhWhuM-Y8OBQceDKeeLO3aASRHt8vLvOWT8NyTa8pGNMdRwXb4oHIzD741MJgYyS6gKopIhH5qydkKajJTu6divwksn_RFUrvBwnLt6D4_QwuaYo9MWO8fZFPZH0DhyL5cGhT75wzZy1003__wn3qDm0">
+<img src="https://plantuml.com/plantuml/svg/~1UDgCar5hip0KXk_pAyxdJR_PMTfUbb9QfepTLDZSjSHukiN5n2N7Yp7wtqUnTccPOEvyytgUXmFPEkAMsbgnoUZ39XCOTSxLtMkMFYRxv7cN9J4yf742KGHn2liqWoH-olvTggEdZdPbGd7d8E2Mv84BSW5m1_aSrclu7zyRAzvbUGUI6cig53JhYx3Pm3URGebEMDcGD1fMuCXA_SQceAJ-yBz9aiBVuDXpArESaOj1P6MAdYPCtN3zvKykEQ6x2lus6Z9eh3b8XPt4Sb3YNEj5Blk25OJX2twsg0N2kiytOSYcK4ZZAmYZ2JNv4TPSAZyuj4hbcjVeXwSjtO0gKtICqwPlBxiVk_j62chjrRZMeRr675c-X32A89ZFPc40-VmsMB0jwlBq4du2003___grrpq0">
 
 
 </details>
@@ -336,7 +380,7 @@ updateuser updates a profile
 <details>
 <summary>Sequence Diagram</summary>
 
-<img src="https://plantuml.com/plantuml/svg/~1UDgCa45Fiq0GXk_pA-RhfPTl5Koy6DYs4M8yM9AAfnx806EpTc79xcAClzvGQSl5X3dky-pxJcOvUs2vn5apgfktF7jAj-bkawS9FcP9Ya9Wak4sop5DdlD_5tLswknTOUqyMTyt6YhJUciqBZfhtfLcjq1oM0HGawUI7EEYBd_VGd17rNPagS66lbxOEJhmg_fclBiFm2kl6Syn60dikveyzuujnF4V1ECOza8M0JvCVQgy-YJFmoPO148MuKKenYJ0gnKELYJ4IJD7m9gdS3-WeIAgZ3OMIzspLBwpveChVtCjth7hJEiukZs94gFnny4ojtBr7rTd967Q4S2Qstguw4y0003__yqDbXC0">
+<img src="https://plantuml.com/plantuml/svg/~1UDgCaB5Emp0GGFVxYgDB5mmf4WjAt5OaGWmq4eIfGtHDZihKYIFxWe2lHobjwOAK6_sUdayt7JqmdUAeEQZBro9_o5RPyxB8KhpFqmoLmZJ7LLvWbZuM5oTrT7Nqhh08GbxwnaBbMl7EugJpxirO3XEaW6K4DGbjA31Ewitlsmp2phGTUMgmeSyd3e6s_6A-6Mzk8n0Zbl6OmLXXtzKat0Vsa2J_44mIM2jTHdXtxbCbveE4XqsmZ9GkPoUXF9G0_wpPOCLAxJMt0wpv7Au7D7mHLyuwZnlRipRIUVVEbLnnqybNVBrd6kE3jFNChPvVulo8D9nd8rXmMmz7_0a00F__3JkGiG00">
 
 </details>
 
@@ -347,7 +391,7 @@ updateuser updates a profile
 
 
 
-<img src="https://plantuml.com/plantuml/svg/~1UDgCai5kip0GXEz-Ylsvv2yfKP9Z54M92gfw2L9BpyWOfrrgR6gl3rMLTwyYGagY8h4tPfUPJoDl7N5BlbPiCdhOP0AZvdowUytInsIVFE-o98Q7D4uWYY1EOPzcaCHFsR_BwMZNqQnCAEuS1DmI7hWW5m1taCzXlOR_yRsnuXtBEq1ghAcae5bt29iDVBCfbD89YmsXqR02HnRr6vk2GltH_oOa9N-5OvTRcU8SkHYCh4pHfGbJDrn_zPrBJj9T2NyJ3H6WRZor2Cj1XCQQ0ohPOLpQWXM4uOlyz58B2UjEtuGXcqA1fWyWQuwgBnoyKhdcjUoBfq9kN2jJj8QdKc-NxO_jla51tbxPUIVjTSIHvKi8emY2-MmM1f3FRuK5sqfTdXxzJm000F__uHRG6m00">
+<img src="https://plantuml.com/plantuml/svg/~1UDgCaq5lga0Gn-_xAUPnyJry6FLeZD4yo4ilahJqJ9PbR8SkktHtE3IDtxqnY4LJ4-R6VuRv_JB9RZrBnssjnMHqYSa4HjLvTFUSfV-JVVAuov8O_gLn0b44SGhxD8CaViX-NKP7RntjAfIMtaCW7TD1AlO1I0_v7DPh-1t_jKwzKla7Y1jdArGywmTXiu5FCOKIlNBKC5a3A_3ioBo8AMWoRyDl9jRu7HnxRcMBCt9n5rdPegSfMpVIV0mtbvBHNmK_6zqp8DEqt2aixoeqpXv8OwznkHQi80oVyBr5en3MVRu9Gp65WknGG5d3Q7WOOIr93uD3gtLkP8t3y7IZ6r1bYuvnklDji_knwpUak7LNwrgFxXfn5FaImYY2O3wRXG7ayzjW8RPeojCx-0e00F__8KJMV000">
 
 
 </details>
@@ -359,8 +403,9 @@ updateuser updates a profile
 
 
 
+empty is an empty type for messages that don't need a payload 
 
-<img src="https://plantuml.com/plantuml/svg/~1UDgCaB4AmZ0KHVTynRLB5Qpu0QMqc20k3PGuIsWVMAbDo4icyTz54EUS-N2vd9QZ3J4z5r5c8yeIMVpKxchqMVLgw8oIE6cfK5MG6hqsKF9YDdyrUpNxgnWNounYZZwu1utnaFna8oMcC11xjp8Li8pRiQwnbNiNnliyxT0qU8ctQ6cTlda-0G00__-EjJra">
+<img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNwANc5fHKAYaa5Yl46zZOA6YuwEGN9MTafcWgsDafL7FLSZcavgM0GWGG003__rF4E080">
 
 
 </details>
@@ -410,8 +455,9 @@ eter
 
 
 
+searchResponse is a type that contains the profiles that match the search term 
 
-<img src="https://plantuml.com/plantuml/svg/~1UDgCayzkip0GnEz-Ylsuv2ifKVxSeYXAL53LIv1IUaR6R1fJOrFR7AegxruX80LK97nZlCpC_YGVZANQbhaWiyc7p6OmwJIZnxSeV0vEmVaO1JuyXNu0dWT-2ASmWi1_YVxTHoUxJkvAcA36W4ErvHVAh7606eYNiDl1V_zHQNRbwGDmMsYL8REBTX3sU_WcSqZHCCqBovM4BHYhkNmdSn1SVdI_BRS2VuLRcvkff8bSZKPcAcdJcCeBAh-wpYcrQ7h2tut66cWqfMZtNe-MABIwS85jaJils8Bhlk9dYP8Xx5fzxxfa3WbNtGgOKowwmgKK8fOqnwvO8HcuPYgf3Ikimylwn_g-uCoMkcTN6jJzYFlg1gbcrpEQGac3DO7DA87-T0kYmJVerD2gIjr8l0RNyy1PBXQk0_5oAAn8lEa9Qt90cLQlxYS00F__NnFusm00">
+<img src="https://plantuml.com/plantuml/svg/~1UDgCayrkgp0GXVT-YhbiSajAb9zT54M92ggw2L9AryYOIMDgR6gRHLNbtIi4f82AX7SS3tC-Fec3iLJRCXTaDlcGsGmcdMRq-1Q5py4fE1-Zm8Udq0_0yy0FuHH64FWlqR_xwEIjara94zGOSAYs_4APDGvG0_4ITZluxpygpQuyVG1k2wqoP7RH3i9-3zza3YaQfdbXkPAm1MCrb-za3eBBZ-wpvLRWRt1hUpELD9MhqSfC9MqRKtb1vLTtSqejcbxmDz4OWKPJYlQxrwCGXLONBh05kVk2BRZkAtwMA1d2hitthalca73LHM1AMfIs6s5EkUW6brA8MD8Sks5bQL2KgQJkg4mFB-iNw_k2CrlgthhIeEvNt6qOf9fTpsWA9GtMKZQZKlhJhPl6w82f4LX1tKYy1jVpm5ak5gu3yN8Oh4YywGLhSa2PLZ_YJm000F__saJ_F000">
 
 
 </details>
@@ -461,6 +507,7 @@ upload uploads a static asset to gcp and returns a url
 
 
 
+uploadResponse contains the url of the static asset 
 
 <img src="https://plantuml.com/plantuml/svg/~1UDgCqB4AmZ0KXU4zJt7iKaKhpb9AYmdYqa29iuGsQ2Ks9JUPn7SNGGIt_FF7vN9g2jg7-B0iJuxbEPBwqkQiv56qeckKu3X8Bb0Ku1AjL13yf1O_cdmr-LVMMqs4BCxMwQ4pDBk9J0PDkEnGbbZoZVFzRHnM6CFitTtqOVklKLLuiZMYjzY3WX-dAtknsap3Pxbt0000__zbJKPq">
 
@@ -485,6 +532,10 @@ upload uploads a static asset to gcp and returns a url
 ### itproject.account
 
 
+- 
+
+account is an account that is stored in the firebase database.
+account contains all of the username/passwords and hashes.
 
 <img src="https://plantuml.com/plantuml/svg/~1UDgCaK5Bn30GXU_v5S-zL5aNFCkoj9WWNXgGU2v34hMGfZAJua7yxo8KQJtbtRwPZs7WjLA8op8brLH7DGsgighTYxEFfZVFdJCQ3rORd4xG5hrrCFh9NVsfrLUhVrK-aGWEvFsyv7802OOxdC-urhSp-_Snt61TudB1bpeYJZGct4CAZ_bD7P5fYbl-897FcSDknl4rCiSm_BU5Kjdo8f7tphTgOmw_BVm4003__o2pNZu0">
 <a href="https://plantuml.com/plantuml/svg/~1UDgCqK5B0p4G1U1xViMpbrLgnREKqcA2UEc2hESo9AD6iacPoU91_EyY5Edsb7TxmySmC5kj97KQa-cQOxeEJJdHtUlGFxczUzaDpkAnjmwh5MoFVJ_0sUVXwfysRss-rVX4gbYGzsNATG5I7EwnNkFQtXRn7p7S8DQZb4_szUx4iDdWsop18yM41sYLcD_D4fb6Fkz7Klqg4cOpuJSMuN2ur4gfdlT9MURcnsmvXxz__0O00F__HLHYG000">Full Diagram</a>
@@ -509,6 +560,7 @@ upload uploads a static asset to gcp and returns a url
 ### itproject.artifact
 
 
+- artifact is a generic entry in the frontend 
 
 <img src="https://plantuml.com/plantuml/svg/~1UDgCa3yBmZ0GnVTyYcUNAhNWBAMqc20k3KYS9QHLWp6Lv9p4xow2_yRyjhlxSJnU4qa7kbqSovDXUOuatcgxKt8jEh5jbU1OIIvGbk0IdLGGVACcNpNvQt9MPfoE4PaEP0_QK0OTiL-WgZ3byp6Oa-rd-5nHrxYp0lqGJR1NigF74f62zKTMm5b__f_9aXj-YmTh1j-_odm6003__s85IrC0">
 <a href="https://plantuml.com/plantuml/svg/~1UDgCaCrAn30KXVTvYcCtLMh5jPJIOeAuQK3YMa8QzMecBScTrJ3lFWpCtpBVxbu-3eSpPBQ9jviWwc94NQE8apf-6lsc9lKn6YNnggL2sq9gJDf0oNTpTr6BKukx2XTipgXiOlgsZYlOZAzdT1tkvUEIt2_D3o1Uq_Bd7J-TFVGzTgB1xBDBj38j4I_8d2Z-Y0Q1ul_jpSJ1NnzxCVWu7sSz1000__-XxKzL">Full Diagram</a>
@@ -530,7 +582,7 @@ upload uploads a static asset to gcp and returns a url
 ### itproject.echoRequest
 
 
-- EchoRequest is the request object for EchoService 
+- echoRequest is the request object for EchoService 
 
 <img src="https://plantuml.com/plantuml/svg/~1UDgCq4qBWa0Gnl7xV8edBnObT0uHfLsYYmkodMFHGGLVo5bFqNUF8ABZ_iy_Xk79nRl5h-D0SN0KnmZgIukRDHTTwggmMk5ib4QIG1cKnaAhgztyQF3Lu5-f7fm88gwxkUB7ok8ZEC7zY3J5LXtcfUxwPeS_W2p3a_OOMSIrZ1F4B_tKqejodfhFMky0003___AiGMm0">
 <a href="https://plantuml.com/plantuml/svg/~1UDgCq4sBmZ0Gnl5xFiMplNINtIwUfPGM4yHB0oMU9QH3M-cBPjAJ-Dr54F6O__d7C3mb1-l3EeqYZKwaAQ9wqUfez5xLggcCajXfgP1ba1grDb3oOBxUDFfgzA_2ZPOP2Rb-QUYw4eS4bd7Q8C_nBVyMx_gX_S4GBduvaml_7nH5WPlunKJCjYDimS4FSoVkegIvVUxs2000__-sb4Lk">Full Diagram</a>
@@ -550,7 +602,7 @@ upload uploads a static asset to gcp and returns a url
 ### itproject.echoResponse
 
 
-- EchoResponse is the response from the EchoService 
+- echoResponse is the response from the EchoService 
 
 <img src="https://plantuml.com/plantuml/svg/~1UDgCqBsgma0GnV5-dkBSDBcY0Mi98S5Tn2OBOQrbIOOaa0_PMIlntKKGiTn__MCOJYd1-N2V9qgZepH5L1zQNQmvwLetbTKAHwCqiWpAe3OMMftjtvT6Nut-bTh9YI3XTbWRbjkw22TmWkiUUOv_jLjzEupT1hy2HO47RJ6pYEiP1qZmuzBJaqfUklTUhm000F__Vxv2E000">
 <a href="https://plantuml.com/plantuml/svg/~1UDgCq44BWZ0Onl7xFiMJ5uioEeU8qaPqSI3h76CEDTJ9tdMAldi44HttF_zuUNbA2jg7npIoD3gMfeZgIwkhacTHYwPIWkCakK2MWKlKKa7mYrhzQFJLw5-P6JKH4cjwrrXQt4msWIRS3iXphFdEUTCFxGP3MBoxMnFs_nP5WIVROh94khCuWe8VvewzM6ddzhFSEm00__zBf4Ow">Full Diagram</a>
@@ -570,9 +622,30 @@ upload uploads a static asset to gcp and returns a url
 ### itproject.empty
 
 
+- empty is an empty type for messages that don't need a payload 
 
 <img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNfEOMb5GgAIGMAyGRsDWeQBZev1SbPsIcQ2hOsIbKSzLoEQJcfO0211000F__8C4tr000">
 <a href="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNwANc5fHKAYaa5Yl46zZOA6YuwEGN9MTafcWgsDafL7FLSZcavgM0GWGG003__rF4E080">Full Diagram</a>
+
+</details>
+<a name=itproject.getClaimsResponse></a><details>
+<summary>itproject.getClaimsResponse</summary>
+
+### itproject.getClaimsResponse
+
+
+- getClaimsResponse contains a username 
+
+<img src="https://plantuml.com/plantuml/svg/~1UDgCqB4AmZ0Gnl4zJ_7PfOeMdAMKbYQ8ImCbpXBQenRQL7Bf9Bwx2EBYal_yupY-aeFrOPqdaKOdqXHHVMbrDVgi6jLMHadKMYfa6QH6emsKl9ZDZqPVZVvLT9DbHZ9Gg2SxpjmIFnR7bC0oRaVaERRoiFZkFlOx_34K1PvYZvN9EpiJJk3WHpU8boZ9zP_ftW400F__dir6fm00">
+<a href="https://plantuml.com/plantuml/svg/~1UDgCa37BmZ0OXFVyYlkwz1EjE4ifBKqGbmPAd2MqeKRQjEHD9_6_Yo0kBddcvuxZIWhQXtKQMHeDIrD4yL6hYv8dqOYsKeAZbbmWoy0b6gaW-5dzVTNerkYjh1ir4PB1X7hKTgBMq38xCWaquNf0dkEVxsRVtMo_WGsBd--c2_kV08e23xR5IiOxFHaSGS5RDx0dAuthtoU-0W00__-MWqgf">Full Diagram</a>
+
+
+#### Fields
+
+
+| Field name | Type | Description |
+|----|----|----|
+| username | string | |
 
 </details>
 <a name=itproject.getuserRequest></a><details>
@@ -581,6 +654,7 @@ upload uploads a static asset to gcp and returns a url
 ### itproject.getuserRequest
 
 
+- getuserRequest contains a username to respond 
 
 <img src="https://plantuml.com/plantuml/svg/~1UDgCaB4AmZ0OXFV_ASukLRJWBAMqc20k3PGuIsb23TIA-PD9V7SfYE2MRpm-ZkDg3hqFyJvHdWpbEPBugir5gvDiPTTeAN1KGg8e81HQfI75MQz-Qd9hybOQffuPsMX3PEix-uoMGuQUSTsZBB4MkuSVRiviyE-Wgl2YBPR86Hp0mRjvf3VLTZRBPPy0003__t0IGzC0">
 <a href="https://plantuml.com/plantuml/svg/~1UDgCaC4AWa0OXE_x59CNYp8wXuZIBj751TdE8RhOXcdj_tkAtZs42BhjTnm-Xc5oujhpTEz578o8OmJnLOkpqKTLggemIkAWfKAIG6gKsa39ardyrE3MuAsYwMiYH9tbYQolx7Eon15gmcM7DCLIRaRVN5sxWkE77s-suUs_ZIp3IwmnHwx57iJU3PruYzmExNpU9m00__z9laVL">Full Diagram</a>
@@ -600,6 +674,7 @@ upload uploads a static asset to gcp and returns a url
 ### itproject.job
 
 
+- job contains information to display in the frontend timeline 
 
 <img src="https://plantuml.com/plantuml/svg/~1UDgCaCsAmZ0KHlTvYc-wwGoTmgo7KbfC43SDI5nBcWPDQPEIn8M8xow2-BFBMHuEbylNX2XzFCqJoPCXUOua7ccx4tpDEhPj1QDOSSfGbg0S7HTWT2E-dcdorUHVYPfa2CX6rsUG0Vi_L1M-wQ_pwcY67uokHrtZGWeeDo_Idl6F4Bsn1r9Wa5673w63ycQ9njbt7KsSz4jSIQFjS9_r5W00____M4tj">
 <a href="https://plantuml.com/plantuml/svg/~1UDgCaCrAn30KHlTvYizkgjIAQocbnGHnqu34jQHfq9GsASbrCGppxiF0C3-xdENXSBbyNI8TwNzTM9aDAqjaSKxxRoK_n22-UYKutYKNg6jmYK4g2Fwf7YvfzjNiNvbPT4eevZ0Mq0a_hsWQFFBd4CsVcvxWQ8jXjePUvZ2YRR5d5KnOD-rtU4EYwFmlgp1fikbEs6IYsyW5Vwl9qMAlui0wwwVJmCS0003__sQlKUy0">Full Diagram</a>
@@ -622,7 +697,7 @@ upload uploads a static asset to gcp and returns a url
 ### itproject.loginRequest
 
 
-- LoginRequest is empty because the Bas64(username:password) is contained in the 
+- loginRequest is empty because the Bas64(username:password) is contained in the 
 header of the request 
 
 <img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNvEIdP-O5fHQMfXQNA2aa5Yl46zZOA6YuwEGN9MTafcWgsDafL7FLSZcavgM0mWKG003__z29EgS0">
@@ -635,7 +710,7 @@ header of the request
 ### itproject.loginResponse
 
 
-- LoginRequest is the response object from Login that is used in bearer authentic
+- loginRequest is the response object from Login that is used in bearer authentic
 ation in the header: "Bearer <JWT>" 
 
 <img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oievUIdP-O5fHONvESLfoef91Ohn1iesDWeQBZev1SbPsIcQ2gWA56mirEevj9Mo2elKR1IA2ufoinBvwhbSaZDIm655Y000F__26D1d000">
@@ -656,9 +731,10 @@ ation in the header: "Bearer <JWT>"
 ### itproject.profile
 
 
+- profile is the data model of the page that is displayed to a user 
 
-<img src="https://plantuml.com/plantuml/svg/~1UDgCaSrEmp0GXEz-Yg6NG48bpbKKjS8Muj984CwLupgmnR6BVqw8TqSefMfpyXndPhzTQTSXIX_JQ5YHBLOKoDAfkddhsYUn5I-RJd0yjbnWkGHliMqx2FxStPohsTJiMvaoCWGiZjuDPFG2Cc3tWBh6BRztNdtG_Wwd44s3RrP1-aY3L35WXR9yrLz9MwLH__jDMR8AFJci4A8d-yugw56IkJI6PCpEob5VcWVNpwa7rqz0G_Pp7aw3Ktua5PE_mgMW_VMA7xRMTl_tqDy0003__tpJTD00">
-<a href="https://plantuml.com/plantuml/svg/~1UDgCai5kip0GXEz-YlcvvAzJeYJ7A8eI5LJr4gIMdf4nJcjgR6gRGrNbtQk8a9AeIEoDsM7cqyfRvvdrJQN8PFIGoGIZvcpTlQR9OxoFdtTf7E4XYMA48Q84-oH573sb_oxMqQcZMGbNp3a4p7fvODox0CmXcsEznl_etbZ-BeixI5zRKmhkPvqHcms-oHI5SDpAsakZiOBpLketCeMI-gF_xQLNubSuThsboS-LYy7AqkHT6pTLpVHNFxbWNhWhuM-Y8OBQceDKeeLO3aASRHt8vLvOWT8NyTa8pGNMdRwXb4oHIzD741MJgYyS6gKopIhH5qydkKajJTu6divwksn_RFUrvBwnLt6D4_QwuaYo9MWO8fZFPZH0DhyL5cGhT75wzZy1003__wn3qDm0">Full Diagram</a>
+<img src="https://plantuml.com/plantuml/svg/~1UDgCaRzEmp0On7S_nT4ba529kOgYLjX2B8q4OQuSzmkuE7RndmdnxWYbL6adt_YxyvsbRnsYz36DXXNPOaM1B9sYcxUkVH9RyRBf1CTZomMMI_0MsxQ3uC_TpJcQtPhzLwQC306BetU3DhI03DWzeAvno--TLnzwVuUJYQR1DwiWVTI3L35WXR9yfQz4LX7gVzwK9QlGQuSLGlJQlhCAojb8DiuHZLAREHYICJihHvh3W-klXmwkdpQCjf_NvlHmyezQnUGlwb8WVpdnmzPaztyt_Wq00F__a5bxCG00">
+<a href="https://plantuml.com/plantuml/svg/~1UDgCar5hip0KXk_pAyxdJR_PMTfUbb9QfepTLDZSjSHukiN5n2N7Yp7wtqUnTccPOEvyytgUXmFPEkAMsbgnoUZ39XCOTSxLtMkMFYRxv7cN9J4yf742KGHn2liqWoH-olvTggEdZdPbGd7d8E2Mv84BSW5m1_aSrclu7zyRAzvbUGUI6cig53JhYx3Pm3URGebEMDcGD1fMuCXA_SQceAJ-yBz9aiBVuDXpArESaOj1P6MAdYPCtN3zvKykEQ6x2lus6Z9eh3b8XPt4Sb3YNEj5Blk25OJX2twsg0N2kiytOSYcK4ZZAmYZ2JNv4TPSAZyuj4hbcjVeXwSjtO0gKtICqwPlBxiVk_j62chjrRZMeRr675c-X32A89ZFPc40-VmsMB0jwlBq4du2003___grrpq0">Full Diagram</a>
 
 
 #### Fields
@@ -668,6 +744,7 @@ ation in the header: "Bearer <JWT>"
 |----|----|----|
 | artifacts | sequence of artifact | |
 | bio | string | |
+| content | string | |
 | email | string | |
 | full_name | string | |
 | jobs | sequence of job | |
@@ -682,7 +759,7 @@ ation in the header: "Bearer <JWT>"
 ### itproject.registerRequest
 
 
-- RegisterRequest contains all the information to register the user in the databa
+- registerRequest contains all the information to register the user in the databa
 se 
 
 <img src="https://plantuml.com/plantuml/svg/~1UDgCaK5Bn30GHk_v5PzxgR8kU9PbsSK4yT90YMS9pRG6qbPd4Zo8_rq44TjJtl7n60Q-isJFkKn9DTMefa4Ll-dbsTb7qvhkuep6WzK6XmEqHMiTZ7voLtzfzTNgNrMVl0XsJ6EKJDpHUo79EtZ1onsEHrphsuNxrnXki8bmEk5JxK6JZmdtaCnn7jKUGqcfzHFzTszUv6FXi79C0p5JsCP5YEUL-r9dciFF4Dy1003__oyIOFe0">
@@ -727,6 +804,7 @@ se
 ### itproject.searchRequest
 
 
+- searchRequest has the term query that should be searched for 
 
 <img src="https://plantuml.com/plantuml/svg/~1UDgCqB4AmZ0Gnl7zdkApInGjE4ifBIQ8ImCbpXBIO0jjnLmwYUykWWXk-Sy_ZkEhEDeGbsaaaHm9WQI-jBuOVLADQckZ98vQAkGvf4QZ3PGyczMF9bzD_fNSQ9cHiRV1zQr_B9vZ1ikuxb4KMClTFRX-w3Ru8oXBF6cBwCE40pY6ORxHYoe_Tv-vtW400F__Hof1xG00">
 <a href="https://plantuml.com/plantuml/svg/~1UDgCq3shmZ0Knl4zd-AvNNelrugpbD9YWhWqKE8i8GssqXVDEPt4xow226xvppyEXwSaje6NSH1fT29D4TMRLaUZzwfMJMMKn4vBXIo3rAYrWP87y_EXqLUZVnLki4H8oDlWkiRV5a-Sm19E6-GvVkLg3gxhsp_qV0tpnJjUVs4K1UxY7-p3Y2s8Gp-TnKEKVcfVmpq3003__mzsHUy0">Full Diagram</a>
@@ -746,9 +824,10 @@ se
 ### itproject.searchResponse
 
 
+- searchResponse is a type that contains the profiles that match the search term 
 
 <img src="https://plantuml.com/plantuml/svg/~1UDgCqB5gmp0Gnl5TJ_7LYrkrXix569jAb2uMECeSX7p11iLsTFOKykuX40BPz9z_7CTNy-hYkfs2o9CJUOwa7hJPM_EdMzqrLYly6gLH5506hR7Gwj--FMdorUHVXG-E6HcJYtxeY9TvOihW68Tlb2NUrTSS_J3s7tWrg2fSn2SYyHPMnW-atD5veyaJoYNEnp5G9QMuYfgc_hxXBG00__yBs4Ze">
-<a href="https://plantuml.com/plantuml/svg/~1UDgCayzkip0GnEz-Ylsuv2ifKVxSeYXAL53LIv1IUaR6R1fJOrFR7AegxruX80LK97nZlCpC_YGVZANQbhaWiyc7p6OmwJIZnxSeV0vEmVaO1JuyXNu0dWT-2ASmWi1_YVxTHoUxJkvAcA36W4ErvHVAh7606eYNiDl1V_zHQNRbwGDmMsYL8REBTX3sU_WcSqZHCCqBovM4BHYhkNmdSn1SVdI_BRS2VuLRcvkff8bSZKPcAcdJcCeBAh-wpYcrQ7h2tut66cWqfMZtNe-MABIwS85jaJils8Bhlk9dYP8Xx5fzxxfa3WbNtGgOKowwmgKK8fOqnwvO8HcuPYgf3Ikimylwn_g-uCoMkcTN6jJzYFlg1gbcrpEQGac3DO7DA87-T0kYmJVerD2gIjr8l0RNyy1PBXQk0_5oAAn8lEa9Qt90cLQlxYS00F__NnFusm00">Full Diagram</a>
+<a href="https://plantuml.com/plantuml/svg/~1UDgCayrkgp0GXVT-YhbiSajAb9zT54M92ggw2L9AryYOIMDgR6gRHLNbtIi4f82AX7SS3tC-Fec3iLJRCXTaDlcGsGmcdMRq-1Q5py4fE1-Zm8Udq0_0yy0FuHH64FWlqR_xwEIjara94zGOSAYs_4APDGvG0_4ITZluxpygpQuyVG1k2wqoP7RH3i9-3zza3YaQfdbXkPAm1MCrb-za3eBBZ-wpvLRWRt1hUpELD9MhqSfC9MqRKtb1vLTtSqejcbxmDz4OWKPJYlQxrwCGXLONBh05kVk2BRZkAtwMA1d2hitthalca73LHM1AMfIs6s5EkUW6brA8MD8Sks5bQL2KgQJkg4mFB-iNw_k2CrlgthhIeEvNt6qOf9fTpsWA9GtMKZQZKlhJhPl6w82f4LX1tKYy1jVpm5ak5gu3yN8Oh4YywGLhSa2PLZ_YJm000F__saJ_F000">Full Diagram</a>
 
 
 #### Fields
@@ -759,23 +838,13 @@ se
 | results | sequence of profile | |
 
 </details>
-<a name=itproject.updateuserResponse></a><details>
-<summary>itproject.updateuserResponse</summary>
-
-### itproject.updateuserResponse
-
-
-
-<img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiePPOK5ELdfIQNb1Qa99QabXQd5WMb5XVavnMdAYaa5Yl46zZOA6YuwEGN9MTafcWgsDafL7FLSZcavgM0GWSG003__rbSFJO0">
-<a href="https://plantuml.com/plantuml/svg/~1UDgCaB4AmZ0KHVTynRLB5Qpu0QMqc20k3PGuIsWVMAbDo4icyTz54EUS-N2vd9QZ3J4z5r5c8yeIMVpKxchqMVLgw8oIE6cfK5MG6hqsKF9YDdyrUpNxgnWNounYZZwu1utnaFna8oMcC11xjp8Li8pRiQwnbNiNnliyxT0qU8ctQ6cTlda-0G00__-EjJra">Full Diagram</a>
-
-</details>
 <a name=itproject.uploadRequest></a><details>
 <summary>itproject.uploadRequest</summary>
 
 ### itproject.uploadRequest
 
 
+- upload request contains the data to upload an asset to gcp 
 
 <img src="https://plantuml.com/plantuml/svg/~1UDgCqB4AmZ0Gnl4zJ_7PfOeMdAMK5XF4fO4IPpcQeeNOQYwPn7SNGGIt_ESVn_7L7CY7U7CYJqxaEPBwqkPaz46rgckCajXhgL0Ka1gjDb3oQ1O_cdmr-LVHEs965kzk9jiDZpXmo42CynPbYQNSpBw_ZdQ5FuAgmbEiOIbGz0uxSF3ZT14lKG-J_Ips3W00__yRXqD0">
 <a href="https://plantuml.com/plantuml/svg/~1UDgCqB6gmZ0Knl4zJ_7TBhsY5MSffSK4SMcWn5b24xGIsvgSJEAxYo22M_xpZyFXgmDfJ_7cM9uSotCazQ7DKSczQ4NNAC6naroWAC0bMgaW-47zVMdorUHVMUzq2CZYx2PjEdkFDb067N3Qe2pnprUJxo-3MM2WsKzNszFw1wEgy61B64qwUeSj0lbXFBCdg-retjkz0W00___mO4T2">Full Diagram</a>
@@ -786,7 +855,9 @@ se
 
 | Field name | Type | Description |
 |----|----|----|
-| dataurl | string | |
+| dataurl | string | dataurl is a string that conforms to the data url schema: https:
+developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs 
+|
 
 </details>
 <a name=itproject.uploadResponse></a><details>
@@ -795,6 +866,7 @@ se
 ### itproject.uploadResponse
 
 
+- uploadResponse contains the url of the static asset 
 
 <img src="https://plantuml.com/plantuml/svg/~1UDgCqB4AmZ0Gnl7zdkApInKjE4ifBIQ8ImCbpXBQeeNOb5moYUykWWXk-Sy_ZkEhEHWVuiDIdXpbEPBwqkQYrKcsickq53Wg8L4K40gjqf3Yh5S_cdmr-LVghM565XVhpD2DlBYPnmo6STsZBB4ME-Vx-pHiy6zGLNZI5j5R7C31J_EDNbIFy_3Pwnq00F__c6z2SW00">
 <a href="https://plantuml.com/plantuml/svg/~1UDgCqB4AmZ0KXU4zJt7iKaKhpb9AYmdYqa29iuGsQ2Ks9JUPn7SNGGIt_FF7vN9g2jg7-B0iJuxbEPBwqkQiv56qeckKu3X8Bb0Ku1AjL13yf1O_cdmr-LVMMqs4BCxMwQ4pDBk9J0PDkEnGbbZoZVFzRHnM6CFitTtqOVklKLLuiZMYjzY3WX-dAtknsap3Pxbt0000__zbJKPq">Full Diagram</a>
@@ -805,7 +877,12 @@ se
 
 | Field name | Type | Description |
 |----|----|----|
-| url | string | |
+| url | string | 
+
+url is in the form https:
+storage.googleapis.com/joshcarp-it-project-storage/<assetname>  
+where assetname is a randomly assigned string 
+|
 
 </details>
 <a name=itproject.verifyRequest></a><details>
@@ -814,6 +891,7 @@ se
 ### itproject.verifyRequest
 
 
+- verifyRequest is used in the veryfy endpoint 
 
 <img src="https://plantuml.com/plantuml/svg/~1UDgCqB4AmZ0Gnl4zJ_7PfOeMdAMK5XF4fO4IPmdjgOMsOYuHH7nt4KHmot_-SHnVoTuw7yP1fD69D4LKNreTZDwfMZMLKH9RBHMo35AZrWPAxitiHwElHlygsi4o8xcJwq-FXcw1s2UmZECQUOwvN5rTU-cx1Vu8YW9FiKHWSfCT2HkmT_rq5YzHqjHz9di7003__sdZGzC0">
 <a href="https://plantuml.com/plantuml/svg/~1UDgCqBqAmZ0KnV4zJt7iKaKhpb9AYmdYqa29iuGsQgGVcfiA8hwx22AuvJ__k5nEJbuxFtOjYuDZSOoWlhJOAxaLfQWA9JWsaWia2RX4AHK4twd9ZmPV3VwLrQqcGdGtpXuVbRcDXdm4JJYiaAQOyiNWwhDjPh3-weQBgVto3oFBy6HpZ6HShpk3DSWxsv_OY-McRpxZlGC00F__Gsr7rG00">Full Diagram</a>
@@ -833,6 +911,8 @@ se
 ### itproject.verifyResponse
 
 
+- verifyResponse is a message that has verified=true if the authenticated used ha
+s the ability to edit the page
 
 <img src="https://plantuml.com/plantuml/svg/~1UDfoA2v9B2efpStXKYSQSAchAn05e4eTGqFytLtzN8CSGrnT59pzNLmLT7KLNFmL_Fn355nTF4CKuKg9DfLejt8bvoGM5oiebQKMPQPL1gKM5-Jd5QSgAIGMAyGRADZOA6YuwEGN9MTafcWgeAfHiBDJgERIXeXcfgOeM2aavUVdSDLoEQJcfO2231000F__RKH3eW00">
 <a href="https://plantuml.com/plantuml/svg/~1UDgCa37BmZ0OXFVyYlkwz1EjE4ifBIQ8ImCbpbBRY97ObBnH4F6_YoA2MvxnU3YEAocqFbpEbgNHi3H551-rsYgv5hLeAYKuLf8BP1cuH2qL1D-elwyQtHgzbNMs9K9orTuSRescqGsa4xI4tG9vZdy-Sxuxcdu24qRlJheByryRHO4xc-AT6jrZYRrpbZrOgOV-TTup003__qR8HwG0">Full Diagram</a>
