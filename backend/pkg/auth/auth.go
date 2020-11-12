@@ -61,13 +61,15 @@ func GetToken(ctx context.Context, valid func([]string) (map[string]interface{},
 	return claims, nil
 }
 
+type Secret string
+
 /* ValidJwt validates the authorization. */
-func ValidJwt(authorization []string) (map[string]interface{}, error) {
+func (s Secret) ValidJwt(authorization []string) (map[string]interface{}, error) {
 	if len(authorization) < 1 {
 		return nil, fmt.Errorf("auth not found")
 	}
 	token := strings.TrimPrefix(authorization[0], "Bearer ")
-	jwtToken := Decode(token)
+	jwtToken := Decode(token, string(s))
 	if err := jwtToken.Valid(); err != nil {
 		return nil, err
 	}

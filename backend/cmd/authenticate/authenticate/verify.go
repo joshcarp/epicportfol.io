@@ -11,7 +11,7 @@ import (
 func (s *Server) Verify(ctx context.Context, req *itproject.VerifyRequest) (*itproject.VerifyResponse, error) {
 	var username interface{}
 	var ok bool
-	creds, err := auth.GetToken(ctx, auth.ValidJwt)
+	creds, err := auth.GetToken(ctx, s.secret.ValidJwt)
 	if err != nil || creds == nil {
 		creds, err = auth.GetToken(ctx, s.Firebase.ValidJwt)
 		if err != nil {

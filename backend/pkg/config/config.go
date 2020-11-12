@@ -32,6 +32,8 @@ type Config struct {
 	} `yaml:"server"`
 	GCP struct {
 		ProjectID     string `yaml:"projectid"`
+		ProjectNum    string `yaml:"projectnum"`
+		SecretName    string `yaml:"secretname"`
 		Databaseurl   string `yaml:"databaseurl"`
 		Storagebucket string `yaml:"storagebucket"`
 	} `yaml:"gcp"`

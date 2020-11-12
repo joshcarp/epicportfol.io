@@ -12,7 +12,7 @@ import (
 func (s *Server) GetClaims(ctx context.Context, _ *itproject.Empty) (*itproject.GetClaimsResponse, error) {
 	var username interface{}
 	var ok bool
-	creds, err := auth.GetToken(ctx, auth.ValidJwt)
+	creds, err := auth.GetToken(ctx, s.secret.ValidJwt)
 	if err != nil || creds == nil {
 		creds, err = auth.GetToken(ctx, s.Firebase.ValidJwt)
 		if err != nil {
