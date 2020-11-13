@@ -6,7 +6,7 @@ import RegisterPage from './containers/RegisterPage'
 import React, { useEffect } from 'react'
 import SearchPage from "./containers/SearchPage";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core'
-import { blue, green, indigo, red } from '@material-ui/core/colors'
+import { green, indigo, red } from '@material-ui/core/colors'
 
 export default function App() {
     useEffect(() => {
