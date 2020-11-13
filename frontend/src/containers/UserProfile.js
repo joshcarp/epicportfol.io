@@ -130,15 +130,13 @@ export default function UserProfile(props) {
                     <Grid item className={classes.card}>
                         <UserInfoCard profile={prof} />
                     </Grid>
-                    <Grid container className={classes.card}>
-                        <div className={classes.richContent}>
-                            {renderEditButton}
-                            {
-                                editState
-                                    ? richEditorBox
-                                    : <div dangerouslySetInnerHTML={{ __html: prof.content }} />
-                            }
-                        </div>
+                    <Grid item className={classes.card}>
+                        {renderEditButton}
+                        {
+                            editState
+                                ? richEditorBox
+                                : <div className={classes.richContent} dangerouslySetInnerHTML={{ __html: prof.content }} />
+                        }
                     </Grid>
                 </Grid>
                 <Grid className={classes.footer} />
@@ -170,12 +168,16 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: 60,
     },
     richContent: {
-        marginLeft: theme.spacing(0),
-        width: '100%',
+        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(2),
+        width: '95%',
         justifyContent: 'left',
     },
     card: {
-        margin: theme.spacing(2),
+        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(2),
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(0),
         width: '100%',
         justifyContent: 'left',
     },
