@@ -44,9 +44,9 @@ export default function UserProfile(props) {
         req.setUsername(username)
         const meta = { authorization: 'Bearer ' + localStorage.getItem('token') }
         authenticate.verify(req, meta, function (err, response) {
-            // setAuthed(response.getVerified())
+            setAuthed(response.getVerified())
             // TESTING PURPOSES, REMOVE TO ENABLE AUTH
-            setAuthed(true)
+            // setAuthed(true)
         })
 
     }, [username])
