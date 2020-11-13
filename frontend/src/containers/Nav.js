@@ -11,7 +11,7 @@ import MailIcon from '@material-ui/icons/Mail'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import MoreIcon from '@material-ui/icons/MoreVert'
 import { Home } from '@material-ui/icons'
-import UserSearchBox from '../components/NavSearchBox'
+import NavSearchBox from '../components/NavSearchBox'
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -175,7 +175,7 @@ export default function PrimarySearchAppBar() {
                         <Home fontSize="large" />
                     </IconButton>
 
-                    <UserSearchBox />
+                    <NavSearchBox />
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
                         {/* MAKE THIS BUTTON WORK AT SOME POINT */}

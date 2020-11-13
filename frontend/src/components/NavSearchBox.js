@@ -16,7 +16,8 @@ const styles = {
         padding: '2px 4px',
         display: 'flex',
         alignItems: 'center',
-        width: 400,
+        minWidth: '30vmin',
+        maxWidth: '30vmin'
     },
     input: {
         marginLeft: '10px',
@@ -77,7 +78,7 @@ class UserSearchBox extends React.Component {
                             type="search"
                             onChange={this.handleinput}
                             className={classes.input}
-                            placeholder="Looking for someone?"
+                            placeholder="User Search"
                             inputProps={{ 'aria-label': 'nav user search' }}
                         />
                     </Paper>
