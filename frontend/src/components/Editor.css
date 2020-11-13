@@ -25,7 +25,7 @@
   justify-content: space-between;
 }
 .demo-wrapper {
-  width: 95% !important;
+  width: 100% !important;
   display: block !important;
   margin-bottom: 25px !important;
   height: 400px !important;

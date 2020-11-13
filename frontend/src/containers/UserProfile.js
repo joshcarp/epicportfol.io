@@ -44,9 +44,9 @@ export default function UserProfile(props) {
         req.setUsername(username)
         const meta = { authorization: 'Bearer ' + localStorage.getItem('token') }
         authenticate.verify(req, meta, function (err, response) {
-            setAuthed(response.getVerified())
+            // setAuthed(response.getVerified())
             // TESTING PURPOSES, REMOVE TO ENABLE AUTH
-            // setAuthed(true)
+            setAuthed(true)
         })
 
     }, [username])
@@ -73,11 +73,25 @@ export default function UserProfile(props) {
         <>
             {
                 authed && !editState &&
-                <Button variant='outlined' color='primary' onClick={toggleEdit}>Edit Content</Button>
+                <Button
+                    variant='outlined'
+                    color='primary'
+                    style={{ float: "right" }}
+                    onClick={toggleEdit}
+                >
+                    Edit Content
+                </Button>
             }
             {
                 authed && editState &&
-                <Button variant='outlined' color='secondary' onClick={toggleEdit}>Save Content</Button>
+                <Button
+                    variant='outlined'
+                    color='secondary'
+                    style={{ float: "right" }}
+                    onClick={toggleEdit}
+                >
+                    Save Content
+                </Button>
             }
         </>
     )
@@ -156,7 +170,7 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: 60,
     },
     richContent: {
-        marginLeft: theme.spacing(2),
+        marginLeft: theme.spacing(0),
         width: '100%',
         justifyContent: 'left',
     },
