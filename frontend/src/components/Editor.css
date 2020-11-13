@@ -1,7 +1,6 @@
 .demo-root {
-  width: 90%;
+  width: 100%;
   display: flex;
-  font-family: Roboto;
   align-items: center;
   flex-direction: column;
   justify-content: center;
@@ -26,7 +25,7 @@
   justify-content: space-between;
 }
 .demo-wrapper {
-  width: 100% !important;
+  width: 95% !important;
   display: block !important;
   margin-bottom: 25px !important;
   height: 400px !important;
@@ -42,8 +41,6 @@
   border: 1px solid #F1F1F1 !important;
   padding: 5px !important;
   border-radius: 2px !important;
-}
-.demo-editorWrapper {
 }
 .demo-content {
   border: 1px solid #F1F1F1;
@@ -147,11 +144,11 @@
   display: flex;
 }
 .demo-editor-wrapper {
-  width: 60%;
+  width: 100%;
 }
 .demo-section {
-  margin: 50px 30px 20px;
-  width: 95%;
+  margin: 10px;
+  width: 100%;
 }
 .ReactCodeMirror {
   width: 38%;

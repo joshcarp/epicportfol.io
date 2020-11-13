@@ -8,7 +8,6 @@ import RedditIcon from '@material-ui/icons/Reddit';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
         display: 'flex',
         justifyContent: 'center',
     },
