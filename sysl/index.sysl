@@ -23,9 +23,11 @@ assets[~db]:
 authenticate:
     @project="itproject"
     login:
+        google_secret_manager <- get_secret
         basic authentication
         db <- retrieve user
     register:
+        google_secret_manager <- get_secret
         db <- insert user
 
 profiles:
@@ -33,7 +35,12 @@ profiles:
     getuser:
         db <- get_profile
     updateuser:
+        google_secret_manager <- get_secret
         db <- update_profile
+
+google_secret_manager:
+    get_secret:
+        return secret
 
 search:
     @project="itproject"
