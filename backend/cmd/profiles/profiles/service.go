@@ -29,6 +29,9 @@ func NewServer(config config.Config, log *logrus.Logger) (*Server, error) {
 		return nil, err
 	}
 	secret, err := auth.GetSecret(config.GCP.ProjectNum, config.GCP.SecretName)
+	if err != nil {
+		return nil, err
+	}
 	return &Server{config: config, db: db, log: log, auth: true, Firebase: Firebase, secret: secret}, nil
 }
 
