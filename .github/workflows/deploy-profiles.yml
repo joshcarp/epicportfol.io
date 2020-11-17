@@ -38,7 +38,6 @@ jobs:
             --image "gcr.io/joshcarp-it-project/profiles:$GITHUB_SHA" \
             --platform "managed" \
             --allow-unauthenticated \
-            --update-secrets jwtkey=${{ secrets.JWT_SECRET }}
       - name: Set permissions
         run: |-
           gcloud run services add-iam-policy-binding profiles \
