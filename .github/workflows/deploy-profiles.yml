@@ -37,7 +37,8 @@ jobs:
             --region "us-central1" \
             --image "gcr.io/joshcarp-it-project/profiles:$GITHUB_SHA" \
             --platform "managed" \
-            --allow-unauthenticated
+            --service-account github-actions@joshcarp-it-project.iam.gserviceaccount.com \
+            --allow-unauthenticated \
       - name: Set permissions
         run: |-
           gcloud run services add-iam-policy-binding profiles \
