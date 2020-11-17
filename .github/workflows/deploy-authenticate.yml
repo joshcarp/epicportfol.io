@@ -1,7 +1,7 @@
 name: deploy authenticate
 on:
   push:
-    branches: [ master ]
+    branches: [ feature/whatever ]
     paths:
         - 'backend/**'
         - 'config/**'

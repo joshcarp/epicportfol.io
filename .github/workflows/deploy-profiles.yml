@@ -1,7 +1,7 @@
 name: deploy profiles
 on:
   push:
-    branches: [ master ]
+    branches: [ feature/whatever ]
 
 
 jobs:
