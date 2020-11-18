@@ -30,19 +30,19 @@ func (s Server) EnterProfile(profile *itproject.Profile) error {
 	return nil
 }
 
-func (s Server) VerifyUser(email, password string) error {
-	a := s.Client.Collection("accounts").Where("email", "==", email)
+func (s Server) VerifyUser(username, password string) error {
+	a := s.Client.Collection("accounts").Where("Username", "==", username)
 	doc := a.Documents(context.Background())
 	ref, err := doc.Next()
 	if err != nil {
 		return fmt.Errorf("Wrong password")
 	}
 	data := ref.Data()
-	pwd, ok := data["password"]
+	pwd, ok := data["Password"]
 	if !ok {
 		return fmt.Errorf("Wrong password")
 	}
-	salt, ok := data["salt"]
+	salt, ok := data["Salt"]
 	if !ok {
 		return fmt.Errorf("Wrong password")
 	}
