@@ -60,8 +60,8 @@ export default function UserProfile(props) {
                     component={Paper}
                     className={classes.profile}
                     elevation={4}>
-                        <BioEditModal profile={prof}/>
-                        <TimelineEditor profile={prof}/>
+                        <BioEditModal profile={prof} setProfile = {setProfile}/>
+                        <TimelineEditor profile={prof} setProfile = {setProfile}/>
                         <button onClick={() =>PopModal("bio")}>Edit Bio</button>
                         <button onClick={() => PopModal("timeline")}>Edit Timeline</button>
                         

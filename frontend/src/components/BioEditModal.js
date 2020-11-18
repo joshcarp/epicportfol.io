@@ -5,12 +5,15 @@ import toggleDisplay from './toggleDisplay';
 const { profilesClient } = require('../proto/api_grpc_web_pb.js');
 const profiles = new profilesClient('https://profiles.epicportfol.io');
 const { getuserRequest, profile } = require('../proto/api_pb.js');
+const { profileFromJson } = require('./../components/convertor.js');
+
 export default function BioEditModal(props) {
 
     //const updateUser = (user) => console.log(Object.assign(new profile(), yaml.safeLoad(user)));
     //update user needs to add | on the end, and reinsert back into the yamled file, and then upload
-
+   
     //this updates the the text area with the profile data and allows you to edit it
+    const meta = { authorization: 'Bearer ' + localStorage.getItem('token') }
     
     
 
@@ -27,7 +30,7 @@ export default function BioEditModal(props) {
 }></input>          
                     
                     <br />
-                    <button onClick={() => toggleDisplay('BioEditModal')}>Close</button>s
+                    <button onClick={() => {toggleDisplay('BioEditModal');  profiles.updateuser(profileFromJson(props.profile), meta, function (err, response) {});}}>Submit and Close</button>s
                     
 
                 </div>
