@@ -23,15 +23,14 @@ export default function UserProfile(props) {
     const [editState, setEditState] = useState(false)
     const [prof, setProfile] = useState(null)
     const [authed, setAuthed] = useState(false)
-    console.log("USERNAME: " + username)
 
     // Fetch profile
     useEffect(() => {
         var req = new getuserRequest()
         req.setUserid(username)
         profiles.getuser(req, {}, function (err, response) {
-            console.log("ERR: %o", err)
-            console.log("PROFILE: %o", response.toObject())
+            // console.log("ERR: %o", err)
+            // console.log("PROFILE: %o", response.toObject())
             if (err == null) {
                 setProfile(response.toObject())
             }
@@ -44,9 +43,9 @@ export default function UserProfile(props) {
         req.setUsername(username)
         const meta = { authorization: 'Bearer ' + localStorage.getItem('token') }
         authenticate.verify(req, meta, function (err, response) {
-            // setAuthed(response.getVerified())
+            setAuthed(response.getVerified())
             // TESTING PURPOSES, REMOVE TO ENABLE AUTH
-            setAuthed(true)
+            // setAuthed(true)
         })
 
     }, [username])
@@ -111,8 +110,8 @@ export default function UserProfile(props) {
     }
 
 
-    console.log("AUTHED: %o", authed)
-    console.log("RICH CONTENT: %o", prof.content)
+    // console.log("AUTHED: %o", authed)
+    // console.log("RICH CONTENT: %o", prof.content)
     return (
         <>
             <Nav />

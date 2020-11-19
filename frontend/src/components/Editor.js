@@ -48,8 +48,11 @@ class ProfileEditor extends Component {
     };
     updateUser(user) {
         const meta = { authorization: 'Bearer ' + localStorage.getItem('token') }
+        // console.log("META: %o", meta)
         profiles.updateuser(profileFromJson(user), meta, function (err, response) {
-            console.log(err);
+            if (err != null) {
+                console.log("UPDATE USER: %o", err);
+            }
         });
     }
     onEditorStateChange(editorState) {

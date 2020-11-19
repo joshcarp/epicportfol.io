@@ -64,7 +64,7 @@ export default function UserInfoCard(props) {
     const [authed, setAuthed] = useState(false)
     const [editState, setEditState] = useState(false)
     let username = props.profile.username
-    console.log("USER: %o", username)
+    // console.log("USER: %o", username)
 
     // Check authorisation
     useEffect(() => {
@@ -72,16 +72,15 @@ export default function UserInfoCard(props) {
         req.setUsername(username)
         const meta = { authorization: 'Bearer ' + localStorage.getItem('token') }
         authenticate.verify(req, meta, function (err, response) {
-            // setAuthed(response.getVerified())
-            setAuthed(true)
+            setAuthed(response.getVerified())
         })
-        console.log("AUTH META: %o", meta)
+        // console.log("AUTH META: %o", meta)
 
     }, [username])
 
     // Get Social Icons
     for (let link of props.profile.linksList) {
-        console.log(link)
+        // console.log(link)
         if (link.includes("reddit")) {
             links.push(
                 <Grid item className={classes.socialRowIcon}>
