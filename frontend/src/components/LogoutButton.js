@@ -1,6 +1,13 @@
 import React from 'react'
-import { Button } from "@material-ui/core"
+import { Button, makeStyles } from "@material-ui/core"
 import { useHistory } from 'react-router'
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        marginTop: theme.spacing(0.7),
+        height: "80%",
+    }
+}))
 
 export default function LogoutButton(props) {
     const history = useHistory()
@@ -15,9 +22,11 @@ export default function LogoutButton(props) {
         history.push("/")
     }
 
+    const classes = useStyles();
+
     return (
         <>
-            <Button
+            <Button className={classes.root}
                 color="secondary"
                 variant="contained"
                 onClick={logout}
