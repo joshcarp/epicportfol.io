@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { fade, makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -12,6 +12,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications'
 import MoreIcon from '@material-ui/icons/MoreVert'
 import { Home } from '@material-ui/icons'
 import NavSearchBox from '../components/NavSearchBox'
+import LogoutButton from '../components/LogoutButton'
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -81,6 +82,17 @@ export default function PrimarySearchAppBar() {
     const classes = useStyles()
     const [anchorEl, setAnchorEl] = React.useState(null)
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
+
+    // Check authentication
+    const [isLoggedIn, setIsLoggedIn] = React.useState(false)
+    useEffect(() => {
+        if (localStorage.getItem("token") === null) {
+            setIsLoggedIn(false)
+        }
+        else { setIsLoggedIn(true) }
+        console.log("TOKEN: %o", localStorage.getItem('token'))
+        console.log("LOGIN STATE: %o", isLoggedIn)
+    }, [isLoggedIn])
 
     const isMenuOpen = Boolean(anchorEl)
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
@@ -179,16 +191,26 @@ export default function PrimarySearchAppBar() {
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
                         {/* MAKE THIS BUTTON WORK AT SOME POINT */}
-                        <IconButton
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            href="/"
-                            color="inherit"
-                        >
-                            <AccountCircle />
-                        </IconButton>
+                        {
+                            isLoggedIn
+                                ? (
+                                    <>
+                                        <LogoutButton setIsLoggedIn={setIsLoggedIn} />
+                                        <IconButton
+                                            edge="end"
+                                            aria-label="account of current user"
+                                            aria-controls={menuId}
+                                            aria-haspopup="true"
+                                            href="/"
+                                            color="inherit"
+                                        >
+                                            <AccountCircle />
+                                        </IconButton>
+                                    </>
+                                )
+                                : (<></>)
+                        }
+
                     </div>
                     <div className={classes.sectionMobile}>
                         <IconButton
