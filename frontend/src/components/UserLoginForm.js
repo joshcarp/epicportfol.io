@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { TextField, withStyles, Button } from '@material-ui/core'
+import { TextField, withStyles, Button, Snackbar } from '@material-ui/core'
 import { Redirect } from 'react-router'
+import Alert from '@material-ui/lab/Alert'
 
 const { loginRequest } = require('../proto/api_pb.js')
 const { authenticateClient } = require('../proto/api_grpc_web_pb.js')
@@ -28,12 +29,26 @@ class UserLoginForm extends React.Component {
         this.state = {
             password: '',
             username: '',
-            loggedin:false,
+            loggedin: false,
+            alertState: false,
         }
+
+
         this.handleUname = this.handleUname.bind(this)
         this.handlepwd = this.handlepwd.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleAlertOpen = this.handleAlertOpen.bind(this)
+        this.handleAlertClose = this.handleAlertClose.bind(this)
     }
+
+    handleAlertOpen() {
+        this.setState({ alertState: true })
+    }
+    handleAlertClose() {
+        this.setState({ alertState: false })
+    }
+
+
     handleUname(event) {
         this.setState({
             username: event.target.value,
@@ -52,25 +67,39 @@ class UserLoginForm extends React.Component {
                 'Basic ' +
                 window.btoa(this.state.username + ':' + this.state.password),
         }
-        auth.login(request, meta, function (err, response) {
-            err != null
-                ? console.log(err.code, err.message)
-                : localStorage.setItem('token', response.getJwt())
-            console.log(localStorage)
-            // console.log(err.code, err.message)//, response.getJwt())
+        auth.login(request, meta, (err, response) => {
+            // Login failure
+            if (err != null) {
+                console.log(err.code, err.message)
+                console.log(localStorage)
+                this.setState({ alertState: true })
+            }
+            // Login success
+            else {
+                localStorage.setItem('token', response.getJwt())
+                localStorage.setItem('currentUser', this.state.username)
+                this.setState({ loggedin: true })
+            }
         })
-        this.setState({loggedin: true})
+
     }
+
     render() {
         const { classes } = this.props
-        const { loggedin } = this.state
+        const { loggedin, alertState } = this.state
         var { username } = this.state
-        username = "/u/"+username
+        username = "/u/" + username
         return (
             <div className="UserLoginForm">
+
+                <Snackbar open={alertState} autoHideDuration={5000} onClose={this.handleAlertClose}>
+                    <Alert elevation={6} variant="filled" severity="error">Incorrect username or password</Alert>
+                </Snackbar>
+
                 {(loggedin &&
                     <Redirect to={username}></Redirect>
                 )}
+
                 <form onSubmit={this.handleSubmit} className={classes.form}>
                     <TextField
                         className={classes.field}

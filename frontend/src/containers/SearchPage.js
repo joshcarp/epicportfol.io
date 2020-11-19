@@ -89,7 +89,6 @@ export default function SearchPage() {
                 >
                     {/* SEARCH TERM TEXT */}
                     <Typography variant="h6">
-
                         Search Results for "{term}"
                     </Typography>
                     {/* SEARCH RESULTS */}
@@ -104,13 +103,13 @@ export default function SearchPage() {
                             >
                                 <ListItemAvatar>
                                     <Avatar
-                                        src={user.picture}
                                         alt={user.fullName}
+                                        src={user.picture}
                                         className={classes.avatar}
                                     />
                                 </ListItemAvatar>
                                 <ListItemText
-                                    primary={user.username}
+                                    primary={user.fullName}
                                     secondary={
                                         <React.Fragment>
                                             <Typography
@@ -119,7 +118,9 @@ export default function SearchPage() {
                                                 className={classes.inline}
                                                 color="textPrimary"
                                             >
-                                                {user.bio}
+                                                <i>
+                                                    {"@" + user.username}
+                                                </i>
                                             </Typography>
                                         </React.Fragment>
                                     }
