@@ -16,7 +16,8 @@ const styles = {
         padding: '2px 4px',
         display: 'flex',
         alignItems: 'center',
-        width: 400,
+        minWidth: '30vmin',
+        maxWidth: '30vmin'
     },
     input: {
         marginLeft: '10px',
@@ -67,24 +68,26 @@ class UserSearchBox extends React.Component {
         var { username } = this.state;
         const { classes } = this.props;
         username = "/search?term=" + username
+
+        if (fireRedirect) {
+            return (
+                <Redirect to={username}></Redirect>
+            )
+        }
+
         return (
             <div className="UserSearchBox">
-                <form onSubmit={this.handleSubmit} className={classes.form}>
-                    <Paper component="form" className={classes.root} elevation={0}>
-                        <InputBase
-                            id="user-search-field"
-                            name="username"
-                            type="search"
-                            onChange={this.handleinput}
-                            className={classes.input}
-                            placeholder="Looking for someone?"
-                            inputProps={{ 'aria-label': 'nav user search' }}
-                        />
-                    </Paper>
-                </form>
-                {fireRedirect && (
-                    <Redirect to={username}></Redirect>
-                )}
+                <Paper component="form" className={classes.root} elevation={0} onSubmit={this.handleSubmit}>
+                    <InputBase
+                        id="nav-user-search-field"
+                        name="username"
+                        type="search"
+                        onChange={this.handleinput}
+                        className={classes.input}
+                        placeholder="User Search"
+                        inputProps={{ 'aria-label': 'nav user search' }}
+                    />
+                </Paper>
             </div>
         );
     }

@@ -23,7 +23,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(1px + 3vmin);
   color: white;
 }
 
@@ -53,13 +53,14 @@ input {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  font-size: calc(1px + 3vmin);
 }
 
 /******************************************************************************/
 /* USERSEARCHBOX */
 /******************************************************************************/
 .UserSearchBox {
-  width: 60vmin;
+  width: 70vmin;
 }
 
 
@@ -67,7 +68,7 @@ input {
 /* USERLOGINFORM */
 /******************************************************************************/
 .UserLoginForm {
-  width: 60vmin;
+  width: 70vmin;
 }
 
 /******************************************************************************/
@@ -81,7 +82,7 @@ input {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(1px + 3vmin);
   color: rgb(0, 0, 0);
   background-image: url("./home-bg.jpg");
   background-repeat: no-repeat;
@@ -91,7 +92,7 @@ input {
 }
 
 .Homepage-logo {
-  height: 30vmin;
+  height: calc(40px + 30vmin);
 }
 
 /******************************************************************************/

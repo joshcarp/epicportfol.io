@@ -1,15 +1,18 @@
 import toggleDisplay from '../components/toggleDisplay'
 export default function PopModal(ID) {
-    switch(ID){
+    switch (ID) {
         case 'bio':
             toggleDisplay('BioEditModal');
             console.log("bio");
             break;
-            //and populate
+        //and populate
         case 'timeline':
             toggleDisplay('TimelineEditor');
             //and populate
             console.log("timeline");
+            break;
+        default:
+            console.log("Invalid 'toggleDisplay()' option")
             break;
     }
 

@@ -1,14 +1,20 @@
-import React from 'react';
-import { makeStyles, Grid, Avatar, IconButton, Typography } from '@material-ui/core';
+import React, { useEffect, useState } from 'react'
+import { makeStyles, Grid, Avatar, IconButton, Typography, Container } from '@material-ui/core';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import RedditIcon from '@material-ui/icons/Reddit';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import LanguageIcon from '@material-ui/icons/Language';
+
+import UserInfoEditor from '../components/UserInfoEditor'
+
+const { authenticateClient, verifyRequest } = require('./../proto/api_grpc_web_pb.js')
+const authenticate = new authenticateClient('https://authenticate.epicportfol.io')
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
         display: 'flex',
         justifyContent: 'center',
     },
@@ -57,8 +63,26 @@ const useStyles = makeStyles((theme) => ({
 export default function UserInfoCard(props) {
     const classes = useStyles();
     const links = [];
+    const [authed, setAuthed] = useState(false)
+
+    let username = props.profile.username
+    // console.log("USER: %o", username)
+
+    // Check authorisation
+    useEffect(() => {
+        var req = new verifyRequest()
+        req.setUsername(username)
+        const meta = { authorization: 'Bearer ' + localStorage.getItem('token') }
+        authenticate.verify(req, meta, function (err, response) {
+            setAuthed(response.getVerified())
+        })
+        // console.log("AUTH META: %o", meta)
+
+    })
+
+    // Get Social Icons
     for (let link of props.profile.linksList) {
-        console.log(link)
+        // console.log(link)
         if (link.includes("reddit")) {
             links.push(
                 <Grid item className={classes.socialRowIcon}>
@@ -68,7 +92,7 @@ export default function UserInfoCard(props) {
                 </Grid>
             )
         }
-        if (link.includes("facebook")) {
+        else if (link.includes("facebook")) {
             links.push(
                 <Grid item className={classes.socialRowIcon}>
                     <IconButton href={link}>
@@ -77,7 +101,7 @@ export default function UserInfoCard(props) {
                 </Grid>
             )
         }
-        if (link.includes("linkedin")) {
+        else if (link.includes("linkedin")) {
             links.push(
                 <Grid item className={classes.socialRowIcon}>
                     <IconButton href={link}>
@@ -86,7 +110,7 @@ export default function UserInfoCard(props) {
                 </Grid>
             )
         }
-        if (link.includes("instagram")) {
+        else if (link.includes("instagram")) {
             links.push(
                 <Grid item className={classes.socialRowIcon}>
                     <IconButton href={link}>
@@ -95,38 +119,80 @@ export default function UserInfoCard(props) {
                 </Grid>
             )
         }
+        else if (link.includes("twitter")) {
+            links.push(
+                <Grid item className={classes.socialRowIcon}>
+                    <IconButton href={link}>
+                        <TwitterIcon />
+                    </IconButton>
+                </Grid>
+            )
+        }
+        else {
+            links.push(
+                <Grid item className={classes.socialRowIcon}>
+                    <IconButton href={link}>
+                        <LanguageIcon />
+                    </IconButton>
+                </Grid>
+            )
+        }
     }
+
+    const renderEditButton = (
+        <>
+            {
+                authed &&
+                <UserInfoEditor profile={props.profile} setProfile={props.setProfile} />
+            }
+        </>
+    )
+
+
     return (
-        <Grid container className={classes.root}>
-            {/* PROFILE IMAGE + NAME */}
-            <Grid container className={classes.profileColumn}>
-                <Grid item>
-                    <Avatar alt={props.profile.fullName} src={props.profile.picture} className={classes.avatar} />
+        <>
+            {renderEditButton}
+            <Grid container className={classes.root}>
+                {/* PROFILE IMAGE + NAME */}
+                <Grid container className={classes.profileColumn}>
+                    <Grid item>
+                        <Avatar alt={props.profile.fullName} src={props.profile.picture} className={classes.avatar} />
+                    </Grid>
+                    <Grid item className={classes.field}>
+                        <Typography variant='h5' color='textPrimary'>
+                            <strong>
+                                {props.profile.fullName}
+                            </strong>
+                        </Typography>
+                    </Grid>
+                    <Grid item className={classes.field}>
+                        {props.profile.email}
+                    </Grid>
+                    {/* SOCIAL ICONS */}
+                    <Grid container className={classes.socialRow}>
+                        {links}
+                    </Grid>
                 </Grid>
-                <Grid item className={classes.field}>
-                    <Typography variant='h5' color='textPrimary'>
-                        <strong>
-                            {props.profile.fullName}
-                        </strong>
-                    </Typography>
-                </Grid>
-                <Grid item className={classes.field}>
-                    {props.profile.email}
-                </Grid>
-                {/* SOCIAL ICONS */}
-                <Grid container className={classes.socialRow}>
-                    {links}
+                {/* BIO TITLE + BODY */}
+                <Grid container className={classes.bioColumn}>
+                    <Grid item className={classes.field}>
+                        <Typography variant='h6' color='textPrimary'>
+                            <strong>
+                                About Me
+                            </strong>
+                        </Typography>
+                    </Grid>
+                    <Container className={classes.field}>
+                        <Typography variant='body1' style={{ wordWrap: "break-word" }}>
+                            {props.profile.bio || (
+                                <i>
+                                    This space is currently empty.
+                                </i>
+                            )}
+                        </Typography>
+                    </Container>
                 </Grid>
             </Grid>
-            {/* BIO TITLE + BODY */}
-            <Grid container className={classes.bioColumn}>
-                <Grid item className={classes.field}>
-                </Grid>
-                <Grid item className={classes.field}>
-                </Grid>
-            </Grid>
-
-
-        </Grid>
+        </>
     );
 }
