@@ -115,6 +115,7 @@ export default function UserProfile(props) {
     return (
         <>
             <Nav />
+
             <Grid container className={classes.root}>
                 <Grid container
                     component={Paper}
@@ -127,7 +128,7 @@ export default function UserProfile(props) {
                         <button onClick={() => PopModal("timeline")}>Edit Timeline</button> */}
 
                     <Grid item className={classes.card}>
-                        <UserInfoCard profile={prof} />
+                        <UserInfoCard profile={prof} setProfile={setProfile} />
                     </Grid>
                     <Grid item className={classes.card}>
                         {renderEditButton}
