@@ -48,7 +48,7 @@ export default function UserProfile(props) {
             // setAuthed(true)
         })
 
-    }, [username])
+    })
 
     // Allow ?edit=true to trigger edit state
     useEffect(() => {

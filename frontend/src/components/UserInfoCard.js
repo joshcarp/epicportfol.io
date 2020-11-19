@@ -76,7 +76,7 @@ export default function UserInfoCard(props) {
         })
         // console.log("AUTH META: %o", meta)
 
-    }, [username])
+    })
 
     // Get Social Icons
     for (let link of props.profile.linksList) {
