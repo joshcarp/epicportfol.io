@@ -201,7 +201,7 @@ export default function PrimarySearchAppBar() {
                                             aria-label="account of current user"
                                             aria-controls={menuId}
                                             aria-haspopup="true"
-                                            href="/"
+                                            href={"/u/" + localStorage.getItem("currentUser")}
                                             color="inherit"
                                         >
                                             <AccountCircle />

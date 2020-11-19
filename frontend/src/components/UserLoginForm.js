@@ -77,6 +77,7 @@ class UserLoginForm extends React.Component {
             // Login success
             else {
                 localStorage.setItem('token', response.getJwt())
+                localStorage.setItem('currentUser', this.state.username)
                 this.setState({ loggedin: true })
             }
         })
@@ -92,7 +93,7 @@ class UserLoginForm extends React.Component {
             <div className="UserLoginForm">
 
                 <Snackbar open={alertState} autoHideDuration={5000} onClose={this.handleAlertClose}>
-                    <Alert elevation={6} variant="filled" severity="error">Incorrect username or password!</Alert>
+                    <Alert elevation={6} variant="filled" severity="error">Incorrect username or password</Alert>
                 </Snackbar>
 
                 {(loggedin &&

@@ -7,6 +7,7 @@ export default function LogoutButton(props) {
 
     const logout = () => {
         localStorage.removeItem("token")
+        localStorage.removeItem("currentUser")
         props.setIsLoggedIn(false)
         console.log(localStorage.getItem("token"))
 
