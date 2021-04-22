@@ -1,5 +1,4 @@
-module github.com/joshcarp/epicportfol.io
-
+module github.com/joshcarp/it-project
 go 1.14
 
 require (
