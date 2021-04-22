@@ -1,4 +1,4 @@
-module github.com/joshcarp/it-project
+module github.com/joshcarp/epicportfol.io
 
 go 1.14
 
